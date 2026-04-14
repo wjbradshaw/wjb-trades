@@ -1,16 +1,16 @@
-<!DOCTYPE html>
+X<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>WJB Trades — Private Access</title>
+<title>WJB Trades â Private Access</title>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap" rel="stylesheet">
 <style>
-/* ═══════════════════════════════════════════
+/* âââââââââââââââââââââââââââââââââââââââââââ
    ROOT & RESET
-═══════════════════════════════════════════ */
+âââââââââââââââââââââââââââââââââââââââââââ */
 :root {
   --ink:       #0a0a0e;
   --ink2:      #111118;
@@ -58,15 +58,15 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* ═══════════════════════════════════════════
+/* âââââââââââââââââââââââââââââââââââââââââââ
    PAGES (views)
-═══════════════════════════════════════════ */
+âââââââââââââââââââââââââââââââââââââââââââ */
 .page { display: none; min-height: 100vh; }
 .page.active { display: flex; flex-direction: column; }
 
-/* ═══════════════════════════════════════════
+/* âââââââââââââââââââââââââââââââââââââââââââ
    NOISE TEXTURE OVERLAY
-═══════════════════════════════════════════ */
+âââââââââââââââââââââââââââââââââââââââââââ */
 body::after {
   content: '';
   position: fixed;
@@ -77,9 +77,9 @@ body::after {
   opacity: 0.4;
 }
 
-/* ═══════════════════════════════════════════
+/* âââââââââââââââââââââââââââââââââââââââââââ
    GATE / LOGIN PAGE
-═══════════════════════════════════════════ */
+âââââââââââââââââââââââââââââââââââââââââââ */
 #page-gate {
   align-items: center;
   justify-content: center;
@@ -213,7 +213,7 @@ body::after {
   border-color: var(--gold);
   box-shadow: 0 0 0 3px rgba(200,169,110,0.10);
 }
-.field-input.error { border-color: var(--red); box-shadow: 0 0 0 3px var(--red2); }
+.field-input.error { border-color: var(--red); box-shadow: 0 0 0 3pv var(--red2); }
 
 .btn-primary {
   width: 100%;
@@ -267,9 +267,9 @@ body::after {
 }
 .gate-footer a:hover { text-decoration: underline; }
 
-/* ═══════════════════════════════════════════
+/* âââââââââââââââââââââââââââââââââââââââââââ
    ADMIN PAGE
-═══════════════════════════════════════════ */
+âââââââââââââââââââââââââââââââââââââââââââ */
 #page-admin {
   flex-direction: column;
 }
@@ -443,9 +443,9 @@ body::after {
 .pill-revoked { background: var(--red2); color: var(--red); }
 .pill-admin { background: var(--gold3); color: var(--gold2); }
 
-/* ═══════════════════════════════════════════
+/* âââââââââââââââââââââââââââââââââââââââââââ
    MAIN DASHBOARD PAGE
-═══════════════════════════════════════════ */
+âââââââââââââââââââââââââââââââââââââââââââ */
 #page-dashboard {
   flex-direction: column;
   background: var(--ink);
@@ -544,7 +544,7 @@ body::after {
 /* REPORT TAB */
 .report-wrap { padding: 0; }
 
-/* ─── REPORT HEADER ─── */
+/* âââ REPORT HEADER âââ */
 .rpt-header {
   position: relative;
   padding: 40px 40px 32px;
@@ -638,7 +638,7 @@ body::after {
   z-index: 1;
 }
 
-/* ─── ALERT BANNER ─── */
+/* âââ ALERT BANNER âââ */
 .rpt-alert {
   background: linear-gradient(90deg, rgba(248,113,113,0.12) 0%, rgba(248,113,113,0.04) 100%);
   border-left: 3px solid var(--red);
@@ -651,7 +651,7 @@ body::after {
   align-items: flex-start;
 }
 
-/* ─── MACRO STRIP ─── */
+/* âââ MACRO STRIP âââ */
 .macro-strip {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
@@ -682,7 +682,7 @@ body::after {
 .chg-dn { color: var(--red); }
 .mc-meta { font-size: 9px; color: var(--fog); margin-top: 3px; line-height: 1.4; }
 
-/* ─── CATEGORY SECTIONS ─── */
+/* âââ CATEGORY SECTIONS âââ */
 .cat-section { border-bottom: 1px solid var(--wire); }
 .cat-header {
   display: flex;
@@ -716,7 +716,7 @@ body::after {
 .cards-grid { padding: 20px 40px; display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
 .cards-grid.cols-3 { grid-template-columns: repeat(3, 1fr); }
 
-/* ─── TRADE CARDS ─── */
+/* âââ TRADE CARDS âââ */
 .trade-card {
   background: var(--ink2);
   border: 1px solid var(--wire);
@@ -859,7 +859,7 @@ body::after {
   border-top: 1px solid var(--wire);
 }
 
-/* ─── ALERTS SECTION ─── */
+/* âââ ALERTS SECTION âââ */
 .alerts-wrap { padding: 24px 40px 28px; border-bottom: 1px solid var(--wire); }
 .section-hd {
   font-family: var(--display);
@@ -905,7 +905,7 @@ body::after {
 .tp-r { background: rgba(248,113,113,0.15); color: var(--red); }
 .tp-a { background: rgba(251,191,36,0.15); color: var(--amber); }
 
-/* ─── GREEKS ─── */
+/* âââ GREEKS âââ */
 .greeks-wrap { padding: 24px 40px 28px; border-bottom: 1px solid var(--wire); }
 .greeks-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
 .greek-tile {
@@ -1025,7 +1025,7 @@ body::after {
 }
 .toggle-switch.on::after { transform: translateX(16px); background: var(--gold2); }
 
-/* ─── DASH FOOTER ─── */
+/* âââ DASH FOOTER âââ */
 .dash-footer {
   padding: 16px 40px;
   background: var(--ink2);
@@ -1040,7 +1040,7 @@ body::after {
 .df-brand { font-family: var(--display); font-size: 14px; color: var(--gold); letter-spacing: 2px; }
 .df-disc { max-width: 500px; line-height: 1.6; }
 
-/* ─── COPY BUTTON ─── */
+/* âââ COPY BUTTON âââ */
 .copy-btn {
   background: none;
   border: none;
@@ -1054,7 +1054,7 @@ body::after {
 .copy-btn:hover { color: var(--gold2); }
 .copy-btn.copied { color: var(--green); }
 
-/* ─── TOAST ─── */
+/* âââ TOAST âââ */
 .toast {
   position: fixed;
   bottom: 24px;
@@ -1074,7 +1074,7 @@ body::after {
   to   { opacity: 1; transform: translateY(0); }
 }
 
-/* ─── PUSH NOTIFICATION BANNER ─── */
+/* âââ PUSH NOTIFICATION BANNER âââ */
 .push-bar {
   position: fixed;
   top: 56px;
@@ -1104,7 +1104,7 @@ body::after {
 .push-bar.warn-push .push-bar-icon { background:rgba(251,191,36,0.1); border-right-color:rgba(251,191,36,0.2); }
 .push-bar.warn-push .push-bar-sym { color:var(--amber); }
 
-/* ─── MARKET DATA EDITOR ─── */
+/* âââ MARKET DATA EDITOR âââ */
 .mde-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:8px; margin-bottom:14px; }
 .mde-cell { background:var(--ink3); border:1px solid var(--wire); border-radius:7px; padding:10px 12px; }
 .mde-ticker { font-family:var(--mono); font-size:9px; letter-spacing:2px; text-transform:uppercase; color:var(--fog); margin-bottom:6px; }
@@ -1113,13 +1113,13 @@ body::after {
 .mde-input:focus { border-color:var(--gold); }
 .mde-chg { width:70px; }
 
-/* ─── SCROLLBAR ─── */
+/* âââ SCROLLBAR âââ */
 ::-webkit-scrollbar { width: 6px; }
 ::-webkit-scrollbar-track { background: var(--ink); }
 ::-webkit-scrollbar-thumb { background: var(--ink4); border-radius: 3px; }
 ::-webkit-scrollbar-thumb:hover { background: var(--fog); }
 
-/* ─── RESPONSIVE ─── */
+/* âââ RESPONSIVE âââ */
 @media (max-width: 768px) {
   .macro-strip { grid-template-columns: repeat(3, 1fr); }
   .cards-grid, .cards-grid.cols-3 { grid-template-columns: 1fr; }
@@ -1137,9 +1137,9 @@ body::after {
 </head>
 <body>
 
-<!-- ═══════════════════════════════════════
+<!-- âââââââââââââââââââââââââââââââââââââââ
      PAGE 1: GATE (Login)
-═══════════════════════════════════════════ -->
+âââââââââââââââââââââââââââââââââââââââââââ -->
 <div class="page active" id="page-gate">
   <div class="gate-bg"></div>
   <div class="gate-grid"></div>
@@ -1159,7 +1159,7 @@ body::after {
         </div>
         <div class="field-group">
           <label class="field-label">Invite Code / Password</label>
-          <input class="field-input" id="login-code" type="password" placeholder="••••••••••" autocomplete="current-password">
+          <input class="field-input" id="login-code" type="password" placeholder="â¢â¢â¢â¢â¢â¢â¢â¢â¢â¢" autocomplete="current-password">
         </div>
         <button class="btn-primary" onclick="attemptLogin()">ACCESS PLATFORM</button>
         <div class="gate-error" id="login-error">Invalid credentials or invite code.</div>
@@ -1174,21 +1174,21 @@ body::after {
         <div>trader@wjbtrades.com &nbsp;/&nbsp; <span style="color:var(--mist)">WJB-MEMBER-001</span></div>
       </div>
       <div class="gate-footer" style="margin-top:12px">
-        No access yet? <a onclick="showRequestForm()">Request an invitation</a> &nbsp;·&nbsp;
+        No access yet? <a onclick="showRequestForm()">Request an invitation</a> &nbsp;Â·&nbsp;
         <a onclick="showAdminLogin()">Admin</a>
       </div>
     </div>
   </div>
 </div>
 
-<!-- ═══════════════════════════════════════
+<!-- âââââââââââââââââââââââââââââââââââââââ
      PAGE 2: ADMIN
-═══════════════════════════════════════════ -->
+âââââââââââââââââââââââââââââââââââââââââââ -->
 <div class="page" id="page-admin">
   <div class="admin-nav">
-    <div class="admin-nav-brand">WJB TRADES — ADMIN</div>
+    <div class="admin-nav-brand">WJB TRADES â ADMIN</div>
     <div class="admin-nav-right">
-      <button class="btn-sm" onclick="goToDashboard()">← Dashboard</button>
+      <button class="btn-sm" onclick="goToDashboard()">â Dashboard</button>
       <button class="btn-sm" onclick="logout()">Sign Out</button>
     </div>
   </div>
@@ -1212,7 +1212,7 @@ body::after {
         <div class="stat-value red" id="stat-revoked">0</div>
       </div>
       <div class="stat-card">
-        <div class="stat-label">📧 Subscribed</div>
+        <div class="stat-label">ð§ Subscribed</div>
         <div class="stat-value" style="color:var(--teal)" id="stat-subscribed">0</div>
       </div>
     </div>
@@ -1235,7 +1235,7 @@ body::after {
         <button class="btn-sm gold" onclick="generateInvite()" style="padding:12px 20px;height:44px;align-self:flex-end">GENERATE</button>
         <div class="gen-output" id="gen-output">
           <span class="gen-output-placeholder">Generated code will appear here</span>
-          <button class="copy-btn" id="copy-invite-btn" onclick="copyInviteCode()" style="display:none" title="Copy code">⎘</button>
+          <button class="copy-btn" id="copy-invite-btn" onclick="copyInviteCode()" style="display:none" title="Copy code">â</button>
         </div>
       </div>
     </div>
@@ -1251,7 +1251,7 @@ body::after {
             <th>Role</th>
             <th>Status</th>
             <th>Joined</th>
-            <th>📧 Sub</th>
+            <th>ð§ Sub</th>
             <th>Action</th>
           </tr>
         </thead>
@@ -1260,7 +1260,7 @@ body::after {
     </div>
 
     <div class="admin-section">
-      <div class="admin-section-title">📊 Market Data — Today's Summary</div>
+      <div class="admin-section-title">ð Market Data â Today's Summary</div>
       <div class="admin-section-sub">Edit prices and changes before sending the daily 9 AM email. These values populate the email template variables automatically.</div>
 
       <div style="background:var(--ink3);border:1px solid var(--wire);border-radius:10px;padding:18px 20px;margin-bottom:18px">
@@ -1268,7 +1268,7 @@ body::after {
         <div class="mde-grid">
           <div class="mde-cell">
             <div class="mde-ticker">SPY</div>
-            <div class="mde-row"><input class="mde-input" id="md-spy-price" placeholder="$679" value="$679"><input class="mde-input mde-chg" id="md-spy-chg" placeholder="−0.40%"></div>
+            <div class="mde-row"><input class="mde-input" id="md-spy-price" placeholder="$679" value="$679"><input class="mde-input mde-chg" id="md-spy-chg" placeholder="â0.40%"></div>
           </div>
           <div class="mde-cell">
             <div class="mde-ticker">QQQ</div>
@@ -1280,11 +1280,11 @@ body::after {
           </div>
           <div class="mde-cell">
             <div class="mde-ticker">Gold XAU</div>
-            <div class="mde-row"><input class="mde-input" id="md-gold-price" placeholder="$4,733" value="$4,733"><input class="mde-input mde-chg" id="md-gold-chg" placeholder="−0.71%"></div>
+            <div class="mde-row"><input class="mde-input" id="md-gold-price" placeholder="$4,733" value="$4,733"><input class="mde-input mde-chg" id="md-gold-chg" placeholder="â0.71%"></div>
           </div>
           <div class="mde-cell">
             <div class="mde-ticker">Bitcoin</div>
-            <div class="mde-row"><input class="mde-input" id="md-btc-price" placeholder="$71,600" value="$71,600"><input class="mde-input mde-chg" id="md-btc-chg" placeholder="−1.80%"></div>
+            <div class="mde-row"><input class="mde-input" id="md-btc-price" placeh/lder="$71,600" value="$71,600"><input class="mde-input mde-chg" id="md-btc-chg" placeholder="â1.80%"></div>
           </div>
           <div class="mde-cell">
             <div class="mde-ticker">DXY</div>
@@ -1293,10 +1293,10 @@ body::after {
         </div>
         <div style="margin-bottom:14px">
           <div style="font-family:var(--mono);font-size:9px;letter-spacing:2px;color:var(--fog);margin-bottom:8px;text-transform:uppercase">Macro Catalyst Banner (breaking news / key context)</div>
-          <input class="field-input" id="md-catalyst" placeholder="U.S. Navy Hormuz blockade live. WTI +8%. CPI 3.3% — highest since May 2024." style="background:var(--ink);font-size:12px;width:100%">
+          <input class="field-input" id="md-catalyst" placeholder="U.S. Navy Hormuz blockade live. WTI +8%. CPI 3.3% â highest since May 2024." style="background:var(--ink);font-size:12px;width:100%">
         </div>
         <div style="margin-bottom:14px">
-          <div style="font-family:var(--mono);font-size:9px;letter-spacing:2px;color:var(--fog);margin-bottom:8px;text-transform:uppercase">Top Setup Overrides (optional — leave blank to use defaults)</div>
+          <div style="font-family:var(--mono);font-size:9px;letter-spacing:2px;color:var(--fog);margin-bottom:8px;text-transform:uppercase">Top Setup Overrides (optional â leave blank to use defaults)</div>
           <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px">
             <div>
               <div style="font-family:var(--mono);font-size:9px;color:var(--fog);margin-bottom:5px">Setup 1 Ticker</div>
@@ -1308,7 +1308,7 @@ body::after {
             </div>
             <div>
               <div style="font-family:var(--mono);font-size:9px;color:var(--fog);margin-bottom:5px">Setup 1 Payoff</div>
-              <input class="field-input" id="md-s1-payoff" placeholder="+35–120%" style="background:var(--ink);font-size:11px">
+              <input class="field-input" id="md-s1-payoff" placeholder="+35â120%" style="background:var(--ink);font-size:11px">
             </div>
           </div>
           <div style="margin-top:6px">
@@ -1317,20 +1317,20 @@ body::after {
           </div>
         </div>
         <div style="display:flex;gap:10px;flex-wrap:wrap">
-          <button class="btn-sm" style="background:rgba(52,211,153,0.1);border-color:rgba(52,211,153,0.25);color:var(--green)" onclick="saveMarketData()">💾 Save Market Data</button>
-          <button class="btn-sm" onclick="loadMarketData()">↺ Load Saved</button>
+          <button class="btn-sm" style="background:rgba(52,211,153,0.1);border-color:rgba(52,211,153,0.25);color:var(--green)" onclick="saveMarketData()">ð¾ Save Market Data</button>
+          <button class="btn-sm" onclick="loadMarketData()">âº Load Saved</button>
         </div>
       </div>
 
-      <div class="admin-section-title">📧 Daily Summary Subscribers</div>
+      <div class="admin-section-title">ð§ Daily Summary Subscribers</div>
       <div class="admin-section-sub">Members subscribed to the 9:00 AM daily market summary email. Use the EmailJS config below to connect the send engine.</div>
 
       <!-- SUPABASE CONFIG -->
       <div style="background:var(--ink3);border:1px solid rgba(96,165,250,0.2);border-radius:8px;padding:18px 20px;margin-bottom:12px">
         <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px">
-          <div style="width:28px;height:28px;background:rgba(96,165,250,0.15);border:1px solid rgba(96,165,250,0.3);border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0">🗄</div>
+          <div style="width:28px;height:28px;background:rgba(96,165,250,0.15);border:1px solid rgba(96,165,250,0.3);border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0">ð</div>
           <div>
-            <div style="font-family:var(--mono);font-size:10px;letter-spacing:2px;color:var(--blue);text-transform:uppercase">Supabase — Shared Subscriber Database</div>
+            <div style="font-family:var(--mono);font-size:10px;letter-spacing:2px;color:var(--blue);text-transform:uppercase">Supabase â Shared Subscriber Database</div>
             <div style="font-size:11px;color:var(--fog);margin-top:2px">Required. Free tier. Stores subscribers in the cloud so all members share the same list.</div>
           </div>
         </div>
@@ -1354,9 +1354,9 @@ body::after {
       <!-- EMAILJS CONFIG -->
       <div style="background:var(--ink3);border:1px solid rgba(200,169,110,0.2);border-radius:8px;padding:18px 20px;margin-bottom:12px">
         <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px">
-          <div style="width:28px;height:28px;background:rgba(200,169,110,0.12);border:1px solid rgba(200,169,110,0.25);border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0">📧</div>
+          <div style="width:28px;height:28px;background:rgba(200,169,110,0.12);border:1px solid rgba(200,169,110,0.25);border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0">ð§</div>
           <div>
-            <div style="font-family:var(--mono);font-size:10px;letter-spacing:2px;color:var(--gold);text-transform:uppercase">EmailJS — Email Delivery Engine</div>
+            <div style="font-family:var(--mono);font-size:10px;letter-spacing:2px;color:var(--gold);text-transform:uppercase">EmailJS â Email Delivery Engine</div>
             <div style="font-size:11px;color:var(--fog);margin-top:2px">Required. Free tier (200 emails/month). Sends the daily HTML summary emails.</div>
           </div>
         </div>
@@ -1377,15 +1377,15 @@ body::after {
         <div style="display:flex;gap:10px;flex-wrap:wrap">
           <button class="btn-sm gold" onclick="saveEmailJSConfig()">Save EmailJS Config</button>
           <button class="btn-sm" onclick="sendTestEmail()">Send Test to Me</button>
-          <button class="btn-sm" style="background:rgba(45,212,191,0.12);border-color:rgba(45,212,191,0.3);color:var(--teal)" onclick="sendDailySummaryNow()">⚡ Send Summary Now</button>
-          <button class="btn-sm" style="background:rgba(96,165,250,0.1);border-color:rgba(96,165,250,0.25);color:var(--blue)" onclick="refreshSubscribers()">↻ Refresh List</button>
+          <button class="btn-sm" style="background:rgba(45,212,191,0.12);border-color:rgba(45,212,191,0.3);color:var(--teal)" onclick="sendDailySummaryNow()">â¡ Send Summary Now</button>
+          <button class="btn-sm" style="background:rgba(96,165,250,0.1);border-color:rgba(96,165,250,0.25);color:var(--blue)" onclick="refreshSubscribers()">â» Refresh List</button>
         </div>
         <div id="ejs-status" style="font-family:var(--mono);font-size:10px;color:var(--fog);margin-top:10px;display:none"></div>
       </div>
 
       <!-- CRON URL BOX -->
       <div style="background:var(--ink3);border:1px solid var(--wire);border-radius:8px;padding:14px 16px;margin-bottom:18px">
-        <div style="font-family:var(--mono);font-size:9px;letter-spacing:2px;color:var(--fog);margin-bottom:8px;text-transform:uppercase">cron-job.org trigger URL — set this to run at 9:00 AM ET daily</div>
+        <div style="font-family:var(--mono);font-size:9px;letter-spacing:2px;color:var(--fog);margin-bottom:8px;text-transform:uppercase">cron-job.org trigger URL â set this to run at 9:00 AM ET daily</div>
         <div id="cron-url-display" style="font-family:var(--mono);font-size:11px;color:var(--gold2);word-break:break-all;background:var(--ink);border:1px solid var(--wire);border-radius:5px;padding:8px 10px">
           Save your config above to generate the cron URL
         </div>
@@ -1407,34 +1407,34 @@ body::after {
       <!-- EMAIL TEMPLATE REFERENCE -->
       <div style="margin-top:18px">
         <div onclick="this.nextElementSibling.style.display=this.nextElementSibling.style.display==='none'?'block':'none'" style="cursor:pointer;background:var(--ink3);border:1px solid var(--wire);border-radius:8px;padding:12px 16px;display:flex;align-items:center;justify-content:space-between">
-          <div style="font-family:var(--mono);font-size:10px;letter-spacing:2px;color:var(--fog);text-transform:uppercase">📋 EmailJS Template Variables Reference</div>
-          <div style="font-family:var(--mono);font-size:10px;color:var(--fog)">click to expand ↓</div>
+          <div style="font-family:var(--mono);font-size:10px;letter-spacing:2px;color:var(--fog);text-transform:uppercase">ð EmailJS Template Variables Reference</div>
+          <div style="font-family:var(--mono);font-size:10px;color:var(--fog)">click to expand â</div>
         </div>
         <div style="display:none;background:var(--ink3);border:1px solid var(--wire);border-top:none;border-radius:0 0 8px 8px;padding:16px">
           <div style="font-size:11px;color:var(--mist);margin-bottom:10px;line-height:1.7">Paste these variable names into your EmailJS template. Each <code style="background:rgba(255,255,255,0.07);padding:1px 5px;border-radius:3px;font-family:var(--mono);font-size:10px">{{variable}}</code> block gets replaced with real data when the email sends.</div>
           <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;font-family:var(--mono);font-size:10px">
             <div style="background:var(--ink);border:1px solid var(--wire);border-radius:6px;padding:10px">
-              <div style="color:var(--gold);margin-bottom:6px">📊 HEADER</div>
+              <div style="color:var(--gold);margin-bottom:6px">ð HEADER</div>
               <div style="color:var(--mist);line-height:2">{{to_email}}<br>{{subject}}<br>{{date}}<br>{{send_time}}</div>
             </div>
             <div style="background:var(--ink);border:1px solid var(--wire);border-radius:6px;padding:10px">
-              <div style="color:var(--gold);margin-bottom:6px">📈 MACRO</div>
+              <div style="color:var(--gold);margin-bottom:6px">ð MACRO</div>
               <div style="color:var(--mist);line-height:2">{{spy_price}} {{spy_chg}}<br>{{qqq_price}} {{qqq_chg}}<br>{{wti_price}} {{wti_chg}}<br>{{gold_price}} {{gold_chg}}<br>{{btc_price}} {{btc_chg}}<br>{{dxy_price}} {{dxy_chg}}</div>
             </div>
             <div style="background:var(--ink);border:1px solid var(--wire);border-radius:6px;padding:10px">
-              <div style="color:var(--gold);margin-bottom:6px">🎯 SETUPS</div>
+              <div style="color:var(--gold);margin-bottom:6px">ð¯ SETUPS</div>
               <div style="color:var(--mist);line-height:2">{{setup1_ticker}}<br>{{setup1_action}}<br>{{setup1_payoff}}<br>{{setup1_trigger}}<br>{{setup2_ticker}} ...<br>{{setup3_ticker}} ...</div>
             </div>
             <div style="background:var(--ink);border:1px solid var(--wire);border-radius:6px;padding:10px">
-              <div style="color:var(--gold);margin-bottom:6px">⚡ ALERTS</div>
+              <div style="color:var(--gold);margin-bottom:6px">â¡ ALERTS</div>
               <div style="color:var(--mist);line-height:2">{{alert1}}<br>{{alert2}}<br>{{alert3}}<br>{{alert4}}</div>
             </div>
             <div style="background:var(--ink);border:1px solid var(--wire);border-radius:6px;padding:10px">
-              <div style="color:var(--gold);margin-bottom:6px">🔢 GREEKS</div>
+              <div style="color:var(--gold);margin-bottom:6px">ð¢ GREEKS</div>
               <div style="color:var(--mist);line-height:2">{{delta_level}}<br>{{gamma_level}}<br>{{theta_level}}<br>{{vega_level}}</div>
             </div>
             <div style="background:var(--ink);border:1px solid var(--wire);border-radius:6px;padding:10px">
-              <div style="color:var(--gold);margin-bottom:6px">🔗 FOOTER</div>
+              <div style="color:var(--gold);margin-bottom:6px">ð FOOTER</div>
               <div style="color:var(--mist);line-height:2">{{platform_url}}<br>{{unsubscribe_note}}</div>
             </div>
           </div>
@@ -1446,9 +1446,9 @@ body::after {
   </div>
 </div>
 
-<!-- ═══════════════════════════════════════
+<!-- âââââââââââââââââââââââââââââââââââââââ
      PAGE 3: DASHBOARD
-═══════════════════════════════════════════ -->
+âââââââââââââââââââââââââââââââââââââââââââ -->
 <div class="page" id="page-dashboard">
   <!-- NAV -->
   <nav class="dash-nav">
@@ -1460,7 +1460,7 @@ body::after {
       <div class="nav-tabs">
         <div class="nav-tab active" data-tab="report" onclick="switchTab('report', this)">Market Report</div>
         <div class="nav-tab" data-tab="alerts" onclick="switchTab('alerts', this)">Live Alerts</div>
-        <div class="nav-tab" data-tab="subscriptions" onclick="switchTab('subscriptions', this)">📧 Daily Summary</div>
+        <div class="nav-tab" data-tab="subscriptions" onclick="switchTab('subscriptions', this)">ð§ Daily Summary</div>
         <div class="nav-tab" data-tab="glossary" onclick="switchTab('glossary', this)">Glossary</div>
       </div>
     </div>
@@ -1476,19 +1476,19 @@ body::after {
 
   <!-- PUSH NOTIFICATION BANNER -->
   <div class="push-bar" id="push-bar">
-    <div class="push-bar-icon" id="push-bar-icon">▲</div>
+    <div class="push-bar-icon" id="push-bar-icon">â²</div>
     <div class="push-bar-body">
       <span class="push-bar-sym" id="push-bar-sym">ORCL</span>
       <span class="push-bar-msg" id="push-bar-msg">Alert message here</span>
       <span class="push-bar-time" id="push-bar-time">9:00 AM ET</span>
     </div>
-    <div class="push-bar-close" onclick="closePushBar()">✕</div>
+    <div class="push-bar-close" onclick="closePushBar()">â</div>
   </div>
 
   <!-- CONTENT -->
   <div class="dash-content">
 
-    <!-- ── TAB: REPORT ── -->
+    <!-- ââ TAB: REPORT ââ -->
     <div class="dash-tab-panel active" id="tab-report">
       <div class="report-wrap">
 
@@ -1498,92 +1498,92 @@ body::after {
             <div>
               <div class="rpt-eyebrow"><span class="live-dot"></span> WJB Trades Intelligence</div>
               <div class="rpt-title">MARKET ALPHA &amp;<br><span>CONTINUITY REPORT</span></div>
-              <div class="rpt-sub">TheStrat Framework · Full Category Breakdown · 2-Min Alert Protocol</div>
+              <div class="rpt-sub">TheStrat Framework Â· Full Category Breakdown Â· 2-Min Alert Protocol</div>
             </div>
             <div class="rpt-badge">
-              <div class="rpt-badge-date">MON APR 13 · 2026</div>
-              <div class="rpt-badge-line">13 setups · 5 categories</div>
+              <div class="rpt-badge-date">MON APR 13 Â· 2026</div>
+              <div class="rpt-badge-line">13 setups Â· 5 categories</div>
               <div class="rpt-badge-alert">HIGH VEGA / GAMMA ENV</div>
             </div>
           </div>
         </div>
 
         <div class="rpt-alert">
-          🚨 <strong>ACTIVE MACRO CATALYST:</strong> U.S. Navy Hormuz blockade live 10:00 AM ET. Iran talks collapsed. WTI +8% above $104. CPI 3.3% — highest since May 2024. DXY at 98.79 multi-week lows. <strong>Size starter positions only. Manage Vega exposure aggressively.</strong>
+          ð¨ <strong>ACTIVE MACRO CATALYST:</strong> U.S. Navy Hormuz blockade live 10:00 AM ET. Iran talks collapsed. WTI +8% above $104. CPI 3.3% â highest since May 2024. DXY at 98.79 multi-week lows. <strong>Size starter positions only. Manage Vega exposure aggressively.</strong>
         </div>
 
         <div class="macro-strip">
-          <div class="mc-cell"><div class="mc-label">SPY</div><div class="mc-price">$679</div><div class="mc-chg chg-dn">▼ −0.40%</div><div class="mc-meta">52W $508–$698</div></div>
-          <div class="mc-cell"><div class="mc-label">QQQ</div><div class="mc-price">$611</div><div class="mc-chg chg-up">▲ +0.14%</div><div class="mc-meta">Bounced $582 key</div></div>
-          <div class="mc-cell"><div class="mc-label">WTI OIL</div><div class="mc-price">$104</div><div class="mc-chg chg-up">▲ +8.0%</div><div class="mc-meta">Brent ~$101–103</div></div>
-          <div class="mc-cell"><div class="mc-label">GOLD XAU</div><div class="mc-price">$4,733</div><div class="mc-chg chg-dn">▼ −0.71%</div><div class="mc-meta">+47% YoY · OTE zone</div></div>
-          <div class="mc-cell"><div class="mc-label">BTC</div><div class="mc-price">$71.6K</div><div class="mc-chg chg-dn">▼ −1.80%</div><div class="mc-meta">Best wk since Oct '25</div></div>
-          <div class="mc-cell"><div class="mc-label">DXY</div><div class="mc-price">98.79</div><div class="mc-chg chg-dn">▼ Multi-wk low</div><div class="mc-meta">EUR/USD ~1.1520</div></div>
+          <div class="mc-cell"><div class="mc-label">SPY</div><div class="mc-price">$679</div><div class="mc-chg chg-dn">â¼ â0.40%</div><div class="mc-meta">52W $508â$698</div></div>
+          <div class="mc-cell"><div class="mc-label">QQQ</div><div class="mc-price">$611</div><div class="mc-chg chg-up">â² +0.14%</div><div class="mc-meta">Bounced $582 key</div></div>
+          <div class="mc-cell"><div class="mc-label">WTI OIL</div><div class="mc-price">$104</div><div class="mc-chg chg-up">â² +8.0%</div><div class="mc-meta">Brent ~$101â103</div></div>
+          <div class="mc-cell"><div class="mc-label">GOLD XAU</div><div class="mc-price">$4,733</div><div class="mc-chg chg-dn">â¼ â0.71%</div><div class="mc-meta">+47% YoY Â· OTE zone</div></div>
+          <div class="mc-cell"><div class="mc-label">BTC</div><div class="mc-price">$71.6K</div><div class="mc-chg chg-dn">â¼ â1.80%</div><div class="mc-meta">Best wk since Oct '25</div></div>
+          <div class="mc-cell"><div class="mc-label">DXY</div><div class="mc-price">98.79</div><div class="mc-chg chg-dn">â¼ Multi-wk low</div><div class="mc-meta">EUR/USD ~1.1520</div></div>
         </div>
 
         <!-- EQUITIES -->
         <div class="cat-section">
-          <div class="cat-header"><span class="cat-emoji">📈</span><span class="cat-label">Equities</span><div class="cat-rule"></div><span class="cat-pill">4 setups</span></div>
+          <div class="cat-header"><span class="cat-emoji">ð</span><span class="cat-label">Equities</span><div class="cat-rule"></div><span class="cat-pill">4 setups</span></div>
           <div class="cards-grid">
             <div class="trade-card feat-gold">
-              <div class="card-head"><div class="card-ticker-wrap"><div class="card-chip chip-gold">RS Leader Today</div><div class="card-ticker">ORCL</div><div class="card-desc">Oracle Corp · +9–11% · vol 32.9M vs 20.7M avg</div></div><span class="action-badge ab-bull">BUY CALL</span></div>
-              <div class="card-rows"><div class="card-row"><span class="row-key">Strike / Exp</span><span class="row-val">$150C or $155C · May 15</span></div><div class="card-row"><span class="row-key">Entry Trigger</span><span class="row-val">TTO pullback to 9 EMA ~$145</span></div><div class="card-row"><span class="row-key">Stop / Flip</span><span class="row-val r">Below $136–138 open price</span></div><div class="card-row"><span class="row-key">Target 1</span><span class="row-val g">$163 stock → ~+40% option</span></div><div class="card-row"><span class="row-key">Target 2</span><span class="row-val g">$175–185 → ~+120% option</span></div><div class="card-row"><span class="row-key">Catalyst</span><span class="row-val b">AI Fusion Apps · RPO $553B · Cloud +44%</span></div></div>
+              <div class="card-head"><div class="card-ticker-wrap"><div class="card-chip chip-gold">RS Leader Today</div><div class="card-ticker">ORCL</div><div class="card-desc">Oracle Corp Â· +9â11% Â· vol 32.9M vs 20.7M avg</div></div><span class="action-badge ab-bull">BUY CALL</span></div>
+              <div class="card-rows"><div class="card-row"><span class="row-key">Strike / Exp</span><span class="row-val">$150C or $155C Â· May 15</span></div><div class="card-row"><span class="row-key">Entry Trigger</span><span class="row-val">TTO pullback to 9 EMA ~$145</span></div><div class="card-row"><span class="row-key">Stop / Flip</span><span class="row-val r">Below $136â138 open price</span></div><div class="card-row"><span class="row-key">Target 1</span><span class="row-val g">$163 stock â ~+40% option</span></div><div class="card-row"><span class="row-key">Target 2</span><span class="row-val g">$175â185 â ~+120% option</span></div><div class="card-row"><span class="row-key">Catalyst</span><span class="row-val b">AI Fusion Apps Â· RPO $553B Â· Cloud +44%</span></div></div>
               <div class="payoff-bar-wrap"><div class="payoff-top"><span class="payoff-lbl">Min Payoff Est.</span><span class="payoff-num pn-g">+40%</span></div><div class="bar-track"><div class="bar-fill bf-g" style="width:40%"></div></div><div class="bar-labels"><span>entry</span><span>+40% T1</span><span>+120% T2</span></div></div>
               <div class="card-footnote">52W high $345 vs current ~$150. RSI 38 = oversold + bouncing. Analyst avg PT $246. +10pt RS over SPY today.</div>
             </div>
             <div class="trade-card feat-gold">
-              <div class="card-head"><div class="card-ticker-wrap"><div class="card-chip chip-gold">Defense AI · ER May 11</div><div class="card-ticker">PLTR</div><div class="card-desc">Palantir · ~$128–133 · 52W: $85–$207</div></div><span class="action-badge ab-bull">BUY CALL</span></div>
-              <div class="card-rows"><div class="card-row"><span class="row-key">Strike / Exp</span><span class="row-val">$130C or $135C · May 8</span></div><div class="card-row"><span class="row-key">Entry Trigger</span><span class="row-val">Reclaim + hold VWAP ~$130 on 15m</span></div><div class="card-row"><span class="row-key">Stop / Flip</span><span class="row-val r">$122.68 (today's LOD) — Level 2</span></div><div class="card-row"><span class="row-key">Target 1</span><span class="row-val g">$148 (+15%) → ~+60% option</span></div><div class="card-row"><span class="row-key">Target 2</span><span class="row-val g">$162 (month HOD) → ~+120%</span></div><div class="card-row"><span class="row-key">Vega Note</span><span class="row-val a">ER May 11 = IV expansion tailwind</span></div></div>
+              <div class="card-head"><div class="card-ticker-wrap"><div class="card-chip chip-gold">Defense AI Â· ER May 11</div><div class="card-ticker">PLTR</div><div class="card-desc">Palantir Â· ~$128â133 Â· 52W: $85â$207</div></div><span class="action-badge ab-bull">BUY CALL</span></div>
+              <div class="card-rows"><div class="card-row"><span class="row-key">Strike / Exp</span><span class="row-val">$130C or $135C Â· May 8</span></div><div class="card-row"><span class="row-key">Entry Trigger</span><span class="row-val">Reclaim + hold VWAP ~$130 on 15m</span></div><div class="card-row"><span class="row-key">Stop / Flip</span><span class="row-val r">$122.68 (today's LOD) â Level 2</span></div><div class="card-row"><span class="row-key">Target 1</span><span class="row-val g">$148 (+15%) â ~+60% option</span></div><div class="card-row"><span class="row-key">Target 2</span><span class="row-val g">$162 (month HOD) â ~+120%</span></div><div class="card-row"><span class="row-key">Vega Note</span><span class="row-val a">ER May 11 = IV expansion tailwind</span></div></div>
               <div class="payoff-bar-wrap"><div class="payoff-top"><span class="payoff-lbl">Min Payoff Est.</span><span class="payoff-num pn-g">+60%</span></div><div class="bar-track"><div class="bar-fill bf-g" style="width:60%"></div></div><div class="bar-labels"><span>entry</span><span>+60% T1</span><span>+120% T2</span></div></div>
               <div class="card-footnote">NATO $1.4T defense build. Cathie Wood bought dip Apr 10. Vol 116M vs 51M avg = institutional confirmation.</div>
             </div>
             <div class="trade-card">
-              <div class="card-head"><div class="card-ticker-wrap"><div class="card-ticker">MRVL</div><div class="card-desc">Marvell Technology · ~$128 · +20% in 5 days</div></div><span class="action-badge ab-bull">BUY CALL</span></div>
-              <div class="card-rows"><div class="card-row"><span class="row-key">Strike / Exp</span><span class="row-val">$130C · May 8</span></div><div class="card-row"><span class="row-key">Entry Trigger</span><span class="row-val">TTO to VWAP / 9 EMA on 15m</span></div><div class="card-row"><span class="row-key">Stop / Flip</span><span class="row-val r">Below $120 (50%er of 5-day run)</span></div><div class="card-row"><span class="row-key">Target 1</span><span class="row-val g">$148 (+15.6%) → ~+55%</span></div><div class="card-row"><span class="row-key">Target 2</span><span class="row-val g">$158 (+23%) → ~+100%</span></div><div class="card-row"><span class="row-key">Sector RS</span><span class="row-val b">Semis cap-equip +24% YTD vs XLK −6%</span></div></div>
+              <div class="card-head"><div class="card-ticker-wrap"><div class="card-ticker">MRVL</div><div class="card-desc">Marvell Technology Â· ~$128 Â· +20% in 5 days</div></div><span class="action-badge ab-bull">BUY CALL</span></div>
+              <div class="card-rows"><div class="card-row"><span class="row-key">Strike / Exp</span><span class="row-val">$130C Â· May 8</span></div><div class="card-row"><span class="row-key">Entry Trigger</span><span class="row-val">TTO to VWAP / 9 EMA on 15m</span></div><div class="card-row"><span class="row-key">Stop / Flip</span><span class="row-val r">Below $120 (50%er of 5-day run)</span></div><div class="card-row"><span class="row-key">Target 1</span><span class="row-val g">$148 (+15.6%) â ~+55%</span></div><div class="card-row"><span class="row-key">Target 2</span><span class="row-val g">$158 (+23%) â ~+100%</span></div><div class="card-row"><span class="row-key">Sector RS</span><span class="row-val b">Semis cap-equip +24% YTD vs XLK â6%</span></div></div>
               <div class="payoff-bar-wrap"><div class="payoff-top"><span class="payoff-lbl">Min Payoff Est.</span><span class="payoff-num pn-g">+55%</span></div><div class="bar-track"><div class="bar-fill bf-g" style="width:55%"></div></div><div class="bar-labels"><span>entry</span><span>+55% T1</span><span>+100% T2</span></div></div>
               <div class="card-footnote">Only IT sub-sector outperforming in 2026. +29.7% in April. Institutional accumulation signal.</div>
             </div>
             <div class="trade-card">
-              <div class="card-head"><div class="card-ticker-wrap"><div class="card-ticker">SPY Puts</div><div class="card-desc">S&amp;P 500 hedge · ~$679 · Gap-fail reversal</div></div><span class="action-badge ab-bear">BUY PUT</span></div>
-              <div class="card-rows"><div class="card-row"><span class="row-key">Strike / Exp</span><span class="row-val">$678P or $675P · Apr 17</span></div><div class="card-row"><span class="row-key">Entry Trigger</span><span class="row-val">Rejection wick off $679–682 gap mid</span></div><div class="card-row"><span class="row-key">Stop / Flip</span><span class="row-val g">$685 hold = thesis invalid, flip calls</span></div><div class="card-row"><span class="row-key">Target 1</span><span class="row-val g">$672 support → ~+35%</span></div><div class="card-row"><span class="row-key">Target 2</span><span class="row-val g">$666 MA cluster → ~+80%</span></div><div class="card-row"><span class="row-key">Edge</span><span class="row-val a">Polymarket 79% odds down close today</span></div></div>
+              <div class="card-head"><div class="card-ticker-wrap"><div class="card-ticker">SPY Puts</div><div class="card-desc">S&amp;P 500 hedge Â· ~$679 Â· Gap-fail reversal</div></div><span class="action-badge ab-bear">BUY PUT</span></div>
+              <div class="card-rows"><div class="card-row"><span class="row-key">Strike / Exp</span><span class="row-val">$678P or $675P Â· Apr 17</span></div><div class="card-row"><span class="row-key">Entry Trigger</span><span class="row-val">Rejection wick off $679â682 gap mid</span></div><div class="card-row"><span class="row-key">Stop / Flip</span><span class="row-val g">$685 hold = thesis invalid, flip calls</span></div><div class="card-row"><span class="row-key">Target 1</span><span class="row-val g">$672 support â ~+35%</span></div><div class="card-row"><span class="row-key">Target 2</span><span class="row-val g">$666 MA cluster â ~+80%</span></div><div class="card-row"><span class="row-key">Edge</span><span class="row-val a">Polymarket 79% odds down close today</span></div></div>
               <div class="payoff-bar-wrap"><div class="payoff-top"><span class="payoff-lbl">Min Payoff Est.</span><span class="payoff-num pn-r">+35%</span></div><div class="bar-track"><div class="bar-fill bf-r" style="width:35%"></div></div><div class="bar-labels"><span>entry</span><span>+35% T1</span><span>+80% T2</span></div></div>
-              <div class="card-footnote">Portfolio hedge vs energy longs. Short expiry keeps Theta manageable. IV elevated — size accordingly.</div>
+              <div class="card-footnote">Portfolio hedge vs energy longs. Short expiry keeps Theta manageable. IV elevated â size accordingly.</div>
             </div>
           </div>
         </div>
 
         <!-- ETFs -->
         <div class="cat-section">
-          <div class="cat-header"><span class="cat-emoji">📊</span><span class="cat-label">ETFs &amp; Index Options</span><div class="cat-rule"></div><span class="cat-pill">2 setups</span></div>
+          <div class="cat-header"><span class="cat-emoji">ð</span><span class="cat-label">ETFs &amp; Index Options</span><div class="cat-rule"></div><span class="cat-pill">2 setups</span></div>
           <div class="cards-grid">
             <div class="trade-card feat-green">
-              <div class="card-head"><div class="card-ticker-wrap"><div class="card-chip chip-green">Highest Conviction · FTFC Full Bull</div><div class="card-ticker">XLE / USO</div><div class="card-desc">Energy ETF / Oil · WTI $104 · PMG Active · Sector +18–38% YTD</div></div><span class="action-badge ab-bull">BUY CALL</span></div>
-              <div class="card-rows"><div class="card-row"><span class="row-key">Strike / Exp</span><span class="row-val">USO $85C · XLE $92C · May 16</span></div><div class="card-row"><span class="row-key">Entry Trigger</span><span class="row-val">Reclaim $104.50 WTI / TTO to 9 EMA</span></div><div class="card-row"><span class="row-key">Stop / Flip</span><span class="row-val r">Below $101 WTI — Level 2 structural stop</span></div><div class="card-row"><span class="row-key">Target 1</span><span class="row-val g">$107 WTI → ~+35%</span></div><div class="card-row"><span class="row-key">Target 2</span><span class="row-val g">$115 WTI (BF upper) → ~+120%</span></div><div class="card-row"><span class="row-key">FTFC Status</span><span class="row-val b">Q / M / W / D all green — full continuity</span></div></div>
+              <div class="card-head"><div class="card-ticker-wrap"><div class="card-chip chip-green">Highest Conviction Â· FTFC Full Bull</div><div class="card-ticker">XLE / USO</div><div class="card-desc">Energy ETF / Oil Â· WTI $104 Â· PMG Active Â· Sector +18â38% YTD</div></div><span class="action-badge ab-bull">BUY CALL</span></div>
+              <div class="card-rows"><div class="card-row"><span class="row-key">Strike / Exp</span><span class="row-val">USO $85C Â· XLE $92C Â· May 16</span></div><div class="card-row"><span class="row-key">Entry Trigger</span><span class="row-val">Reclaim $104.50 WTI / TTO to 9 EMA</span></div><div class="card-row"><span class="row-key">Stop / Flip</span><span class="row-val r">Below $101 WTI â Level 2 structural stop</span></div><div class="card-row"><span class="row-key">Target 1</span><span class="row-val g">$107 WTI â ~+35%</span></div><div class="card-row"><span class="row-key">Target 2</span><span class="row-val g">$115 WTI (BF upper) â ~+120%</span></div><div class="card-row"><span class="row-key">FTFC Status</span><span class="row-val b">Q / M / W / D all green â full continuity</span></div></div>
               <div class="payoff-bar-wrap"><div class="payoff-top"><span class="payoff-lbl">Min Payoff Est.</span><span class="payoff-num pn-g">+35%</span></div><div class="bar-track"><div class="bar-fill bf-g" style="width:35%"></div></div><div class="bar-labels"><span>entry</span><span>+35% T1</span><span>+120% T2</span></div></div>
-              <div class="card-footnote">OPEC output sharply down. Saudi Manifa + E-W pipeline disrupted. Use ITM calls (Delta ≥0.65) to defend against IV crush on ceasefire headline.</div>
+              <div class="card-footnote">OPEC output sharply down. Saudi Manifa + E-W pipeline disrupted. Use ITM calls (Delta â¥0.65) to defend against IV crush on ceasefire headline.</div>
             </div>
             <div class="trade-card">
-              <div class="card-head"><div class="card-ticker-wrap"><div class="card-ticker">QQQ</div><div class="card-desc">Nasdaq 100 · ~$611 · TTO bounce off $582 key level</div></div><span class="action-badge ab-bull">BUY CALL</span></div>
-              <div class="card-rows"><div class="card-row"><span class="row-key">Strike / Exp</span><span class="row-val">$610C · Apr 24 or May 1</span></div><div class="card-row"><span class="row-key">OTE FVG Zone</span><span class="row-val">$607–$611 pullback re-entry</span></div><div class="card-row"><span class="row-key">Stop / Flip</span><span class="row-val r">$602.68 LOD — Delta Bleed below this</span></div><div class="card-row"><span class="row-key">Target 1</span><span class="row-val g">$622 prior WHD → ~+25%</span></div><div class="card-row"><span class="row-key">Target 2</span><span class="row-val g">$637 (52W high test) → ~+70%</span></div><div class="card-row"><span class="row-key">Gamma Flip</span><span class="row-val b">$590 = structural support · $610 = pin</span></div></div>
+              <div class="card-head"><div class="card-ticker-wrap"><div class="card-ticker">QQQ</div><div class="card-desc">Nasdaq 100 Â· ~$611 Â· TTO bounce off $582 key level</div></div><span class="action-badge ab-bull">BUY CALL</span></div>
+              <div class="card-rows"><div class="card-row"><span class="row-key">Strike / Exp</span><span class="row-val">$610C Â· Apr 24 or May 1</span></div><div class="card-row"><span class="row-key">OTE FVG Zone</span><span class="row-val">$607â$611 pullback re-entry</span></div><div class="card-row"><span class="row-key">Stop / Flip</span><span class="row-val r">$602.68 LOD â Delta Bleed below this</span></div><div class="card-row"><span class="row-key">Target 1</span><span class="row-val g">$622 prior WHD â ~+25%</span></div><div class="card-row"><span class="row-key">Target 2</span><span class="row-val g">$637 (52W high test) â ~+70%</span></div><div class="card-row"><span class="row-key">Gamma Flip</span><span class="row-val b">$590 = structural support Â· $610 = pin</span></div></div>
               <div class="payoff-bar-wrap"><div class="payoff-top"><span class="payoff-lbl">Min Payoff Est.</span><span class="payoff-num pn-b">+25%</span></div><div class="bar-track"><div class="bar-fill bf-b" style="width:25%"></div></div><div class="bar-labels"><span>entry</span><span>+25% T1</span><span>+70% T2</span></div></div>
-              <div class="card-footnote">Dealer gamma concentration at $610. FTFC requires weekly candle to flip green — confirm before adding beyond starter.</div>
+              <div class="card-footnote">Dealer gamma concentration at $610. FTFC requires weekly candle to flip green â confirm before adding beyond starter.</div>
             </div>
           </div>
         </div>
 
         <!-- COMMODITIES -->
         <div class="cat-section">
-          <div class="cat-header"><span class="cat-emoji">🪙</span><span class="cat-label">Commodities</span><div class="cat-rule"></div><span class="cat-pill">2 setups</span></div>
+          <div class="cat-header"><span class="cat-emoji">ðª</span><span class="cat-label">Commodities</span><div class="cat-rule"></div><span class="cat-pill">2 setups</span></div>
           <div class="cards-grid">
             <div class="trade-card feat-gold">
-              <div class="card-head"><div class="card-ticker-wrap"><div class="card-chip chip-gold">Safe-Haven + Inflation Hedge</div><div class="card-ticker">GLD / XAU</div><div class="card-desc">Gold · spot ~$4,733 · 52W: $3,120–$5,595 · +47% YoY</div></div><span class="action-badge ab-bull">BUY CALL</span></div>
-              <div class="card-rows"><div class="card-row"><span class="row-key">Strike / Exp</span><span class="row-val">GLD $450C or $455C · May 15</span></div><div class="card-row"><span class="row-key">Entry Trigger</span><span class="row-val">Reclaim $4,785 (50%er retest) + hold</span></div><div class="card-row"><span class="row-key">OTE Zone</span><span class="row-val b">$4,731–$4,752 (50% Fib support)</span></div><div class="card-row"><span class="row-key">Stop / Flip</span><span class="row-val r">$4,595 (next Fib floor) — Level 2</span></div><div class="card-row"><span class="row-key">Target 1</span><span class="row-val g">$4,883 (200 SMA) → ~+20%</span></div><div class="card-row"><span class="row-key">Target 2</span><span class="row-val g">$5,131 (BF upper) → ~+80%</span></div></div>
+              <div class="card-head"><div class="card-ticker-wrap"><div class="card-chip chip-gold">Safe-Haven + Inflation Hedge</div><div class="card-ticker">GLD / XAU</div><div class="card-desc">Gold Â· spot ~$4,733 Â· 52W: $3,120â$5,595 Â· +47% YoY</div></div><span class="action-badge ab-bull">BUY CALL</span></div>
+              <div class="card-rows"><div class="card-row"><span class="row-key">Strike / Exp</span><span class="row-val">GLD $450C or $455C Â· May 15</span></div><div class="card-row"><span class="row-key">Entry Trigger</span><span class="row-val">Reclaim $4,785 (50%er retest) + hold</span></div><div class="card-row"><span class="row-key">OTE Zone</span><span class="row-val b">$4,731â$4,752 (50% Fib support)</span></div><div class="card-row"><span class="row-key">Stop / Flip</span><span class="row-val r">$4,595 (next Fib floor) â Level 2</span></div><div class="card-row"><span class="row-key">Target 1</span><span class="row-val g">$4,883 (200 SMA) â ~+20%</span></div><div class="card-row"><span class="row-key">Target 2</span><span class="row-val g">$5,131 (BF upper) â ~+80%</span></div></div>
               <div class="payoff-bar-wrap"><div class="payoff-top"><span class="payoff-lbl">Min Payoff Est.</span><span class="payoff-num pn-g">+20%</span></div><div class="bar-track"><div class="bar-fill bf-g" style="width:20%"></div></div><div class="bar-labels"><span>entry</span><span>+20% T1</span><span>+80% T2</span></div></div>
-              <div class="card-footnote">CPI 3.3% = hot inflation confirmed. Volume void $4,937–$5,012 = gap-fill rocket above $4,883. CB gold buying accelerating globally.</div>
+              <div class="card-footnote">CPI 3.3% = hot inflation confirmed. Volume void $4,937â$5,012 = gap-fill rocket above $4,883. CB gold buying accelerating globally.</div>
             </div>
             <div class="trade-card">
-              <div class="card-head"><div class="card-ticker-wrap"><div class="card-ticker">WTI / CL</div><div class="card-desc">Crude Oil Futures · ~$104 · Hormuz PMG · UCO calls</div></div><span class="action-badge ab-bull">BUY CALL CFD</span></div>
-              <div class="card-rows"><div class="card-row"><span class="row-key">Contract</span><span class="row-val">May 2026 CL futures / UCO ETF calls</span></div><div class="card-row"><span class="row-key">Entry Trigger</span><span class="row-val">Hold above $103 on 15m 2-up candle</span></div><div class="card-row"><span class="row-key">Stop / Flip</span><span class="row-val r">$101 close = exit ALL energy positions</span></div><div class="card-row"><span class="row-key">Target 1</span><span class="row-val g">$108 (+3.8%) → ~+35%</span></div><div class="card-row"><span class="row-key">Target 2</span><span class="row-val g">$115 (+10%) → ~+100%+</span></div><div class="card-row"><span class="row-key">Tail Risk</span><span class="row-val a">Ceasefire = instant IV crush on all energy</span></div></div>
+              <div class="card-head"><div class="card-ticker-wrap"><div class="card-ticker">WTI / CL</div><div class="card-desc">Crude Oil Futures Â· ~$104 Â· Hormuz PMG Â· UCO calls</div></div><span class="action-badge ab-bull">BUY CALL CFD</span></div>
+              <div class="card-rows"><div class="card-row"><span class="row-key">Contract</span><span class="row-val">May 2026 CL futures / UCO ETF calls</span></div><div class="card-row"><span class="row-key">Entry Trigger</span><span class="row-val">Hold above $103 on 15m 2-up candle</span></div><div class="card-row"><span class="row-key">Stop / Flip</span><span class="row-val r">$101 close = exit ALL energy positions</span></div><div class="card-row"><span class="row-key">Target 1</span><span class="row-val g">$108 (+3.8%) â ~+35%</span></div><div class="card-row"><span class="row-key">Target 2</span><span class="row-val g">$115 (+10%) â ~+100%+</span></div><div class="card-row"><span class="row-key">Tail Risk</span><span class="row-val a">Ceasefire = instant IV crush on all energy</span></div></div>
               <div class="payoff-bar-wrap"><div class="payoff-top"><span class="payoff-lbl">Min Payoff Est.</span><span class="payoff-num pn-g">+35%</span></div><div class="bar-track"><div class="bar-fill bf-g" style="width:35%"></div></div><div class="bar-labels"><span>entry</span><span>+35% T1</span><span>+100% T2</span></div></div>
               <div class="card-footnote">Saudi Manifa + E-W Pipeline both disrupted. OPEC March output plunged. Hormuz effectively closed. Take T1 before news windows.</div>
             </div>
@@ -1592,43 +1592,43 @@ body::after {
 
         <!-- CRYPTO -->
         <div class="cat-section">
-          <div class="cat-header"><span class="cat-emoji">₿</span><span class="cat-label">Crypto</span><div class="cat-rule"></div><span class="cat-pill">2 setups</span></div>
+          <div class="cat-header"><span class="cat-emoji">â¿</span><span class="cat-label">Crypto</span><div class="cat-rule"></div><span class="cat-pill">2 setups</span></div>
           <div class="cards-grid">
             <div class="trade-card feat-gold">
-              <div class="card-head"><div class="card-ticker-wrap"><div class="card-chip chip-gold">Clarity Act · Senate Vote This Week</div><div class="card-ticker">BTC / IBIT</div><div class="card-desc">Bitcoin · ~$71,600 · Best week since Oct 2025</div></div><span class="action-badge ab-hot">CATALYST PLAY</span></div>
-              <div class="card-rows"><div class="card-row"><span class="row-key">Strike / Exp</span><span class="row-val">IBIT $58C or $60C · May 15</span></div><div class="card-row"><span class="row-key">Entry Trigger</span><span class="row-val">BTC reclaims $72,500 on 4H 2-up candle</span></div><div class="card-row"><span class="row-key">OTE / Strat-Hole</span><span class="row-val b">$69,000–$71,000 re-entry zone</span></div><div class="card-row"><span class="row-key">Stop / Flip</span><span class="row-val r">$69,000 — weekly 50%er structural stop</span></div><div class="card-row"><span class="row-key">Target 1</span><span class="row-val g">$75,000 BTC → ~+35% IBIT option</span></div><div class="card-row"><span class="row-key">Target 2</span><span class="row-val g">$80,000 (BF upper) → ~+90%</span></div></div>
+              <div class="card-head"><div class="card-ticker-wrap"><div class="card-chip chip-gold">Clarity Act Â· Senate Vote This Week</div><div class="card-ticker">BTC / IBIT</div><div class="card-desc">Bitcoin Â· ~$71,600 Â· Best week since Oct 2025</div></div><span class="action-badge ab-hot">CATALYST PLAY</span></div>
+              <div class="card-rows"><div class="card-row"><span class="row-key">Strike / Exp</span><span class="row-val">IBIT $58C or $60C Â· May 15</span></div><div class="card-row"><span class="row-key">Entry Trigger</span><span class="row-val">BTC reclaims $72,500 on 4H 2-up candle</span></div><div class="card-row"><span class="row-key">OTE / Strat-Hole</span><span class="row-val b">$69,000â$71,000 re-entry zone</span></div><div class="card-row"><span class="row-key">Stop / Flip</span><span class="row-val r">$69,000 â weekly 50%er structural stop</span></div><div class="card-row"><span class="row-key">Target 1</span><span class="row-val g">$75,000 BTC â ~+35% IBIT option</span></div><div class="card-row"><span class="row-key">Target 2</span><span class="row-val g">$80,000 (BF upper) â ~+90%</span></div></div>
               <div class="payoff-bar-wrap"><div class="payoff-top"><span class="payoff-lbl">Min Payoff (Confirmed Entry)</span><span class="payoff-num pn-b">+35%</span></div><div class="bar-track"><div class="bar-fill bf-b" style="width:35%"></div></div><div class="bar-labels"><span>entry</span><span>+35% T1</span><span>+90% T2</span></div></div>
               <div class="card-footnote">Circle +9%, Coinbase +2% on Clarity Act optimism. Do NOT enter before $72,500 trigger confirmed. BTC/Gold correlation elevated.</div>
             </div>
             <div class="trade-card">
-              <div class="card-head"><div class="card-ticker-wrap"><div class="card-ticker">ETH / ETHA</div><div class="card-desc">Ethereum · Correlated to BTC + stablecoin ruling</div></div><span class="action-badge ab-hot">CATALYST PLAY</span></div>
-              <div class="card-rows"><div class="card-row"><span class="row-key">Strike / Exp</span><span class="row-val">ETHA ATM calls · May 15</span></div><div class="card-row"><span class="row-key">Entry Trigger</span><span class="row-val">ETH holds weekly 50%er on 4H flip</span></div><div class="card-row"><span class="row-key">Stop / Flip</span><span class="row-val r">Break below weekly open = full exit</span></div><div class="card-row"><span class="row-key">Target 1</span><span class="row-val g">+15–20% ETH → ~+40% option</span></div><div class="card-row"><span class="row-key">Target 2</span><span class="row-val g">BF upper boundary → ~+80%</span></div><div class="card-row"><span class="row-key">Catalyst</span><span class="row-val b">Clarity Act covers USDC/ETH ecosystem</span></div></div>
+              <div class="card-head"><div class="card-ticker-wrap"><div class="card-ticker">ETH / ETHA</div><div class="card-desc">Ethereum Â· Correlated to BTC + stablecoin ruling</div></div><span class="action-badge ab-hot">CATALYST PLAY</span></div>
+              <div class="card-rows"><div class="card-row"><span class="row-key">Strike / Exp</span><span class="row-val">ETHA ATM calls Â· May 15</span></div><div class="card-row"><span class="row-key">Entry Trigger</span><span class="row-val">ETH holds weekly 50%er on 4H flip</span></div><div class="card-row"><span class="row-key">Stop / Flip</span><span class="row-val r">Break below weekly open = full exit</span></div><div class="card-row"><span class="row-key">Target 1</span><span class="row-val g">+15â20% ETH â ~+40% option</span></div><div class="card-row"><span class="row-key">Target 2</span><span class="row-val g">BF upper boundary â ~+80%</span></div><div class="card-row"><span class="row-key">Catalyst</span><span class="row-val b">Clarity Act covers USDC/ETH ecosystem</span></div></div>
               <div class="payoff-bar-wrap"><div class="payoff-top"><span class="payoff-lbl">Min Payoff Est.</span><span class="payoff-num pn-b">+40%</span></div><div class="bar-track"><div class="bar-fill bf-b" style="width:40%"></div></div><div class="bar-labels"><span>entry</span><span>+40% T1</span><span>+80% T2</span></div></div>
-              <div class="card-footnote">Secondary to BTC — confirm BTC trigger first. Stablecoin Clarity Act directly covers USDC/ETH ecosystem.</div>
+              <div class="card-footnote">Secondary to BTC â confirm BTC trigger first. Stablecoin Clarity Act directly covers USDC/ETH ecosystem.</div>
             </div>
           </div>
         </div>
 
         <!-- FOREX -->
         <div class="cat-section">
-          <div class="cat-header"><span class="cat-emoji">💱</span><span class="cat-label">Forex</span><div class="cat-rule"></div><span class="cat-pill">3 setups</span></div>
+          <div class="cat-header"><span class="cat-emoji">ð±</span><span class="cat-label">Forex</span><div class="cat-rule"></div><span class="cat-pill">3 setups</span></div>
           <div class="cards-grid cols-3">
             <div class="trade-card feat-gold">
-              <div class="card-head"><div class="card-ticker-wrap"><div class="card-chip chip-gold">USD Weakness · DXY 98.79</div><div class="card-ticker">EUR/USD</div><div class="card-desc">Euro · ~1.1520 · Energy shock drag</div></div><span class="action-badge ab-bull">LONG EUR</span></div>
-              <div class="card-rows"><div class="card-row"><span class="row-key">Entry Zone</span><span class="row-val">Buy dips to $1.1500 / 50%er</span></div><div class="card-row"><span class="row-key">Stop / Flip</span><span class="row-val r">Below $1.1450 — invalidated</span></div><div class="card-row"><span class="row-key">Target 1</span><span class="row-val g">$1.1700 → ~+17% (10x)</span></div><div class="card-row"><span class="row-key">Target 2</span><span class="row-val g">$1.20 Q2 → ~+25%+</span></div><div class="card-row"><span class="row-key">Analyst PT</span><span class="row-val b">RBC: 1.20 end-2026</span></div></div>
-              <div class="payoff-bar-wrap"><div class="payoff-top"><span class="payoff-lbl">Leveraged Payoff (10×)</span><span class="payoff-num pn-b">+17%+</span></div><div class="bar-track"><div class="bar-fill bf-b" style="width:17%"></div></div><div class="bar-labels"><span>entry</span><span>+17%</span><span>+25%</span></div></div>
-              <div class="card-footnote">Longs unwound = reduced overhang. ECB resisting tightening. De-escalation → faster return to 1.18–1.20.</div>
+              <div class="card-head"><div class="card-ticker-wrap"><div class="card-chip chip-gold">USD Weakness Â· DXY 98.79</div><div class="card-ticker">EUR/USD</div><div class="card-desc">Euro Â· ~1.1520 Â· Energy shock drag</div></div><span class="action-badge ab-bull">LONG EUR</span></div>
+              <div class="card-rows"><div class="card-row"><span class="row-key">Entry Zone</span><span class="row-val">Buy dips to $1.1500 / 50%er</span></div><div class="card-row"><span class="row-key">Stop / Flip</span><span class="row-val r">Below $1.1450 â invalidated</span></div><div class="card-row"><span class="row-key">Target 1</span><span class="row-val g">$1.1700 â ~+17% (10x)</span></div><div class="card-row"><span class="row-key">Target 2</span><span class="row-val g">$1.20 Q2 â ~+25%+</span></div><div class="card-row"><span class="row-key">Analyst PT</span><span class="row-val b">RBC: 1.20 end-2026</span></div></div>
+              <div class="payoff-bar-wrap"><div class="payoff-top"><span class="payoff-lbl">Leveraged Payoff (10Ã)</span><span class="payoff-num pn-b">+17%+</span></div><div class="bar-track"><div class="bar-fill bf-b" style="width:17%"></div></div><div class="bar-labels"><span>entry</span><span>+17%</span><span>+25%</span></div></div>
+              <div class="card-footnote">Longs unwound = reduced overhang. ECB resisting tightening. De-escalation â faster return to 1.18â1.20.</div>
             </div>
             <div class="trade-card">
-              <div class="card-head"><div class="card-ticker-wrap"><div class="card-ticker">GBP/USD</div><div class="card-desc">Cable · ~$1.3450 · 2-month highs</div></div><span class="action-badge ab-bull">LONG GBP</span></div>
-              <div class="card-rows"><div class="card-row"><span class="row-key">Entry Zone</span><span class="row-val">Buy $1.3350–$1.3400 TTO zone</span></div><div class="card-row"><span class="row-key">Stop / Flip</span><span class="row-val r">Below $1.3280 — structural stop</span></div><div class="card-row"><span class="row-key">Target 1</span><span class="row-val g">$1.3500 → ~+15%+ (10x)</span></div><div class="card-row"><span class="row-key">Target 2</span><span class="row-val g">$1.3600 Q3 → ~+25%</span></div><div class="card-row"><span class="row-key">BoE Note</span><span class="row-val a">22bp hikes priced — GBP support</span></div></div>
-              <div class="payoff-bar-wrap"><div class="payoff-top"><span class="payoff-lbl">Leveraged Payoff (10×)</span><span class="payoff-num pn-b">+15%+</span></div><div class="bar-track"><div class="bar-fill bf-b" style="width:15%"></div></div><div class="bar-labels"><span>entry</span><span>+15%</span><span>+25%</span></div></div>
+              <div class="card-head"><div class="card-ticker-wrap"><div class="card-ticker">GBP/USD</div><div class="card-desc">Cable Â· ~$1.3450 Â· 2-month highs</div></div><span class="action-badge ab-bull">LONG GBP</span></div>
+              <div class="card-rows"><div class="card-row"><span class="row-key">Entry Zone</span><span class="row-val">Buy $1.3350â$1.3400 TTO zone</span></div><div class="card-row"><span class="row-key">Stop / Flip</span><span class="row-val r">Below $1.3280 â structural stop</span></div><div class="card-row"><span class="row-key">Target 1</span><span class="row-val g">$1.3500 â ~+15%+ (10x)</span></div><div class="card-row"><span class="row-key">Target 2</span><span class="row-val g">$1.3600 Q3 â ~+25%</span></div><div class="card-row"><span class="row-key">BoE Note</span><span class="row-val a">22bp hikes priced â GBP support</span></div></div>
+              <div class="payoff-bar-wrap"><div class="payoff-top"><span class="payoff-lbl">Leveraged Payoff (10Ã)</span><span class="payoff-num pn-b">+15%+</span></div><div class="bar-track"><div class="bar-fill bf-b" style="width:15%"></div></div><div class="bar-labels"><span>entry</span><span>+15%</span><span>+25%</span></div></div>
               <div class="card-footnote">Cleanest FX setup per analyst consensus. Persistent recovery on multi-day USD weakness leg.</div>
             </div>
             <div class="trade-card">
-              <div class="card-head"><div class="card-ticker-wrap"><div class="card-ticker">USD/JPY</div><div class="card-desc">Dollar-Yen · ~$158–160 · BoJ zone</div></div><span class="action-badge ab-warn">SHORT USD/JPY</span></div>
-              <div class="card-rows"><div class="card-row"><span class="row-key">Entry Zone</span><span class="row-val">Sell rallies to $159–160</span></div><div class="card-row"><span class="row-key">Stop / Flip</span><span class="row-val r">Above $161 — BoJ fails</span></div><div class="card-row"><span class="row-key">Target 1</span><span class="row-val g">$156 → ~+20% leveraged</span></div><div class="card-row"><span class="row-key">Target 2</span><span class="row-val g">$152 Q3/Q4 → ~+50%</span></div><div class="card-row"><span class="row-key">Analyst PT</span><span class="row-val b">MUFG: USD/JPY 146 end-2026</span></div></div>
-              <div class="payoff-bar-wrap"><div class="payoff-top"><span class="payoff-lbl">Leveraged Payoff (10×)</span><span class="payoff-num pn-a">+20%+</span></div><div class="bar-track"><div class="bar-fill bf-a" style="width:20%"></div></div><div class="bar-labels"><span>entry</span><span>+20%</span><span>+50%</span></div></div>
+              <div class="card-head"><div class="card-ticker-wrap"><div class="card-ticker">USD/JPY</div><div class="card-desc">Dollar-Yen Â· ~$158â160 Â· BoJ zone</div></div><span class="action-badge ab-warn">SHORT USD/JPY</span></div>
+              <div class="card-rows"><div class="card-row"><span class="row-key">Entry Zone</span><span class="row-val">Sell rallies to $159â160</span></div><div class="card-row"><span class="row-key">Stop / Flip</span><span class="row-val r">Above $161 â BoJ fails</span></div><div class="card-row"><span class="row-key">Target 1</span><span class="row-val g">$156 â ~+20% leveraged</span></div><div class="card-row"><span class="row-key">Target 2</span><span class="row-val g">$152 Q3/Q4 â ~+50%</span></div><div class="card-row"><span class="row-key">Analyst PT</span><span class="row-val b">MUFG: USD/JPY 146 end-2026</span></div></div>
+              <div class="payoff-bar-wrap"><div class="payoff-top"><span class="payoff-lbl">Leveraged Payoff (10Ã)</span><span class="payoff-num pn-a">+20%+</span></div><div class="bar-track"><div class="bar-fill bf-a" style="width:20%"></div></div><div class="bar-labels"><span>entry</span><span>+20%</span><span>+50%</span></div></div>
               <div class="card-footnote">160 = historical BoJ intervention threshold. Japan 95% oil-import dependent. MUFG: 146 end-2026.</div>
             </div>
           </div>
@@ -1636,48 +1636,48 @@ body::after {
 
         <!-- 2-MIN ALERTS SECTION -->
         <div class="alerts-wrap">
-          <div class="section-hd">⚡ 2-Minute Trend Shift Alert Protocol</div>
+          <div class="section-hd">â¡ 2-Minute Trend Shift Alert Protocol</div>
           <div class="section-sd">Triggers activate on &gt;5% move within any 2-minute candle frame. Act on confirmed close only.</div>
           <div class="alert-grid">
-            <div class="alert-tile at-bull"><div class="alert-tile-sym ats-bull">▲ WTI CRUDE — BULL</div><div class="alert-tile-body">Break above <span class="trig-pill tp-g">$105</span>: PMG cascade active. Scale into XLE/USO calls. Stop $103.50. T2: $112–115.</div></div>
-            <div class="alert-tile at-bull"><div class="alert-tile-sym ats-bull">▲ ORCL — BULL</div><div class="alert-tile-body">Break above <span class="trig-pill tp-g">$157</span> (+5%): 2-up continuation. Add to May $155C. HOD = trailing stop.</div></div>
-            <div class="alert-tile at-bull"><div class="alert-tile-sym ats-bull">▲ PLTR — BULL</div><div class="alert-tile-body">Break above <span class="trig-pill tp-g">$139</span> on vol &gt;20M/2-min: PMG. Enter $135C May 8. Stop = 50%er of trigger candle.</div></div>
-            <div class="alert-tile at-bull"><div class="alert-tile-sym ats-bull">▲ BTC — BULL</div><div class="alert-tile-body">Surge above <span class="trig-pill tp-g">$75,000</span>: Clarity Act PMG. Add IBIT calls. Trail stop to $72,500.</div></div>
-            <div class="alert-tile at-bull"><div class="alert-tile-sym ats-bull">▲ GOLD — BULL</div><div class="alert-tile-body">XAU breaks above <span class="trig-pill tp-g">$4,883</span> (200 SMA): Volume void active. Gap-fill to $5,012+ likely.</div></div>
-            <div class="alert-tile at-bear"><div class="alert-tile-sym ats-bear">▼ WTI CRUDE — STOP HIT</div><div class="alert-tile-body">Drop below <span class="trig-pill tp-r">$101</span>: Level 2 stop. Exit ALL energy positions immediately. Ceasefire in play.</div></div>
-            <div class="alert-tile at-bear"><div class="alert-tile-sym ats-bear">▼ SPY — BEAR</div><div class="alert-tile-body">Drop below <span class="trig-pill tp-r">$672</span>: Delta Bleed confirmed. Add $675P. Target $666 MA cluster.</div></div>
-            <div class="alert-tile at-bear"><div class="alert-tile-sym ats-bear">▼ QQQ — STRUCTURAL FAIL</div><div class="alert-tile-body">Drop below <span class="trig-pill tp-r">$602</span>: Exit QQQ calls. Flip: $600P targeting $590 gamma flip level.</div></div>
-            <div class="alert-tile at-warn"><div class="alert-tile-sym ats-warn">⚠ USD/JPY — CAUTION</div><div class="alert-tile-body">Approaches <span class="trig-pill tp-a">$160.00</span>: BoJ intervention window open. Hard stop above $161.</div></div>
-            <div class="alert-tile at-warn"><div class="alert-tile-sym ats-warn">⚠ CEASEFIRE HEADLINE — FLIP PLAN</div><div class="alert-tile-body">U.S.-Iran ceasefire: IV crush on WTI/XLE/GLD. Exit energy/gold calls. Flip to <span class="trig-pill tp-g">SPY $685C</span>.</div></div>
+            <div class="alert-tile at-bull"><div class="alert-tile-sym ats-bull">â² WTI CRUDE â BULL</div><div class="alert-tile-body">Break above <span class="trig-pill tp-g">$105</span>: PMG cascade active. Scale into XLE/USO calls. Stop $103.50. T2: $112â115.</div></div>
+            <div class="alert-tile at-bull"><div class="alert-tile-sym ats-bull">â² ORCL â BULL</div><div class="alert-tile-body">Break above <span class="trig-pill tp-g">$157</span> (+5%): 2-up continuation. Add to May $155C. HOD = trailing stop.</div></div>
+            <div class="alert-tile at-bull"><div class="alert-tile-sym ats-bull">â² PLTR â BULL</div><div class="alert-tile-body">Break above <span class="trig-pill tp-g">$139</span> on vol &gt;20M/2-min: PMG. Enter $135C May 8. Stop = 50%er of trigger candle.</div></div>
+            <div class="alert-tile at-bull"><div class="alert-tile-sym ats-bull">â² BTC â BULL</div><div class="alert-tile-body">Surge above <span class="trig-pill tp-g">$75,000</span>: Clarity Act PMG. Add IBIT calls. Trail stop to $72,500.</div></div>
+            <div class="alert-tile at-bull"><div class="alert-tile-sym ats-bull">â² GOLD â BULL</div><div class="alert-tile-body">XAU breaks above <span class="trig-pill tp-g">$4,883</span> (200 SMA): Volume void active. Gap-fill to $5,012+ likely.</div></div>
+            <div class="alert-tile at-bear"><div class="alert-tile-sym ats-bear">â¼ WTI CRUDE â STOP HIT</div><div class="alert-tile-body">Drop below <span class="trig-pill tp-r">$101</span>: Level 2 stop. Exit ALL energy positions immediately. Ceasefire in play.</div></div>
+            <div class="alert-tile at-bear"><div class="alert-tile-sym ats-bear">â¼ SPY â BEAR</div><div class="alert-tile-body">Drop below <span class="trig-pill tp-r">$672</span>: Delta Bleed confirmed. Add $675P. Target $666 MA cluster.</div></div>
+            <div class="alert-tile at-bear"><div class="alert-tile-sym ats-bear">â¼ QQQ â STRUCTURAL FAIL</div><div class="alert-tile-body">Drop below <span class="trig-pill tp-r">$602</span>: Exit QQQ calls. Flip: $600P targeting $590 gamma flip level.</div></div>
+            <div class="alert-tile at-warn"><div class="alert-tile-sym ats-warn">â  USD/JPY â CAUTION</div><div class="alert-tile-body">Approaches <span class="trig-pill tp-a">$160.00</span>: BoJ intervention window open. Hard stop above $161.</div></div>
+            <div class="alert-tile at-warn"><div class="alert-tile-sym ats-warn">â  CEASEFIRE HEADLINE â FLIP PLAN</div><div class="alert-tile-body">U.S.-Iran ceasefire: IV crush on WTI/XLE/GLD. Exit energy/gold calls. Flip to <span class="trig-pill tp-g">SPY $685C</span>.</div></div>
           </div>
         </div>
 
         <!-- GREEKS -->
         <div class="greeks-wrap">
-          <div class="section-hd">Option Greeks — Risk Overlay</div>
+          <div class="section-hd">Option Greeks â Risk Overlay</div>
           <div class="section-sd">Today's environment requires Greek-aware position management across all setups.</div>
           <div class="greeks-grid">
-            <div class="greek-tile" data-sym="Δ"><div class="gt-sym" style="color:#60a5fa">Δ</div><div class="gt-name">Delta</div><div class="gt-badge gtb-mod">MIXED DIRECTIONAL</div><div class="gt-desc">Whipsaw today — Nasdaq +0.7% vs Dow −0.7%. Go directional ONLY on RS leaders. Delta-neutral spreads on broad indices.</div></div>
-            <div class="greek-tile" data-sym="Γ"><div class="gt-sym" style="color:#fbbf24">Γ</div><div class="gt-name">Gamma</div><div class="gt-badge gtb-high">VERY HIGH</div><div class="gt-desc">PMG risk in energy — cascading stops probable. Short-Gamma dangerous. Prefer long calls. Starter size only near expiry.</div></div>
-            <div class="greek-tile" data-sym="Θ"><div class="gt-sym" style="color:#f87171">Θ</div><div class="gt-name">Theta</div><div class="gt-badge gtb-high">THETA TRAP RISK</div><div class="gt-desc">Avoid ATM at 50%er equilibrium. Capital erodes while market decides. Use May expiry minimum. Exit stagnating positions.</div></div>
+            <div class="greek-tile" data-sym="Î"><div class="gt-sym" style="color:#60a5fa">Î</div><div class="gt-name">Delta</div><div class="gt-badge gtb-mod">MIXED DIRECTIONAL</div><div class="gt-desc">Whipsaw today â Nasdaq +0.7% vs Dow â0.7%. Go directional ONLY on RS leaders. Delta-neutral spreads on broad indices.</div></div>
+            <div class="greek-tile" data-sym="Î"><div class="gt-sym" style="color:#fbbf24">Î</div><div class="gt-name">Gamma</div><div class="gt-badge gtb-high">VERY HIGH</div><div class="gt-desc">PMG risk in energy â cascading stops probable. Short-Gamma dangerous. Prefer long calls. Starter size only near expiry.</div></div>
+            <div class="greek-tile" data-sym="Î"><div class="gt-sym" style="color:#f87171">Î</div><div class="gt-name">Theta</div><div class="gt-badge gtb-high">THETA TRAP RISK</div><div class="gt-desc">Avoid ATM at 50%er equilibrium. Capital erodes while market decides. Use May expiry minimum. Exit stagnating positions.</div></div>
             <div class="greek-tile" data-sym="V"><div class="gt-sym" style="color:#a78bfa">V</div><div class="gt-name">Vega</div><div class="gt-badge gtb-ext">EXTREME</div><div class="gt-desc">IV elevated across ALL assets. Use ITM options (Delta &gt;0.60). Take T1 profits before any potential IV crush event.</div></div>
           </div>
         </div>
 
         <div class="dash-footer">
           <div class="df-brand">WJB TRADES</div>
-          <div class="df-disc">⚠️ Educational purposes only — not financial advice. Options involve substantial risk of loss. FX payoffs assume 10× leverage for illustration. Never risk more than 2% of account equity per trade.</div>
-          <div style="font-family:var(--mono);font-size:9px;color:var(--fog)">Apr 13, 2026 · v4.0</div>
+          <div class="df-disc">â ï¸ Educational purposes only â not financial advice. Options involve substantial risk of loss. FX payoffs assume 10Ã leverage for illustration. Never risk more than 2% of account equity per trade.</div>
+          <div style="font-family:var(--mono);font-size:9px;color:var(--fog)">Apr 13, 2026 Â· v4.0</div>
         </div>
 
       </div>
     </div>
 
-    <!-- ── TAB: ALERTS ── -->
+    <!-- ââ TAB: ALERTS ââ -->
     <div class="dash-tab-panel" id="tab-alerts">
       <div class="alerts-tab-wrap">
         <div class="section-hd" style="margin-bottom:4px">Live Trend Shift Alerts</div>
-        <div class="section-sd">Simulated real-time feed — &gt;5% move within 2-minute candle frames</div>
+        <div class="section-sd">Simulated real-time feed â &gt;5% move within 2-minute candle frames</div>
         <div class="alert-controls">
           <div class="alert-toggle">
             <div class="toggle-switch on" id="alert-toggle-sw" onclick="toggleAlertFeed()"></div>
@@ -1694,7 +1694,7 @@ body::after {
       </div>
     </div>
 
-    <!-- ── TAB: SUBSCRIPTIONS ── -->
+    <!-- ââ TAB: SUBSCRIPTIONS ââ -->
     <div class="dash-tab-panel" id="tab-subscriptions">
       <div style="padding:32px 40px;max-width:680px">
 
@@ -1702,7 +1702,7 @@ body::after {
         <div style="background:linear-gradient(135deg,rgba(45,212,191,0.08),rgba(200,169,110,0.06));border:1px solid rgba(45,212,191,0.2);border-radius:16px;padding:28px 32px;margin-bottom:28px;position:relative;overflow:hidden">
           <div style="position:absolute;top:-40px;right:-40px;width:160px;height:160px;border-radius:50%;background:radial-gradient(circle,rgba(45,212,191,0.08),transparent 70%)"></div>
           <div style="font-family:var(--display);font-size:32px;letter-spacing:1px;color:var(--white);margin-bottom:6px">Daily Market Summary</div>
-          <div style="font-size:13px;color:var(--mist);max-width:420px;line-height:1.7">Receive the full WJB Trades market report — trade setups, alerts, and Greek risk overlay — delivered to your inbox every morning at <strong style="color:var(--gold2)">9:00 AM ET</strong> before the market opens.</div>
+          <div style="font-size:13px;color:var(--mist);max-width:420px;line-height:1.7">Receive the full WJB Trades market report â trade setups, alerts, and Greek risk overlay â delivered to your inbox every morning at <strong style="color:var(--gold2)">9:00 AM ET</strong> before the market opens.</div>
           <div id="sub-status-badge" style="display:inline-flex;align-items:center;gap:8px;margin-top:16px;background:var(--ink3);border:1px solid var(--wire2);border-radius:20px;padding:6px 14px;font-family:var(--mono);font-size:11px;color:var(--fog)">
             <span id="sub-status-dot" style="width:6px;height:6px;border-radius:50%;background:var(--fog)"></span>
             <span id="sub-status-text">Not subscribed</span>
@@ -1722,28 +1722,28 @@ body::after {
               <div style="font-family:var(--mono);font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--fog);margin-bottom:12px">What's included every morning</div>
               <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
                 <div style="background:var(--ink3);border:1px solid var(--wire);border-radius:8px;padding:10px 12px;display:flex;align-items:flex-start;gap:10px">
-                  <span style="font-size:16px">📊</span>
+                  <span style="font-size:16px">ð</span>
                   <div>
                     <div style="font-size:12px;font-weight:500;color:var(--snow);margin-bottom:2px">Macro Snapshot</div>
                     <div style="font-size:10px;color:var(--fog)">SPY, QQQ, WTI, Gold, BTC, DXY levels</div>
                   </div>
                 </div>
                 <div style="background:var(--ink3);border:1px solid var(--wire);border-radius:8px;padding:10px 12px;display:flex;align-items:flex-start;gap:10px">
-                  <span style="font-size:16px">📈</span>
+                  <span style="font-size:16px">ð</span>
                   <div>
                     <div style="font-size:12px;font-weight:500;color:var(--snow);margin-bottom:2px">Top 3 Setups</div>
                     <div style="font-size:10px;color:var(--fog)">Highest conviction trades of the day</div>
                   </div>
                 </div>
                 <div style="background:var(--ink3);border:1px solid var(--wire);border-radius:8px;padding:10px 12px;display:flex;align-items:flex-start;gap:10px">
-                  <span style="font-size:16px">⚡</span>
+                  <span style="font-size:16px">â¡</span>
                   <div>
                     <div style="font-size:12px;font-weight:500;color:var(--snow);margin-bottom:2px">Key Alert Levels</div>
                     <div style="font-size:10px;color:var(--fog)">2-min trigger prices to watch</div>
                   </div>
                 </div>
                 <div style="background:var(--ink3);border:1px solid var(--wire);border-radius:8px;padding:10px 12px;display:flex;align-items:flex-start;gap:10px">
-                  <span style="font-size:16px">🔢</span>
+                  <span style="font-size:16px">ð¢</span>
                   <div>
                     <div style="font-size:12px;font-weight:500;color:var(--snow);margin-bottom:2px">Greeks Risk Level</div>
                     <div style="font-size:10px;color:var(--fog)">Delta/Gamma/Theta/Vega environment</div>
@@ -1754,18 +1754,18 @@ body::after {
 
             <!-- Delivery Time -->
             <div style="background:var(--ink3);border:1px solid rgba(200,169,110,0.15);border-radius:8px;padding:12px 14px;margin-bottom:20px;display:flex;align-items:center;gap:12px">
-              <div style="font-size:22px">🕘</div>
+              <div style="font-size:22px">ð</div>
               <div>
                 <div style="font-size:12px;font-weight:500;color:var(--snow)">Delivered at 9:00 AM Eastern Time</div>
-                <div style="font-size:11px;color:var(--fog)">Every trading day (Mon–Fri), 30 min before market open</div>
+                <div style="font-size:11px;color:var(--fog)">Every trading day (MonâFri), 30 min before market open</div>
               </div>
-              <div style="margin-left:auto;font-family:var(--mono);font-size:11px;color:var(--gold2);text-align:right">9:00 AM ET<br><span style="color:var(--fog)">Mon–Fri</span></div>
+              <div style="margin-left:auto;font-family:var(--mono);font-size:11px;color:var(--gold2);text-align:right">9:00 AM ET<br><span style="color:var(--fog)">MonâFri</span></div>
             </div>
 
             <!-- Subscribe Toggle -->
             <div id="sub-action-area">
               <button id="subscribe-btn" onclick="handleSubscribeToggle()" style="width:100%;background:linear-gradient(90deg,var(--gold),var(--gold2));color:var(--ink);border:none;border-radius:8px;padding:14px;font-family:var(--display);font-size:20px;letter-spacing:2px;cursor:pointer;transition:opacity 0.2s">
-                SUBSCRIBE — FREE
+                SUBSCRIBE â FREE
               </button>
               <div style="text-align:center;margin-top:10px;font-size:11px;color:var(--fog)">No cost. Unsubscribe any time from this page.</div>
             </div>
@@ -1775,7 +1775,7 @@ body::after {
 
         <!-- SUBSCRIBED STATE (hidden by default) -->
         <div id="sub-active-card" style="display:none;background:linear-gradient(135deg,rgba(52,211,153,0.07),rgba(52,211,153,0.03));border:1px solid rgba(52,211,153,0.25);border-radius:12px;padding:24px;margin-bottom:20px;text-align:center">
-          <div style="font-size:36px;margin-bottom:10px">✅</div>
+          <div style="font-size:36px;margin-bottom:10px">â</div>
           <div style="font-family:var(--display);font-size:24px;letter-spacing:1px;color:var(--green);margin-bottom:6px">You're Subscribed</div>
           <div style="font-size:13px;color:var(--mist);margin-bottom:16px">Daily summaries will be sent to <strong id="sub-email-display" style="color:var(--snow)"></strong> at 9:00 AM ET, Monday through Friday.</div>
           <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
@@ -1790,11 +1790,11 @@ body::after {
           <div style="display:flex;flex-direction:column;gap:12px">
             <div style="display:flex;gap:14px;align-items:flex-start">
               <div style="font-family:var(--mono);font-size:11px;color:var(--gold);background:var(--gold3);border:1px solid rgba(200,169,110,0.2);border-radius:50%;width:24px;height:24px;display:flex;align-items:center;justify-content:center;flex-shrink:0">1</div>
-              <div style="font-size:13px;color:var(--mist)">You subscribe on this page — your email is saved to the platform.</div>
+              <div style="font-size:13px;color:var(--mist)">You subscribe on this page â your email is saved to the platform.</div>
             </div>
             <div style="display:flex;gap:14px;align-items:flex-start">
               <div style="font-family:var(--mono);font-size:11px;color:var(--gold);background:var(--gold3);border:1px solid rgba(200,169,110,0.2);border-radius:50%;width:24px;height:24px;display:flex;align-items:center;justify-content:center;flex-shrink:0">2</div>
-              <div style="font-size:13px;color:var(--mist)">The admin configures <strong style="color:var(--snow)">EmailJS</strong> (free service) — no server needed, emails send directly from the browser.</div>
+              <div style="font-size:13px;color:var(--mist)">The admin configures <strong style="color:var(--snow)">EmailJS</strong> (free service) â no server needed, emails send directly from the browser.</div>
             </div>
             <div style="display:flex;gap:14px;align-items:flex-start">
               <div style="font-family:var(--mono);font-size:11px;color:var(--gold);background:var(--gold3);border:1px solid rgba(200,169,110,0.2);border-radius:50%;width:24px;height:24px;display:flex;align-items:center;justify-content:center;flex-shrink:0">3</div>
@@ -1802,7 +1802,7 @@ body::after {
             </div>
             <div style="display:flex;gap:14px;align-items:flex-start">
               <div style="font-family:var(--mono);font-size:11px;color:var(--gold);background:var(--gold3);border:1px solid rgba(200,169,110,0.2);border-radius:50%;width:24px;height:24px;display:flex;align-items:center;justify-content:center;flex-shrink:0">4</div>
-              <div style="font-size:13px;color:var(--mist)">Every subscriber receives a rich HTML daily summary email before market open. ✓</div>
+              <div style="font-size:13px;color:var(--mist)">Every subscriber receives a rich HTML daily summary email before market open. â</div>
             </div>
           </div>
         </div>
@@ -1810,7 +1810,7 @@ body::after {
       </div>
     </div>
 
-    <!-- ── TAB: GLOSSARY ── -->
+    <!-- ââ TAB: GLOSSARY ââ -->
     <div class="dash-tab-panel" id="tab-glossary">
       <div style="padding:32px 40px;max-width:800px">
         <div class="section-hd" style="margin-bottom:4px">Trading Glossary</div>
@@ -1822,11 +1822,11 @@ body::after {
   </div>
 </div>
 
-<!-- ═══════════════════════════════════════
+<!-- âââââââââââââââââââââââââââââââââââââââ
      JAVASCRIPT
-═══════════════════════════════════════════ -->
+âââââââââââââââââââââââââââââââââââââââââââ -->
 <script>
-// ── DATA STORE (localStorage) ──────────────────────
+// ââ DATA STORE (localStorage) ââââââââââââââââââââââ
 const STORE_KEY = 'wjb_trades_data';
 
 function getStore() {
@@ -1849,11 +1849,11 @@ function saveStore(data) {
 }
 
 function initStore() {
-  // Check if store already has valid members — if so, merge rather than overwrite
+  // Check if store already has valid members â if so, merge rather than overwrite
   try {
     const existing = JSON.parse(localStorage.getItem(STORE_KEY) || 'null');
     if (existing && existing.members && existing.members.length > 0) {
-      // Store exists but may be missing new fields — merge defaults in
+      // Store exists but may be missing new fields â merge defaults in
       if (!existing.subscriptions) existing.subscriptions = [];
       if (!existing.emailjs) existing.emailjs = { serviceId: '', templateId: '', publicKey: '' };
       if (!existing.supabase) existing.supabase = { url: '', anonKey: '' };
@@ -1891,7 +1891,7 @@ function initStore() {
   return data;
 }
 
-// ── SESSION ───────────────────────────────────────
+// ââ SESSION âââââââââââââââââââââââââââââââââââââââ
 function getSession() {
   const s = getStore();
   return s.session;
@@ -1909,7 +1909,7 @@ function clearSession() {
   saveStore(s);
 }
 
-// ── AUTH ──────────────────────────────────────────
+// ââ AUTH ââââââââââââââââââââââââââââââââââââââââââ
 let loginAttempts = 0;
 
 function hardResetStore() {
@@ -1966,7 +1966,7 @@ function attemptLogin() {
     }
     err.classList.add('show');
     loginAttempts++;
-    if (loginAttempts >= 1) {
+    if (loginAttempts >= 1) {
       const hint = document.getElementById('login-reset-hint');
       if (hint) hint.style.display = 'block';
     }
@@ -2002,7 +2002,7 @@ function logout() {
   showPage('gate');
 }
 
-// ── PAGES ─────────────────────────────────────────
+// ââ PAGES âââââââââââââââââââââââââââââââââââââââââ
 function showPage(name) {
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
   document.getElementById('page-' + name).classList.add('active');
@@ -2014,14 +2014,14 @@ function showAdminLogin() {
   email.value = 'admin@wjbtrades.com';
   code.placeholder = 'WJB-ADMIN-2026';
   email.focus();
-  showToast('Admin credentials pre-filled — enter your code to continue');
+  showToast('Admin credentials pre-filled â enter your code to continue');
 }
 
 function showRequestForm() {
   showToast('Request sent to administrator. You will receive your invite code via email.');
 }
 
-// ── ADMIN ─────────────────────────────────────────
+// ââ ADMIN âââââââââââââââââââââââââââââââââââââââââ
 function goToAdmin() {
   const session = getSession();
   if (!session || session.role !== 'admin') {
@@ -2095,7 +2095,7 @@ async function renderAdminTable() {
       <td><span class="badge-pill ${m.role === 'admin' ? 'pill-admin' : 'pill-active'}">${m.role}</span></td>
       <td><span class="badge-pill ${m.status === 'active' ? 'pill-active' : m.status === 'pending' ? 'pill-pending' : 'pill-revoked'}">${m.status}</span></td>
       <td>${m.joined}</td>
-      <td style="text-align:center">${subs.some(s => s.email === m.email) ? '<span style="color:var(--teal);font-size:14px">✓</span>' : '<span style="color:var(--fog)">—</span>'}</td>
+      <td style="text-align:center">${subs.some(s => s.email === m.email) ? '<span style="color:var(--teal);font-size:14px">â</span>' : '<span style="color:var(--fog)">â</span>'}</td>
       <td>
         ${m.status === 'active'
           ? `<button class="btn-sm danger" onclick="revokeAccess(${i})">Revoke</button>`
@@ -2136,7 +2136,7 @@ function generateInvite() {
   saveStore(store);
 
   const out = document.getElementById('gen-output');
-  out.innerHTML = `<span style="color:var(--gold2);font-family:var(--mono)">${code}</span><button class="copy-btn" id="copy-invite-btn" onclick="copyGeneratedCode('${code}')" title="Copy">⎘</button>`;
+  out.innerHTML = `<span style="color:var(--gold2);font-family:var(--mono)">${code}</span><button class="copy-btn" id="copy-invite-btn" onclick="copyGeneratedCode('${code}')" title="Copy">â</button>`;
 
   renderAdminTable();
   showToast('Invite generated for ' + email);
@@ -2172,7 +2172,7 @@ function activateAccess(index) {
   showToast('Member activated.');
 }
 
-// ── TABS ──────────────────────────────────────────
+// ââ TABS ââââââââââââââââââââââââââââââââââââââââââ
 function switchTab(name, el) {
   document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
   document.querySelectorAll('.dash-tab-panel').forEach(p => p.classList.remove('active'));
@@ -2180,7 +2180,7 @@ function switchTab(name, el) {
   document.getElementById('tab-' + name).classList.add('active');
 }
 
-// ── ALERT FEED ────────────────────────────────────
+// ââ ALERT FEED ââââââââââââââââââââââââââââââââââââ
 let alertInterval = null;
 let alertsRunning = false;
 let alertCountTotal = 0;
@@ -2197,7 +2197,7 @@ const ALERT_TEMPLATES = [
   { sym: 'USD/JPY', type: 'CAUTION', msg: 'Approaches $160.00: BoJ intervention window open. Short USD/JPY trigger active. Hard stop above $161.', color: 'amber' },
   { sym: 'MRVL', type: 'BULL', msg: 'Break above $135 on 2-min: Momentum continuation. Add to May $130C. Trail stop to intraday VWAP.', color: 'green' },
   { sym: 'CEASEFIRE HEADLINE', type: 'FLIP PLAN', msg: 'U.S.-Iran ceasefire headline: Instant IV crush on WTI/XLE/GLD. Exit energy/gold calls. Flip to SPY $685C.', color: 'amber' },
-  { sym: 'EUR/USD', type: 'BULL', msg: 'Tests $1.1500 support: OTE re-entry zone confirmed. Buy dips — TTO setup on 15m chart.', color: 'green' },
+  { sym: 'EUR/USD', type: 'BULL', msg: 'Tests $1.1500 support: OTE re-entry zone confirmed. Buy dips â TTO setup on 15m chart.', color: 'green' },
 ];
 
 let alertIndex = 0;
@@ -2252,7 +2252,7 @@ function fireAlert() {
   item.innerHTML = `
     <div class="lai-dot" style="background:${dotColor}"></div>
     <div class="lai-body">
-      <div class="lai-sym" style="color:${symColor}">${t.sym} — ${t.type}</div>
+      <div class="lai-sym" style="color:${symColor}">${t.sym} â ${t.type}</div>
       <div class="lai-msg">${t.msg}</div>
     </div>
     <div class="lai-time">${time} ET<br><span style="color:var(--fog)">2-min trigger</span></div>
@@ -2269,25 +2269,25 @@ function fireAlert() {
   showPushAlert(t.sym, t.type, t.msg, t.color);
 }
 
-// ── GLOSSARY ──────────────────────────────────────
+// ââ GLOSSARY ââââââââââââââââââââââââââââââââââââââ
 const GLOSSARY_TERMS = [
-  { term: 'Delta (Δ)', def: 'Rate of change of the option price with respect to the underlying asset price. Also used as a proxy for the probability of expiring ITM. Delta Neutrality mitigates directional risk.' },
-  { term: 'Gamma (Γ)', def: 'Rate of change in Delta. Largest in ATM options near expiration. High Gamma environments like PMG breakouts require immediate hedging or scaling.' },
-  { term: 'Theta (Θ)', def: 'Time decay — the rate at which an option loses value as expiration approaches. Negative for long positions, positive for short. A position stagnating at the 50%er is in a Theta Trap.' },
+  { term: 'Delta (Î)', def: 'Rate of change of the option price with respect to the underlying asset price. Also used as a proxy for the probability of expiring ITM. Delta Neutrality mitigates directional risk.' },
+  { term: 'Gamma (Î)', def: 'Rate of change in Delta. Largest in ATM options near expiration. High Gamma environments like PMG breakouts require immediate hedging or scaling.' },
+  { term: 'Theta (Î)', def: 'Time decay â the rate at which an option loses value as expiration approaches. Negative for long positions, positive for short. A position stagnating at the 50%er is in a Theta Trap.' },
   { term: 'Vega (V)', def: 'Sensitivity to a 1% change in Implied Volatility. Critical around earnings. IV Crush occurs when IV contracts sharply after a catalyst, obliterating option premiums.' },
-  { term: 'FTFC', def: 'Full Timeframe Continuity — when Quarterly, Monthly, Weekly, and Daily candles all align in the same direction. Trading in FTFC alignment maximizes probability of reaching targets.' },
-  { term: 'PMG', def: 'Pivot Machine Gun — a series of consecutive directional candles where trailing stops cluster at prior wicks. When the first wick breaks, Cascading Liquidity triggers a self-reinforcing move.' },
-  { term: '50%er', def: 'The midpoint of any candle\'s range (High + Low / 2). A candle closing below the 50%er of the prior bar signals loss of control by the dominant side — used as a high-confidence stop-loss level.' },
+  { term: 'FTFC', def: 'Full Timeframe Continuity â when Quarterly, Monthly, Weekly, and Daily candles all align in the same direction. Trading in FTFC alignment maximizes probability of reaching targets.' },
+  { term: 'PMG', def: 'Pivot Machine Gun â a series of consecutive directional candles where trailing stops cluster at prior wicks. When the first wick breaks, Cascading Liquidity triggers a self-reinforcing move.' },
+  { term: '50%er', def: 'The midpoint of any candle\'s range (High + Low / 2). A candle closing below the 50%er of the prior bar signals loss of control by the dominant side â used as a high-confidence stop-loss level.' },
   { term: 'The Flip', def: 'Price moving through its open price to change candle color (e.g., Red to Green). This is the earliest indicator of institutional liquidity shifting toward the macro trend.' },
-  { term: 'TTO', def: 'Triangle Layout — a pullback to key levels (9 EMA, VWAP, or 50%er) within an ongoing FTFC trend. Provides optimal entries to add size as price "flips" back in the macro direction.' },
+  { term: 'TTO', def: 'Triangle Layout â a pullback to key levels (9 EMA, VWAP, or 50%er) within an ongoing FTFC trend. Provides optimal entries to add size as price "flips" back in the macro direction.' },
   { term: 'Delta Bleed', def: 'When the live midpoint of a developing candle moves against your position in real time. Monitoring this allows exit before the candle closes, preserving capital before structural shift is finalized.' },
   { term: 'Theta Trap', def: 'Holding an ATM option while price stagnates at a 50%er equilibrium level. Time decay erodes capital while the market is undecided. Exit or resize if this pattern is detected.' },
   { term: 'Strat-Hole', def: 'A re-entry opportunity after a failed trigger. If price reclaims a failed trigger level with a 2-up candle, this represents a high-confidence long re-entry aligned with the macro trend.' },
-  { term: 'OTE', def: 'Optimal Trade Entry — the 50%–78.6% Fibonacci retracement zone within a Fair Value Gap (FVG). Used to enter or re-enter positions at discounted prices with a defined stop.' },
+  { term: 'OTE', def: 'Optimal Trade Entry â the 50%â78.6% Fibonacci retracement zone within a Fair Value Gap (FVG). Used to enter or re-enter positions at discounted prices with a defined stop.' },
   { term: 'BTO / STC', def: 'Buy To Open (entering a long position) / Sell To Close (exiting a long position). The standard order types for managing options contracts.' },
-  { term: 'Scenario 3', def: 'An Outside Bar that breaches both the high and low of the previous range. Because "once a 3, always a 3," a hard stop-loss is mandatory upon the breach — the broadening formation makes Greeks unmanageable.' },
+  { term: 'Scenario 3', def: 'An Outside Bar that breaches both the high and low of the previous range. Because "once a 3, always a 3," a hard stop-loss is mandatory upon the breach â the broadening formation makes Greeks unmanageable.' },
   { term: 'IV Crush', def: 'A sharp contraction in Implied Volatility after a major catalyst (earnings, news event) that can destroy option premiums even if the directional thesis is correct. Use ITM options (Delta >0.60) to minimize Vega exposure.' },
-  { term: '2% Rule', def: 'Maximum risk per trade = 2% of total account equity. For a $50,000 account this means $1,000 max risk per trade. Non-negotiable position sizing discipline.' },
+  { trm: '2% Rule', def: 'Maximum risk per trade = 2% of total account equity. For a $50,000 account this means $1,000 max risk per trade. Non-negotiable position sizing discipline.' },
   { term: 'Starter Position', def: 'Entering with 50% of planned position size on the initial trigger. Size is added only when price confirms FTFC alignment on the next higher timeframe, reducing the cost of being wrong.' },
 ];
 
@@ -2302,7 +2302,7 @@ function renderGlossary() {
   `).join('');
 }
 
-// ── UTILS ──────────────────────────────────────────
+// ââ UTILS ââââââââââââââââââââââââââââââââââââââââââ
 function copyToClipboard(text) {
   if (navigator.clipboard) {
     navigator.clipboard.writeText(text);
@@ -2337,14 +2337,14 @@ function showToast(msg) {
   toastTimeout = setTimeout(() => t.remove(), 3200);
 }
 
-// ── ENTER KEY SUPPORT ──────────────────────────────
+// ââ ENTER KEY SUPPORT ââââââââââââââââââââââââââââââ
 document.addEventListener('keydown', e => {
   if (e.key === 'Enter' && document.getElementById('page-gate').classList.contains('active')) {
     attemptLogin();
   }
 });
 
-// ── EMAILJS CONFIG ────────────────────────────────
+// ââ EMAILJS CONFIG ââââââââââââââââââââââââââââââââ
 function saveSupabaseConfig() {
   const url    = document.getElementById('sb-url').value.trim().replace(/\/$/, '');
   const key    = document.getElementById('sb-key').value.trim();
@@ -2376,10 +2376,10 @@ async function refreshSubscribers() {
   setEjsStatus('Syncing subscribers from Supabase...', 'var(--amber)');
   const subs = await syncSubscribersFromSupabase();
   if (subs === null) {
-    setEjsStatus('✗ Could not reach Supabase. Check URL and key.', 'var(--red)');
+    setEjsStatus('â Could not reach Supabase. Check URL and key.', 'var(--red)');
     return;
   }
-  setEjsStatus('✓ Synced ' + (subs ? subs.length : 0) + ' subscriber(s)', 'var(--green)');
+  setEjsStatus('â Synced ' + (subs ? subs.length : 0) + ' subscriber(s)', 'var(--green)');
   renderAdminTable();
   showToast('Subscriber list refreshed from Supabase.');
 }
@@ -2395,7 +2395,7 @@ function saveEmailJSConfig() {
   const store = getStore();
   store.emailjs = { serviceId, templateId, publicKey };
   saveStore(store);
-  setEjsStatus('✓ Config saved. EmailJS ready.', 'var(--green)');
+  setEjsStatus('â Config saved. EmailJS ready.', 'var(--green)');
   showToast('EmailJS config saved.');
   emailjs.init({ publicKey });
 }
@@ -2429,11 +2429,11 @@ function sendTestEmail() {
   setEjsStatus('Sending test email...', 'var(--amber)');
   emailjs.send(ejs.serviceId, ejs.templateId, buildEmailParams(session.email, true))
     .then(() => {
-      setEjsStatus('✓ Test email sent to ' + session.email, 'var(--green)');
+      setEjsStatus('â Test email sent to ' + session.email, 'var(--green)');
       showToast('Test email sent!');
     })
     .catch(err => {
-      setEjsStatus('✗ Error: ' + (err.text || err.message || 'Unknown error'), 'var(--red)');
+      setEjsStatus('â Error: ' + (err.text || err.message || 'Unknown error'), 'var(--red)');
       showToast('Email failed. Check your EmailJS config.');
     });
 }
@@ -2452,7 +2452,7 @@ async function sendDailySummaryNow() {
     ? (await syncSubscribersFromSupabase() || store.subscriptions || [])
     : (store.subscriptions || []);
 
-  if (subs.length === 0) {
+ %if (subs.length === 0) {
     setEjsStatus('No subscribers found.', 'var(--fog)');
     showToast('No subscribers to send to yet.');
     return;
@@ -2471,13 +2471,13 @@ async function sendDailySummaryNow() {
           const si = (s2.subscriptions||[]).findIndex(x => x.email === sub.email);
           if (si >= 0) { s2.subscriptions[si].lastSent = today; saveStore(s2); }
           if (sent === subs.length) {
-            setEjsStatus('✓ Daily summary sent to all ' + sent + ' subscriber(s) at ' + new Date().toLocaleTimeString(), 'var(--green)');
+            setEjsStatus('â Daily summary sent to all ' + sent + ' subscriber(s) at ' + new Date().toLocaleTimeString(), 'var(--green)');
             showToast('Daily summary sent to ' + sent + ' subscriber(s)!');
             renderAdminTable();
           }
         })
-        .catch(err => {
-          setEjsStatus('✗ Failed for ' + sub.email + ': ' + (err.text || 'error'), 'var(--red)');
+      2 .catch(err => {
+          setEjsStatus('â Failed for ' + sub.email + ': ' + (err.text || 'error'), 'var(--red)');
         });
     }, idx * 1400);
   });
@@ -2493,56 +2493,56 @@ function buildEmailParams(recipientEmail, isTest) {
   const md = store.marketData || {};
 
   // Helper: color for change values
-  const chgColor = chg => (chg && chg.startsWith('+')) ? '#34d399' : (chg && (chg.startsWith('−') || chg.startsWith('-'))) ? '#f87171' : '#7070a0';
+  const chgColor = chg => (chg && chg.startsWith('+')) ? '#34d399' : (chg && (chg.startsWith('â') || chg.startsWith('-'))) ? '#f87171' : '#7070a0';
 
   return {
     to_email: recipientEmail,
-    subject: (isTest ? '[TEST] ' : '') + 'WJB Trades — Daily Market Summary · ' + dateStr,
+    subject: (isTest ? '[TEST] ' : '') + 'WJB Trades â Daily Market Summary Â· ' + dateStr,
     date: dateStr,
     send_time: timeStr,
     // Macro catalyst
-    macro_catalyst: md.macro_catalyst || 'U.S. Navy Hormuz blockade active. WTI +8% above $104. CPI 3.3% — highest since May 2024.',
+    macro_catalyst: md.macro_catalyst || 'U.S. Navy Hormuz blockade active. WTI +8% above $104. CPI 3.3% â highest since May 2024.',
     // Macro snapshot with color hints
-    spy_price:  md.spy_price  || '$679',   spy_chg:  md.spy_chg  || '−0.40%',  spy_color:  chgColor(md.spy_chg  || '−'),
+    spy_price:  md.spy_price  || '$679',   spy_chg:  md.spy_chg  || 'â0.40%',  spy_color:  chgColor(md.spy_chg  || 'â'),
     qqq_price:  md.qqq_price  || '$611',   qqq_chg:  md.qqq_chg  || '+0.14%',  qqq_color:  chgColor(md.qqq_chg  || '+'),
     wti_price:  md.wti_price  || '$104',   wti_chg:  md.wti_chg  || '+8.0%',   wti_color:  chgColor(md.wti_chg  || '+'),
-    gold_price: md.gold_price || '$4,733', gold_chg: md.gold_chg || '−0.71%',  gold_color: chgColor(md.gold_chg || '−'),
-    btc_price:  md.btc_price  || '$71,600',btc_chg:  md.btc_chg  || '−1.80%',  btc_color:  chgColor(md.btc_chg  || '−'),
+    gold_price: md.gold_price || '$4,733', gold_chg: md.gold_chg || 'â0.71%',  gold_color: chgColor(md.gold_chg || 'â'),
+    btc_price:  md.btc_price  || '$71,600',btc_chg:  md.btc_chg  || 'â1.80%',  btc_color:  chgColor(md.btc_chg  || 'â'),
     dxy_price:  md.dxy_price  || '98.79',  dxy_chg:  md.dxy_chg  || 'Multi-wk low',
     // Setup 1 (editable)
     setup1_ticker:   md.setup1_ticker   || 'XLE / USO',
-    setup1_desc:     'Energy ETF / Oil · WTI Crude · PMG Active · Sector +18–38% YTD',
+    setup1_desc:     'Energy ETF / Oil Â· WTI Crude Â· PMG Active Â· Sector +18â38% YTD',
     setup1_action:   md.setup1_action   || 'BUY CALL',
-    setup1_payoff:   md.setup1_payoff   || '+35–120%',
+    setup1_payoff:   md.setup1_payoff   || '+35â120%',
     setup1_trigger:  md.setup1_trigger  || 'Reclaim $104.50 WTI / TTO to 9 EMA. FTFC full bull Q/M/W/D.',
-    setup1_stop:     'Below $101 WTI — Level 2 structural stop.',
-    setup1_strike:   'USO $85C · XLE $92C · May 16 expiration',
-    setup1_ftfc:     'Q / M / W / D all green — full continuity',
-    setup1_category: 'ETFs · ENERGY',
+  2 setup1_stop:     'Below $101 WTI â Level 2 structural stop.',
+    setup1_strike:   'USO $85C Â· XLE $92C Â· May 16 expiration',
+    setup1_ftfc:     'Q / M / W / D all green â full continuity',
+    setup1_category: 'ETFs Â· ENERGY',
     // Setup 2 (fixed defaults)
     setup2_ticker:   'ORCL',
-    setup2_desc:     'Oracle Corp · +9–11% today · RS Leader · vol 32.9M vs 20.7M avg',
+    setup2_desc:     'Oracle Corp Â· +9â11% today Â· RS Leader Â· vol 32.9M vs 20.7M avg',
     setup2_action:   'BUY CALL',
-    setup2_payoff:   '+40–120%',
+    setup2_payoff:   '+40â120%',
     setup2_trigger:  'TTO pullback to 9 EMA ~$145. AI Fusion Apps catalyst. RPO $553B.',
-    setup2_stop:     'Below $136–138 open price.',
-    setup2_category: 'EQUITIES · RS LEADER',
+    setup2_stop:     'Below $136â138 open price.',
+    setup2_category: 'EQUITIES Â· RS LEADER',
     // Setup 3
     setup3_ticker:   'PLTR',
-    setup3_desc:     'Palantir · ~$128–133 · Defense AI · ER May 11',
+    setup3_desc:     'Palantir Â· ~$128â133 Â· Defense AI Â· ER May 11',
     setup3_action:   'BUY CALL',
-    setup3_payoff:   '+60–120%',
+    setup3_payoff:   '+60â120%',
     setup3_trigger:  'Reclaim VWAP ~$130 on 15m. Defense AI. ER May 11 = IV expansion tailwind.',
-    setup3_stop:     '$122.68 (today's LOD) — Level 2 stop.',
-    setup3_category: 'EQUITIES · DEFENSE AI',
+    setup3_stop:     '$122.68 (today's LOD) â Level 2 stop.',
+    setup3_category: 'EQUITIES Â· DEFENSE AI',
     // Alert levels with symbols
-    alert1_sym: 'WTI CRUDE — BULL',
-    alert1: 'Break above $105 on 2-min candle: PMG cascade active. Scale into XLE/USO calls. Stop $103.50. T2 target $112–115.',
-    alert2_sym: 'WTI CRUDE — STOP',
+    alert1_sym: 'WTI CRUDE â BULL',
+    alert1: 'Break above $105 on 2-min candle: PMG cascade active. Scale into XLE/USO calls. Stop $103.50. T2 target $112â115.',
+    alert2_sym: 'WTI CRUDE â STOP',
     alert2: 'Drop below $101 on 2-min close: Level 2 structural stop. Exit ALL energy positions immediately. Ceasefire risk.',
-    alert3_sym: 'BTC — BULL',
+    alert3_sym: 'BTC â BULL',
     alert3: 'Surge above $75,000: Clarity Act PMG likely. Add size to IBIT calls. Trail stop to $72,500.',
-    alert4_sym: 'USD/JPY — CAUTION',
+    alert4_sym: 'USD/JPY â CAUTION',
     alert4: 'Approaches $160.00: BoJ intervention window open. Hard stop above $161. Short USD/JPY trigger active.',
     // Greeks
     delta_level: 'MIXED DIRECTIONAL',
@@ -2551,11 +2551,11 @@ function buildEmailParams(recipientEmail, isTest) {
     vega_level:  'EXTREME',
     // Footer
     platform_url: window.location.href.split('?')[0],
-    unsubscribe_note: 'Unsubscribe: log in → Daily Summary tab → Unsubscribe'
+    unsubscribe_note: 'Unsubscribe: log in â Daily Summary tab â Unsubscribe'
   };
 }
 
-// ── SUBSCRIPTION UI ────────────────────────────────
+// ââ SUBSCRIPTION UI ââââââââââââââââââââââââââââââââ
 async function initSubscriptionUI() {
   const session = getSession();
   if (!session) return;
@@ -2581,7 +2581,7 @@ function updateSubscriptionUI(isSubscribed, email) {
     if (formCard)   formCard.style.display   = 'none';
     if (activeCard) activeCard.style.display = 'block';
     if (dot)  { dot.style.background = 'var(--green)'; dot.style.animation = 'blink 2s infinite'; }
-    if (txt)  txt.textContent = '✓ Subscribed — Daily 9:00 AM ET';
+    if (txt)  txt.textContent = 'â Subscribed â Daily 9:00 AM ET';
     if (emailDisp) emailDisp.textContent = email;
   } else {
     if (formCard)   formCard.style.display   = 'block';
@@ -2604,13 +2604,13 @@ async function handleSubscribeToggle() {
   if (btn) { btn.textContent = '...'; btn.style.opacity = '0.6'; }
 
   if (idx === -1) {
-    // Subscribe — save to Supabase and local
+    // Subscribe â save to Supabase and local
     const today = new Date().toLocaleDateString('en-US', {month:'short',day:'numeric',year:'numeric'});
     if (SUPABASE_URL && SUPABASE_KEY) {
       const ok = await addSubscriberToSupabase(session.email);
       if (!ok) {
         showToast('Could not save subscription. Check Supabase config.');
-        if (btn) { btn.textContent = 'SUBSCRIBE — FREE'; btn.style.opacity = '1'; }
+        if (btn) { btn.textContent = 'SUBSCRIBE â FREE'; btn.style.opacity = '1'; }
         return;
       }
     }
@@ -2622,7 +2622,7 @@ async function handleSubscribeToggle() {
     });
     saveStore(store);
     updateSubscriptionUI(true, session.email);
-    showToast('✓ Subscribed! Daily summaries arrive at 9:00 AM ET.');
+    showToast('â Subscribed! Daily summaries arrive at 9:00 AM ET.');
   } else {
     // Unsubscribe
     if (SUPABASE_URL && SUPABASE_KEY) {
@@ -2649,12 +2649,12 @@ function sendSampleEmail() {
   showToast('Sending sample email to ' + session.email + '...');
   emailjs.send(ejs.serviceId, ejs.templateId, buildEmailParams(session.email, true))
     .then(() => showToast('Sample email sent! Check your inbox.'))
-    .catch(() => showToast('Failed to send — check with admin.'));
+    .catch(() => showToast('Failed to send â check with admin.'));
 }
 
-// ── SUPABASE INTEGRATION ───────────────────────────
+// ââ SUPABASE INTEGRATION âââââââââââââââââââââââââââ
 // Supabase stores subscribers in a shared database so ALL users/browsers
-// see the same list — localStorage is per-browser so can't do shared state.
+// see the same list â localStorage is per-browser so can't do shared state.
 // Free tier: 500MB, unlimited rows, works perfectly for this use case.
 
 let SUPABASE_URL = '';
@@ -2693,7 +2693,7 @@ async function syncSubscribersFromSupabase() {
   const store = getStore();
   store.subscriptions = rows.map(r => ({
     email: r.email,
-    since: r.created_at ? new Date(r.created_at).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'}) : '—',
+    since: r.created_at ? new Date(r.created_at).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'}) : 'â',
     lastSent: r.last_sent || null,
     frequency: 'Daily 9AM ET'
   }));
@@ -2718,7 +2718,7 @@ async function updateLastSentInSupabase(email, dateStr) {
   await supabaseQuery('PATCH', 'wjb_subscribers?email=eq.' + encodeURIComponent(email), { last_sent: dateStr });
 }
 
-// ── AUTO-SEND TRIGGER (cron-job.org) ─────────────
+// ââ AUTO-SEND TRIGGER (cron-job.org) âââââââââââââ
 // Set cron-job.org to hit: https://yourusername.github.io/wjb-trades/?cron=daily9am&key=YOUR_CRON_SECRET
 // The cron secret prevents random people from triggering sends.
 async function checkCronTrigger() {
@@ -2752,15 +2752,15 @@ async function checkCronTrigger() {
     setTimeout(() => {
       emailjs.send(ejs.serviceId, ejs.templateId, buildEmailParams(sub.email, false))
         .then(() => {
-          console.log('✓ Sent to', sub.email);
+          console.log('â Sent to', sub.email);
           updateLastSentInSupabase(sub.email, today);
         })
-        .catch(err => console.warn('✗ Failed for', sub.email, err));
+        .catch(err => console.warn('â Failed for', sub.email, err));
     }, idx * 1500);
   });
 }
 
-// ── PUSH NOTIFICATION SYSTEM ─────────────────────
+// ââ PUSH NOTIFICATION SYSTEM âââââââââââââââââââââ
 let pushBarTimeout = null;
 let pushEnabled = true;
 let notifPermission = 'default';
@@ -2787,7 +2787,7 @@ function updateNotifToggleUI() {
     if (lblEl) lblEl.textContent = 'Browser notifications on';
   } else if (notifPermission === 'denied') {
     toggleEl.classList.remove('on');
-    if (lblEl) lblEl.textContent = 'Blocked — allow in browser settings';
+    if (lblEl) lblEl.textContent = 'Blocked â allow in browser settings';
   } else {
     toggleEl.classList.remove('on');
     if (lblEl) lblEl.textContent = 'Notifications off';
@@ -2829,8 +2829,8 @@ function showPushAlert(sym, type, msg, color) {
   if (color === 'red')   bar.classList.add('bear-push');
   if (color === 'amber') bar.classList.add('warn-push');
 
-  icon.textContent  = color === 'red' ? '▼' : color === 'amber' ? '⚠' : '▲';
-  symEl.textContent = sym + ' — ' + type;
+  icon.textContent  = color === 'red' ? 'â¼' : color === 'amber' ? 'â ' : 'â²';
+  symEl.textContent = sym + ' â ' + type;
   msgEl.textContent = msg;
   timeEl.textContent= t;
 
@@ -2843,7 +2843,7 @@ function showPushAlert(sym, type, msg, color) {
   if (pushEnabled && notifPermission === 'granted' && document.visibilityState !== 'visible') {
     try {
       new Notification('WJB Trades Alert', {
-        body: sym + ' — ' + type + '
+        body: sym + ' â ' + type + '
 ' + msg,
         icon: 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><rect width="32" height="32" rx="6" fill="%230e0e18"/><text y="22" x="4" font-size="18" fill="%23c8a96e">W</text></svg>',
         tag: 'wjb-alert'
@@ -2858,13 +2858,13 @@ function closePushBar() {
   clearTimeout(pushBarTimeout);
 }
 
-// ── MARKET DATA EDITOR ────────────────────────────
+// ââ MARKET DATA EDITOR ââââââââââââââââââââââââââââ
 function saveMarketData() {
   const md = getMarketDataFromForm();
   const store = getStore();
   store.marketData = md;
   saveStore(store);
-  showToast('Market data saved — will be used in next email send.');
+  showToast('Market data saved â will be used in next email send.');
 }
 
 function loadMarketData() {
@@ -2872,15 +2872,15 @@ function loadMarketData() {
   const md = store.marketData || {};
   const fields = {
     'md-spy-price':  md.spy_price  || '$679',
-    'md-spy-chg':    md.spy_chg    || '−0.40%',
+    'md-spy-chg':    md.spy_chg    || 'â0.40%',
     'md-qqq-price':  md.qqq_price  || '$611',
     'md-qqq-chg':    md.qqq_chg    || '+0.14%',
     'md-wti-price':  md.wti_price  || '$104',
     'md-wti-chg':    md.wti_chg    || '+8.0%',
     'md-gold-price': md.gold_price || '$4,733',
-    'md-gold-chg':   md.gold_chg   || '−0.71%',
+    'md-gold-chg':   md.gold_chg   || 'â0.71%',
     'md-btc-price':  md.btc_price  || '$71,600',
-    'md-btc-chg':    md.btc_chg    || '−1.80%',
+    'md-btc-chg':    md.btc_chg    || 'â1.80%',
     'md-dxy-price':  md.dxy_price  || '98.79',
     'md-dxy-chg':    md.dxy_chg    || 'Multi-wk low',
     'md-catalyst':   md.macro_catalyst || '',
@@ -2900,26 +2900,26 @@ function getMarketDataFromForm() {
   const g = id => { const el = document.getElementById(id); return el ? el.value.trim() : ''; };
   return {
     spy_price:  g('md-spy-price')  || '$679',
-    spy_chg:    g('md-spy-chg')    || '−0.40%',
+    spy_chg:    g('md-spy-chg')    || 'â0.40%',
     qqq_price:  g('md-qqq-price')  || '$611',
     qqq_chg:    g('md-qqq-chg')    || '+0.14%',
     wti_price:  g('md-wti-price')  || '$104',
     wti_chg:    g('md-wti-chg')    || '+8.0%',
     gold_price: g('md-gold-price') || '$4,733',
-    gold_chg:   g('md-gold-chg')   || '−0.71%',
+    gold_chg:   g('md-gold-chg')   || 'â0.71%',
     btc_price:  g('md-btc-price')  || '$71,600',
-    btc_chg:    g('md-btc-chg')    || '−1.80%',
+    btc_chg:    g('md-btc-chg')    || 'â1.80%',
     dxy_price:  g('md-dxy-price')  || '98.79',
     dxy_chg:    g('md-dxy-chg')    || 'Multi-wk low',
     macro_catalyst: g('md-catalyst') || 'Market is open. Monitor your key levels.',
     setup1_ticker:  g('md-s1-ticker')  || 'XLE / USO',
     setup1_action:  g('md-s1-action')  || 'BUY CALL',
-    setup1_payoff:  g('md-s1-payoff')  || '+35–120%',
+    setup1_payoff:  g('md-s1-payoff')  || '+35â120%',
     setup1_trigger: g('md-s1-trigger') || 'Reclaim $104.50 WTI / TTO to 9 EMA. FTFC full bull Q/M/W/D.',
   };
 }
 
-// ── BOOT ──────────────────────────────────────────
+// ââ BOOT ââââââââââââââââââââââââââââââââââââââââââ
 (function boot() {
   getStore(); // ensure store is initialized
   loadEmailJSConfig();
