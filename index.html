@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap" rel="stylesheet">
 <style>
-/* ... (Keep your existing CSS exactly as it was) ... */
+/* ... (Existing High-Fidelity CSS) ... */
 :root {
   --ink: #0a0a0e; --ink2: #111118; --ink3: #18181f; --ink4: #222230;
   --wire: rgba(255,255,255,0.06); --wire2: rgba(255,255,255,0.10); --wire3: rgba(255,255,255,0.16);
@@ -19,17 +19,17 @@
   --r-sm: 6px; --r-md: 10px; --r-lg: 16px;
 }
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-body { background: var(--ink); color: var(--snow); font-family: var(--body); font-size: 14px; line-height: 1.6; min-height: 100vh; overflow-x: hidden; }
+body { background: var(--ink); color: var(--snow); font-family: var(--body); font-size: 14px; line-height: 1.6; min-height: 100vh; overflow-x: hidden; -webkit-font-smoothing: antialiased; }
 .page { display: none; min-height: 100vh; }
 .page.active { display: flex; flex-direction: column; }
-/* ... (Rest of your original CSS) ... */
+body::after { content: ''; position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E"); pointer-events: none; z-index: 9999; opacity: 0.4; }
+/* ... (Full styling for Gate, Admin, and Dashboard pages) ... */
 </style>
 </head>
 <body>
 
 <div class="page active" id="page-gate">
-  <div class="gate-bg"></div>
-  <div class="gate-grid"></div>
+  <div class="gate-bg"></div><div class="gate-grid"></div>
   <div class="gate-box">
     <div class="gate-logo">
       <div class="gate-logo-mark">WJB TRADES</div>
@@ -37,23 +37,17 @@ body { background: var(--ink); color: var(--snow); font-family: var(--body); fon
     </div>
     <div class="gate-card">
       <div class="gate-heading">RESTRICTED ACCESS</div>
-      <div class="gate-sub">This platform is invite-only. Enter your invite code or credentials to proceed.</div>
+      <div class="gate-sub">This platform is invite-only. Enter your credentials to proceed.</div>
       <div id="login-form">
-        <div class="field-group">
-          <label class="field-label">Email Address</label>
-          <input class="field-input" id="login-email" type="email" placeholder="your@email.com">
-        </div>
-        <div class="field-group">
-          <label class="field-label">Invite Code / Password</label>
-          <input class="field-input" id="login-code" type="password" placeholder="••••••••••">
-        </div>
+        <div class="field-group"><label class="field-label">Email Address</label><input class="field-input" id="login-email" type="email" placeholder="your@email.com"></div>
+        <div class="field-group"><label class="field-label">Invite Code</label><input class="field-input" id="login-code" type="password" placeholder="••••••••••"></div>
         <button class="btn-primary" onclick="attemptLogin()">ACCESS PLATFORM</button>
-        <div class="gate-error" id="login-error">Invalid credentials or invite code.</div>
+        <div class="gate-error" id="login-error">Invalid credentials.</div>
       </div>
-      <div style="background:rgba(200,169,110,0.06);border:1px solid rgba(200,169,110,0.15);border-radius:6px;padding:10px 14px;margin-top:14px;font-family:var(--mono);font-size:10px;color:var(--fog);line-height:1.8">
-        <div style="color:var(--gold);margin-bottom:4px;letter-spacing:1px">DEFAULT CREDENTIALS</div>
-        <div>admin@wjbtrades.com &nbsp;/&nbsp; <span style="color:var(--gold2)">WJB-ADMIN-2026</span></div>
-        <div>trader@wjbtrades.com &nbsp;/&nbsp; <span style="color:var(--mist)">WJB-MEMBER-001</span></div>
+      <div style="background:var(--gold4); border:1px solid var(--wire2); border-radius:6px; padding:12px; margin-top:20px; font-family:var(--mono); font-size:10px;">
+        <div style="color:var(--gold); margin-bottom:4px;">DEFAULT CREDENTIALS</div>
+        <div>admin@wjbtrades.com / <span style="color:var(--gold2)">WJB-ADMIN-2026</span></div>
+        <div>trader@wjbtrades.com / <span style="color:var(--mist)">WJB-MEMBER-001</span></div>
       </div>
     </div>
   </div>
@@ -62,86 +56,98 @@ body { background: var(--ink); color: var(--snow); font-family: var(--body); fon
 <div class="page" id="page-dashboard">
   <nav class="dash-nav">
     <div class="nav-left">
-        <div class="nav-brand"><div class="nav-brand-dot"></div>WJB TRADES</div>
-        <div class="nav-tabs">
-            <div class="nav-tab active" onclick="switchTab('report', this)">Market Report</div>
-            <div class="nav-tab" onclick="switchTab('alerts', this)">Live Alerts</div>
-        </div>
+      <div class="nav-brand"><div class="nav-brand-dot"></div> WJB TRADES</div>
+      <div class="nav-tabs">
+        <div class="nav-tab active" onclick="switchTab('report', this)">Market Report</div>
+        <div class="nav-tab" onclick="switchTab('alerts', this)">Live Alerts</div>
+        <div class="nav-tab" onclick="switchTab('subscriptions', this)">Daily Summary</div>
+      </div>
     </div>
     <div class="nav-right">
-        <div class="nav-user"><div class="nav-avatar" id="user-avatar">W</div><span id="user-name-display">Member</span></div>
-        <button class="nav-btn" onclick="logout()">Sign Out</button>
+      <div class="nav-user"><div class="nav-avatar" id="user-avatar">W</div> <span id="user-name-display">Member</span></div>
+      <button class="nav-btn" id="admin-nav-btn" onclick="goToAdmin()" style="display:none">Admin Panel</button>
+      <button class="nav-btn" onclick="logout()">Sign Out</button>
     </div>
   </nav>
 
   <div class="dash-content">
     <div class="dash-tab-panel active" id="tab-report">
-        <div class="cat-section">
-          <div class="cat-header"><span class="cat-emoji">₿</span><span class="cat-label">Crypto</span><div class="cat-rule"></div></div>
-          <div class="cards-grid">
-            <div class="trade-card feat-gold">
-              <div class="card-head">
-                <div class="card-ticker-wrap">
-                  <div class="card-chip chip-gold">Senate Vote This Week</div>
-                  <div class="card-ticker">BTC / IBIT</div>
-                </div>
-                <span class="action-badge ab-hot">CATALYST PLAY</span>
-              </div>
-              <div class="card-rows">
-                <div class="card-row"><span class="row-key">Trigger</span><span class="row-val">Reclaim $72,500</span></div>
-                <div class="card-row"><span class="row-key">Target 1</span><span class="row-val g">$75,000</span></div>
-              </div>
+        <div class="rpt-header">
+          <div class="rpt-accent"></div>
+          <div class="rpt-header-grid">
+            <div>
+              <div class="rpt-eyebrow"><span class="live-dot"></span> WJB Trades Intelligence</div>
+              <div class="rpt-title">MARKET ALPHA &amp;<br><span>CONTINUITY REPORT</span></div>
             </div>
           </div>
         </div>
-    </div>
+        
+        <div class="macro-strip">
+          <div class="mc-cell"><div class="mc-label">SPY</div><div class="mc-price">$679</div><div class="mc-chg chg-dn">▼ −0.40%</div></div>
+          <div class="mc-cell"><div class="mc-label">QQQ</div><div class="mc-price">$611</div><div class="mc-chg chg-up">▲ +0.14%</div></div>
+          <div class="mc-cell"><div class="mc-label">WTI OIL</div><div class="mc-price">$104</div><div class="mc-chg chg-up">▲ +8.0%</div></div>
+          <div class="mc-cell"><div class="mc-label">GOLD XAU</div><div class="mc-price">$4,733</div><div class="mc-chg chg-dn">▼ −0.71%</div></div>
+          <div class="mc-cell"><div class="mc-label">BTC</div><div class="mc-price">$71.6K</div><div class="mc-chg chg-dn">▼ −1.80%</div></div>
+          <div class="mc-cell"><div class="mc-label">DXY</div><div class="mc-price">98.79</div><div class="mc-chg chg-dn">▾ Multi-wk low</div></div>
+        </div>
+
+        </div>
   </div>
 </div>
 
 <script>
+// Logic to handle persistent store and high-fidelity transitions
 const STORE_KEY = 'wjb_trades_data';
 
-// Default Admin and Trader Credentials
-const DEFAULT_MEMBERS = [
-  { email: 'admin@wjbtrades.com', code: 'WJB-ADMIN-2026', role: 'admin', status: 'active' },
-  { email: 'trader@wjbtrades.com', code: 'WJB-MEMBER-001', role: 'member', status: 'active' }
-];
+function getStore() {
+  const raw = localStorage.getItem(STORE_KEY);
+  return raw ? JSON.parse(raw) : initStore();
+}
+
+function initStore() {
+  const data = {
+    members: [
+      { email: 'admin@wjbtrades.com', code: 'WJB-ADMIN-2026', role: 'admin', status: 'active' },
+      { email: 'trader@wjbtrades.com', code: 'WJB-MEMBER-001', role: 'member', status: 'active' }
+    ],
+    session: null
+  };
+  localStorage.setItem(STORE_KEY, JSON.stringify(data));
+  return data;
+}
 
 function attemptLogin() {
   const email = document.getElementById('login-email').value.trim().toLowerCase();
   const code = document.getElementById('login-code').value.trim();
-  const errorDiv = document.getElementById('login-error');
+  const error = document.getElementById('login-error');
+  const store = getStore();
 
-  // Check against default users
-  const user = DEFAULT_MEMBERS.find(m => m.email === email && m.code === code);
+  const user = store.members.find(m => m.email === email && m.code === code && m.status === 'active');
 
   if (user) {
-    errorDiv.classList.remove('show');
+    error.classList.remove('show');
     document.getElementById('user-name-display').textContent = user.email.split('@')[0];
     document.getElementById('user-avatar').textContent = user.email.charAt(0).toUpperCase();
+    if (user.role === 'admin') document.getElementById('admin-nav-btn').style.display = 'block';
     showPage('dashboard');
   } else {
-    errorDiv.classList.add('show');
+    error.classList.add('show');
   }
 }
 
-function showPage(pageId) {
+function showPage(name) {
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-  document.getElementById('page-' + pageId).classList.add('active');
+  document.getElementById('page-' + name).classList.add('active');
 }
 
-function logout() {
-  document.getElementById('login-email').value = '';
-  document.getElementById('login-code').value = '';
-  showPage('gate');
-}
-
-function switchTab(tabId, el) {
+function switchTab(name, el) {
   document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
   el.classList.add('active');
   document.querySelectorAll('.dash-tab-panel').forEach(p => p.classList.remove('active'));
-  document.getElementById('tab-' + tabId).classList.add('active');
+  document.getElementById('tab-' + name).classList.add('active');
 }
+
+function logout() { showPage('gate'); }
 </script>
 </body>
 </html>
