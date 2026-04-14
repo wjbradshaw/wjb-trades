@@ -1,2487 +1,0 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>WJB Trades — Private Access</title>
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap" rel="stylesheet">
-<style>
-/* ═══════════════════════════════════════════
-   ROOT & RESET
-═══════════════════════════════════════════ */
-:root {
-  --ink:       #0a0a0e;
-  --ink2:      #111118;
-  --ink3:      #18181f;
-  --ink4:      #222230;
-  --wire:      rgba(255,255,255,0.06);
-  --wire2:     rgba(255,255,255,0.10);
-  --wire3:     rgba(255,255,255,0.16);
-  --fog:       #5a5a7a;
-  --mist:      #9090b0;
-  --snow:      #e8e8f4;
-  --white:     #ffffff;
-  --gold:      #c8a96e;
-  --gold2:     #e8c98e;
-  --gold3:     rgba(200,169,110,0.12);
-  --gold4:     rgba(200,169,110,0.06);
-  --teal:      #2dd4bf;
-  --teal2:     rgba(45,212,191,0.12);
-  --green:     #34d399;
-  --green2:    rgba(52,211,153,0.12);
-  --red:       #f87171;
-  --red2:      rgba(248,113,113,0.12);
-  --amber:     #fbbf24;
-  --amber2:    rgba(251,191,36,0.12);
-  --blue:      #60a5fa;
-  --blue2:     rgba(96,165,250,0.12);
-  --display:   'Bebas Neue', sans-serif;
-  --mono:      'DM Mono', monospace;
-  --body:      'DM Sans', sans-serif;
-  --r-sm:      6px;
-  --r-md:      10px;
-  --r-lg:      16px;
-}
-
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
-body {
-  background: var(--ink);
-  color: var(--snow);
-  font-family: var(--body);
-  font-size: 14px;
-  line-height: 1.6;
-  min-height: 100vh;
-  overflow-x: hidden;
-  -webkit-font-smoothing: antialiased;
-}
-
-/* ═══════════════════════════════════════════
-   PAGES (views)
-═══════════════════════════════════════════ */
-.page { display: none; min-height: 100vh; }
-.page.active { display: flex; flex-direction: column; }
-
-/* ═══════════════════════════════════════════
-   NOISE TEXTURE OVERLAY
-═══════════════════════════════════════════ */
-body::after {
-  content: '';
-  position: fixed;
-  inset: 0;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
-  pointer-events: none;
-  z-index: 9999;
-  opacity: 0.4;
-}
-
-/* ═══════════════════════════════════════════
-   GATE / LOGIN PAGE
-═══════════════════════════════════════════ */
-#page-gate {
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  overflow: hidden;
-}
-
-.gate-bg {
-  position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(ellipse 60% 50% at 20% 50%, rgba(200,169,110,0.07) 0%, transparent 60%),
-    radial-gradient(ellipse 40% 60% at 80% 20%, rgba(45,212,191,0.05) 0%, transparent 50%),
-    radial-gradient(ellipse 50% 40% at 60% 80%, rgba(96,165,250,0.04) 0%, transparent 50%);
-  animation: bgPulse 8s ease-in-out infinite alternate;
-}
-@keyframes bgPulse {
-  from { opacity: 0.7; }
-  to   { opacity: 1; }
-}
-
-.gate-grid {
-  position: absolute;
-  inset: 0;
-  background-image:
-    linear-gradient(var(--wire) 1px, transparent 1px),
-    linear-gradient(90deg, var(--wire) 1px, transparent 1px);
-  background-size: 60px 60px;
-  mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 20%, transparent 100%);
-}
-
-.gate-box {
-  position: relative;
-  z-index: 10;
-  width: 100%;
-  max-width: 420px;
-  padding: 0 24px;
-  animation: gateIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-  opacity: 0;
-  transform: translateY(24px);
-}
-@keyframes gateIn {
-  to { opacity: 1; transform: translateY(0); }
-}
-
-.gate-logo {
-  text-align: center;
-  margin-bottom: 40px;
-}
-.gate-logo-mark {
-  font-family: var(--display);
-  font-size: 52px;
-  letter-spacing: 4px;
-  color: var(--white);
-  line-height: 1;
-  position: relative;
-  display: inline-block;
-}
-.gate-logo-mark::after {
-  content: '';
-  position: absolute;
-  bottom: -2px;
-  left: 0; right: 0;
-  height: 2px;
-  background: linear-gradient(90deg, transparent, var(--gold), transparent);
-}
-.gate-logo-sub {
-  font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: 4px;
-  text-transform: uppercase;
-  color: var(--fog);
-  margin-top: 8px;
-}
-
-.gate-card {
-  background: var(--ink2);
-  border: 1px solid var(--wire2);
-  border-radius: var(--r-lg);
-  padding: 36px 32px;
-  position: relative;
-  overflow: hidden;
-}
-.gate-card::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, var(--gold), transparent);
-}
-
-.gate-heading {
-  font-family: var(--display);
-  font-size: 28px;
-  letter-spacing: 1px;
-  color: var(--white);
-  margin-bottom: 6px;
-}
-.gate-sub {
-  font-size: 12px;
-  color: var(--fog);
-  margin-bottom: 28px;
-  line-height: 1.5;
-}
-
-.field-group { margin-bottom: 18px; }
-.field-label {
-  font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  color: var(--mist);
-  margin-bottom: 8px;
-  display: block;
-}
-.field-input {
-  width: 100%;
-  background: var(--ink3);
-  border: 1px solid var(--wire2);
-  border-radius: var(--r-sm);
-  padding: 12px 16px;
-  font-family: var(--mono);
-  font-size: 14px;
-  color: var(--white);
-  outline: none;
-  transition: border-color 0.2s, box-shadow 0.2s;
-  letter-spacing: 2px;
-}
-.field-input::placeholder { color: var(--fog); letter-spacing: 1px; }
-.field-input:focus {
-  border-color: var(--gold);
-  box-shadow: 0 0 0 3px rgba(200,169,110,0.10);
-}
-.field-input.error { border-color: var(--red); box-shadow: 0 0 0 3pv var(--red2); }
-
-.btn-primary {
-  width: 100%;
-  background: var(--gold);
-  color: var(--ink);
-  border: none;
-  border-radius: var(--r-sm);
-  padding: 14px 24px;
-  font-family: var(--display);
-  font-size: 18px;
-  letter-spacing: 2px;
-  cursor: pointer;
-  transition: background 0.2s, transform 0.1s, box-shadow 0.2s;
-  position: relative;
-  overflow: hidden;
-}
-.btn-primary:hover {
-  background: var(--gold2);
-  box-shadow: 0 4px 24px rgba(200,169,110,0.25);
-}
-.btn-primary:active { transform: scale(0.98); }
-
-.gate-error {
-  background: var(--red2);
-  border: 1px solid rgba(248,113,113,0.3);
-  border-radius: var(--r-sm);
-  padding: 10px 14px;
-  font-size: 12px;
-  color: var(--red);
-  margin-top: 14px;
-  display: none;
-  animation: shake 0.4s ease;
-}
-.gate-error.show { display: block; }
-@keyframes shake {
-  0%,100%{transform:translateX(0)}
-  20%,60%{transform:translateX(-6px)}
-  40%,80%{transform:translateX(6px)}
-}
-
-.gate-footer {
-  text-align: center;
-  margin-top: 20px;
-  font-size: 11px;
-  color: var(--fog);
-}
-.gate-footer a {
-  color: var(--gold);
-  text-decoration: none;
-  cursor: pointer;
-}
-.gate-footer a:hover { text-decoration: underline; }
-
-/* ═══════════════════════════════════════════
-   ADMIN PAGE
-═══════════════════════════════════════════ */
-#page-admin {
-  flex-direction: column;
-}
-
-.admin-nav {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 16px 32px;
-  border-bottom: 1px solid var(--wire);
-  background: var(--ink2);
-  position: sticky;
-  top: 0;
-  z-index: 100;
-}
-.admin-nav-brand {
-  font-family: var(--display);
-  font-size: 22px;
-  letter-spacing: 2px;
-  color: var(--gold);
-}
-.admin-nav-right { display: flex; gap: 10px; align-items: center; }
-
-.btn-sm {
-  background: var(--ink3);
-  border: 1px solid var(--wire2);
-  border-radius: var(--r-sm);
-  padding: 7px 14px;
-  font-family: var(--mono);
-  font-size: 11px;
-  letter-spacing: 1px;
-  color: var(--mist);
-  cursor: pointer;
-  transition: all 0.15s;
-}
-.btn-sm:hover { border-color: var(--wire3); color: var(--snow); }
-.btn-sm.gold {
-  background: var(--gold3);
-  border-color: rgba(200,169,110,0.3);
-  color: var(--gold2);
-}
-.btn-sm.gold:hover { background: rgba(200,169,110,0.2); }
-.btn-sm.danger {
-  background: var(--red2);
-  border-color: rgba(248,113,113,0.3);
-  color: var(--red);
-}
-
-.admin-body {
-  padding: 32px;
-  max-width: 960px;
-  margin: 0 auto;
-  width: 100%;
-}
-
-.admin-section { margin-bottom: 40px; }
-.admin-section-title {
-  font-family: var(--display);
-  font-size: 22px;
-  letter-spacing: 1px;
-  color: var(--white);
-  margin-bottom: 6px;
-}
-.admin-section-sub {
-  font-size: 12px;
-  color: var(--fog);
-  margin-bottom: 20px;
-}
-
-.stat-row {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 10px;
-  margin-bottom: 32px;
-}
-.stat-card {
-  background: var(--ink2);
-  border: 1px solid var(--wire);
-  border-radius: var(--r-md);
-  padding: 18px 20px;
-}
-.stat-label {
-  font-family: var(--mono);
-  font-size: 9px;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  color: var(--fog);
-  margin-bottom: 8px;
-}
-.stat-value {
-  font-family: var(--display);
-  font-size: 32px;
-  color: var(--white);
-  letter-spacing: 1px;
-}
-.stat-value.gold { color: var(--gold); }
-.stat-value.green { color: var(--green); }
-.stat-value.red { color: var(--red); }
-
-.invite-gen-box {
-  background: var(--ink2);
-  border: 1px solid var(--wire);
-  border-radius: var(--r-md);
-  padding: 24px;
-  margin-bottom: 24px;
-  display: flex;
-  gap: 12px;
-  align-items: flex-end;
-  flex-wrap: wrap;
-}
-.invite-gen-field { flex: 1; min-width: 200px; }
-.gen-output {
-  background: var(--ink3);
-  border: 1px solid var(--wire2);
-  border-radius: var(--r-sm);
-  padding: 10px 14px;
-  font-family: var(--mono);
-  font-size: 13px;
-  color: var(--gold2);
-  letter-spacing: 2px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  min-height: 44px;
-  word-break: break-all;
-  flex: 2;
-}
-.gen-output-placeholder { color: var(--fog); font-size: 11px; }
-
-.members-table {
-  width: 100%;
-  border-collapse: collapse;
-  background: var(--ink2);
-  border: 1px solid var(--wire);
-  border-radius: var(--r-md);
-  overflow: hidden;
-}
-.members-table th {
-  text-align: left;
-  padding: 12px 16px;
-  font-family: var(--mono);
-  font-size: 9px;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  color: var(--fog);
-  background: var(--ink3);
-  border-bottom: 1px solid var(--wire);
-}
-.members-table td {
-  padding: 12px 16px;
-  font-size: 12px;
-  border-bottom: 1px solid var(--wire);
-  color: var(--mist);
-  vertical-align: middle;
-}
-.members-table tr:last-child td { border-bottom: none; }
-.members-table tr:hover td { background: rgba(255,255,255,0.02); }
-.badge-pill {
-  display: inline-block;
-  padding: 2px 9px;
-  border-radius: 20px;
-  font-family: var(--mono);
-  font-size: 9px;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  font-weight: 500;
-}
-.pill-active { background: var(--green2); color: var(--green); }
-.pill-pending { background: var(--amber2); color: var(--amber); }
-.pill-revoked { background: var(--red2); color: var(--red); }
-.pill-admin { background: var(--gold3); color: var(--gold2); }
-
-/* ═══════════════════════════════════════════
-   MAIN DASHBOARD PAGE
-═══════════════════════════════════════════ */
-#page-dashboard {
-  flex-direction: column;
-  background: var(--ink);
-}
-
-/* TOP NAV */
-.dash-nav {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 32px;
-  height: 56px;
-  border-bottom: 1px solid var(--wire);
-  background: rgba(10,10,14,0.95);
-  backdrop-filter: blur(12px);
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  flex-shrink: 0;
-}
-.nav-left { display: flex; align-items: center; gap: 24px; }
-.nav-brand {
-  font-family: var(--display);
-  font-size: 20px;
-  letter-spacing: 3px;
-  color: var(--white);
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-.nav-brand-dot {
-  width: 6px; height: 6px;
-  border-radius: 50%;
-  background: var(--gold);
-  animation: blink 2s ease-in-out infinite;
-}
-@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.3} }
-.nav-tabs { display: flex; gap: 4px; }
-.nav-tab {
-  padding: 5px 14px;
-  border-radius: var(--r-sm);
-  font-family: var(--mono);
-  font-size: 11px;
-  letter-spacing: 1px;
-  color: var(--fog);
-  cursor: pointer;
-  transition: all 0.15s;
-  border: 1px solid transparent;
-}
-.nav-tab:hover { color: var(--mist); background: var(--ink3); }
-.nav-tab.active {
-  color: var(--gold2);
-  background: var(--gold4);
-  border-color: rgba(200,169,110,0.2);
-}
-.nav-right { display: flex; align-items: center; gap: 12px; }
-.nav-user {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 12px;
-  color: var(--mist);
-}
-.nav-avatar {
-  width: 28px; height: 28px;
-  border-radius: 50%;
-  background: var(--gold3);
-  border: 1px solid rgba(200,169,110,0.3);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: var(--display);
-  font-size: 13px;
-  color: var(--gold2);
-}
-.nav-btn {
-  background: none;
-  border: 1px solid var(--wire2);
-  border-radius: var(--r-sm);
-  padding: 5px 12px;
-  font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: 1px;
-  color: var(--fog);
-  cursor: pointer;
-  transition: all 0.15s;
-}
-.nav-btn:hover { border-color: var(--wire3); color: var(--mist); }
-
-/* DASH CONTENT */
-.dash-content { flex: 1; overflow-y: auto; }
-
-.dash-tab-panel { display: none; }
-.dash-tab-panel.active { display: block; }
-
-/* REPORT TAB */
-.report-wrap { padding: 0; }
-
-/* ─── REPORT HEADER ─── */
-.rpt-header {
-  position: relative;
-  padding: 40px 40px 32px;
-  overflow: hidden;
-  border-bottom: 1px solid var(--wire2);
-  background: linear-gradient(135deg, #0a0a14 0%, #0d0d20 50%, #080810 100%);
-}
-.rpt-header-grid {
-  display: grid;
-  grid-template-columns: 1fr auto;
-  gap: 24px;
-  align-items: flex-end;
-  position: relative;
-  z-index: 2;
-}
-.rpt-eyebrow {
-  font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  color: var(--gold);
-  margin-bottom: 10px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-.rpt-title {
-  font-family: var(--display);
-  font-size: 44px;
-  letter-spacing: 2px;
-  color: var(--white);
-  line-height: 1;
-}
-.rpt-title span { color: var(--gold); }
-.rpt-sub {
-  margin-top: 10px;
-  font-size: 12px;
-  color: var(--fog);
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-.live-dot {
-  width: 6px; height: 6px;
-  border-radius: 50%;
-  background: var(--green);
-  animation: blink 1.4s ease-in-out infinite;
-  flex-shrink: 0;
-}
-.rpt-badge {
-  background: var(--gold4);
-  border: 1px solid rgba(200,169,110,0.2);
-  border-radius: var(--r-sm);
-  padding: 12px 20px;
-  text-align: right;
-}
-.rpt-badge-date {
-  font-family: var(--mono);
-  font-size: 12px;
-  color: var(--gold2);
-  font-weight: 500;
-}
-.rpt-badge-line {
-  font-size: 11px;
-  color: var(--fog);
-  margin-top: 4px;
-}
-.rpt-badge-alert {
-  font-family: var(--mono);
-  font-size: 10px;
-  color: var(--red);
-  margin-top: 6px;
-  letter-spacing: 0.5px;
-}
-.rpt-header::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background-image:
-    linear-gradient(rgba(200,169,110,0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(200,169,110,0.03) 1px, transparent 1px);
-  background-size: 40px 40px;
-  z-index: 1;
-}
-.rpt-accent {
-  position: absolute;
-  top: -80px; right: -80px;
-  width: 300px; height: 300px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(200,169,110,0.08) 0%, transparent 70%);
-  z-index: 1;
-}
-
-/* ─── ALERT BANNER ─── */
-.rpt-alert {
-  background: linear-gradient(90deg, rgba(248,113,113,0.12) 0%, rgba(248,113,113,0.04) 100%);
-  border-left: 3px solid var(--red);
-  padding: 12px 40px;
-  font-size: 12px;
-  color: #ffb3b3;
-  line-height: 1.6;
-  display: flex;
-  gap: 10px;
-  align-items: flex-start;
-}
-
-/* ─── MACRO STRIP ─── */
-.macro-strip {
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  border-bottom: 1px solid var(--wire);
-}
-.mc-cell {
-  padding: 16px 18px;
-  border-right: 1px solid var(--wire);
-}
-.mc-cell:last-child { border-right: none; }
-.mc-label {
-  font-family: var(--mono);
-  font-size: 9px;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
-  color: var(--fog);
-  margin-bottom: 6px;
-}
-.mc-price {
-  font-family: var(--mono);
-  font-size: 17px;
-  font-weight: 500;
-  color: var(--white);
-  margin-bottom: 4px;
-}
-.mc-chg { font-size: 11px; font-weight: 500; }
-.chg-up { color: var(--green); }
-.chg-dn { color: var(--red); }
-.mc-meta { font-size: 9px; color: var(--fog); margin-top: 3px; line-height: 1.4; }
-
-/* ─── CATEGORY SECTIONS ─── */
-.cat-section { border-bottom: 1px solid var(--wire); }
-.cat-header {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 18px 40px 14px;
-  border-bottom: 1px solid var(--wire);
-  background: linear-gradient(90deg, rgba(255,255,255,0.02) 0%, transparent 100%);
-}
-.cat-emoji { font-size: 18px; }
-.cat-label {
-  font-family: var(--display);
-  font-size: 18px;
-  letter-spacing: 1px;
-  color: var(--white);
-}
-.cat-rule {
-  flex: 1;
-  height: 1px;
-  background: linear-gradient(90deg, var(--wire2) 0%, transparent 100%);
-}
-.cat-pill {
-  font-family: var(--mono);
-  font-size: 10px;
-  color: var(--fog);
-  background: var(--ink3);
-  border: 1px solid var(--wire);
-  padding: 2px 10px;
-  border-radius: 20px;
-}
-.cards-grid { padding: 20px 40px; display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
-.cards-grid.cols-3 { grid-template-columns: repeat(3, 1fr); }
-
-/* ─── TRADE CARDS ─── */
-.trade-card {
-  background: var(--ink2);
-  border: 1px solid var(--wire);
-  border-radius: var(--r-lg);
-  overflow: hidden;
-  transition: border-color 0.2s, transform 0.15s;
-}
-.trade-card:hover { border-color: var(--wire3); transform: translateY(-1px); }
-.trade-card.feat-gold {
-  border-color: rgba(200,169,110,0.3);
-  background: linear-gradient(180deg, rgba(200,169,110,0.04) 0%, var(--ink2) 40%);
-}
-.trade-card.feat-green {
-  border-color: rgba(52,211,153,0.3);
-  background: linear-gradient(180deg, rgba(52,211,153,0.04) 0%, var(--ink2) 40%);
-}
-.card-head {
-  padding: 14px 16px 10px;
-  border-bottom: 1px solid var(--wire);
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 8px;
-}
-.card-ticker-wrap {}
-.card-chip {
-  font-family: var(--mono);
-  font-size: 8px;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
-  padding: 2px 7px;
-  border-radius: 3px;
-  margin-bottom: 5px;
-  display: inline-block;
-}
-.chip-gold { background: var(--gold3); color: var(--gold2); border: 1px solid rgba(200,169,110,0.2); }
-.chip-green { background: var(--green2); color: var(--green); border: 1px solid rgba(52,211,153,0.2); }
-.card-ticker {
-  font-family: var(--display);
-  font-size: 22px;
-  letter-spacing: 0.5px;
-  color: var(--white);
-  line-height: 1;
-}
-.card-desc { font-size: 10px; color: var(--fog); margin-top: 4px; line-height: 1.4; }
-.action-badge {
-  font-family: var(--mono);
-  font-size: 9px;
-  font-weight: 500;
-  letter-spacing: 0.5px;
-  padding: 4px 10px;
-  border-radius: 4px;
-  white-space: nowrap;
-  flex-shrink: 0;
-  align-self: flex-start;
-}
-.ab-bull { background: var(--green2); color: var(--green); border: 1px solid rgba(52,211,153,0.25); }
-.ab-bear { background: var(--red2); color: var(--red); border: 1px solid rgba(248,113,113,0.25); }
-.ab-hot  { background: var(--blue2); color: var(--blue); border: 1px solid rgba(96,165,250,0.25); }
-.ab-warn { background: var(--amber2); color: var(--amber); border: 1px solid rgba(251,191,36,0.25); }
-
-.card-rows { padding: 10px 16px; }
-.card-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  padding: 4px 0;
-  border-bottom: 1px solid rgba(255,255,255,0.03);
-  font-size: 11px;
-  gap: 8px;
-}
-.card-row:last-child { border-bottom: none; }
-.row-key { color: var(--fog); flex-shrink: 0; }
-.row-val { font-weight: 500; text-align: right; color: var(--snow); }
-.row-val.g { color: var(--green); }
-.row-val.r { color: var(--red); }
-.row-val.a { color: var(--amber); }
-.row-val.b { color: var(--blue); }
-.row-val.gold { color: var(--gold2); }
-
-.payoff-bar-wrap {
-  padding: 10px 16px 12px;
-  background: rgba(0,0,0,0.25);
-  border-top: 1px solid var(--wire);
-}
-.payoff-top {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 7px;
-}
-.payoff-lbl {
-  font-family: var(--mono);
-  font-size: 9px;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  color: var(--fog);
-}
-.payoff-num {
-  font-family: var(--display);
-  font-size: 20px;
-  letter-spacing: 1px;
-}
-.pn-g { color: var(--green); }
-.pn-b { color: var(--blue); }
-.pn-a { color: var(--amber); }
-.pn-r { color: var(--red); }
-.bar-track {
-  height: 5px;
-  background: rgba(255,255,255,0.05);
-  border-radius: 3px;
-  overflow: hidden;
-  margin-bottom: 5px;
-}
-.bar-fill {
-  height: 100%;
-  border-radius: 3px;
-  animation: barGrow 1.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
-  transform-origin: left;
-}
-@keyframes barGrow { from { width: 0 !important; } }
-.bf-g { background: linear-gradient(90deg, var(--green), var(--teal)); }
-.bf-b { background: linear-gradient(90deg, var(--blue), #a78bfa); }
-.bf-a { background: linear-gradient(90deg, var(--amber), #f97316); }
-.bf-r { background: linear-gradient(90deg, var(--red), #f43f5e); }
-.bar-labels {
-  display: flex;
-  justify-content: space-between;
-  font-family: var(--mono);
-  font-size: 9px;
-  color: var(--fog);
-}
-
-.card-footnote {
-  padding: 7px 16px 10px;
-  background: rgba(0,0,0,0.12);
-  font-size: 10px;
-  color: var(--fog);
-  line-height: 1.55;
-  border-top: 1px solid var(--wire);
-}
-
-/* ─── ALERTS SECTION ─── */
-.alerts-wrap { padding: 24px 40px 28px; border-bottom: 1px solid var(--wire); }
-.section-hd {
-  font-family: var(--display);
-  font-size: 22px;
-  letter-spacing: 1px;
-  color: var(--white);
-  margin-bottom: 4px;
-}
-.section-sd {
-  font-size: 11px;
-  color: var(--fog);
-  margin-bottom: 18px;
-}
-.alert-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
-.alert-tile {
-  border-radius: var(--r-md);
-  padding: 12px 14px;
-  border-left: 3px solid;
-}
-.at-bull { background: rgba(52,211,153,0.06); border-color: var(--green); }
-.at-bear { background: rgba(248,113,113,0.06); border-color: var(--red); }
-.at-warn { background: rgba(251,191,36,0.06); border-color: var(--amber); }
-.alert-tile-sym {
-  font-family: var(--mono);
-  font-size: 10px;
-  font-weight: 500;
-  margin-bottom: 4px;
-}
-.ats-bull { color: var(--green); }
-.ats-bear { color: var(--red); }
-.ats-warn { color: var(--amber); }
-.alert-tile-body { font-size: 10px; line-height: 1.55; color: #b0b0cc; }
-.trig-pill {
-  display: inline-block;
-  font-family: var(--mono);
-  font-size: 10px;
-  font-weight: 500;
-  padding: 1px 6px;
-  border-radius: 3px;
-  margin: 0 1px;
-}
-.tp-g { background: rgba(52,211,153,0.15); color: var(--green); }
-.tp-r { background: rgba(248,113,113,0.15); color: var(--red); }
-.tp-a { background: rgba(251,191,36,0.15); color: var(--amber); }
-
-/* ─── GREEKS ─── */
-.greeks-wrap { padding: 24px 40px 28px; border-bottom: 1px solid var(--wire); }
-.greeks-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
-.greek-tile {
-  background: var(--ink3);
-  border: 1px solid var(--wire);
-  border-radius: var(--r-md);
-  padding: 16px 14px;
-  position: relative;
-  overflow: hidden;
-}
-.greek-tile::after {
-  content: attr(data-sym);
-  position: absolute;
-  bottom: -12px; right: 4px;
-  font-family: var(--display);
-  font-size: 60px;
-  opacity: 0.04;
-  color: var(--white);
-  line-height: 1;
-  pointer-events: none;
-}
-.gt-sym {
-  font-family: var(--display);
-  font-size: 26px;
-  margin-bottom: 4px;
-  line-height: 1;
-}
-.gt-name {
-  font-family: var(--mono);
-  font-size: 9px;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  color: var(--fog);
-  margin-bottom: 8px;
-}
-.gt-badge {
-  font-family: var(--mono);
-  font-size: 9px;
-  font-weight: 500;
-  padding: 2px 8px;
-  border-radius: 3px;
-  display: inline-block;
-  margin-bottom: 8px;
-}
-.gtb-mod  { background: var(--blue2); color: var(--blue); }
-.gtb-high { background: var(--amber2); color: var(--amber); }
-.gtb-ext  { background: var(--red2); color: var(--red); }
-.gt-desc { font-size: 10px; color: var(--fog); line-height: 1.55; }
-
-/* ALERTS TAB */
-.alerts-tab-wrap { padding: 32px 40px; }
-.alerts-live-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 20px;
-}
-.alerts-live-feed {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-.live-alert-item {
-  background: var(--ink2);
-  border: 1px solid var(--wire);
-  border-radius: var(--r-md);
-  padding: 14px 18px;
-  display: grid;
-  grid-template-columns: auto 1fr auto;
-  gap: 14px;
-  align-items: center;
-  animation: slideIn 0.3s ease forwards;
-}
-@keyframes slideIn {
-  from { opacity: 0; transform: translateX(-8px); }
-  to   { opacity: 1; transform: translateX(0); }
-}
-.lai-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
-.lai-body {}
-.lai-sym { font-family: var(--mono); font-size: 11px; font-weight: 500; margin-bottom: 3px; }
-.lai-msg { font-size: 11px; color: var(--mist); line-height: 1.5; }
-.lai-time { font-family: var(--mono); font-size: 10px; color: var(--fog); white-space: nowrap; }
-
-.alert-controls {
-  display: flex;
-  gap: 10px;
-  align-items: center;
-  margin-bottom: 24px;
-  flex-wrap: wrap;
-}
-.alert-toggle {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 12px;
-  color: var(--mist);
-}
-.toggle-switch {
-  width: 36px;
-  height: 20px;
-  background: var(--ink3);
-  border: 1px solid var(--wire2);
-  border-radius: 10px;
-  cursor: pointer;
-  position: relative;
-  transition: background 0.2s;
-}
-.toggle-switch.on { background: var(--gold3); border-color: rgba(200,169,110,0.3); }
-.toggle-switch::after {
-  content: '';
-  position: absolute;
-  top: 2px; left: 2px;
-  width: 14px; height: 14px;
-  border-radius: 50%;
-  background: var(--fog);
-  transition: transform 0.2s, background 0.2s;
-}
-.toggle-switch.on::after { transform: translateX(16px); background: var(--gold2); }
-
-/* ─── DASH FOOTER ─── */
-.dash-footer {
-  padding: 16px 40px;
-  background: var(--ink2);
-  border-top: 1px solid var(--wire);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-size: 10px;
-  color: var(--fog);
-  flex-shrink: 0;
-}
-.df-brand { font-family: var(--display); font-size: 14px; color: var(--gold); letter-spacing: 2px; }
-.df-disc { max-width: 500px; line-height: 1.6; }
-
-/* ─── COPY BUTTON ─── */
-.copy-btn {
-  background: none;
-  border: none;
-  color: var(--fog);
-  cursor: pointer;
-  font-size: 14px;
-  padding: 4px;
-  border-radius: 4px;
-  transition: color 0.15s;
-}
-.copy-btn:hover { color: var(--gold2); }
-.copy-btn.copied { color: var(--green); }
-
-/* ─── TOAST ─── */
-.toast {
-  position: fixed;
-  bottom: 24px;
-  right: 24px;
-  background: var(--ink3);
-  border: 1px solid var(--wire2);
-  border-radius: var(--r-md);
-  padding: 12px 18px;
-  font-size: 12px;
-  color: var(--snow);
-  z-index: 9998;
-  animation: toastIn 0.3s ease forwards;
-  max-width: 280px;
-}
-@keyframes toastIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-
-/* ─── PUSH NOTIFICATION BANNER ─── */
-.push-bar {
-  position: fixed;
-  top: 56px;
-  left: 0; right: 0;
-  background: linear-gradient(90deg, #0a1a10, #0d1f14);
-  border-bottom: 1px solid rgba(52,211,153,0.3);
-  padding: 0;
-  z-index: 200;
-  transform: translateY(-100%);
-  transition: transform 0.35s cubic-bezier(0.34,1.56,0.64,1);
-  display: flex;
-  align-items: stretch;
-  max-height: 56px;
-}
-.push-bar.show { transform: translateY(0); }
-.push-bar-icon { width: 48px; background: rgba(52,211,153,0.12); display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;border-right:1px solid rgba(52,211,153,0.2); }
-.push-bar-body { flex:1; padding: 8px 14px; display:flex;align-items:center;gap:10px; overflow:hidden; }
-.push-bar-sym { font-family:var(--mono); font-size:11px; font-weight:700; color:var(--green); white-space:nowrap; }
-.push-bar-msg { font-size:11px; color:var(--mist); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
-.push-bar-time { font-family:var(--mono); font-size:9px; color:var(--fog); white-space:nowrap; margin-left:auto; padding-right:4px; }
-.push-bar-close { width:36px; display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--fog);font-size:16px;flex-shrink:0;border-left:1px solid rgba(52,211,153,0.1);transition:color 0.15s; }
-.push-bar-close:hover { color:var(--green); }
-.push-bar.bear-push { background:linear-gradient(90deg,#1a0a0a,#1f0d0d); border-bottom-color:rgba(248,113,113,0.3); }
-.push-bar.bear-push .push-bar-icon { background:rgba(248,113,113,0.1); border-right-color:rgba(248,113,113,0.2); }
-.push-bar.bear-push .push-bar-sym { color:var(--red); }
-.push-bar.warn-push { background:linear-gradient(90deg,#1a1200,#1f1600); border-bottom-color:rgba(251,191,36,0.3); }
-.push-bar.warn-push .push-bar-icon { background:rgba(251,191,36,0.1); border-right-color:rgba(251,191,36,0.2); }
-.push-bar.warn-push .push-bar-sym { color:var(--amber); }
-
-/* ─── MARKET DATA EDITOR ─── */
-.mde-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:8px; margin-bottom:14px; }
-.mde-cell { background:var(--ink3); border:1px solid var(--wire); border-radius:7px; padding:10px 12px; }
-.mde-ticker { font-family:var(--mono); font-size:9px; letter-spacing:2px; text-transform:uppercase; color:var(--fog); margin-bottom:6px; }
-.mde-row { display:flex; gap:6px; }
-.mde-input { flex:1; background:var(--ink); border:1px solid var(--wire2); border-radius:4px; padding:5px 8px; font-family:var(--mono); font-size:11px; color:var(--snow); outline:none; min-width:0; }
-.mde-input:focus { border-color:var(--gold); }
-.mde-chg { width:70px; }
-
-/* ─── SCROLLBAR ─── */
-::-webkit-scrollbar { width: 6px; }
-::-webkit-scrollbar-track { background: var(--ink); }
-::-webkit-scrollbar-thumb { background: var(--ink4); border-radius: 3px; }
-::-webkit-scrollbar-thumb:hover { background: var(--fog); }
-
-/* ─── RESPONSIVE ─── */
-@media (max-width: 768px) {
-  .macro-strip { grid-template-columns: repeat(3, 1fr); }
-  .cards-grid, .cards-grid.cols-3 { grid-template-columns: 1fr; }
-  .alert-grid { grid-template-columns: 1fr; }
-  .greeks-grid { grid-template-columns: repeat(2, 1fr); }
-  .rpt-header-grid { grid-template-columns: 1fr; }
-  .rpt-badge { display: none; }
-  .cards-grid, .alerts-wrap, .greeks-wrap { padding-left: 20px; padding-right: 20px; }
-  .cat-header, .rpt-header, .rpt-alert { padding-left: 20px; padding-right: 20px; }
-  .stat-row { grid-template-columns: repeat(2, 1fr); }
-  .invite-gen-box { flex-direction: column; }
-  .nav-tabs { display: none; }
-}
-</style>
-</head>
-<body>
-
-<!-- ═══════════════════════════════════════
-     PAGE 1: GATE (Login)
-═══════════════════════════════════════════ -->
-<div class="page active" id="page-gate">
-  <div class="gate-bg"></div>
-  <div class="gate-grid"></div>
-  <div class="gate-box">
-    <div class="gate-logo">
-      <div class="gate-logo-mark">WJB TRADES</div>
-      <div class="gate-logo-sub">Private Intelligence Platform</div>
-    </div>
-    <div class="gate-card">
-      <div class="gate-heading">RESTRICTED ACCESS</div>
-      <div class="gate-sub">This platform is invite-only. Enter your invite code or credentials to proceed.</div>
-
-      <div id="login-form">
-        <div class="field-group">
-          <label class="field-label">Email Address</label>
-          <input class="field-input" id="login-email" type="email" placeholder="your@email.com" autocomplete="email">
-        </div>
-        <div class="field-group">
-          <label class="field-label">Invite Code / Password</label>
-          <input class="field-input" id="login-code" type="password" placeholder="••••••••••" autocomplete="current-password">
-        </div>
-        <button class="btn-primary" onclick="attemptLogin()">ACCESS PLATFORM</button>
-        <div class="gate-error" id="login-error">Invalid credentials or invite code.</div>
-        <div id="login-reset-hint" style="display:none;margin-top:10px;font-size:11px;color:var(--fog);text-align:center">
-          Having trouble? <a onclick="hardResetStore()" style="color:var(--gold);cursor:pointer;text-decoration:underline">Reset app data and try again</a>
-        </div>
-      </div>
-
-      <div style="background:rgba(200,169,110,0.06);border:1px solid rgba(200,169,110,0.15);border-radius:6px;padding:10px 14px;margin-top:14px;font-family:var(--mono);font-size:10px;color:var(--fog);line-height:1.8">
-        <div style="color:var(--gold);margin-bottom:4px;letter-spacing:1px">DEFAULT CREDENTIALS</div>
-        <div>admin@wjbtrades.com &nbsp;/&nbsp; <span style="color:var(--gold2)">WJB-ADMIN-2026</span></div>
-        <div>trader@wjbtrades.com &nbsp;/&nbsp; <span style="color:var(--mist)">WJB-MEMBER-001</span></div>
-      </div>
-      <div class="gate-footer" style="margin-top:12px">
-        No access yet? <a onclick="showRequestForm()">Request an invitation</a> &nbsp;·&nbsp;
-        <a onclick="showAdminLogin()">Admin</a>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- ═══════════════════════════════════════
-     PAGE 2: ADMIN
-═══════════════════════════════════════════ -->
-<div class="page" id="page-admin">
-  <div class="admin-nav">
-    <div class="admin-nav-brand">WJB TRADES — ADMIN</div>
-    <div class="admin-nav-right">
-      <button class="btn-sm" onclick="goToDashboard()">← Dashboard</button>
-      <button class="btn-sm" onclick="logout()">Sign Out</button>
-    </div>
-  </div>
-  <div class="admin-body">
-
-    <div class="stat-row">
-      <div class="stat-card">
-        <div class="stat-label">Total Members</div>
-        <div class="stat-value gold" id="stat-members">0</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-label">Active Codes</div>
-        <div class="stat-value green" id="stat-active">0</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-label">Pending Invites</div>
-        <div class="stat-value" id="stat-pending">0</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-label">Revoked</div>
-        <div class="stat-value red" id="stat-revoked">0</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-label">📧 Subscribed</div>
-        <div class="stat-value" style="color:var(--teal)" id="stat-subscribed">0</div>
-      </div>
-    </div>
-
-    <div class="admin-section">
-      <div class="admin-section-title">Generate Invite Code</div>
-      <div class="admin-section-sub">Create a new single-use or multi-use invite code and assign it to a user.</div>
-      <div class="invite-gen-box">
-        <div class="invite-gen-field">
-          <label class="field-label">Assign To (Email)</label>
-          <input class="field-input" id="invite-email" type="email" placeholder="invitee@email.com" style="background:var(--ink3)">
-        </div>
-        <div class="invite-gen-field">
-          <label class="field-label">Role</label>
-          <select class="field-input" id="invite-role" style="background:var(--ink3);cursor:pointer">
-            <option value="member">Member</option>
-            <option value="admin">Admin</option>
-          </select>
-        </div>
-        <button class="btn-sm gold" onclick="generateInvite()" style="padding:12px 20px;height:44px;align-self:flex-end">GENERATE</button>
-        <div class="gen-output" id="gen-output">
-          <span class="gen-output-placeholder">Generated code will appear here</span>
-          <button class="copy-btn" id="copy-invite-btn" onclick="copyInviteCode()" style="display:none" title="Copy code">⎘</button>
-        </div>
-      </div>
-    </div>
-
-    <div class="admin-section">
-      <div class="admin-section-title">Members & Invites</div>
-      <div class="admin-section-sub">Manage platform access. Click revoke to immediately disable access.</div>
-      <table class="members-table" id="members-table">
-        <thead>
-          <tr>
-            <th>Email</th>
-            <th>Invite Code</th>
-            <th>Role</th>
-            <th>Status</th>
-            <th>Joined</th>
-            <th>📧 Sub</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-        <tbody id="members-tbody"></tbody>
-      </table>
-    </div>
-
-    <div class="admin-section">
-      <div class="admin-section-title">📊 Market Data — Today's Summary</div>
-      <div class="admin-section-sub">Edit prices and changes before sending the daily 9 AM email. These values populate the email template variables automatically.</div>
-
-      <div style="background:var(--ink3);border:1px solid var(--wire);border-radius:10px;padding:18px 20px;margin-bottom:16px">
-        <div style="font-family:var(--mono);font-size:9px;letter-spacing:2px;color:var(--fog);margin-bottom:14px;text-transform:uppercase">Live Price Editor</div>
-        <div class="mde-grid">
-          <div class="mde-cell">
-            <div class="mde-ticker">SPY</div>
-            <div class="mde-row"><input class="mde-input" id="md-spy-price" placeholder="$679" value="$679"><input class="mde-input mde-chg" id="md-spy-chg" placeholder="−0.40%"></div>
-          </div>
-          <div class="mde-cell">
-            <div class="mde-ticker">QQQ</div>
-            <div class="mde-row"><input class="mde-input" id="md-qqq-price" placeholder="$611" value="$611"><input class="mde-input mde-chg" id="md-qqq-chg" placeholder="+0.14%"></div>
-          </div>
-          <div class="mde-cell">
-            <div class="mde-ticker">WTI Oil</div>
-            <div class="mde-row"><input class="mde-input" id="md-wti-price" placeholder="$104" value="$104"><input class="mde-input mde-chg" id="md-wti-chg" placeholder="+8.0%"></div>
-          </div>
-          <div class="mde-cell">
-            <div class="mde-ticker">Gold XAU</div>
-            <div class="mde-row"><input class="mde-input" id="md-gold-price" placeholder="$4,733" value="$4,733"><input class="mde-input mde-chg" id="md-gold-chg" placeholder="−0.71%"></div>
-          </div>
-          <div class="mde-cell">
-            <div class="mde-ticker">Bitcoin</div>
-            <div class="mde-row"><input class="mde-input" id="md-btc-price" placeholder="$71,600" value="$71,600"><input class="mde-input mde-chg" id="md-btc-chg" placeholder="−1.80%"></div>
-          </div>
-          <div class="mde-cell">
-            <div class="mde-ticker">DXY</div>
-            <div class="mde-row"><input class="mde-input" id="md-dxy-price" placeholder="98.79" value="98.79"><input class="mde-input mde-chg" id="md-dxy-chg" placeholder="Multi-wk low"></div>
-          </div>
-        </div>
-        <div style="margin-bottom:14px">
-          <div style="font-family:var(--mono);font-size:9px;letter-spacing:2px;color:var(--fog);margin-bottom:8px;text-transform:uppercase">Macro Catalyst Banner (breaking news / key context)</div>
-          <input class="field-input" id="md-catalyst" placeholder="U.S. Navy Hormuz blockade live. WTI +8%. CPI 3.3% — highest since May 2024." style="background:var(--ink);font-size:12px;width:100%">
-        </div>
-        <div style="margin-bottom:14px">
-          <div style="font-family:var(--mono);font-size:9px;letter-spacing:2px;color:var(--fog);margin-bottom:8px;text-transform:uppercase">Top Setup Overrides (optional — leave blank to use defaults)</div>
-          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px">
-            <div>
-              <div style="font-family:var(--mono);font-size:9px;color:var(--fog);margin-bottom:5px">Setup 1 Ticker</div>
-              <input class="field-input" id="md-s1-ticker" placeholder="XLE / USO" style="background:var(--ink);font-size:11px">
-            </div>
-            <div>
-              <div style="font-family:var(--mono);font-size:9px;color:var(--fog);margin-bottom:5px">Setup 1 Action</div>
-              <input class="field-input" id="md-s1-action" placeholder="BUY CALL" style="background:var(--ink);font-size:11px">
-            </div>
-            <div>
-              <div style="font-family:var(--mono);font-size:9px;color:var(--fog);margin-bottom:5px">Setup 1 Payoff</div>
-              <input class="field-input" id="md-s1-payoff" placeholder="+35–120%" style="background:var(--ink);font-size:11px">
-            </div>
-          </div>
-          <div style="margin-top:6px">
-            <div style="font-family:var(--mono);font-size:9px;color:var(--fog);margin-bottom:5px">Setup 1 Trigger</div>
-            <input class="field-input" id="md-s1-trigger" placeholder="Reclaim $104.50 WTI / TTO to 9 EMA. FTFC full bull Q/M/W/D." style="background:var(--ink);font-size:11px;width:100%">
-          </div>
-        </div>
-        <div style="display:flex;gap:10px;flex-wrap:wrap">
-          <button class="btn-sm" style="background:rgba(52,211,153,0.1);border-color:rgba(52,211,153,0.25);color:var(--green)" onclick="saveMarketData()">💾 Save Market Data</button>
-          <button class="btn-sm" onclick="loadMarketData()">↺ Load Saved</button>
-        </div>
-      </div>
-
-      <div class="admin-section-title">📧 Daily Summary Subscribers</div>
-      <div class="admin-section-sub">Members subscribed to the 9:00 AM daily market summary email. Use the EmailJS config below to connect the send engine.</div>
-
-      <!-- SUPABASE CONFIG -->
-      <div style="background:var(--ink3);border:1px solid rgba(96,165,250,0.2);border-radius:8px;padding:18px 20px;margin-bottom:12px">
-        <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px">
-          <div style="width:28px;height:28px;background:rgba(96,165,250,0.15);border:1px solid rgba(96,165,250,0.3);border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0">🗄</div>
-          <div>
-            <div style="font-family:var(--mono);font-size:10px;letter-spacing:2px;color:var(--blue);text-transform:uppercase">Supabase — Shared Subscriber Database</div>
-            <div style="font-size:11px;color:var(--fog);margin-top:2px">Required. Free tier. Stores subscribers in the cloud so all members share the same list.</div>
-          </div>
-        </div>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px">
-          <div>
-            <label class="field-label">Project URL</label>
-            <input class="field-input" id="sb-url" placeholder="https://xxxx.supabase.co" style="background:var(--ink);font-size:12px">
-          </div>
-          <div>
-            <label class="field-label">Anon / Public Key</label>
-            <input class="field-input" id="sb-key" placeholder="eyJhbGciOiJIUzI1NiIs..." style="background:var(--ink);font-size:12px">
-          </div>
-        </div>
-        <div style="margin-bottom:12px">
-          <label class="field-label">Cron Secret (optional, prevents unauthorized triggers)</label>
-          <input class="field-input" id="sb-cron-secret" placeholder="e.g. mysecret123" style="background:var(--ink);font-size:12px">
-        </div>
-        <button class="btn-sm" style="background:rgba(96,165,250,0.12);border-color:rgba(96,165,250,0.3);color:var(--blue)" onclick="saveSupabaseConfig()">Save Supabase Config</button>
-      </div>
-
-      <!-- EMAILJS CONFIG -->
-      <div style="background:var(--ink3);border:1px solid rgba(200,169,110,0.2);border-radius:8px;padding:18px 20px;margin-bottom:12px">
-        <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px">
-          <div style="width:28px;height:28px;background:rgba(200,169,110,0.12);border:1px solid rgba(200,169,110,0.25);border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0">📧</div>
-          <div>
-            <div style="font-family:var(--mono);font-size:10px;letter-spacing:2px;color:var(--gold);text-transform:uppercase">EmailJS — Email Delivery Engine</div>
-            <div style="font-size:11px;color:var(--fog);margin-top:2px">Required. Free tier (200 emails/month). Sends the daily HTML summary emails.</div>
-          </div>
-        </div>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px">
-          <div>
-            <label class="field-label">Service ID</label>
-            <input class="field-input" id="ejs-service-id" placeholder="service_xxxxxxx" style="background:var(--ink);font-size:12px">
-          </div>
-          <div>
-            <label class="field-label">Template ID</label>
-            <input class="field-input" id="ejs-template-id" placeholder="template_xxxxxxx" style="background:var(--ink);font-size:12px">
-          </div>
-        </div>
-        <div style="margin-bottom:12px">
-          <label class="field-label">Public Key</label>
-          <input class="field-input" id="ejs-public-key" placeholder="Your EmailJS public key" style="background:var(--ink);font-size:12px">
-        </div>
-        <div style="display:flex;gap:10px;flex-wrap:wrap">
-          <button class="btn-sm gold" onclick="saveEmailJSConfig()">Save EmailJS Config</button>
-          <button class="btn-sm" onclick="sendTestEmail()">Send Test to Me</button>
-          <button class="btn-sm" style="background:rgba(45,212,191,0.12);border-color:rgba(45,212,191,0.3);color:var(--teal)" onclick="sendDailySummaryNow()">⚡ Send Summary Now</button>
-          <button class="btn-sm" style="background:rgba(96,165,250,0.1);border-color:rgba(96,165,250,0.25);color:var(--blue)" onclick="refreshSubscribers()">↻ Refresh List</button>
-        </div>
-        <div id="ejs-status" style="font-family:var(--mono);font-size:10px;color:var(--fog);margin-top:10px;display:none"></div>
-      </div>
-
-      <!-- CRON URL BOX -->
-      <div style="background:var(--ink3);border:1px solid var(--wire);border-radius:8px;padding:14px 16px;margin-bottom:18px">
-        <div style="font-family:var(--mono);font-size:9px;letter-spacing:2px;color:var(--fog);margin-bottom:8px;text-transform:uppercase">cron-job.org trigger URL — set this to run at 9:00 AM ET daily</div>
-        <div id="cron-url-display" style="font-family:var(--mono);font-size:11px;color:var(--gold2);word-break:break-all;background:var(--ink);border:1px solid var(--wire);border-radius:5px;padding:8px 10px">
-          Save your config above to generate the cron URL
-        </div>
-      </div>
-
-      <table class="members-table">
-        <thead>
-          <tr>
-            <th>Email</th>
-            <th>Subscribed Since</th>
-            <th>Last Email Sent</th>
-            <th>Frequency</th>
-            <th>Status</th>
-          </tr>
-        </thead>
-        <tbody id="subscribers-tbody"></tbody>
-      </table>
-
-      <!-- EMAIL TEMPLATE REFERENCE -->
-      <div style="margin-top:18px">
-        <div onclick="this.nextElementSibling.style.display=this.nextElementSibling.style.display==='none'?'block':'none'" style="cursor:pointer;background:var(--ink3);border:1px solid var(--wire);border-radius:8px;padding:12px 16px;display:flex;align-items:center;justify-content:space-between">
-          <div style="font-family:var(--mono);font-size:10px;letter-spacing:2px;color:var(--fog);text-transform:uppercase">📋 EmailJS Template Variables Reference</div>
-          <div style="font-family:var(--mono);font-size:10px;color:var(--fog)">click to expand ↓</div>
-        </div>
-        <div style="display:none;background:var(--ink3);border:1px solid var(--wire);border-top:none;border-radius:0 0 8px 8px;padding:16px">
-          <div style="font-size:11px;color:var(--mist);margin-bottom:10px;line-height:1.7">Paste these variable names into your EmailJS template. Each <code style="background:rgba(255,255,255,0.07);padding:1px 5px;border-radius:3px;font-family:var(--mono);font-size:10px">{{variable}}</code> block gets replaced with real data when the email sends.</div>
-          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;font-family:var(--mono);font-size:10px">
-            <div style="background:var(--ink);border:1px solid var(--wire);border-radius:6px;padding:10px">
-              <div style="color:var(--gold);margin-bottom:6px">📊 HEADER</div>
-              <div style="color:var(--mist);line-height:2">{{to_email}}<br>{{subject}}<br>{{date}}<br>{{send_time}}</div>
-            </div>
-            <div style="background:var(--ink);border:1px solid var(--wire);border-radius:6px;padding:10px">
-              <div style="color:var(--gold);margin-bottom:6px">📈 MACRO</div>
-              <div style="color:var(--mist);line-height:2">{{spy_price}} {{spy_chg}}<br>{{qqq_price}} {{qqq_chg}}<br>{{wti_price}} {{wti_chg}}<br>{{gold_price}} {{gold_chg}}<br>{{btc_price}} {{btc_chg}}<br>{{dxy_price}} {{dxy_chg}}</div>
-            </div>
-            <div style="background:var(--ink);border:1px solid var(--wire);border-radius:6px;padding:10px">
-              <div style="color:var(--gold);margin-bottom:6px">🎯 SETUPS</div>
-              <div style="color:var(--mist);line-height:2">{{setup1_ticker}}<br>{{setup1_action}}<br>{{setup1_payoff}}<br>{{setup1_trigger}}<br>{{setup2_ticker}} ...<br>{{setup3_ticker}} ...</div>
-            </div>
-            <div style="background:var(--ink);border:1px solid var(--wire);border-radius:6px;padding:10px">
-              <div style="color:var(--gold);margin-bottom:6px">⚡ ALERTS</div>
-              <div style="color:var(--mist);line-height:2">{{alert1}}<br>{{alert2}}<br>{{alert3}}<br>{{alert4}}</div>
-            </div>
-            <div style="background:var(--ink);border:1px solid var(--wire);border-radius:6px;padding:10px">
-              <div style="color:var(--gold);margin-bottom:6px">🔢 GREEKS</div>
-              <div style="color:var(--mist);line-height:2">{{delta_level}}<br>{{gamma_level}}<br>{{theta_level}}<br>{{vega_level}}</div>
-            </div>
-            <div style="background:var(--ink);border:1px solid var(--wire);border-radius:6px;padding:10px">
-              <div style="color:var(--gold);margin-bottom:6px">🔗 FOOTER</div>
-              <div style="color:var(--mist);line-height:2">{{platform_url}}<br>{{unsubscribe_note}}</div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-    </div>
-
-  </div>
-</div>
-
-<!-- ═══════════════════════════════════════
-     PAGE 3: DASHBOARD
-═══════════════════════════════════════════ -->
-<div class="page" id="page-dashboard">
-  <!-- NAV -->
-  <nav class="dash-nav">
-    <div class="nav-left">
-      <div class="nav-brand">
-        <div class="nav-brand-dot"></div>
-        WJB TRADES
-      </div>
-      <div class="nav-tabs">
-        <div class="nav-tab active" data-tab="report" onclick="switchTab('report', this)">Market Report</div>
-        <div class="nav-tab" data-tab="alerts" onclick="switchTab('alerts', this)">Live Alerts</div>
-        <div class="nav-tab" data-tab="subscriptions" onclick="switchTab('subscriptions', this)">📧 Daily Summary</div>
-        <div class="nav-tab" data-tab="glossary" onclick="switchTab('glossary', this)">Glossary</div>
-      </div>
-    </div>
-    <div class="nav-right">
-      <div class="nav-user">
-        <div class="nav-avatar" id="user-avatar">W</div>
-        <span id="user-name-display">Member</span>
-      </div>
-      <button class="nav-btn" id="admin-nav-btn" onclick="goToAdmin()" style="display:none">Admin Panel</button>
-      <button class="nav-btn" onclick="logout()">Sign Out</button>
-    </div>
-  </nav>
-
-  <!-- PUSH NOTIFICATION BANNER -->
-  <div class="push-bar" id="push-bar">
-    <div class="push-bar-icon" id="push-bar-icon">▲</div>
-    <div class="push-bar-body">
-      <span class="push-bar-sym" id="push-bar-sym">ORCL</span>
-      <span class="push-bar-msg" id="push-bar-msg">Alert message here</span>
-      <span class="push-bar-time" id="push-bar-time">9:00 AM ET</span>
-    </div>
-    <div class="push-bar-close" onclick="closePushBar()">✕</div>
-  </div>
-
-  <!-- CONTENT -->
-  <div class="dash-content">
-
-    <!-- ── TAB: REPORT ── -->
-    <div class="dash-tab-panel active" id="tab-report">
-      <div class="report-wrap">
-
-        <div class="rpt-header">
-          <div class="rpt-accent"></div>
-          <div class="rpt-header-grid">
-            <div>
-              <div class="rpt-eyebrow"><span class="live-dot"></span> WJB Trades Intelligence</div>
-              <div class="rpt-title">MARKET ALPHA &amp;<br><span>CONTINUITY REPORT</span></div>
-              <div class="rpt-sub">TheStrat Framework · Full Category Breakdown · 2-Min Alert Protocol</div>
-            </div>
-            <div class="rpt-badge">
-              <div class="rpt-badge-date">MON APR 13 · 2026</div>
-              <div class="rpt-badge-line">13 setups · 5 categories</div>
-              <div class="rpt-badge-alert">HIGH VEGA / GAMMA ENV</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="rpt-alert">
-          🚨 <strong>ACTIVE MACRO CATALYST:</strong> U.S. Navy Hormuz blockade live 10:00 AM ET. Iran talks collapsed. WTI +8% above $104. CPI 3.3% — highest since May 2024. DXY at 98.79 multi-week lows. <strong>Size starter positions only. Manage Vega exposure aggressively.</strong>
-        </div>
-
-        <div class="macro-strip">
-          <div class="mc-cell"><div class="mc-label">SPY</div><div class="mc-price">$679</div><div class="mc-chg chg-dn">▼ −0.40%</div><div class="mc-meta">52W $508–$698</div></div>
-          <div class="mc-cell"><div class="mc-label">QQQ</div><div class="mc-price">$611</div><div class="mc-chg chg-up">▲ +0.14%</div><div class="mc-meta">Bounced $582 key</div></div>
-          <div class="mc-cell"><div class="mc-label">WTI OIL</div><div class="mc-price">$104</div><div class="mc-chg chg-up">▲ +8.0%</div><div class="mc-meta">Brent ~$101–103</div></div>
-          <div class="mc-cell"><div class="mc-label">GOLD XAU</div><div class="mc-price">$4,733</div><div class="mc-chg chg-dn">▼ −0.71%</div><div class="mc-meta">+47% YoY · OTE zone</div></div>
-          <div class="mc-cell"><div class="mc-label">BTC</div><div class="mc-price">$71.6K</div><div class="mc-chg chg-dn">▼ −1.80%</div><div class="mc-meta">Best wk since Oct '25</div></div>
-          <div class="mc-cell"><div class="mc-label">DXY</div><div class="mc-price">98.79</div><div class="mc-chg chg-dn">▾ Multi-wk low</div><div class="mc-meta">EUR/USD ~1.1520</div></div>
-        </div>
-
-        <!-- EQUITIES -->
-        <div class="cat-section">
-          <div class="cat-header"><span class="cat-emoji">📈</span><span class="cat-label">Equities</span><div class="cat-rule"></div><span class="cat-pill">4 setups</span></div>
-          <div class="cards-grid">
-            <div class="trade-card feat-gold">
-              <div class="card-head"><div class="card-ticker-wrap"><div class="card-chip chip-gold">RS Leader Today</div><div class="card-ticker">ORCL</div><div class="card-desc">Oracle Corp · +9–11% · vol 32.9M vs 20.7M avg</div></div><span class="action-badge ab-bull">BUY CALL</span></div>
-              <div class="card-rows"><div class="card-row"><span class="row-key">Strike / Exp</span><span class="row-val">$150C or $155C · May 15</span></div><div class="card-row"><span class="row-key">Entry Trigger</span><span class="row-val">TTO pullback to 9 EMA ~$145</span></div><div class="card-row"><span class="row-key">Stop / Flip</span><span class="row-val r">Below $136–138 open price</span></div><div class="card-row"><span class="row-key">Target 1</span><span class="row-val g">$163 stock → ~+40% option</span></div><div class="card-row"><span class="row-key">Target 2</span><span class="row-val g">$175–185 → ~+120% option</span></div><div class="card-row"><span class="row-key">Catalyst</span><span class="row-val b">AI Fusion Apps · RPO $553B · Cloud +44%</span></div></div>
-              <div class="payoff-bar-wrap"><div class="payoff-top"><span class="payoff-lbl">Min Payoff Est.</span><span class="payoff-num pn-g">+40%</span></div><div class="bar-track"><div class="bar-fill bf-g" style="width:40%"></div></div><div class="bar-labels"><span>entry</span><span>+40% T1</span><span>+120% T2</span></div></div>
-              <div class="card-footnote">52W high $345 vs current ~$150. RSI 38 = oversold + bouncing. Analyst avg PT $246. +10pt RS over SPY today.</div>
-            </div>
-            <div class="trade-card feat-gold">
-              <div class="card-head"><div class="card-ticker-wrap"><div class="card-chip chip-gold">Defense AI · ER May 11</div><div class="card-ticker">PLTR</div><div class="card-desc">Palantir · ~$128–133 · 52W: $85–$207</div></div><span class="action-badge ab-bull">BUY CALL</span></div>
-              <div class="card-rows"><div class="card-row"><span class="row-key">Strike / Exp</span><span class="row-val">$130C or $135C · May 8</span></div><div class="card-row"><span class="row-key">Entry Trigger</span><span class="row-val">Reclaim + hold VWAP ~$130 on 15m</span></div><div class="card-row"><span class="row-key">Stop / Flip</span><span class="row-val r">$122.68 (today's LOD) — Level 2</span></div><div class="card-row"><span class="row-key">Target 1</span><span class="row-val g">$148 (+15%) → ~+60% option</span></div><div class="card-row"><span class="row-key">Target 2</span><span class="row-val g">$162 (month HOD) → ~+120%</span></div><div class="card-row"><span class="row-key">Vega Note</span><span class="row-val a">ER May 11 = IV expansion tailwind</span></div></div>
-              <div class="payoff-bar-wrap"><div class="payoff-top"><span class="payoff-lbl">Min Payoff Est.</span><span class="payoff-num pn-g">+60%</span></div><div class="bar-track"><div class="bar-fill bf-g" style="width:60%"></div></div><div class="bar-labels"><span>entry</span><span>+60% T1</span><span>+120% T2</span></div></div>
-              <div class="card-footnote">NATO $1.4T defense build. Cathie Wood bought dip Apr 10. Vol 116M vs 51M avg = institutional confirmation.</div>
-            </div>
-            <div class="trade-card">
-              <div class="card-head"><div class="card-ticker-wrap"><div class="card-ticker">MRVL</div><div class="card-desc">Marvell Technology · ~$128 · +20% in 5 days</div></div><span class="action-badge ab-bull">BUY CALL</span></div>
-              <div class="card-rows"><div class="card-row"><span class="row-key">Strike / Exp</span><span class="row-val">$130C · May 8</span></div><div class="card-row"><span class="row-key">Entry Trigger</span><span class="row-val">TTO to VWAP / 9 EMA on 15m</span></div><div class="card-row"><span class="row-key">Stop / Flip</span><span class="row-val r">Below $120 (50%er of 5-day run)</span></div><div class="card-row"><span class="row-key">Target 1</span><span class="row-val g">$148 (+15.6%) → ~+55%</span></div><div class="card-row"><span class="row-key">Target 2</span><span class="row-val g">$158 (+23%) → ~+100%</span></div><div class="card-row"><span class="row-key">Sector RS</span><span class="row-val b">Semis cap-equip +24% YTD vs XLK −6%</span></div></div>
-              <div class="payoff-bar-wrap"><div class="payoff-top"><span class="payoff-lbl">Min Payoff Est.</span><span class="payoff-num pn-g">+55%</span></div><div class="bar-track"><div class="bar-fill bf-g" style="width:55%"></div></div><div class="bar-labels"><span>entry</span><span>+55% T1</span><span>+100% T2</span></div></div>
-              <div class="card-footnote">Only IT sub-sector outperforming in 2026. +29.7% in April. Institutional accumulation signal.</div>
-            </div>
-            <div class="trade-card">
-              <div class="card-head"><div class="card-ticker-wrap"><div class="card-ticker">SPY Puts</div><div class="card-desc">S&amp;P 500 hedge · ~$679 · Gap-fail reversal</div></div><span class="action-badge ab-bear">BUY PUT</span></div>
-              <div class="card-rows"><div class="card-row"><span class="row-key">Strike / Exp</span><span class="row-val">$678P or $675P · Apr 17</span></div><div class="card-row"><span class="row-key">Entry Trigger</span><span class="row-val">Rejection wick off $679–682 gap mid</span></div><div class="card-row"><span class="row-key">Stop / Flip</span><span class="row-val g">$685 hold = thesis invalid, flip calls</span></div><div class="card-row"><span class="row-key">Target 1</span><span class="row-val g">$672 support → ~+35%</span></div><div class="card-row"><span class="row-key">Target 2</span><span class="row-val g">$666 MA cluster → ~+80%</span></div><div class="card-row"><span class="row-key">Edge</span><span class="row-val a">Polymarket 79% odds down close today</span></div></div>
-              <div class="payoff-bar-wrap"><div class="payoff-top"><span class="payoff-lbl">Min Payoff Est.</span><span class="payoff-num pn-r">+35%</span></div><div class="bar-track"><div class="bar-fill bf-r" style="width:35%"></div></div><div class="bar-labels"><span>entry</span><span>+35% T1</span><span>+80% T2</span></div></div>
-              <div class="card-footnote">Portfolio hedge vs energy longs. Short expiry keeps Theta manageable. IV elevated — size accordingly.</div>
-            </div>
-          </div>
-        </div>
-
-        <!-- ETFs -->
-        <div class="cat-section">
-          <div class="cat-header"><span class="cat-emoji">📊</span><span class="cat-label">ETFs &amp; Index Options</span><div class="cat-rule"></div><span class="cat-pill">2 setups</span></div>
-          <div class="cards-grid">
-            <div class="trade-card feat-green">
-              <div class="card-head"><div class="card-ticker-wrap"><div class="card-chip chip-green">Highest Conviction · FTFC Full Bull</div><div class="card-ticker">XLE / USO</div><div class="card-desc">Energy ETF / Oil · WTI $104 · PMG Active · Sector +18–38% YTD</div></div><span class="action-badge ab-bull">BUY CALL</span></div>
-              <div class="card-rows"><div class="card-row"><span class="row-key">Strike / Exp</span><span class="row-val">USO $85C · XLE $92C · May 16</span></div><div class="card-row"><span class="row-key">Entry Trigger</span><span class="row-val">Reclaim $104.50 WTI / TTO to 9 EMA</span></div><div class="card-row"><span class="row-key">Stop / Flip</span><span class="row-val r">Below $101 WTI — Level 2 structural stop</span></div><div class="card-row"><span class="row-key">Target 1</span><span class="row-val g">$107 WTI → ~+35%</span></div><div class="card-row"><span class="row-key">Target 2</span><span class="row-val g">$115 WTI (BF upper) → ~+120%</span></div><div class="card-row"><span class="row-key">FTFC Status</span><span class="row-val b">Q / M / W / D all green — full continuity</span></div></div>
-              <div class="payoff-bar-wrap"><div class="payoff-top"><span class="payoff-lbl">Min Payoff Est.</span><span class="payoff-num pn-g">+35%</span></div><div class="bar-track"><div class="bar-fill bf-g" style="width:35%"></div></div><div class="bar-labels"><span>entry</span><span>+35% T1</span><span>+120% T2</span></div></div>
-              <div class="card-footnote">OPEC output sharply down. Saudi Manifa + E-W pipeline disrupted. Use ITM calls (Delta ≥0.65) to defend against IV crush on ceasefire headline.</div>
-            </div>
-            <div class="trade-card">
-              <div class="card-head"><div class="card-ticker-wrap"><div class="card-ticker">QQQ</div><div class="card-desc">Nasdaq 100 · ~$611 · TTO bounce off $582 key level</div></div><span class="action-badge ab-bull">BUY CALL</span></div>
-              <div class="card-rows"><div class="card-row"><span class="row-key">Strike / Exp</span><span class="row-val">$610C · Apr 24 or May 1</span></div><div class="card-row"><span class="row-key">OTE FVG Zone</span><span class="row-val">$607–$611 pullback re-entry</span></div><div class="card-row"><span class="row-key">Stop / Flip</span><span class="row-val r">$602.68 LOD — Delta Bleed below this</span></div><div class="card-row"><span class="row-key">Target 1</span><span class="row-val g">$622 prior WHD → ~+25%</span></div><div class="card-row"><span class="row-key">Target 2</span><span class="row-val g">$637 (52W high test) → ~+70%</span></div><div class="card-row"><span class="row-key">Gamma Flip</span><span class="row-val b">$590 = structural support · $610 = pin</span></div></div>
-              <div class="payoff-bar-wrap"><div class="payoff-top"><span class="payoff-lbl">Min Payoff Est.</span><span class="payoff-num pn-b">+25%</span></div><div class="bar-track"><div class="bar-fill bf-b" style="width:25%"></div></div><div class="bar-labels"><span>entry</span><span>+25% T1</span><span>+70% T2</span></div></div>
-              <div class="card-footnote">Dealer gamma concentration at $610. FTFC requires weekly candle to flip green — confirm before adding beyond starter.</div>
-            </div>
-          </div>
-        </div>
-
-        <!-- COMMODITIES -->
-        <div class="cat-section">
-          <div class="cat-header"><span class="cat-emoji">🪙</span><span class="cat-label">Commodities</span><div class="cat-rule"></div><span class="cat-pill">2 setups</span></div>
-          <div class="cards-grid">
-            <div class="trade-card feat-gold">
-              <div class="card-head"><div class="card-ticker-wrap"><div class="card-chip chip-gold">Safe-Haven + Inflation Hedge</div><div class="card-ticker">GLD / XAU</div><div class="card-desc">Gold · spot ~$4,733 · 52W: $3,120–$5,595 · +47% YoY</div></div><span class="action-badge ab-bull">BUY CALL</span></div>
-              <div class="card-rows"><div class="card-row"><span class="row-key">Strike / Exp</span><span class="row-val">GLD $450C or $455C · May 15</span></div><div class="card-row"><span class="row-key">Entry Trigger</span><span class="row-val">Reclaim $4,785 (50%er retest) + hold</span></div><div class="card-row"><span class="row-key">OTE Zone</span><span class="row-val b">$4,731–$4,752 (50% Fib support)</span></div><div class="card-row"><span class="row-key">Stop / Flip</span><span class="row-val r">$4,595 (next Fib floor) — Level 2</span></div><div class="card-row"><span class="row-key">Target 1</span><span class="row-val g">$4,883 (200 SMA) → ~+20%</span></div><div class="card-row"><span class="row-key">Target 2</span><span class="row-val g">$5,131 (BF upper) → ~+80%</span></div></div>
-              <div class="payoff-bar-wrap"><div class="payoff-top"><span class="payoff-lbl">Min Payoff Est.</span><span class="payoff-num pn-g">+20%</span></div><div class="bar-track"><div class="bar-fill bf-g" style="width:20%"></div></div><div class="bar-labels"><span>entry</span><span>+20% T1</span><span>+80% T2</span></div></div>
-              <div class="card-footnote">CPI 3.3% = hot inflation confirmed. Volume void $4,937–$5,012 = gap-fill rocket above $4,883. CB gold buying accelerating globally.</div>
-            </div>
-            <div class="trade-card">
-              <div class="card-head"><div class="card-ticker-wrap"><div class="card-ticker">WTI / CL</div><div class="card-desc">Crude Oil Futures · ~$104 · Hormuz PMG · UCO calls</div></div><span class="action-badge ab-bull">BUY CALL CFD</span></div>
-              <div class="card-rows"><div class="card-row"><span class="row-key">Contract</span><span class="row-val">May 2026 CL futures / UCO ETF calls</span></div><div class="card-row"><span class="row-key">Entry Trigger</span><span class="row-val">Hold above $103 on 15m 2-up candle</span></div><div class="card-row"><span class="row-key">Stop / Flip</span><span class="row-val r">$101 close = exit ALL energy positions</span></div><div class="card-row"><span class="row-key">Target 1</span><span class="row-val g">$108 (+3.8%) → ~+35%</span></div><div class="card-row"><span class="row-key">Target 2</span><span class="row-val g">$115 (+10%) → ~+100%+</span></div><div class="card-row"><span class="row-key">Tail Risk</span><span class="row-val a">Ceasefire = instant IV crush on all energy</span></div></div>
-              <div class="payoff-bar-wrap"><div class="payoff-top"><span class="payoff-lbl">Min Payoff Est.</span><span class="payoff-num pn-g">+35%</span></div><div class="bar-track"><div class="bar-fill bf-g" style="width:35%"></div></div><div class="bar-labels"><span>entry</span><span>+35% T1</span><span>+100% T2</span></div></div>
-              <div class="card-footnote">Saudi Manifa + E-W Pipeline both disrupted. OPEC March output plunged. Hormuz effectively closed. Take T1 before news windows.</div>
-            </div>
-          </div>
-        </div>
-
-        <!-- CRYPTO -->
-        <div class="cat-section">
-          <div class="cat-header"><span class="cat-emoji">₿</span><span class="cat-label">Crypto</span><div class="cat-rule"></div><span class="cat-pill">2 setups</span></div>
-          <div class="cards-grid">
-            <div class="trade-card feat-gold">
-              <div class="card-head"><div class="card-ticker-wrap"><div class="card-chip chip-gold">Clarity Act · Senate Vote This Week</div><div class="card-ticker">BTC / IBIT</div><div class="card-desc">Bitcoin · ~$71,600 · Best week since Oct 2025</div></div><span class="action-badge ab-hot">CATALYST PLAY</span></div>
-              <div class="card-rows"><div class="card-row"><span class="row-key">Strike / Exp</span><span class="row-val">IBIT $58C or $60C · May 15</span></div><div class="card-row"><span class="row-key">Entry Trigger</span><span class="row-val">BTC reclaims $72,500 on 4H 2-up candle</span></div><div class="card-row"><span class="row-key">OTE / Strat-Hole</span><span class="row-val b">$69,000–$71,000 re-entry zone</span></div><div class="card-row"><span class="row-key">Stop / Flip</span><span class="row-val r">$69,000 ���.�������ȁ���Ս��Ʌ���ѽ�������𽑥���؁�����􉍅ɐ�ɽ܈�������������ɽܵ����Q�ɝ�Ѐ�������������������ɽܵم�������԰����	Q��H����Ԕ�%	%P���ѥ��������𽑥���؁�����􉍅ɐ�ɽ܈�������������ɽܵ����Q�ɝ�Ѐ�������������������ɽܵم��������������	�����Ȥ��H������������𽑥��𽑥��(���������������؁��������彙����ȵ�Ʌ����؁��������彙��ѽ�����������������彙�������5���A�彙���
-����ɵ���������������������������彙���մ���������Ԕ������𽑥���؁�����􉉅ȵ�Ʌ�����؁�����􉉅ȵ�������������屔�ݥ�Ѡ��Ԕ��𽑥��𽑥���؁�����􉉅ȵ�����̈��������������������������Ԕ�P������������������P�������𽑥��𽑥��(���������������؁�����􉍅ɐ����ѹ�є��
-�ɍ����䔰�
-�����͔��Ȕ����
-��ɥ���Ё��ѥ��ʹ����9=P���ѕȁ����ɔ���Ȱ�����ɥ���ȁ�����ɵ����	Q��������ɕ��ѥ������مѕ��𽑥��(������������𽑥��(�������������؁�������Ʌ�����ɐ��(���������������؁�����􉍅ɐ��������؁�����􉍅ɐ�ѥ���ȵ�Ʌ����؁�����􉍅ɐ�ѥ���Ȉ�Q ���Q!𽑥���؁�����􉍅ɐ���͌��ѡ�ɕմ�
-܁
-��ɕ��ѕ��Ѽ�	Q����х���������ձ���𽑥��𽑥�������������􉅍ѥ��������������Ј�
-Q1UMT�A1d������𽑥��(���������������؁�����􉍅ɐ�ɽ�̈��؁�����􉍅ɐ�ɽ܈�������������ɽܵ����M�ɥ�������������������������ɽܵم���Q!�Q4�����̃
-܁5����������𽑥���؁�����􉍅ɐ�ɽ܈�������������ɽܵ��������Qɥ����������������������ɽܵم���Q �����́ݕ��������ȁ���� �����������𽑥���؁�����􉍅ɐ�ɽ܈�������������ɽܵ����Mѽ�������������������������ɽܵم��Ȉ�	ɕ�������܁ݕ���䁽�����ձ�����������𽑥���؁�����􉍅ɐ�ɽ܈�������������ɽܵ����Q�ɝ�Ѐ�������������������ɽܵم�������׊L����Q ��H���������ѥ��������𽑥���؁�����􉍅ɐ�ɽ܈�������������ɽܵ����Q�ɝ�Ѐ�������������������ɽܵم�����	�����ȁ��չ���䃊H������������𽑥���؁�����􉍅ɐ�ɽ܈�������������ɽܵ����
-�х����������������������ɽܵم�����
-��ɥ���Ё��ٕ�́UM�Q �������ѕ�������𽑥��𽑥��(���������������؁��������彙����ȵ�Ʌ����؁��������彙��ѽ�����������������彙�������5���A�彙���и��������������������彙���մ�����������������𽑥���؁�����􉉅ȵ�Ʌ�����؁�����􉉅ȵ�������������屔�ݥ�Ѡ������𽑥��𽑥���؁�����􉉅ȵ�����̈�����������������������������P������������������P�������𽑥��𽑥��(���������������؁�����􉍅ɐ����ѹ�є��M��������Ѽ�	Q��P������ɴ�	Q��ɥ���ȁ����и�Mх��������
-��ɥ���Ё��ɕ�ѱ䁍�ٕ�́UM�Q �������ѕ��𽑥��(������������𽑥��(����������𽑥��(��������𽑥��((�������������=I`����(���������؁�����􉍅е͕�ѥ����(�����������؁�����􉍅е�����Ȉ������������􉍅е��������~J�<�����������������􉍅е��������ɕ��������؁�����􉍅е�ձ���𽑥�������������􉍅е������͕́����������𽑥��(�����������؁�����􉍅ɑ̵�ɥ�����̴̈�(�������������؁�������Ʌ�����\��X]Y�����]��\��H��\�ZXY��]��\��H��\�]X��\�]ܘ\��]��\��H��\�X�\�\Y����T��XZۙ\��0��HN��O�]��]��\��H��\�]X��\���UT��T��]��]��\��H��\�Y\�ȏ�]\��0���K�ML�0��[�\��H�����Y��]���]���[��\��H�X�[ۋX�Y�HX�X�[��ӑ�UT���[���]���]��\��H��\�\���ȏ�]��\��H��\�\��ȏ��[��\��H����Z�^H��[��H�ۙO��[���[��\��H����]�[���^H\��	K�ML�
-L	Y\���[���]��]��\��H��\�\��ȏ��[��\��H����Z�^H������\��[���[��\��H����]�[����[��	K�M
-L8�%[��[Y]Y��[���]��]��\��H��\�\��ȏ��[��\��H����Z�^H��\��]O��[���[��\��H����]�[ȏ�K�M�8�����M�H
-L
-O��[���]��]��\��H��\�\��ȏ��[��\��H����Z�^H��\��]���[���[��\��H����]�[ȏ�K��L�8����̍IJ���[���]��]��\��H��\�\��ȏ��[��\��H����Z�^H��[�[\���[���[��\��H����]�[�����ΈK��[�L�����[���]���]���]��\��H�^[ٙ�X�\�]ܘ\��]��\��H�^[ٙ�]����[��\��H�^[ٙ�[���]�\�Y�Y^[ٙ�
-L0��O��[���[��\��H�^[ٙ�[�[H�X����M�J���[���]��]��\��H��\�]�X�ȏ�]��\��H��\�Y�[��X���[OH��Y�M�H���]���]��]��\��H��\�[X�[ȏ��[��[��O��[���[���M�O��[���[��̍IO��[���]���]���]��\��H��\�Y�����H��ۙ��[���[�H�YX�Yݙ\�[�ˈPЈ�\�\�[��Y�[�[�ˈKY\��[][ۈ8����\�\��]\���K�N8�$�K����]����]���]��\��H��YKX�\����]��\��H��\�ZXY��]��\��H��\�]X��\�]ܘ\��]��\��H��\�]X��\���Д�T��]��]��\��H��\�Y\�ȏ��X�H0���K��
-L0���[[۝Y���]���]���[��\��H�X�[ۋX�Y�HX�X�[��ӑ�Д��[���]���]��\��H��\�\���ȏ�]��\��H��\�\��ȏ��[��\��H����Z�^H��[��H�ۙO��[���[��\��H����]�[���^H	K���L8�$�K����ۙO��[���]��]��\��H��\�\��ȏ��[��\��H����Z�^H������\��[���[��\��H����]�[����[��	K�̎8�%��X�\�[����[���]��]��\��H��\�\��ȏ��[��\��H����Z�^H��\��]O��[���[��\��H����]�[ȏ�K��L8�����MIJ�
-L
-O��[���]��]��\��H��\�\��ȏ��[��\��H����Z�^H��\��]���[���[��\��H����]�[ȏ�K�͌L�8����̍IO��[���]��]��\��H��\�\��ȏ��[��\��H����Z�^H����H��O��[���[��\��H����]�[H�����Z�\��X�Y8�%Д�\ܝ��[���]���]���]��\��H�^[ٙ�X�\�]ܘ\��]��\��H�^[ٙ�]����[��\��H�^[ٙ�[���]�\�Y�Y^[ٙ�
-L0��O��[���[��\��H�^[ٙ�[�[H�X����MIJ���[���]��]��\��H��\�]�X�ȏ�]��\��H��\�Y�[��X���[OH��Y�MIH���]���]��]��\��H��\�[X�[ȏ��[��[��O��[���[���MIO��[���[��̍IO��[���]���]���]��\��H��\�Y�����H���X[�\���]\\�[�[\��ۜ�[��\ˈ\��\�[��X�ݙ\�Hۈ][KY^HT��XZۙ\��Yˏ�]����]���]��\��H��YKX�\����]��\��H��\�ZXY��]��\��H��\�]X��\�]ܘ\��]��\��H��\�]X��\���T�ҔO�]��]��\��H��\�Y\�ȏ��\�VY[�0���MN8�$�M�0���҈�ۙO�]���]���[��\��H�X�[ۋX�Y�HX�]�\�����ԕT�ҔO��[���]���]��\��H��\�\���ȏ�]��\��H��\�\��ȏ��[��\��H����Z�^H��[��H�ۙO��[���[��\��H����]�[���[�[Y\��	MNx�$�M���[���]��]��\��H��\�\��ȏ��[��\��H����Z�^H������\��[���[��\��H����]�[���X�ݙH	M�H8�%�҈�Z[���[���]��]��\��H��\�\��ȏ��[��\��H����Z�^H��\��]O��[���[��\��H����]�[ȏ�MM�8����̌	H]�\�Y�Y��[���]��]��\��H��\�\��ȏ��[��\��H����Z�^H��\��]���[���[��\��H����]�[ȏ�ML�L��M8�����L	O��[���]��]��\��H��\�\��ȏ��[��\��H����Z�^H��[�[\���[���[��\��H����]�[���UQ�ΈT�ҔHM
-�[�L�����[���]���]���]��\��H�^[ٙ�X�\�]ܘ\��]��\��H�^[ٙ�]����[��\��H�^[ٙ�[���]�\�Y�Y^[ٙ�
-L0��O��[���[��\��H�^[ٙ�[�[H�XH��̌	J���[���]��]��\��H��\�]�X�ȏ�]��\��H��\�Y�[��XH��[OH��Y��	H���]���]��]��\��H��\�[X�[ȏ��[��[��O��[���[��̌	O��[���[���L	O��[���]���]���]��\��H��\�Y�����H��M�H\�ܚX�[�҈[�\��[�[ۈ�\����\[�MIH�[Z[\ܝ\[�[��UQ�ΈM
-�[�L�����]����]����]����]����KKH�SRS�ST���P�SӈKO��]��\��H�[\��]ܘ\���]��\��H��X�[ۋZ����H�SZ[�]H�[��Y�[\�������]���]��\��H��X�[ۋ\����Y��\��X�]�]Hۈ	���IH[ݙH�][�[�H�[Z[�]H�[�H��[YK�X�ۈ�ۙ�\�YY���HۛK��]���]��\��H�[\�YܚY���]��\��H�[\�][H]X�[��]��\��H�[\�][K\�[H]�X�[������HԕQH8�%�S�]��]��\��H�[\�][KX��H����XZ�X�ݙH�[��\��H��Y�\[Yȏ�L
-O��[���Q��\��YHX�]�K���[H[��K�T���[ˈ��	LˍL���	LL��$�LMK��]���]���]��\��H�[\�][H]X�[��]��\��H�[\�][K\�[H]�X�[�����Ԑ�8�%�S�]��]��\��H�[\�][KX��H����XZ�X�ݙH�[��\��H��Y�\[Yȏ�MM���[��
-
-�IJN��]\�۝[�X][ۋ�Y�X^H	MMPˈ�H�Z[[������]���]���]��\��H�[\�][H]X�[��]��\��H�[\�][K\�[H]�X�[������8�%�S�]��]��\��H�[\�][KX��H����XZ�X�ݙH�[��\��H��Y�\[Yȏ�L�O��[��ۈ��	��̌K̋[Z[��Qˈ[�\�	L�P�X^H���H
-L	Y\�و�Y��\��[�K��]���]���]��\��H�[\�][H]X�[��]��\��H�[\�][K\�[H]�X�[�������8�%�S�]��]��\��H�[\�][KX��H���\��HX�ݙH�[��\��H��Y�\[Yȏ�
-�K��[����\�]HX�QˈYP�U�[ˈ�Z[���	
-̋
-L��]���]���]��\��H�[\�][H]X�[��]��\��H�[\�][K\�[H]�X�[�������8�%�S�]��]��\��H�[\�][KX��H��UH��XZ��X�ݙH�[��\��H��Y�\[Yȏ�
-���[��
-��PJN���[YH��YX�]�K��\Y�[�	
-KL��Z�[K��]���]���]��\��H�[\�][H]X�X\���]��\��H�[\�][K\�[H]�X�X\������HԕQH8�%��U�]��]��\��H�[\�][KX��H�����[���[��\��H��Y�\[\���LO��[���]�[����^]S[�\��H��][ۜ�[[YYX][K��X\�Y�\�H[�^K��]���]���]��\��H�[\�][H]X�X\���]��\��H�[\�][K\�[H]�X�X\������H8�%�PT��]��]��\��H�[\�][KX��H�����[���[��\��H��Y�\[\���
-�̏��[���[H�YY�ۙ�\�YY�Y	
-��T�\��]	
-���PH�\�\���]���]���]��\��H�[\�][H]X�X\���]��\��H�[\�][K\�[H]�X�X\�����TTH8�%��P�T�S�RS�]��]��\��H�[\�][KX��H�����[���[��\��H��Y�\[\���
-����[���^]TTH�[ˈ�\�	
-�\��][��	
-NL�[[XH�\]�[��]���]���]��\��H�[\�][H]]�\����]��\��H�[\�][K\�[H]�]�\������T�ҔH8�%�UUSӏ�]��]��\��H�[\�][KX��H��\��X�\��[��\��H��Y�\[XH��M����[����҈[�\��[�[ۈ�[����[��\���X�ݙH	M�K��]���]���]��\��H�[\�][H]]�\����]��\��H�[\�][K\�[H]�]�\�������PT�Q�T�HPQS�H8�%�TS��]��]��\��H�[\�][KX��H��K�ˋR\�[��X\�Y�\�N�U�ܝ\�ۈ�K�K���^][�\��K����[ˈ�\��[��\��H��Y�\[Yȏ��H	
-�
-P���[����]���]����]����]����KKHԑQR��KO��]��\��H�ܙYZ��]ܘ\���]��\��H��X�[ۋZ���[ۈܙYZ��8�%�\��ݙ\�^O�]���]��\��H��X�[ۋ\����^I��[��\�ۛY[��\]Z\�\�ܙYZ�X]�\�H��][ۈX[�Y�[Y[�Xܛ���[�]\ˏ�]���]��\��H�ܙYZ��YܚY���]��\��H�ܙYZ�][H�]K\�[OH����]��\��H��\�[H��[OH���܎�͌MY�H����]��]��\��H��[�[YH��[O�]��]��\��H��X�Y�H��[[���RVQT�P�SӐS�]��]��\��H��Y\�ȏ��\�]��^H8�%�\�\H
-���H����8�$���K���\�X�[ۘ[ӓHۈ��XY\�ˈ[K[�]]�[��XY�ۈ���Y[�X�\ˏ�]���]���]��\��H�ܙYZ�][H�]K\�[OH��ȏ�]��\��H��\�[H��[OH���܎�٘���������]��]��\��H��[�[YH���[[XO�]��]��\��H��X�Y�H��ZY����T�HQ��]��]��\��H��Y\�ȏ�Q��\��[�[�\��H8�%�\��Y[������ؘX�K��ܝQ�[[XH[��\��\ˈ�Y�\�ۙ��[ˈ�\�\��^�HۛH�X\�^\�K��]���]���]��\��H�ܙYZ�][H�]K\�[OH����]��\��H��\�[H��[OH���܎�َ
-�M�H����]��]��\��H��[�[YH��]O�]��]��\��H��X�Y�H��ZY���UH�T�T���]��]��\��H��Y\�ȏ�]��YUH]
-L	Y\�\]Z[X��][K��\][\��\��[HX\��]X�Y\ˈ\�HX^H^\�HZ[�[][K�^]�Yۘ][����][ۜˏ�]���]���]��\��H�ܙYZ�][H�]K\�[OH����]��\��H��\�[H��[OH���܎��M���H����]��]��\��H��[�[YH���Y�O�]��]��\��H��X�Y�H��Y^��V�SQO�]��]��\��H��Y\�ȏ�U�[]�]YXܛ���S\��]ˈ\�HUH�[ۜ�
-[H	�����
-K�Z�HH�ٚ]��Y�ܙH[�H�[�X[U�ܝ\�]�[���]���]����]����]����]��\��H�\�Y���\����]��\��H��X��[���Ґ��QT��]���]��\��H��Y\�ȏ���;�#�YX�][ۘ[\���\�ۛH8�%���[�[��X[Y�X�K��[ۜ�[����H�X��[�X[�\��و��ˈ�^[ٙ��\��[YHL0��]�\�Y�H�܈[\��][ۋ��]�\��\��[ܙH[��HوX���[�\]Z]H\��YK��]���]��[OH��۝Y�[Z[N��\�K[[ۛ�Nٛ۝\�^�N�\���܎��\�KY���H��\�L����0�����]����]�����]����]����KKH8� 8� P��ST��8� 8� KO��]��\��H�\�]X�\[�[�YH�X�X[\�ȏ��]��\��H�[\��]X�]ܘ\���]��\��H��X�[ۋZ��[OH�X\��[�X���N���]�H�[��Y�[\���]���]��\��H��X�[ۋ\����[][]Y�X[][YH�YY8�%	���IH[ݙH�][��[Z[�]H�[�H��[Y\��]���]��\��H�[\�X�۝��ȏ��]��\��H�[\�]���H���]��\��H����K\��]�ۈ�YH�[\�]���K\�Ȉۘ�X��H����P[\��YY
-
-H���]����[�YH�[\�]���K[����YYX�]�O��[����]���]��\��H�[\�]���H��[OH�X\��[�[Y�����]��\��H����K\��]��YH���Y�]���K\�Ȉۘ�X��H����S��Y�X�][ۜ�
-H���]����[�YH���Y�]���K[���[OH��۝\�^�N�L\����Y�X�][ۜ�ٙ���[����]����]ۈ�\��H���\�H�ۘ�X��H��X\�[\��YY
-
-H���X\��YY؝]ۏ���[��[OH��۝Y�[Z[N��\�K[[ۛ�Nٛ۝\�^�N�L���܎��\�KY���H�YH�[\�X��[�[���[\����[����]���]��\��H�[\��[]�KY�YY�YH�]�KX[\�Y�YY���]����]����]����KKH8� 8� P���P��ԒTSӔ�8� 8� KO��]��\��H�\�]X�\[�[�YH�X�\�X��ܚ\[ۜȏ��]��[OH�Y[�Ό̜
-�X^]�Y������KKHT���S��T�KO��]��[OH��X��ܛ�[��[�X\�YܘYY[�
-L�YY��ؘJ
-
-K�L�NLK�
-K�ؘJ�M�KLL�
-�JN؛ܙ\��\��Y�ؘJ
-
-K�L�NLK��N؛ܙ\�\�Y]\ΌM��Y[�Ό�̜�X\��[�X���N�����][ێ��[]]�N�ݙ\���ΚY[����]��[OH���][ێ�X���]N���MܚY��M��Y�M��ZY��M�؛ܙ\�\�Y]\΍L	NؘX��ܛ�[���YX[YܘYY[�
-�\��K�ؘJ
-
-K�L�NLK�
-K�[��\�[�
-�	JH���]���]��[OH��۝Y�[Z[N��\�KY\�^JNٛ۝\�^�N�̜�]\�\�X�[�Ό\���܎��\�K]�]JN�X\��[�X���N����Z[HX\��]�[[X\�O�]���]��[OH��۝\�^�N�L����܎��\�K[Z\�
-N�X^]�Y���[�KZZY��K�ȏ��X�Z]�HH�[Ґ��Y\�X\��]�\ܝ8�%�YH�]\�[\��[�ܙYZ��\��ݙ\�^H8�%[]�\�Y�[�\�[���]�\�H[ܛ�[��]��ۙ��[OH���܎��\�KY���H��N�SHU���ۙψ�Y�ܙHHX\��]�[�ˏ�]���]�YH��X�\�]\�X�Y�H��[OH�\�^N�[�[�KY�^�[YۋZ][\Θ�[�\���\��X\��[�]��M�ؘX��ܛ�[���\�KZ[���N؛ܙ\��\��Y�\�K]�\�L�N؛ܙ\�\�Y]\Ό��Y[�΍�Mٛ۝Y�[Z[N��\�K[[ۛ�Nٛ۝\�^�N�L\���܎��\�KY���H����[�YH��X�\�]\�Y���[OH��Y���ZY���؛ܙ\�\�Y]\΍L	NؘX��ܛ�[���\�KY���H����[����[�YH��X�\�]\�]^�����X��ܚX�Y��[����]����]����KKH�P��ԒTSӈ�T�KO��]�YH��X�Y�ܛKX�\���[OH��X��ܛ�[���\�KX�\�
-N؛ܙ\��\��Y�\�K]�\�JN؛ܙ\�\�Y]\ΌL��ݙ\���ΚY[��X\��[�X���N�����]��[OH�Y[�Ό��؛ܙ\�X���N�\��Y�\�K]�\�JH���]��[OH��۝Y�[Z[N��\�KY\�^JNٛ۝\�^�N���]\�\�X�[�Ό�\���܎��\�K]�]JN�X\��[�X���N����X��ܚX�H�Z[H�[[X\�O�]���]��[OH��۝\�^�N�L����܎��\�KY���H��[�\�[XZ[Y�\�����H[�\�X���[��[�H\�Y�[��X��ܚX�H[�][YK��]����]���]��[OH�Y[�Ό������KKH�]	��[��YYKO��]��[OH�X\��[�X���N�����]��[OH��۝Y�[Z[N��\�K[[ۛ�Nٛ۝\�^�N�\�]\�\�X�[�Ό��^]�[�ٛܛN�\\��\�N���܎��\�KY���N�X\��[�X���N�L����]	��[��YY]�\�H[ܛ�[���]���]��[OH�\�^N�ܚY�ܚY][\]KX��[[�ΌY��Y����\����]��[OH��X��ܛ�[���\�KZ[���N؛ܙ\��\��Y�\�K]�\�JN؛ܙ\�\�Y]\Ύ�Y[�ΌLL��\�^N��^�[YۋZ][\Ι�^\�\���\�L����[��[OH��۝\�^�N�M���'����[���]���]��[OH��۝\�^�N�L�ٛ۝]�ZY��L���܎��\�K\ۛ��N�X\��[�X���N����XXܛ�ۘ\���]���]��[OH��۝\�^�N�L���܎��\�KY���H���KTTK�K����H]�[��]����]����]���]��[OH��X��ܛ�[���\�KZ[���N؛ܙ\��\��Y�\�K]�\�JN؛ܙ\�\�Y]\Ύ�Y[�ΌLL��\�^N��^�[YۋZ][\Ι�^\�\���\�L����[��[OH��۝\�^�N�M���'����[���]���]��[OH��۝\�^�N�L�ٛ۝]�ZY��L���܎��\�K\ۛ��N�X\��[�X���N�������]\��]���]��[OH��۝\�^�N�L���܎��\�KY���H��Y�\��۝�X�[ۈ�Y\�وH^O�]����]����]���]��[OH��X��ܛ�[���\�KZ[���N؛ܙ\��\��Y�\�K]�\�JN؛ܙ\�\�Y]\Ύ�Y[�ΌLL��\�^N��^�[YۋZ][\Ι�^\�\���\�L����[��[OH��۝\�^�N�M�����O��[���]���]��[OH��۝\�^�N�L�ٛ۝]�ZY��L���܎��\�K\ۛ��N�X\��[�X���N�����^H[\�]�[��]���]��[OH��۝\�^�N�L���܎��\�KY���H���[Z[��Y��\��X�\���]��]����]����]���]��[OH��X��ܛ�[���\�KZ[���N؛ܙ\��\��Y�\�K]�\�JN؛ܙ\�\�Y]\Ύ�Y[�ΌLL��\�^N��^�[YۋZ][\Ι�^\�\���\�L����[��[OH��۝\�^�N�M���'�(���[���]���]��[OH��۝\�^�N�L�ٛ۝]�ZY��L���܎��\�K\ۛ��N�X\��[�X���N����ܙYZ���\��]�[�]���]��[OH��۝\�^�N�L���܎��\�KY���H��[K��[[XK�]KՙY�H[��\�ۛY[��]����]����]����]����]����KKH[]�\�H[YHKO��]��[OH��X��ܛ�[���\�KZ[���N؛ܙ\��\��Y�ؘJ�M�KLL�MJN؛ܙ\�\�Y]\Ύ�Y[�ΌL�M�X\��[�X���N���\�^N��^�[YۋZ][\Θ�[�\���\�L����]��[OH��۝\�^�N�����'�f�]���]���]��[OH��۝\�^�N�L�ٛ۝]�ZY��L���܎��\�K\ۛ��H��[]�\�Y]N�SHX\�\��[YO�]���]��[OH��۝\�^�N�L\���܎��\�KY���H��]�\�H�Y[��^H
-[۸�$ќ�JK�Z[��Y�ܙHX\��]�[��]����]���]��[OH�X\��[�[Y��]]�ٛ۝Y�[Z[N��\�K[[ۛ�Nٛ۝\�^�N�L\���܎��\�KY���N�^X[Yێ��Y���N�SHU����[��[OH���܎��\�KY���H��[۸�$ќ�O��[���]����]����KKH�X��ܚX�H���HKO��]�YH��X�XX�[ۋX\�XH����]ۈYH��X��ܚX�KX���ۘ�X��H�[�T�X��ܚX�U���J
-H��[OH��Y�L	NؘX��ܛ�[��[�X\�YܘYY[�
-LY��\�KY��
-K�\�KY���JN���܎��\�KZ[��N؛ܙ\���ۙN؛ܙ\�\�Y]\Ύ�Y[�ΌMٛ۝Y�[Z[N��\�KY\�^JNٛ۝\�^�N���]\�\�X�[�Ό���\��܎��[�\���[��][ێ��X�]H��ȏ���P��ԒP�H8�%��QB�؝]ۏ��]��[OH�^X[Yێ��[�\��X\��[�]��Lٛ۝\�^�N�L\���܎��\�KY���H��������[��X��ܚX�H[�H[YH���H\�Y�K��]����]�����]����]����KKH�P��ԒP�Q�UH
-Y[��HY�][
-HKO��]�YH��X�XX�]�KX�\���[OH�\�^N��ۙNؘX��ܛ�[��[�X\�YܘYY[�
-L�YY��ؘJ
-L��LKML��
-�K�ؘJ
-L��LKML���JN؛ܙ\��\��Y�ؘJ
-L��LKML���JN؛ܙ\�\�Y]\ΌL��Y[�Ό��X\��[�X���N���^X[Yێ��[�\����]��[OH��۝\�^�N�͜�X\��[�X���N�L���!O�]���]��[OH��۝Y�[Z[N��\�KY\�^JNٛ۝\�^�N���]\�\�X�[�Ό\���܎��\�KYܙY[�N�X\��[�X���N����[�IܙH�X��ܚX�Y�]���]��[OH��۝\�^�N�L����܎��\�K[Z\�
-N�X\��[�X���N�M���Z[H�[[X\�Y\��[�H�[����ۙ�YH��X�Y[XZ[Y\�^H��[OH���܎��\�K\ۛ��H�����ۙψ]N�SHU[ۙ^H��Y���Y^K��]���]��[OH�\�^N��^��\�Lڝ\�Y�KX�۝[���[�\�ٛ^]ܘ\�ܘ\����]ۈۘ�X��H�[�T�X��ܚX�U���J
-H��[OH��X��ܛ�[���\�K\�Y�N؛ܙ\��\��Y�ؘJ�LL�LL���N���܎��\�K\�Y
-N؛ܙ\�\�Y]\΍��Y[�ΎNٛ۝Y�[Z[N��\�K[[ۛ�Nٛ۝\�^�N�L\��\��܎��[�\���[��X��ܚX�O؝]ۏ���]ۈۘ�X��H��[��[\Q[XZ[
-
-H��[OH��X��ܛ�[���\�KY���N؛ܙ\��\��Y�ؘJ�M�KLL��N���܎��\�KY���N؛ܙ\�\�Y]\΍��Y[�ΎNٛ۝Y�[Z[N��\�K[[ۛ�Nٛ۝\�^�N�L\��\��܎��[�\����]�Y]��[\H[XZ[؝]ۏ���]����]����KKH��U�Ԓ��KO��]��[OH��X��ܛ�[���\�KX�\�
-N؛ܙ\��\��Y�\�K]�\�JN؛ܙ\�\�Y]\ΌL��Y[�Ό�����]��[OH��۝Y�[Z[N��\�KY\�^JNٛ۝\�^�N�N�]\�\�X�[�Ό�\���܎��\�K]�]JN�X\��[�X���N�M����]�ܚ���]���]��[OH�\�^N��^ٛ^Y\�X�[ێ���[[���\�L����]��[OH�\�^N��^��\�M�[YۋZ][\Ι�^\�\����]��[OH��۝Y�[Z[N��\�K[[ۛ�Nٛ۝\�^�N�L\���܎��\�KY��
-NؘX��ܛ�[���\�KY���N؛ܙ\��\��Y�ؘJ�M�KLL��N؛ܙ\�\�Y]\΍L	N��Y���ZY����\�^N��^�[YۋZ][\Θ�[�\�ڝ\�Y�KX�۝[���[�\�ٛ^\��[�Ό��O�]���]��[OH��۝\�^�N�L����܎��\�K[Z\�
-H��[�H�X��ܚX�Hۈ\�Y�H8�%[�\�[XZ[\��]�Y�H]�ܛK��]����]���]��[OH�\�^N��^��\�M�[YۋZ][\Ι�^\�\����]��[OH��۝Y�[Z[N��\�K[[ۛ�Nٛ۝\�^�N�L\���܎��\�KY��
-NؘX��ܛ�[���\�KY���N؛ܙ\��\��Y�ؘJ�M�KLL��N؛ܙ\�\�Y]\΍L	N��Y���ZY����\�^N��^�[YۋZ][\Θ�[�\�ڝ\�Y�KX�۝[���[�\�ٛ^\��[�Ό����]���]��[OH��۝\�^�N�L����܎��\�K[Z\�
-H��HYZ[��ۙ�Y�\�\���ۙ��[OH���܎��\�K\ۛ��H��[XZ[�����ۙψ
-��YH�\��X�JH8�%���\��\��YYY[XZ[��[�\�X�H���HH�����\���]����]���]��[OH�\�^N��^��\�M�[YۋZ][\Ι�^\�\����]��[OH��۝Y�[Z[N��\�K[[ۛ�Nٛ۝\�^�N�L\���܎��\�KY��
-NؘX��ܛ�[���\�KY���N؛ܙ\��\��Y�ؘJ�M�KLL��N؛ܙ\�\�Y]\΍L	N��Y���ZY����\�^N��^�[YۋZ][\Θ�[�\�ڝ\�Y�KX�۝[���[�\�ٛ^\��[�Ό����]���]��[OH��۝\�^�N�L����܎��\�K[Z\�
-H����ۙ��[OH���܎��\�K\ۛ��H��ܛۋZ�؋�ܙ����ۙψ
-��YJH[���H\]�\�H^H]N�SHU�X�]]�X]X�[H�Y��\��H[XZ[�[��[�X��ܚX�\�ˏ�]����]���]��[OH�\�^N��^��\�M�[YۋZ][\Ι�^\�\����]��[OH��۝Y�[Z[N��\�K[[ۛ�Nٛ۝\�^�N�L\���܎��\�KY��
-NؘX��ܛ�[���\�KY���N؛ܙ\��\��Y�ؘJ�M�KLL��N؛ܙ\�\�Y]\΍L	N��Y���ZY����\�^N��^�[YۋZ][\Θ�[�\�ڝ\�Y�KX�۝[���[�\�ٛ^\��[�Ό���]���]��[OH��۝\�^�N�L����܎��\�K[Z\�
-H��]�\�H�X��ܚX�\��X�Z]�\�H�X�SZ[H�[[X\�H[XZ[�Y�ܙHX\��]�[��8�$��]����]����]����]�����]����]����KKH8� 8� P������T�H8� 8� KO��]��\��H�\�]X�\[�[�YH�X�Y����\�H���]��[OH�Y[�Ό̜
-�X^]�Y����]��\��H��X�[ۋZ��[OH�X\��[�X���N����Y[������\�O�]���]��\��H��X�[ۋ\����ܙHY�[�][ۜ����HHҐ��Y\���[Y]�ܚ��]���]�YH�����\�KX�۝[����]����]����]�����]����]����KKH8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d��U�T�ԒT��d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�dKO���ܚ\����8� 8� UH�ԑH
-��[�ܘY�JH8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� ��ۜ��ԑW��VHH	�ژ���Y\��]I���[��[ۈ�]�ܙJ
-H�H�ۜ��]�H��[�ܘY�K��]][J�ԑW��VJNY�
-�]�H�ۜ�\��YH��Ӌ�\��J�]�N��[��\�HY[X�\��\��^H[�^\�^\���]Y�][Y�
-\\��Y�Y[X�\��\��Y�Y[X�\�˛[��OOH
-H�]\��[�]�ܙJ
-NB��]\��\��YB�H�]�
-JH�B��]\��[�]�ܙJ
-NB���[��[ۈ�]�T�ܙJ]JH��[�ܘY�K��]][J�ԑW��VK��Ӌ���[��Y�J]JJNB���[��[ۈ[�]�ܙJ
-H���X��Y��ܙH[�XYH\��[YY[X�\��8�%Y���Y\��H�]\�[�ݙ\�ܚ]B��H�ۜ�^\�[��H��Ӌ�\��J��[�ܘY�K��]][J�ԑW��VJH	۝[	�NY�
-^\�[��	��^\�[�˛Y[X�\��	��^\�[�˛Y[X�\�˛[���
-H���ܙH^\���]X^H�HZ\��[���]��Y[�8�%Y\��HY�][�[��Y�
-Y^\�[�˜�X��ܚ\[ۜ�H^\�[�˜�X��ܚ\[ۜ�H�NY�
-Y^\�[�˙[XZ[��H^\�[�˙[XZ[��H��\��X�RY�	��[\]RY�	��X�X��^N�	��NY�
-Y^\�[�˜�\X�\�JH^\�[�˜�\X�\�HH�\��	��[�ے�^N�	��NY�
-Y^\�[�˘ܛ۔�Xܙ]
-H^\�[�˘ܛ۔�Xܙ]H	��Y�
-Y^\�[�˛X\��]]JH^\�[�˛X\��]]HH�N��[�ܘY�K��]][J�ԑW��VK��Ӌ���[��Y�J^\�[��JN�]\��^\�[��B�H�]�
-JH�B��ۜ�]HHY[X�\�Έ[XZ[�	�YZ[�ژ��Y\˘��I����N�	�Ґ�PQRS�L�������N�	�YZ[����]\Έ	�X�]�I����[�Y�	�\�L����K�[XZ[�	��Y\�ژ��Y\˘��I����N�	�Ґ�SQSP�T�LI����N�	�Y[X�\����]\Έ	�X�]�I����[�Y�	�\�L����B�K��X��ܚ\[ۜΈ�K�[XZ[�Έ��\��X�RY�	��[\]RY�	��X�X��^N�	��K��\X�\�N��\��	��[�ے�^N�	��K�ܛ۔�Xܙ]�	���X\��]]N��K��\��[ێ��[�N�]�T�ܙJ]JN�]\��]NB����8� 8� �T��Sӈ8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� ��[��[ۈ�]�\��[ۊ
-H�ۜ��H�]�ܙJ
-N�]\��˜�\��[ێB���[��[ۈ�]�\��[ۊY[X�\�H�ۜ��H�]�ܙJ
-N˜�\��[ۈH�[XZ[�Y[X�\��[XZ[��N�Y[X�\����K��N�Y[X�\����HN�]�T�ܙJ�NB���[��[ۈ�X\��\��[ۊ
-H�ۜ��H�]�ܙJ
-N˜�\��[ۈH�[�]�T�ܙJ�NB����8� 8� UU8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� �]��[�][\�H��[��[ۈ\��\�]�ܙJ
-HY�
-�ۙ�\�J	�\��[�X\�[��[\]H[��[�Y����YY��JH��[�ܘY�K��[[ݙR][J	�ژ���Y\��]I�N�[��˛��][ۋ��[�Y
-
-NB�B���[��[ۈ][\��[�
-H�ۜ�[XZ[H��[Y[���][[Y[��RY
-	���[�Y[XZ[	�K��[YK��[J
-K����\��\�J
-N�ۜ���HH��[Y[���][[Y[��RY
-	���[�X��I�K��[YK��[J
-N�ۜ�\��H��[Y[���][[Y[��RY
-	���[�Y\��܉�N�ۜ�[XZ[[�]H��[Y[���][[Y[��RY
-	���[�Y[XZ[	�N�ۜ���R[�]H��[Y[���][[Y[��RY
-	���[�X��I�N�[XZ[[�]��\��\���[[ݙJ	�\��܉�N��R[�]��\��\���[[ݙJ	�\��܉�N\����\��\���[[ݙJ	�����N�Y�
-Y[XZ[X��JHY�
-Y[XZ[
-H[XZ[[�]��\��\��Y
-	�\��܉�NY�
-X��JH��R[�]��\��\��Y
-	�\��܉�N\���^�۝[�H	�X\�H[�\���[�\�[XZ[[�[��]H��K��\����\��\��Y
-	�����N�]\��B���ۜ��ܙHH�]�ܙJ
-N���X�YΈY��ܙH\���Y[X�\���KZ[�]�Y�
-\�ܙK�Y[X�\���ܙK�Y[X�\�˛[��OOH
-H�ۜ���\�H[�]�ܙJ
-N�ܙK�Y[X�\��H��\��Y[X�\���]�T�ܙJ�ܙJNB�����\�KZ[��[��]]�K�]\�X�K]�[[YYX]�ۈ��[XZ[[���B��ۜ�Y[X�\�H�ܙK�Y[X�\�˙�[�
-HO��K�[XZ[����\��\�J
-K��[J
-HOOH[XZ[����\��\�J
-K��[J
-H	���K���K��[J
-K��\\��\�J
-HOOH��K��[J
-K��\\��\�J
-H	���K��]\�OOH	�X�]�I
-N�Y�
-[Y[X�\�H[XZ[[�]��\��\��Y
-	�\��܉�N��R[�]��\��\��Y
-	�\��܉�N�ۜ��[Y[XZ[�H�ܙK�Y[X�\�˙�[\�HO�K��]\�OOH	�X�]�I�K�X\
-HO�K�[XZ[
-N�ۜ�[XZ[^\��H�[Y[XZ[˜��YJHO�K����\��\�J
-HOOH[XZ[����\��\�J
-K��[J
-JNY�
-Y[XZ[^\��	���[Y[XZ[˛[���
-H\���^�۝[�H	�[XZ[����[��\�N�YZ[�ژ��Y\˘��H܈�Y\�ژ��Y\˘��I�H[�H\���^�۝[�H	�[��ܜ�X�[��]H��K��N�Ґ�PQRS�L���
-YZ[�H܈Ґ�SQSP�T�LH
-Y[X�\�I�B�\����\��\��Y
-	�����N��[�][\���Y�
-��[�][\��HJH�ۜ�[�H��[Y[���][[Y[��RY
-	���[�\�\�]Z[�	�NY�
-[�
-H[���[K�\�^HH	؛����B��]\��B����[�][\�H�]�\��[ۊY[X�\�N[�\�\
-Y[X�\�NB���[��[ۈ[�\�\
-Y[X�\�H��\]HRH�]\�\�[���ۜ�[�]X[�HY[X�\��[XZ[��\�]
-
-K��\\��\�J
-N��[Y[���][[Y[��RY
-	�\�\�X]�]\��K�^�۝[�H[�]X[���[Y[���][[Y[��RY
-	�\�\�[�[YKY\�^I�K�^�۝[�HY[X�\��[XZ[��]
-	�	�V�N�Y�
-Y[X�\����HOOH	�YZ[��H��[Y[���][[Y[��RY
-	�YZ[�[�]�X���K��[K�\�^HH	؛����B�����Y�J	�\���\�	�N�\�[\��YY
-
-N�[�\�����\�J
-N[�]�X��ܚ\[ەRJ
-N[�]\���Y�X�][ۜ�
-N�YX\��]]J
-NB���[��[ۈ���]
-
-H�X\��\��[ۊ
-N��[\��YY
-
-N���Y�J	��]I�NB����8� 8� Q�T�8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� ��[��[ۈ���Y�J�[YJH��[Y[��]Y\�T�[X�ܐ[
-	˜Y�I�K��ܑXX�
-O���\��\���[[ݙJ	�X�]�I�JN��[Y[���][[Y[��RY
-	�Y�KI�
-��[YJK��\��\��Y
-	�X�]�I�NB���[��[ۈ���YZ[���[�
-H�ۜ�[XZ[H��[Y[���][[Y[��RY
-	���[�Y[XZ[	�N�ۜ���HH��[Y[���][[Y[��RY
-	���[�X��I�N[XZ[��[YHH	�YZ[�ژ��Y\˘��I���K�X�Z�\�H	�Ґ�PQRS�L����[XZ[����\�
-N����\�
-	�YZ[�ܙY[�X[��KY�[Y8�%[�\�[�\���H��۝[�YI�NB���[��[ۈ��ԙ\]Y\��ܛJ
-H����\�
-	ԙ\]Y\��[��YZ[�\��]܋�[�H�[�X�Z]�H[�\�[��]H��H�XH[XZ[��NB����8� 8� QRS�8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� ��[��[ۈ���YZ[�
-H�ۜ��\��[ۈH�]�\��[ۊ
-NY�
-\�\��[ۈ�\��[ۋ���HOOH	�YZ[��H����\�
-	�YZ[�X��\���\]Z\�Y��N�]\��B��[�\�YZ[�X�J
-N���[]H�\X�\�H�Y[�ۜ��ܙHH�]�ܙJ
-N�ۜ�؈H�ܙK��\X�\�H�N�ۜ�ؕ\�H��[Y[���][[Y[��RY
-	�؋]\�	�N�ۜ�ؒ�^HH��[Y[���][[Y[��RY
-	�؋Z�^I�N�ۜ�ؐܛۈH��[Y[���][[Y[��RY
-	�؋Xܛۋ\�Xܙ]	�NY�
-ؕ\�
-Hؕ\���[YHH؋�\�	��Y�
-ؒ�^JHؒ�^K��[YHH؋�[�ے�^H	��Y�
-ؐܛۊHؐܛۋ��[YHH�ܙK�ܛ۔�Xܙ]	��\]Pܛە\�\�^J
-N���Y�J	�YZ[��NB���[��[ۈ���\���\�
-
-H���Y�J	�\���\�	�NB��\�[���[��[ۈ�[�\�YZ[�X�J
-H��Y��\X�\�H\��ۙ�Y�\�Y�[����\��X��ܚX�\�]B�Y�
-�TP�T�W�T�	���TP�T�W��VJH]�Z]�[���X��ܚX�\�ќ��T�\X�\�J
-K��]�
-
-
-HO��JNB��ۜ��ܙHH�]�ܙJ
-N�ۜ�Y[X�\��H�ܙK�Y[X�\�����[Y[���][[Y[��RY
-	��][Y[X�\���K�^�۝[�HY[X�\�˛[����[Y[���][[Y[��RY
-	��]XX�]�I�K�^�۝[�HY[X�\�˙�[\�HO�K��]\�OOH	�X�]�I�K�[����[Y[���][[Y[��RY
-	��]\[�[���K�^�۝[�HY[X�\�˙�[\�HO�K��]\�OOH	�[�[���K�[����[Y[���][[Y[��RY
-	��]\�]���Y	�K�^�۝[�HY[X�\�˙�[\�HO�K��]\�OOH	ܙ]���Y	�K�[����ۜ��X��H�ܙK��X��ܚ\[ۜ��N��[Y[���][[Y[��RY
-	��]\�X��ܚX�Y	�K�^�۝[�H�X�˛[������[�\��X��ܚX�\��X�B��ۜ��X����HH��[Y[���][[Y[��RY
-	��X��ܚX�\��]��I�NY�
-�X����JH�X����K�[��\�SH�X�˛[��OOH��	������[�H�H��[OH�^X[Yێ��[�\����܎��\�KY���N�Y[�Ό������X��ܚX�\��Y]�������X�˛X\
-�O������[OH���܎��\�K\ۛ��H���˙[XZ[O�����˜�[��_O�����˛\��[�	��[��[OH���܎��\�KY���H���]�\���[���O�����[��\��H��Y�K\[[XX�]�H���˙��\]Y[��H	�Z[HPSHU	�O��[�������[��\��H��Y�K\[[XX�]�H��X�]�O��[���������
-K���[�	��NB�����Y[XZ[���ۙ�Y��Y[�ۜ�Z��H�ܙK�[XZ[���N�ۜ��HH��[Y[���][[Y[��RY
-	�Z��\�\��X�KZY	�N�ۜ�HH��[Y[���][[Y[��RY
-	�Z��][\]KZY	�N�ۜ��H��[Y[���][[Y[��RY
-	�Z��\X�X�Z�^I�NY�
-�JH�K��[YHHZ�˜�\��X�RY	��Y�
-JHK��[YHHZ�˝[\]RY	��Y�
-�H˝�[YHHZ�˜X�X��^H	����ۜ���HH��[Y[���][[Y[��RY
-	�Y[X�\��]��I�N��K�[��\�SHY[X�\�˛X\
-
-KJHO������[OH���܎��\�K\ۛ��H���K�[XZ[O�����[��[OH��۝Y�[Z[N��\�K[[ۛ�Nٛ۝\�^�N�L\���܎��\�KY���H���K���_O��[�������[��\��H��Y�K\[	�K���HOOH	�YZ[���	�[XYZ[���	�[XX�]�I�H���K���_O��[�������[��\��H��Y�K\[	�K��]\�OOH	�X�]�I��	�[XX�]�I��K��]\�OOH	�[�[����	�[\[�[����	�[\�]���Y	�H���K��]\�O��[�������K���[�YO����[OH�^X[Yێ��[�\�����X�˜��YJ�O�˙[XZ[OOHK�[XZ[
-H�	��[��[OH���܎��\�K]X[
-Nٛ۝\�^�N�M���$���[����	��[��[OH���܎��\�KY���H���%��[���O�����	�K��]\�OOH	�X�]�I��]ۈ�\��H���\�H[��\��ۘ�X��H��]���PX��\��	�_JH���]���O؝]ۏ���K��]\�OOH	ܙ]���Y	��]ۈ�\��H���\�H�ۘ�X��H��\�ܙPX��\��	�_JH���\�ܙO؝]ۏ����]ۈ�\��H���\�H���ۘ�X��H�X�]�]PX��\��	�_JH��X�]�]O؝]ۏ��B��������
-K���[�	��NB���[��[ۈ�[�\�]R[��]J
-H�ۜ�[XZ[H��[Y[���][[Y[��RY
-	�[��]KY[XZ[	�K��[YK��[J
-N�ۜ���HH��[Y[���][[Y[��RY
-	�[��]K\��I�K��[YN�Y�
-Y[XZ[
-H����\�
-	�X\�H[�\�[�[XZ[Y�\���\����N�]\��B���ۜ���HH	�Ґ�I�
-���K��\\��\�J
-K��X�J�H
-�	�I�
-�X]��[��J
-K����[��͊K��X����
-�K��\\��\�J
-H
-�	�I�
-�]K����
-K����[��͊K��\\��\�J
-K��X�JM
-N��ۜ��ܙHH�]�ܙJ
-N�ۜ�^\�[��H�ܙK�Y[X�\�˙�[�
-HO�K�[XZ[����\��\�J
-HOOH[XZ[����\��\�J
-JNY�
-^\�[��H����\�
-	�\�[XZ[[�XYH\�[�[��]K��N�]\��B���ܙK�Y[X�\�˜\�
-[XZ[�[XZ[���N���K���N���K��]\Έ	�[�[������[�Y�	�[�[��JN�]�T�ܙJ�ܙJN��ۜ��]H��[Y[���][[Y[��RY
-	��[�[�]]	�N�]�[��\�SH�[��[OH���܎��\�KY���Nٛ۝Y�[Z[N��\�K[[ۛ�H�����_O��[���]ۈ�\��H���KX���YH���KZ[��]KX���ۘ�X��H���Q�[�\�]Y��J	����_I�H�]OH���H����؝]ۏ���[�\�YZ[�X�J
-N����\�
-	�[��]H�[�\�]Y�܈	�
-�[XZ[
-NB���[��[ۈ��Q�[�\�]Y��J��JH��U��\��\�
-��JN����\�
-	�[��]H��H��YY��\��\�I�NB���[��[ۈ�]���PX��\��[�^
-H�ۜ��ܙHH�]�ܙJ
-N�ܙK�Y[X�\���[�^K��]\�H	ܙ]���Y	��]�T�ܙJ�ܙJN�[�\�YZ[�X�J
-N����\�
-	�X��\���]���Y��NB���[��[ۈ�\�ܙPX��\��[�^
-H�ۜ��ܙHH�]�ܙJ
-N�ܙK�Y[X�\���[�^K��]\�H	�X�]�I��]�T�ܙJ�ܙJN�[�\�YZ[�X�J
-N����\�
-	�X��\���\�ܙY��NB���[��[ۈX�]�]PX��\��[�^
-H�ۜ��ܙHH�]�ܙJ
-N�ܙK�Y[X�\���[�^K��]\�H	�X�]�I��ܙK�Y[X�\���[�^K���[�YH�]�]J
-K����[Q]T��[��	�[�UT���[۝���ܝ	�^N�۝[Y\�X��YX\��۝[Y\�X��JN�]�T�ܙJ�ܙJN�[�\�YZ[�X�J
-N����\�
-	�Y[X�\�X�]�]Y��NB����8� 8� P��8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� ��[��[ۈ��]�X��[YK[
-H��[Y[��]Y\�T�[X�ܐ[
-	˛�]�]X��K��ܑXX�
-O���\��\���[[ݙJ	�X�]�I�JN��[Y[��]Y\�T�[X�ܐ[
-	˙\�]X�\[�[	�K��ܑXX�
-O���\��\���[[ݙJ	�X�]�I�JN[��\��\��Y
-	�X�]�I�N��[Y[���][[Y[��RY
-	�X�I�
-��[YJK��\��\��Y
-	�X�]�I�NB����8� 8� ST��QQ8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� �][\�[�\��[H�[][\�ԝ[��[��H�[�N][\���[��[H��ۜ�ST��STUT�H��[N�	��HԕQI�\N�	ЕS	�\�Έ	М�XZ�X�ݙH	L
-Hۈ�[Z[��[�N�Q��\��YHX�]�K���[H[��K�T���[ˈ��]	LˍL����܎�	�ܙY[��K���[N�	�Ԑ�	�\N�	ЕS	�\�Έ	М�XZ�X�ݙH	MM�
-
-�IH���H�[�N��]\�۝[�X][ۈ�ۙ�\�YY�Y�X^H	MMPˈ��X��Y\��Z[[��������܎�	�ܙY[��K���[N�	���\N�	ЕS	�\�Έ	М�XZ�X�ݙH	L�Hۈ����H\��[Z[��Q��]\�ܛZ[�ˈ[�\�	L�P�X^H���H
-L	Y\�و�Y��\��[�K����܎�	�ܙY[��K���[N�	Е��\N�	ЕS	�\�Έ	��\��HX�ݙH	
-�K��\�]HX�Q�Z�[K�Y�^�H�P�U�[ˈ�Z[���	
-̋
-L����܎�	�ܙY[��K���[N�	���UI�\N�	ЕS	�\�Έ	М�XZ��X�ݙH	
-�
-��PJN���[YH��YX�]�]Y��\Y�[�[��	
-KL��Z�[K���[HUH��[ˉ���܎�	�ܙY[��K���[N�	��HԕQI�\N�	���U	�\�Έ	����[��	LHۈ�[Z[����N�]�[���X�\�[���VUS[�\��H��][ۜ�[[YYX][K����܎�	ܙY	�K���[N�	��I�\N�	БPT��\�Έ	����[��	
-�̈ۈ�[Z[����N�[H�YY�ۙ�\�YY�Y	
-��T]ˈ\��]	
-���PH�\�\�����܎�	ܙY	�K���[N�	�TTI�\N�	���P�T�S�RS	�\�Έ	����[��	
-���^][TTH�[ˈ�\[���^H	
-�\��][��	
-NL�[[XH�\]�[����܎�	ܙY	�K���[N�	�T�ҔI�\N�	��UUSӉ�\�Έ	�\��X�\�	M����҈[�\��[�[ۈ�[����[���ܝT�ҔH�Y��\�X�]�K�\���X�ݙH	M�K����܎�	�[X�\��K���[N�	�T��	�\N�	ЕS	�\�Έ	М�XZ�X�ݙH	L�Hۈ�[Z[��[�Y[�[H�۝[�X][ۋ�Y�X^H	L�ˈ�Z[���[��Y^H��T����܎�	�ܙY[��K���[N�	��PT�Q�T�HPQS�I�\N�	ѓTS��\�Έ	�K�ˋR\�[��X\�Y�\�HXY[�N�[��[�U�ܝ\�ۈ�K�K���^][�\��K����[ˈ�\��H	
-�
-Pˉ���܎�	�[X�\��K���[N�	�UT��T�	�\N�	ЕS	�\�Έ	�\��	K�ML�\ܝ��H�KY[��H�ۙH�ۙ�\�YY��^H\�8�%��]\ۈM[H�\�����܎�	�ܙY[��K�N�][\�[�^H��[��[ۈ�\�[\��YY
-
-HY�
-[\�ԝ[��[��H�]\��[\�ԝ[��[��H�YN��[Y[���][[Y[��RY
-	�[\�]���K\���K��\��\��Y
-	�ۉ�N��[Y[���][[Y[��RY
-	�[\�]���K[�	�K�^�۝[�H	љYYX�]�I��][Y[�]
-�\�P[\�L�
-N[\�[�\��[H�][�\��[
-�\�P[\�
-NB���[��[ۈ��[\��YY
-
-H[\�ԝ[��[��H�[�N�X\�[�\��[
-[\�[�\��[
-N[\�[�\��[H�[B���[��[ۈ���P[\��YY
-
-HY�
-[\�ԝ[��[��H��[\��YY
-
-N��[Y[���][[Y[��RY
-	�[\�]���K\���K��\��\���[[ݙJ	�ۉ�N��[Y[���][[Y[��RY
-	�[\�]���K[�	�K�^�۝[�H	љYY]\�Y	�H[�H�\�[\��YY
-
-NB�B���[��[ۈ�X\�[\��YY
-
-H��[Y[���][[Y[��RY
-	�]�KX[\�Y�YY	�K�[��\�SH	��[\���[��[H��[Y[���][[Y[��RY
-	�[\�X��[�[�	�K�^�۝[�H	�[\���B���[��[ۈ�\�P[\�
-
-HY�
-X[\�ԝ[��[��H�]\���ۜ�HST��STUT��[\�[�^	HST��STUT˛[��N[\�[�^
-��[\���[��[
-����ۜ����H�]�]J
-N�ۜ�[YHH��˙�]�\��
-K����[��
-K�Y�\�
-�	�	�H
-�	Ή�
-���˙�]Z[�]\�
-K����[��
-K�Y�\�
-�	�	�H
-�	Ή�
-���˙�]�X�ۙ�
-K����[��
-K�Y�\�
-�	�	�N��ۜ����܈H���܈OOH	�ܙY[���	ݘ\�KYܙY[�I�����܈OOH	ܙY	��	ݘ\�K\�Y
-I��	ݘ\�KX[X�\�I��ۜ��[P��܈H���܈OOH	�ܙY[���	ݘ\�KYܙY[�I�����܈OOH	ܙY	��	ݘ\�K\�Y
-I��	ݘ\�KX[X�\�I��ۜ��ܙ\���܈H���܎��ۜ�][HH��[Y[��ܙX]Q[[Y[�
-	�]��N][K��\�Ә[YHH	�]�KX[\�Z][I�][K��[K��ܙ\�Y���܈H�ܙ\���܎][K�[��\�SH�]��\��H�ZKY���[OH��X��ܛ�[������ܟH���]���]��\��H�ZKX��H���]��\��H�ZK\�[H��[OH���܎���[P��ܟH�����[_H8�%	��\_O�]���]��\��H�ZK[\�ȏ���\��O�]����]���]��\��H�ZK][YH���[Y_HU����[��[OH���܎��\�KY���H���[Z[��Y��\���[���]�����ۜ��YYH��[Y[���][[Y[��RY
-	�]�KX[\�Y�YY	�N�YY�[��\��Y�ܙJ][K�YY��\���[
-N�Y�
-�YY��[�[��[����
-H�YY��[[ݙP�[
-�YY�\��[
-N���[Y[���][[Y[��RY
-	�[\�X��[�[�	�K�^�۝[�H[\���[��[
-�	�[\�	�
-�
-[\���[��[OOHH�	����	��N������[�X\\��\�
-������\���Y�X�][ۂ����\�[\�
-��[K�\K�\�����܊NB����8� 8� ����T�H8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� ��ۜ�����T�W�T�T�H�\�N�	�[H
-3�
-I�Y��	Ԙ]Hو�[��HوH�[ۈ�X�H�]�\�X��H[�\�Z[��\��]�X�K�[��\�Y\�H��H�܈H�ؘX�[]Hو^\�[��UK�[H�]]�[]HZ]Y�]\�\�X�[ۘ[�\�ˉ�K��\�N�	��[[XH
-3��I�Y��	Ԙ]Hو�[��H[�[K�\��\�[�UH�[ۜ��X\�^\�][ۋ�Y��[[XH[��\�ۛY[��Z�HQ���XZ��]��\]Z\�H[[YYX]HY�[��܈��[[�ˉ�K��\�N�	�]H
-3�
-I�Y��	�[YHX�^H8�%H�]H]�X�[��[ۈ��\��[YH\�^\�][ۈ\��X�\ˈ�Y�]]�H�܈ۙ���][ۜ���]]�H�܈�ܝ�H��][ۈ�Yۘ][��]H
-L	Y\�\�[�H]H�\��K��\�N�	ՙY�H
-�I�Y��	��[��]]�]H�HIH�[��H[�[\YY��][]K�ܚ]X�[\��[�X\��[��ˈU�ܝ\����\���[�U��۝�X���\�HY�\�H�][\�؛]\�][���[ۈ�[Z][\ˉ�K��\�N�	ѕ���Y��	ѝ[[YY��[YH�۝[�Z]H8�%�[�]X\�\�K[۝K�YZ�K[�Z[H�[�\�[[Yۈ[�H�[YH\�X�[ۋ��Y[��[����[YۛY[�X^[Z^�\��ؘX�[]Hو�XX�[��\��]ˉ�K��\�N�	�Q��Y��	�]��XX�[�H�[�8�%H�\�Y\�و�ۜ�X�]]�H\�X�[ۘ[�[�\��\�H�Z[[������\�\�]�[܈�X��ˈ�[�H�\���X����XZ���\��Y[��\]ZY]H�Y��\��H�[�\�Z[��ܘ�[��[ݙK��K��\�N�	�L	Y\��Y��	�HZY�[�و[�H�[�W	���[��H
-Y�
-�����K�H�[�H���[���[��H
-L	Y\�وH�[܈�\��Yۘ[����و�۝���HH�Z[�[��YH8�%\�Y\�HY�X�ۙ�Y[��H��[���]�[��K��\�N�	�H�\	�Y��	��X�H[ݚ[����Y�]��[��X�H��[��H�[�H��܈
-K�ˋ�Y�ܙY[�K�\�\�HX\�Y\�[�X�]܈و[��]][ۘ[\]ZY]H�Y�[����\�HXXܛ��[���K��\�N�	���Y��	��X[��H^[�]8�%H[�X����^H]�[�
-HSPK��T܈
-L	Y\�H�][�[�ۙ��[������[���ݚY\��[X[[��Y\��Y�^�H\��X�H��\Ȉ�X��[�HXXܛ�\�X�[ۋ��K��\�N�	�[H�YY	�Y��	��[�H]�HZY�[�وH]�[�[���[�H[ݙ\�Y�Z[��[�\���][ۈ[��X[[YK�[ۚ]ܚ[��\�[���^]�Y�ܙHH�[�H���\��\�\��[���\][�Y�ܙH��X�\�[�Y�\��[�[^�Y��K��\�N�	�]H�\	�Y��	��[��[�UH�[ۈ�[H�X�H�Yۘ]\�]H
-L	Y\�\]Z[X��][H]�[�[YHX�^H\��\��\][�[HHX\��]\�[�X�YY�^]܈�\�^�HY�\�]\��\�]X�Y��K��\�N�	���]R�I�Y��	�H�KY[��H�ܝ[�]HY�\�H�Z[Y�Y��\��Y��X�H�X�Z[\�H�Z[Y�Y��\�]�[�]H�]\�[�K\��\�\�[��HY�X�ۙ�Y[��Hۙ��KY[��H[YۙY�]HXXܛ��[���K��\�N�	��I�Y��	��[X[�YH[��H8�%H
-L	x�$����H�X�ۘX��H�]�X�[Y[��ۙH�][�H�Z\��[YH�\
-���K�\�Y�[�\�܈�KY[�\���][ۜ�]\���[�Y�X�\��]HY�[�Y����K��\�N�	Е�����Y��	Н^H��[�
-[�\�[��Hۙ���][ۊH��[����H
-^][��Hۙ���][ۊK�H�[�\�ܙ\�\\��܈X[�Y�[���[ۜ��۝�X�ˉ�K��\�N�	���[�\�[���Y��	�[��]�YH�\�]��XX�\���HY�[���وH�]�[�\��[��K��X�]\�H�ۘ�HH�[�^\�H��H\���[���\�X[�]ܞH\ۈH��XX�8�%H���Y[�[���ܛX][ۈXZ�\�ܙYZ��[�X[�Y�XX�K��K��\�N�	�U�ܝ\�	�Y��	�H�\��۝�X�[ۈ[�[\YY��][]HY�\�HXZ�܈�][\�
-X\��[����]��]�[�
-H]�[�\���H�[ۈ�[Z][\�]�[�Y�H\�X�[ۘ[\�\�\��ܜ�X��\�HUH�[ۜ�
-[H���
-H�Z[�[Z^�H�Y�H^��\�K��K��\�N�	̉H�[I�Y��	�X^[][H�\��\��YHH�Hو�[X���[�\]Z]K��܈H	
-LX���[�\�YX[��	KX^�\��\��YK��ۋ[�Y��XX�H��][ۈ�^�[��\��\[�K��K��\�N�	��\�\���][ۉ�Y��	�[�\�[���]
-L	Hو[��Y��][ۈ�^�HۈH[�]X[�Y��\���^�H\�YYۛH�[��X�H�ۙ�\�\����[YۛY[�ۈH�^Y�\�[YY��[YK�YX�[��H���و�Z[��ܛۙˉ�K�N��[��[ۈ�[�\�����\�J
-H�ۜ��۝Z[�\�H��[Y[���][[Y[��RY
-	�����\�KX�۝[�	�NY�
-�۝Z[�\��[��\�S
-H�]\���۝Z[�\��[��\�SH����T�W�T�T˛X\
-O��]��[OH��X��ܛ�[���\�KZ[�̊N؛ܙ\��\��Y�\�K]�\�JN؛ܙ\�\�Y]\Ν�\�K\�[Y
-N�Y[�ΌM�N�X\��[�X���N�L���]��[OH��۝Y�[Z[N��\�KY\�^JNٛ۝\�^�N�M��]\�\�X�[�Ό�\���܎��\�KY���N�X\��[�X���N������\�_O�]���]��[OH��۝\�^�N�L����܎��\�K[Z\�
-N�[�KZZY��K�ȏ���Y�O�]����]���
-K���[�	��NB����8� 8� US�8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� ��[��[ۈ��U��\��\�
-^
-HY�
-�]�Y�]܋��\��\�
-H�]�Y�]܋��\��\��ܚ]U^
-^
-NH[�H�ۜ�[H��[Y[��ܙX]Q[[Y[�
-	�^\�XI�N[��[YHH^��[Y[����K�\[��[
-[
-N[��[X�
-
-N��[Y[��^X���[X[�
-	���I�N��[Y[����K��[[ݙP�[
-[
-NB�B���[��[ۈ��R[��]P��J
-H�ۜ���Q[H��[Y[��]Y\�T�[X�܊	���[�[�]]�[��NY�
-��Q[
-H��U��\��\�
-��Q[�^�۝[�
-N����\�
-	�[��]H��H��YYI�NB�B��]�\�[Y[�]�[��[ۈ����\�
-\��H�ۜ�^\�[��H��[Y[��]Y\�T�[X�܊	˝�\�	�NY�
-^\�[��H^\�[�˜�[[ݙJ
-N�X\�[Y[�]
-�\�[Y[�]
-N��ۜ�H��[Y[��ܙX]Q[[Y[�
-	�]��N��\�Ә[YHH	��\�	��^�۝[�H\����[Y[����K�\[��[
-
-N�\�[Y[�]H�][Y[�]
-
-
-HO���[[ݙJ
-K̌
-NB����8� 8� S�T��VH�Tԕ8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� ���[Y[��Y]�[�\�[�\�	��^Y�ۉ�HO�Y�
-K��^HOOH	�[�\��	����[Y[���][[Y[��RY
-	�Y�KY�]I�K��\��\���۝Z[��	�X�]�I�JH][\��[�
-NB�JN���8� 8� SPRS���ӑ�Q�8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� ��[��[ۈ�]�T�\X�\�P�ۙ�Y�
-H�ۜ�\�H��[Y[���][[Y[��RY
-	�؋]\�	�K��[YK��[J
-K��\X�J���	��N�ۜ��^HH��[Y[���][[Y[��RY
-	�؋Z�^I�K��[YK��[J
-N�ۜ��Xܙ]H��[Y[���][[Y[��RY
-	�؋Xܛۋ\�Xܙ]	�K��[YK��[J
-NY�
-]\�Z�^JH�����\�
-	�[�\����\X�\�HT�[�[�ۈ�^K��N��]\���B��ۜ��ܙHH�]�ܙJ
-N�ܙK��\X�\�HH�\�[�ے�^N��^HNY�
-�Xܙ]
-H�ܙK�ܛ۔�Xܙ]H�Xܙ]�]�T�ܙJ�ܙJN�TP�T�W�T�H\��TP�T�W��VHH�^N\]Pܛە\�\�^J
-N����\�
-	��\X�\�H�ۙ�Y��]�Y��NB���[��[ۈ\]Pܛە\�\�^J
-H�ۜ�[H��[Y[���][[Y[��RY
-	�ܛۋ]\�Y\�^I�NY�
-Y[
-H�]\���ۜ��ܙHH�]�ܙJ
-N�ۜ��\�HH�[��˛��][ۋ��Y���]
-	���V�N�ۜ��Xܙ]H�ܙK�ܛ۔�Xܙ]	���ۜ�\�H�\�H
-�	��ܛۏYZ[NX[I�
-�
-�Xܙ]�	ɚ�^OI�
-�[���UT�P��\ۙ[�
-�Xܙ]
-H�	��N[�^�۝[�H\�B��\�[���[��[ۈ�Y��\��X��ܚX�\��
-H[�]�\X�\�J
-NY�
-T�TP�T�W�T�T�TP�T�W��VJH�����\�
-	��]�H�\X�\�H�ۙ�Y��\����N��]\���B��]Z���]\�	��[��[���X��ܚX�\�����H�\X�\�K����	ݘ\�KX[X�\�I�N�ۜ��X��H]�Z]�[���X��ܚX�\�ќ��T�\X�\�J
-NY�
-�X��OOH�[
-H�]Z���]\�	��%���[���XX��\X�\�K��X��T�[��^K��	ݘ\�K\�Y
-I�N�]\��B��]Z���]\�	��$��[��Y	�
-�
-�X����X�˛[���
-H
-�	��X��ܚX�\��I�	ݘ\�KYܙY[�I�N�[�\�YZ[�X�J
-N����\�
-	��X��ܚX�\�\��Y��\�Y���H�\X�\�K��NB���[��[ۈ�]�Q[XZ[���ۙ�Y�
-H�ۜ��\��X�RYH��[Y[���][[Y[��RY
-	�Z��\�\��X�KZY	�K��[YK��[J
-N�ۜ�[\]RYH��[Y[���][[Y[��RY
-	�Z��][\]KZY	�K��[YK��[J
-N�ۜ�X�X��^HH��[Y[���][[Y[��RY
-	�Z��\X�X�Z�^I�K��[YK��[J
-NY�
-\�\��X�RY][\]RY\X�X��^JH����\�
-	�X\�H�[[�[�YH[XZ[���Y[ˉ�N�]\��B��ۜ��ܙHH�]�ܙJ
-N�ܙK�[XZ[��H��\��X�RY[\]RYX�X��^HN�]�T�ܙJ�ܙJN�]Z���]\�	��$��ۙ�Y��]�Y�[XZ[���XYK��	ݘ\�KYܙY[�I�N����\�
-	�[XZ[���ۙ�Y��]�Y��N[XZ[�˚[�]
-�X�X��^HJNB���[��[ۈ�Y[XZ[���ۙ�Y�
-H�ۜ��ܙHH�]�ܙJ
-N�ۜ�Z��H�ܙK�[XZ[���NY�
-Z�˜X�X��^JH�H�[XZ[�˚[�]
-�X�X��^N�Z�˜X�X��^HJN�H�]�
-J^�B�B�[�]�\X�\�J
-NB���[��[ۈ�]Z���]\�\����܊H�ۜ�[H��[Y[���][[Y[��RY
-	�Z��\�]\��NY�
-Y[
-H�]\��[�^�۝[�H\��[��[K���܈H��܈	ݘ\�K[Z\�
-I�[��[K�\�^HH	؛����B���[��[ۈ�[�\�[XZ[
-
-H�ۜ��ܙHH�]�ܙJ
-N�ۜ�Z��H�ܙK�[XZ[���NY�
-YZ�˜�\��X�RYYZ�˝[\]RYYZ�˜X�X��^JH����\�
-	��]�H[�\�[XZ[���ۙ�Y��\����N�]\��B��ۜ��\��[ۈH�]�\��[ۊ
-NY�
-\�\��[ۊH�]\���]Z���]\�	��[�[��\�[XZ[����	ݘ\�KX[X�\�I�N[XZ[�˜�[�
-Z�˜�\��X�RYZ�˝[\]RY�Z[[XZ[\�[\��\��[ۋ�[XZ[�YJJB��[�
-
-HO��]Z���]\�	��$�\�[XZ[�[��	�
-��\��[ۋ�[XZ[	ݘ\�KYܙY[�I�N����\�
-	�\�[XZ[�[�I�NJB���]�
-\��O��]Z���]\�	��%�\��܎�	�
-�
-\���^\���Y\��Y�H	�[�ۛ�ۈ\��܉�K	ݘ\�K\�Y
-I�N����\�
-	�[XZ[�Z[Y��X��[�\�[XZ[���ۙ�Yˉ�NJNB��\�[���[��[ۈ�[�Z[T�[[X\�S���
-H�ۜ��ܙHH�]�ܙJ
-N�ۜ�Z��H�ܙK�[XZ[���NY�
-YZ�˜�\��X�RYYZ�˝[\]RYYZ�˜X�X��^JH����\�
-	��ۙ�Y�\�H[XZ[��[�HYZ[�[�[�\����N�]\��B�[�]�\X�\�J
-N�]Z���]\�	љ]�[���X��ܚX�\�ˋ���	ݘ\�KX[X�\�I�N��[�^\�[��\�\����H�\X�\�HY��ۙ�Y�\�Y[�H�[�X�����[��ۜ��X��H
-�TP�T�W�T�	���TP�T�W��VJB��
-]�Z]�[���X��ܚX�\�ќ��T�\X�\�J
-H�ܙK��X��ܚ\[ۜ��JB��
-�ܙK��X��ܚ\[ۜ��JN�Y�
-�X�˛[��OOH
-H�]Z���]\�	ӛ��X��ܚX�\����[���	ݘ\�KY���I�N����\�
-	ӛ��X��ܚX�\����[��Y]��N�]\��B��]Z���]\�	��[�[���	�
-��X�˛[��
-�	��X��ܚX�\��K����	ݘ\�KX[X�\�I�N]�[�H�ۜ��^HH�]�]J
-K����[Q]T��[��	�[�UT���[۝���ܝ	�^N�۝[Y\�X��YX\��۝[Y\�X��JN��X�˙�ܑXX�
-
-�X�Y
-HO��][Y[�]
-
-
-HO�[XZ[�˜�[�
-Z�˜�\��X�RYZ�˝[\]RY�Z[[XZ[\�[\��X��[XZ[�[�JJB��[�
-
-HO��[�
-��\]S\��[�[��\X�\�J�X��[XZ[�^JN�ۜ�̈H�]�ܙJ
-N�ۜ��HH
-̋��X��ܚ\[ۜ��JK��[�[�^
-O��[XZ[OOH�X��[XZ[
-NY�
-�H�H
-H�̋��X��ܚ\[ۜ���WK�\��[�H�^N��]�T�ܙJ̊N�B�Y�
-�[�OOH�X�˛[��
-H�]Z���]\�	��$�Z[H�[[X\�H�[��[	�
-��[�
-�	��X��ܚX�\��H]	�
-��]�]J
-K����[U[YT��[��
-K	ݘ\�KYܙY[�I�N����\�
-	�Z[H�[[X\�H�[��	�
-��[�
-�	��X��ܚX�\��HI�N�[�\�YZ[�X�J
-NB�JB���]�
-\��O��]Z���]\�	��%��Z[Y�܈	�
-��X��[XZ[
-�	Έ	�
-�
-\���^	�\��܉�K	ݘ\�K\�Y
-I�NJNKY
-�M
-NJNB���[��[ۈ�Z[[XZ[\�[\��X�\Y[�[XZ[\�\�
-H�ۜ��^HH�]�]J
-N�ۜ�]T��H�^K����[Q]T��[��	�[�UT����YZ�^N��ۙ��[۝��ۙ��^N�۝[Y\�X��YX\��۝[Y\�X��JN�ۜ�[YT��H�^K����[U[YT��[��	�[�UT����\��̋YY�]	�Z[�]N�̋YY�]	�[YV�ۙS�[YN���ܝ	�JN���[]\�X\��]]H���H�ܙH
-Y]X�H�HYZ[�B��ۜ��ܙHH�]�ܙJ
-N�ۜ�YH�ܙK�X\��]]H�N���[\����܈�܈�[��H�[Y\�ۜ�����܈H��O�
-��	���˜�\���]
-	���JH�	����NI��
-��	��
-�˜�\���]
-	��$��H�˜�\���]
-	�I�JJH�	�َ
-�M�I��	���
-�L	���]\����[XZ[��X�\Y[�[XZ[��X��X��
-\�\��	��T�H	��	��H
-�	�Ґ��Y\�8�%Z[HX\��]�[[X\�H0��	�
-�]T���]N�]T����[��[YN�[YT�����XXܛ��][\��XXܛ���][\��Y�XXܛ���][\�	�K�ˈ�]�Hܛ]^�����YHX�]�K��H
-�	HX�ݙH	L
-��Hˌ�H8�%Y�\��[��HX^H�������XXܛ�ۘ\���]��܈�[��W��X�N�Y��W��X�H	�
-��I��W��ΈY��W���	��$��	I��W���܎�����܊Y��W���	��$��K�\\W��X�N�Y�\\W��X�H	�
-�LI�\\W��ΈY�\\W���	���M	I�\\W���܎�����܊Y�\\W���	���K��W��X�N�Y��W��X�H	�L
-	��W��ΈY��W���	���	I��W���܎�����܊Y��W���	���K�����X�N�Y�����X�H	�
-
-��������ΈY������	��$���II������܎�����܊Y������	��$��K�����X�N�Y�����X�H	�
-�K
-�	�����ΈY������	��$�K�	I������܎�����܊Y������	��$��K�W��X�N�Y�W��X�H	�N��I�W��ΈY�W���	�][K]���������]\H
-Y]X�JB��]\W�X��\��Y��]\W�X��\�	�H�T�����]\W�\�Έ	�[�\��HU���[0���HܝYH0��Q�X�]�H0���X�܈
-�N8�$��	HU	���]\W�X�[ێ�Y��]\W�X�[ۈ	ЕVH�S	���]\W�^[ٙ��Y��]\W�^[ٙ�	���x�$�L�	I���]\W��Y��\��Y��]\W��Y��\�	ԙX�Z[H	L
-�L�H���HSPK�����[�[K�K�������]\W����	Й[��	LH�H8�%]�[���X�\�[������]\W���Z�N�	�T��	
-P�0��H	L��0��X^HM�^\�][ۉ���]\Wٝ�Έ	�H�H���[ܙY[�8�%�[�۝[�Z]I���]\W��]Y�ܞN�	�U��0��S�T��I�����]\�
-�^YY�][�B��]\��X��\��	�Ԑ�	���]\��\�Έ	�ܘX�H�ܜ0��
-�x�$�LIH�^H0����XY\�0����̋�SH�����H]�����]\��X�[ێ�	ЕVH�S	���]\��^[ٙ��	��8�$�L�	I���]\���Y��\��	��[�X���HSPH�M
-K�RH�\�[ۈ\��][\����	
-MLЋ����]\�����	Й[��	L͸�$�L��[��X�K����]\���]Y�ܞN�	�TURUQT�0����PQT������]\�]\��X��\��	�����]\��\�Έ	�[[�\�0���L�8�$�L��0��Y�[��HRH0��T�X^HLI���]\��X�[ێ�	ЕVH�S	���]\��^[ٙ��	�͌8�$�L�	I���]\���Y��\��	ԙX�Z[H��T�L�ۈM[K�Y�[��HRK�T�X^HLHHU�^[��[ۈZ[�[�����]\�����	�L����
-�^I���
-H8�%]�[�������]\���]Y�ܞN�	�TURUQT�0��Q�S��HRI����[\�]�[��]�[X��[\�W��[N�	��HԕQH8�%�S	��[\�N�	М�XZ�X�ݙH	L
-Hۈ�[Z[��[�N�Q��\��YHX�]�K���[H[��K�T���[ˈ��	LˍL��\��]	LL��$�LMK���[\����[N�	��HԕQH8�%��	��[\���	����[��	LHۈ�[Z[����N�]�[���X�\�[���^]S[�\��H��][ۜ�[[YYX][K��X\�Y�\�H�\�ˉ��[\����[N�	Е�8�%�S	��[\�Έ	��\��HX�ݙH	
-�K��\�]HX�Q�Z�[K�Y�^�H�P�U�[ˈ�Z[���	
-̋
-L���[\�
-��[N�	�T�ҔH8�%�UUSӉ��[\�
-�	�\��X�\�	M����҈[�\��[�[ۈ�[����[��\���X�ݙH	M�K��ܝT�ҔH�Y��\�X�]�K�����ܙYZ�[W�]�[�	�RVQT�P�SӐS	���[[XW�]�[�	ՑT�HQ�	��]W�]�[�	�UH�T	���Y�W�]�[�	�V�SQI�������\��]�ܛW�\���[��˛��][ۋ��Y���]
-	���V�K�[��X��ܚX�Wۛ�N�	�[��X��ܚX�N���[�8���Z[H�[[X\�HX�8���[��X��ܚX�INB����8� 8� �P��ԒTSӈRH8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� �\�[���[��[ۈ[�]�X��ܚ\[ەRJ
-H�ۜ��\��[ۈH�]�\��[ۊ
-NY�
-\�\��[ۊH�]\��[�]�\X�\�J
-N���[�����H�\X�\�H�\�����X��ܚ\[ۈ�]H\�X��\�]B�Y�
-�TP�T�W�T�	���TP�T�W��VJH]�Z]�[���X��ܚX�\�ќ��T�\X�\�J
-K��]�
-
-
-HO��JNB��ۜ��ܙHH�]�ܙJ
-N�ۜ��X��H�ܙK��X��ܚ\[ۜ��N�ۜ�\��X��ܚX�YH�X�˜��YJ�O�˙[XZ[OOH�\��[ۋ�[XZ[
-N\]T�X��ܚ\[ەRJ\��X��ܚX�Y�\��[ۋ�[XZ[
-NB���[��[ۈ\]T�X��ܚ\[ەRJ\��X��ܚX�Y[XZ[
-H�ۜ��ܛP�\�H��[Y[���][[Y[��RY
-	��X�Y�ܛKX�\�	�N�ۜ�X�]�P�\�H��[Y[���][[Y[��RY
-	��X�XX�]�KX�\�	�N�ۜ��H��[Y[���][[Y[��RY
-	��X�\�]\�Y�	�N�ۜ�H��[Y[���][[Y[��RY
-	��X�\�]\�]^	�N�ۜ�[XZ[\�H��[Y[���][[Y[��RY
-	��X�Y[XZ[Y\�^I�N�Y�
-\��X��ܚX�Y
-HY�
-�ܛP�\�
-H�ܛP�\���[K�\�^HH	ۛۙI�Y�
-X�]�P�\�
-HX�]�P�\���[K�\�^HH	؛����Y�
-�
-H����[K��X��ܛ�[�H	ݘ\�KYܙY[�I�����[K�[�[X][ۈH	؛[����[��[�]I��B�Y�
-
-H�^�۝[�H	��$��X��ܚX�Y8�%Z[HN�SHU	�Y�
-[XZ[\�
-H[XZ[\��^�۝[�H[XZ[H[�HY�
-�ܛP�\�
-H�ܛP�\���[K�\�^HH	؛����Y�
-X�]�P�\�
-HX�]�P�\���[K�\�^HH	ۛۙI�Y�
-�
-H����[K��X��ܛ�[�H	ݘ\�KY���I�����[K�[�[X][ۈH	ۛۙI��B�Y�
-
-H�^�۝[�H	ӛ��X��ܚX�Y	�B�B��\�[���[��[ۈ[�T�X��ܚX�U���J
-H�ۜ��\��[ۈH�]�\��[ۊ
-NY�
-\�\��[ۊH�]\��[�]�\X�\�J
-N�ۜ��ܙHH�]�ܙJ
-NY�
-\�ܙK��X��ܚ\[ۜ�H�ܙK��X��ܚ\[ۜ�H�N�ۜ�YH�ܙK��X��ܚ\[ۜ˙�[�[�^
-�O�˙[XZ[OOH�\��[ۋ�[XZ[
-N�������Y[���]B��ۜ���H��[Y[���][[Y[��RY
-	��X��ܚX�KX���NY�
-��H����^�۝[�H	ˋ��������[K��X�]HH	�����B��Y�
-YOOHLJH���X��ܚX�H8�%�]�H��\X�\�H[���[��ۜ��^HH�]�]J
-K����[Q]T��[��	�[�UT���[۝���ܝ	�^N�۝[Y\�X��YX\��۝[Y\�X��JNY�
-�TP�T�W�T�	���TP�T�W��VJH�ۜ���H]�Z]Y�X��ܚX�\���\X�\�J�\��[ۋ�[XZ[
-NY�
-[��H����\�
-	���[���]�H�X��ܚ\[ۋ��X���\X�\�H�ۙ�Yˉ�NY�
-��H����^�۝[�H	��P��ԒP�H8�%��QI������[K��X�]HH	�I��B��]\��B�B��ܙK��X��ܚ\[ۜ˜\�
-[XZ[��\��[ۋ�[XZ[��[��N��^K�\��[���[���\]Y[��N�	�Z[HPSHU	JN�]�T�ܙJ�ܙJN\]T�X��ܚ\[ەRJ�YK�\��[ۋ�[XZ[
-N����\�
-	��$��X��ܚX�YHZ[H�[[X\�Y\�\��]�H]N�SHU��NH[�H��[��X��ܚX�B�Y�
-�TP�T�W�T�	���TP�T�W��VJH]�Z]�[[ݙT�X��ܚX�\����T�\X�\�J�\��[ۋ�[XZ[
-NB��ܙK��X��ܚ\[ۜ˜�X�JYJN�]�T�ܙJ�ܙJN\]T�X��ܚ\[ەRJ�[�K�\��[ۋ�[XZ[
-N����\�
-	�[��X��ܚX�Y�[�H�[��K\�X��ܚX�H[�][YK��NB�Y�
-��H�����[K��X�]HH	�I��B�B���[��[ۈ�[��[\Q[XZ[
-
-H�ۜ��ܙHH�]�ܙJ
-N�ۜ�Z��H�ܙK�[XZ[���N�ۜ��\��[ۈH�]�\��[ۊ
-NY�
-\�\��[ۊH�]\���Y�
-YZ�˜�\��X�RYYZ�˝[\]RYYZ�˜X�X��^JH����\�
-	�YZ[��YY���ۙ�Y�\�H[XZ[���Y�ܙH�]�Y]�[�ˈ\��[�\�YZ[���N�]\��B�����\�
-	��[�[���[\H[XZ[�	�
-��\��[ۋ�[XZ[
-�	ˋ���N[XZ[�˜�[�
-Z�˜�\��X�RYZ�˝[\]RY�Z[[XZ[\�[\��\��[ۋ�[XZ[�YJJB��[�
-
-HO�����\�
-	��[\H[XZ[�[�H�X��[�\�[�����JB���]�
-
-
-HO�����\�
-	јZ[Y��[�8�%�X���]YZ[���JNB����8� 8� �TP�T�HS�QԐUSӈ8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� ����\X�\�H�ܙ\��X��ܚX�\��[�H�\�Y]X�\�H��S\�\��؜����\����YHH�[YH\�8�%��[�ܘY�H\�\�X�����\����[����\�Y�]K������YHY\��
-LP�[�[Z]Y�����ܚ��\��X�H�܈\�\�H�\�K���]�TP�T�W�T�H	��]�TP�T�W��VHH	����[��[ۈ[�]�\X�\�J
-H�ۜ��ܙHH�]�ܙJ
-N�TP�T�W�T�H
-�ܙK��\X�\�H	���ܙK��\X�\�K�\�
-H	���TP�T�W��VHH
-�ܙK��\X�\�H	���ܙK��\X�\�K�[�ے�^JH	��B��\�[���[��[ۈ�\X�\�T]Y\�JY]�]��JHY�
-T�TP�T�W�T�T�TP�T�W��VJH�]\���[�H�ۜ��\�H]�Z]�]�
-�TP�T�W�T�
-�	�ܙ\�݌K��
-�]Y]��XY\�Έ	�\Z�^IΈ�TP�T�W��VK�	�]]ܚ^�][ۉΈ	ЙX\�\�	�
-��TP�T�W��VK�	��۝[�U\IΈ	�\X�][ۋڜ�ۉ��	��Y�\�ΈY]�OOH	���	��	ܙ]\��\�\�\�[�][ۉ��	ܙ]\��[Z[�[X[	K���N���H���Ӌ���[��Y�J��JH�[�Y�[�Y�JNY�
-\�\˛��H��ۜ�H]�Z]�\˝^
-
-N��ۜ��K��\��	��\X�\�H\��܎��
-N��]\���[�B�Y�
-Y]�OOH	�SUI��\˜�]\�OOH�
-H�]\���YN�]\��]�Z]�\˚��ۊ
-NH�]�
-JH��ۜ��K��\��	��\X�\�H�]��Z[Y��JN��]\���[�B�B�����]��X��ܚX�\�����H�\X�\�H[�Y\��H�]��[�ܙB�\�[���[��[ۈ�[���X��ܚX�\�ќ��T�\X�\�J
-HY�
-T�TP�T�W�T�T�TP�T�W��VJH�]\���ۜ�����H]�Z]�\X�\�T]Y\�J	��U	�	�ژ���X��ܚX�\����[X�J��ܙ\�XܙX]Y�]�\����[
-NY�
-P\��^K�\�\��^J����JH�]\���ۜ��ܙHH�]�ܙJ
-N�ܙK��X��ܚ\[ۜ�H���˛X\
-�O�
-[XZ[���[XZ[��[��N���ܙX]Y�]��]�]J��ܙX]Y�]
-K����[Q]T��[��	�[�UT���[۝���ܝ	�^N�۝[Y\�X��YX\��۝[Y\�X��JH�	��%	��\��[����\���[��[���\]Y[��N�	�Z[HPSHU	JJN�]�T�ܙJ�ܙJN�]\���ܙK��X��ܚ\[ۜ�B��\�[���[��[ۈY�X��ܚX�\���\X�\�J[XZ[
-HY�
-T�TP�T�W�T�T�TP�T�W��VJH�]\���[�N�ۜ��\�H]�Z]�\X�\�T]Y\�J	���	�	�ژ���X��ܚX�\����[XZ[\���[���[JN�]\���\�OOH�[B��\�[���[��[ۈ�[[ݙT�X��ܚX�\����T�\X�\�J[XZ[
-HY�
-T�TP�T�W�T�T�TP�T�W��VJH�]\���[�N�ۜ��\�H]�Z]�\X�\�T]Y\�J	�SUI�	�ژ���X��ܚX�\���[XZ[Y\K��
-�[���UT�P��\ۙ[�
-[XZ[
-K�[
-N�]\���\�OOH�[B��\�[���[��[ۈ\]S\��[�[��\X�\�J[XZ[]T��HY�
-T�TP�T�W�T�T�TP�T�W��VJH�]\��]�Z]�\X�\�T]Y\�J	�U�	�	�ژ���X��ܚX�\���[XZ[Y\K��
-�[���UT�P��\ۙ[�
-[XZ[
-K�\���[��]T��JNB����8� 8� UU�T�S��Q��T�
-ܛۋZ�؋�ܙ�H8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� ����]ܛۋZ�؋�ܙ��]�΋��[�\�\�\��[YK��]X��[��ژ�]�Y\���ܛۏYZ[NX[I��^OVS�T��ԓӗ��PԑU���Hܛۈ�Xܙ]�]�[���[��H[�H���H�Y��\�[���[�˂�\�[���[��[ۈ�X��ܛە�Y��\�
-H�ۜ�\�[\�H�]�T��X\��\�[\��[��˛��][ۋ��X\��
-NY�
-\�[\˙�]
-	�ܛۉ�HOOH	�Z[NX[I�H�]\����ۜ��ܙHH�]�ܙJ
-N�ۜ�ܛ۔�Xܙ]H�ܙK�ܛ۔�Xܙ]	��Y�
-ܛ۔�Xܙ]	��\�[\˙�]
-	��^I�HOOHܛ۔�Xܙ]
-H�ۜ��K��\��	�ܛێ�[��[Y�^I�N�]\��B��[�]�\X�\�J
-N�Y[XZ[���ۙ�Y�
-N��ۜ�Z��H�ܙK�[XZ[���NY�
-YZ�˜�\��X�RYYZ�˝[\]RYYZ�˜X�X��^JH�ۜ��K��\��	�ܛێ�[XZ[�����ۙ�Y�\�Y	�N�]\��B����[��\��X��ܚX�\�\����H�\X�\�B��ۜ��X��H]�Z]�[���X��ܚX�\�ќ��T�\X�\�J
-H�ܙK��X��ܚ\[ۜ��NY�
-�X�˛[��OOH
-H��ۜ��K���	�ܛێ����X��ܚX�\���N��]\���B���ۜ��^HH�]�]J
-K����[Q]T��[��	�[�UT���[۝���ܝ	�^N�۝[Y\�X��YX\��۝[Y\�X��JN�ۜ��K���	�ܛێ��[�[�����X�˛[��	��X��ܚX�\���N��X�˙�ܑXX�
-
-�X�Y
-HO��][Y[�]
-
-
-HO�[XZ[�˜�[�
-Z�˜�\��X�RYZ�˝[\]RY�Z[[XZ[\�[\��X��[XZ[�[�JJB��[�
-
-HO��ۜ��K���	��$��[����X��[XZ[
-N\]S\��[�[��\X�\�J�X��[XZ[�^JNJB���]�
-\��O��ۜ��K��\��	��%��Z[Y�܉��X��[XZ[\��JNKY
-�ML
-NJNB����8� 8� T���Q�P�USӈ�T�SH8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� �]\��\�[Y[�]H�[]\�[�X�YH�YN]��Y�\�Z\��[ۈH	�Y�][	���[��[ۈ[�]\���Y�X�][ۜ�
-HY�
-	ӛ�Y�X�][ۉ�[��[���H��Y�\�Z\��[ۈH��Y�X�][ۋ�\�Z\��[ێY�
-��Y�\�Z\��[ۈOOH	�Y�][	�H��\��\�Z\��[ۈY�\�H�ܝ[^H��]	����H�\��[��ۈ�Y��][Y[�]
-
-
-HO���Y�X�][ۋ��\]Y\�\�Z\��[ۊ
-K�[�O����Y�\�Z\��[ۈH�\]S��Y����URJ
-N�JNK
-
-NB�B�\]S��Y����URJ
-NB���[��[ۈ\]S��Y����URJ
-H�ۜ����Q[H��[Y[���][[Y[��RY
-	ۛ�Y�]���K\���N�ۜ��[H��[Y[���][[Y[��RY
-	ۛ�Y�]���K[�	�NY�
-]���Q[
-H�]\��Y�
-��Y�\�Z\��[ۈOOH	�ܘ[�Y	�	��\�[�X�Y
-H���Q[��\��\��Y
-	�ۉ�NY�
-�[
-H�[�^�۝[�H	М����\���Y�X�][ۜ�ۉ�H[�HY�
-��Y�\�Z\��[ۈOOH	�[�YY	�H���Q[��\��\���[[ݙJ	�ۉ�NY�
-�[
-H�[�^�۝[�H	Л���Y8�%[��[������\��][����H[�H���Q[��\��\���[[ݙJ	�ۉ�NY�
-�[
-H�[�^�۝[�H	ӛ�Y�X�][ۜ�ٙ��B�B���[��[ۈ���S��Y�X�][ۜ�
-HY�
-��Y�\�Z\��[ۈOOH	�[�YY	�H����\�
-	ӛ�Y�X�][ۜ�\�H����Y���������\��][����[��[H�܈\��]K��N�]\��B�Y�
-��Y�\�Z\��[ۈOOH	�Y�][	�H��Y�X�][ۋ��\]Y\�\�Z\��[ۊ
-K�[�O���Y�\�Z\��[ۈHY�
-OOH	�ܘ[�Y	�H�\�[�X�YH�YN�B�\]S��Y����URJ
-NJN�]\��B�\�[�X�YH\\�[�X�Y\]S��Y����URJ
-N����\�
-\�[�X�Y�	М����\���Y�X�][ۜ�[�X�Y���	ӛ�Y�X�][ۜ�]]Y��NB���[��[ۈ���\�[\�
-�[K\K\����܊H��[�X\�[��\���ۜ��\�H��[Y[���][[Y[��RY
-	�\�X�\��N�ۜ�X�ۈH��[Y[���][[Y[��RY
-	�\�X�\�ZX�ۉ�N�ۜ��[Q[H��[Y[���][[Y[��RY
-	�\�X�\�\�[I�N�ۜ�\��[H��[Y[���][[Y[��RY
-	�\�X�\�[\���N�ۜ�[YQ[Y��[Y[���][[Y[��RY
-	�\�X�\�][YI�NY�
-X�\�H�]\����ۜ����H�]�]J
-N�ۜ�H��˙�]�\��
-K����[��
-K�Y�\�
-�	�	�H
-�	Ή�
-���˙�]Z[�]\�
-K����[��
-K�Y�\�
-�	�	�H
-�	�U	�����]��܈�\��\���\��\���[[ݙJ	ؙX\�\\�	�	��\��\\�	�NY�
-��܈OOH	ܙY	�H�\���\��\��Y
-	ؙX\�\\�	�NY�
-��܈OOH	�[X�\��H�\���\��\��Y
-	��\��\\�	�N�X�ۋ�^�۝[�H��܈OOH	ܙY	��	���	����܈OOH	�[X�\���	���	��	������[Q[�^�۝[�H�[H
-�	�8�%	�
-�\N\��[�^�۝[�H\��[YQ[�^�۝[�H��\���\��\��Y
-	�����N��X\�[Y[�]
-\��\�[Y[�]
-N\��\�[Y[�]H�][Y[�]
-���T\��\�
-N��������\�\���Y�X�][ۈ
-ۛHY�Y�H\������\�Y
-B�Y�
-\�[�X�Y	����Y�\�Z\��[ۈOOH	�ܘ[�Y	�	����[Y[���\�X�[]T�]HOOH	ݚ\�X�I�H�H�]���Y�X�][ۊ	�Ґ��Y\�[\�	���N��[H
-�	�8�%	�
-�\H
-�	�
-�\���X�ێ�	�]N�[XY�K�ݙ��[ݙ�[��H������˝�˛ܙ�̌�ݙȈ�Y]Л�H�̈̈���X��YH�̈�ZY�H�̈��H����[H�L��LLN�Ϗ^OH����H���۝\�^�OH�N��[H�L���NM�H����^��ݙω��YΈ	�ژ�X[\�	JNH�]�
-JH�B�B�B���[��[ۈ���T\��\�
-H�ۜ��\�H��[Y[���][[Y[��RY
-	�\�X�\��NY�
-�\�H�\���\��\���[[ݙJ	�����N�X\�[Y[�]
-\��\�[Y[�]
-NB����8� 8� PT��UUHQUԈ8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� ��[��[ۈ�]�SX\��]]J
-H�ۜ�YH�]X\��]]Q���Q�ܛJ
-N�ۜ��ܙHH�]�ܙJ
-N�ܙK�X\��]]HHY�]�T�ܙJ�ܙJN����\�
-	�X\��]]H�]�Y8�%�[�H\�Y[��^[XZ[�[���NB���[��[ۈ�YX\��]]J
-H�ۜ��ܙHH�]�ܙJ
-N�ۜ�YH�ܙK�X\��]]H�N�ۜ��Y[�H	�Y\�K\�X�IΈY��W��X�H	�
-��I��	�Y\�KX��ΈY��W���	��$��	I��	�Y\\\K\�X�IΈY�\\W��X�H	�
-�LI��	�Y\\\KX��ΈY�\\W���	���M	I��	�Y]�K\�X�IΈY��W��X�H	�L
-	��	�Y]�KX��ΈY��W���	���	I��	�YY��\�X�IΈY�����X�H	�
-
-�����	�YY��X��ΈY������	��$���II��	�YX��\�X�IΈY�����X�H	�
-�K
-�	��	�YX��X��ΈY������	��$�K�	I��	�YYK\�X�IΈY�W��X�H	�N��I��	�YYKX��ΈY�W���	�][K]������	�YX�][\�	ΈY�XXܛ���][\�	���	�Y\�K]X��\�ΈY��]\W�X��\�	���	�Y\�KXX�[ۉΈY��]\W�X�[ۈ	���	�Y\�K\^[ٙ�ΈY��]\W�^[ٙ�	���	�Y\�K]�Y��\�ΈY��]\W��Y��\�	���Nؚ�X��[��Y\��Y[�K��ܑXX�
-
-�Y�[JHO��ۜ�[H��[Y[���][[Y[��RY
-Y
-NY�
-[
-H[��[YHH�[JN����\�
-	�X\��]]H�YY���H�]�Y�[Y\ˉ�NB���[��[ۈ�]X\��]]Q���Q�ܛJ
-H�ۜ��HYO���ۜ�[H��[Y[���][[Y[��RY
-Y
-N��]\��[�[��[YK��[J
-H�	���N�]\���W��X�N��	�Y\�K\�X�I�H	�
-��I���W��Έ�	�Y\�KX���H	��$��	I��\\W��X�N��	�Y\\\K\�X�I�H	�
-�LI��\\W��Έ�	�Y\\\KX���H	���M	I���W��X�N��	�Y]�K\�X�I�H	�L
-	���W��Έ�	�Y]�KX���H	���	I������X�N��	�YY��\�X�I�H	�
-
-���������Έ�	�YY��X���H	��$���II������X�N��	�YX��\�X�I�H	�
-�K
-�	������Έ�	�YX��X���H	��$�K�	I��W��X�N��	�YYK\�X�I�H	�N��I��W��Έ�	�YYX���H	�][K]������XXܛ���][\���	�YX�][\�	�H	�X\��]\��[��[ۚ]܈[�\��^H]�[ˉ���]\W�X��\���	�Y\�K]X��\��H	�H�T�����]\W�X�[ێ��	�Y\�KXX�[ۉ�H	ЕVH�S	���]\W�^[ٙ���	�Y\�K\^[ٙ��H	���x�$�L�	I���]\W��Y��\���	�Y\�K]�Y��\��H	ԙX�Z[H	L
-�L�H���HSPK�����[�[K�K������NB����8� 8� ���8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� ��[��[ۈ���
-
-H�]�ܙJ
-N���[��\�H�ܙH\�[�]X[^�Y��Y[XZ[���ۙ�Y�
-N[�]�\X�\�J
-N�X��ܛە�Y��\�
-N�ۜ��\��[ۈH�]�\��[ۊ
-NY�
-�\��[ۊH�ۜ��ܙHH�]�ܙJ
-N�ۜ�Y[X�\�H�ܙK�Y[X�\�˙�[�
-HO�K�[XZ[OOH�\��[ۋ�[XZ[	��K��]\�OOH	�X�]�I�NY�
-Y[X�\�H[�\�\
-Y[X�\�N�]\��B��X\��\��[ۊ
-NB����Y�J	��]I�NJJ
-N��ܚ\��؛�O���[�
