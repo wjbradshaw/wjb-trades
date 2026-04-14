@@ -1,16 +1,16 @@
-X<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>WJB Trades â Private Access</title>
+<title>WJB Trades — Private Access</title>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap" rel="stylesheet">
 <style>
-/* âââââââââââââââââââââââââââââââââââââââââââ
+/* ═══════════════════════════════════════════
    ROOT & RESET
-âââââââââââââââââââââââââââââââââââââââââââ */
+═══════════════════════════════════════════ */
 :root {
   --ink:       #0a0a0e;
   --ink2:      #111118;
@@ -58,15 +58,15 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* âââââââââââââââââââââââââââââââââââââââââââ
+/* ═══════════════════════════════════════════
    PAGES (views)
-âââââââââââââââââââââââââââââââââââââââââââ */
+═══════════════════════════════════════════ */
 .page { display: none; min-height: 100vh; }
 .page.active { display: flex; flex-direction: column; }
 
-/* âââââââââââââââââââââââââââââââââââââââââââ
+/* ═══════════════════════════════════════════
    NOISE TEXTURE OVERLAY
-âââââââââââââââââââââââââââââââââââââââââââ */
+═══════════════════════════════════════════ */
 body::after {
   content: '';
   position: fixed;
@@ -77,9 +77,9 @@ body::after {
   opacity: 0.4;
 }
 
-/* âââââââââââââââââââââââââââââââââââââââââââ
+/* ═══════════════════════════════════════════
    GATE / LOGIN PAGE
-âââââââââââââââââââââââââââââââââââââââââââ */
+═══════════════════════════════════════════ */
 #page-gate {
   align-items: center;
   justify-content: center;
@@ -267,9 +267,9 @@ body::after {
 }
 .gate-footer a:hover { text-decoration: underline; }
 
-/* âââââââââââââââââââââââââââââââââââââââââââ
+/* ═══════════════════════════════════════════
    ADMIN PAGE
-âââââââââââââââââââââââââââââââââââââââââââ */
+═══════════════════════════════════════════ */
 #page-admin {
   flex-direction: column;
 }
@@ -443,9 +443,9 @@ body::after {
 .pill-revoked { background: var(--red2); color: var(--red); }
 .pill-admin { background: var(--gold3); color: var(--gold2); }
 
-/* âââââââââââââââââââââââââââââââââââââââââââ
+/* ═══════════════════════════════════════════
    MAIN DASHBOARD PAGE
-âââââââââââââââââââââââââââââââââââââââââââ */
+═══════════════════════════════════════════ */
 #page-dashboard {
   flex-direction: column;
   background: var(--ink);
@@ -544,7 +544,7 @@ body::after {
 /* REPORT TAB */
 .report-wrap { padding: 0; }
 
-/* âââ REPORT HEADER âââ */
+/* ─── REPORT HEADER ─── */
 .rpt-header {
   position: relative;
   padding: 40px 40px 32px;
@@ -638,7 +638,7 @@ body::after {
   z-index: 1;
 }
 
-/* âââ ALERT BANNER âââ */
+/* ─── ALERT BANNER ─── */
 .rpt-alert {
   background: linear-gradient(90deg, rgba(248,113,113,0.12) 0%, rgba(248,113,113,0.04) 100%);
   border-left: 3px solid var(--red);
@@ -651,7 +651,7 @@ body::after {
   align-items: flex-start;
 }
 
-/* âââ MACRO STRIP âââ */
+/* ─── MACRO STRIP ─── */
 .macro-strip {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
@@ -682,7 +682,7 @@ body::after {
 .chg-dn { color: var(--red); }
 .mc-meta { font-size: 9px; color: var(--fog); margin-top: 3px; line-height: 1.4; }
 
-/* âââ CATEGORY SECTIONS âââ */
+/* ─── CATEGORY SECTIONS ─── */
 .cat-section { border-bottom: 1px solid var(--wire); }
 .cat-header {
   display: flex;
@@ -716,7 +716,7 @@ body::after {
 .cards-grid { padding: 20px 40px; display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
 .cards-grid.cols-3 { grid-template-columns: repeat(3, 1fr); }
 
-/* âââ TRADE CARDS âââ */
+/* ─── TRADE CARDS ─── */
 .trade-card {
   background: var(--ink2);
   border: 1px solid var(--wire);
@@ -859,7 +859,7 @@ body::after {
   border-top: 1px solid var(--wire);
 }
 
-/* âââ ALERTS SECTION âââ */
+/* ─── ALERTS SECTION ─── */
 .alerts-wrap { padding: 24px 40px 28px; border-bottom: 1px solid var(--wire); }
 .section-hd {
   font-family: var(--display);
@@ -905,7 +905,7 @@ body::after {
 .tp-r { background: rgba(248,113,113,0.15); color: var(--red); }
 .tp-a { background: rgba(251,191,36,0.15); color: var(--amber); }
 
-/* âââ GREEKS âââ */
+/* ─── GREEKS ─── */
 .greeks-wrap { padding: 24px 40px 28px; border-bottom: 1px solid var(--wire); }
 .greeks-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
 .greek-tile {
@@ -1025,7 +1025,7 @@ body::after {
 }
 .toggle-switch.on::after { transform: translateX(16px); background: var(--gold2); }
 
-/* âââ DASH FOOTER âââ */
+/* ─── DASH FOOTER ─── */
 .dash-footer {
   padding: 16px 40px;
   background: var(--ink2);
@@ -1040,7 +1040,7 @@ body::after {
 .df-brand { font-family: var(--display); font-size: 14px; color: var(--gold); letter-spacing: 2px; }
 .df-disc { max-width: 500px; line-height: 1.6; }
 
-/* âââ COPY BUTTON âââ */
+/* ─── COPY BUTTON ─── */
 .copy-btn {
   background: none;
   border: none;
@@ -1054,7 +1054,7 @@ body::after {
 .copy-btn:hover { color: var(--gold2); }
 .copy-btn.copied { color: var(--green); }
 
-/* âââ TOAST âââ */
+/* ─── TOAST ─── */
 .toast {
   position: fixed;
   bottom: 24px;
@@ -1074,7 +1074,7 @@ body::after {
   to   { opacity: 1; transform: translateY(0); }
 }
 
-/* âââ PUSH NOTIFICATION BANNER âââ */
+/* ─── PUSH NOTIFICATION BANNER ─── */
 .push-bar {
   position: fixed;
   top: 56px;
@@ -1104,7 +1104,7 @@ body::after {
 .push-bar.warn-push .push-bar-icon { background:rgba(251,191,36,0.1); border-right-color:rgba(251,191,36,0.2); }
 .push-bar.warn-push .push-bar-sym { color:var(--amber); }
 
-/* âââ MARKET DATA EDITOR âââ */
+/* ─── MARKET DATA EDITOR ─── */
 .mde-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:8px; margin-bottom:14px; }
 .mde-cell { background:var(--ink3); border:1px solid var(--wire); border-radius:7px; padding:10px 12px; }
 .mde-ticker { font-family:var(--mono); font-size:9px; letter-spacing:2px; text-transform:uppercase; color:var(--fog); margin-bottom:6px; }
@@ -1113,13 +1113,13 @@ body::after {
 .mde-input:focus { border-color:var(--gold); }
 .mde-chg { width:70px; }
 
-/* âââ SCROLLBAR âââ */
+/* ─── SCROLLBAR ─── */
 ::-webkit-scrollbar { width: 6px; }
 ::-webkit-scrollbar-track { background: var(--ink); }
 ::-webkit-scrollbar-thumb { background: var(--ink4); border-radius: 3px; }
 ::-webkit-scrollbar-thumb:hover { background: var(--fog); }
 
-/* âââ RESPONSIVE âââ */
+/* ─── RESPONSIVE ─── */
 @media (max-width: 768px) {
   .macro-strip { grid-template-columns: repeat(3, 1fr); }
   .cards-grid, .cards-grid.cols-3 { grid-template-columns: 1fr; }
@@ -1137,9 +1137,9 @@ body::after {
 </head>
 <body>
 
-<!-- âââââââââââââââââââââââââââââââââââââââ
+<!-- ═══════════════════════════════════════
      PAGE 1: GATE (Login)
-âââââââââââââââââââââââââââââââââââââââââââ -->
+═══════════════════════════════════════════ -->
 <div class="page active" id="page-gate">
   <div class="gate-bg"></div>
   <div class="gate-grid"></div>
@@ -1159,7 +1159,7 @@ body::after {
         </div>
         <div class="field-group">
           <label class="field-label">Invite Code / Password</label>
-          <input class="field-input" id="login-code" type="password" placeholder="â¢â¢â¢â¢â¢â¢â¢â¢â¢â¢" autocomplete="current-password">
+          <input class="field-input" id="login-code" type="password" placeholder="••••••••••" autocomplete="current-password">
         </div>
         <button class="btn-primary" onclick="attemptLogin()">ACCESS PLATFORM</button>
         <div class="gate-error" id="login-error">Invalid credentials or invite code.</div>
@@ -1174,21 +1174,21 @@ body::after {
         <div>trader@wjbtrades.com &nbsp;/&nbsp; <span style="color:var(--mist)">WJB-MEMBER-001</span></div>
       </div>
       <div class="gate-footer" style="margin-top:12px">
-        No access yet? <a onclick="showRequestForm()">Request an invitation</a> &nbsp;Â·&nbsp;
+        No access yet? <a onclick="showRequestForm()">Request an invitation</a> &nbsp;·&nbsp;
         <a onclick="showAdminLogin()">Admin</a>
       </div>
     </div>
   </div>
 </div>
 
-<!-- âââââââââââââââââââââââââââââââââââââââ
+<!-- ═══════════════════════════════════════
      PAGE 2: ADMIN
-âââââââââââââââââââââââââââââââââââââââââââ -->
+═══════════════════════════════════════════ -->
 <div class="page" id="page-admin">
   <div class="admin-nav">
-    <div class="admin-nav-brand">WJB TRADES â ADMIN</div>
+    <div class="admin-nav-brand">WJB TRADES — ADMIN</div>
     <div class="admin-nav-right">
-      <button class="btn-sm" onclick="goToDashboard()">â Dashboard</button>
+      <button class="btn-sm" onclick="goToDashboard()">← Dashboard</button>
       <button class="btn-sm" onclick="logout()">Sign Out</button>
     </div>
   </div>
@@ -1212,7 +1212,7 @@ body::after {
         <div class="stat-value red" id="stat-revoked">0</div>
       </div>
       <div class="stat-card">
-        <div class="stat-label">ð§ Subscribed</div>
+        <div class="stat-label">📧 Subscribed</div>
         <div class="stat-value" style="color:var(--teal)" id="stat-subscribed">0</div>
       </div>
     </div>
@@ -1235,7 +1235,7 @@ body::after {
         <button class="btn-sm gold" onclick="generateInvite()" style="padding:12px 20px;height:44px;align-self:flex-end">GENERATE</button>
         <div class="gen-output" id="gen-output">
           <span class="gen-output-placeholder">Generated code will appear here</span>
-          <button class="copy-btn" id="copy-invite-btn" onclick="copyInviteCode()" style="display:none" title="Copy code">â</button>
+          <button class="copy-btn" id="copy-invite-btn" onclick="copyInviteCode()" style="display:none" title="Copy code">⎘</button>
         </div>
       </div>
     </div>
@@ -1251,7 +1251,7 @@ body::after {
             <th>Role</th>
             <th>Status</th>
             <th>Joined</th>
-            <th>ð§ Sub</th>
+            <th>📧 Sub</th>
             <th>Action</th>
           </tr>
         </thead>
@@ -1260,15 +1260,15 @@ body::after {
     </div>
 
     <div class="admin-section">
-      <div class="admin-section-title">ð Market Data â Today's Summary</div>
+      <div class="admin-section-title">📊 Market Data — Today's Summary</div>
       <div class="admin-section-sub">Edit prices and changes before sending the daily 9 AM email. These values populate the email template variables automatically.</div>
 
-      <div style="background:var(--ink3);border:1px solid var(--wire);border-radius:10px;padding:18px 20px;margin-bottom:18px">
+      <div style="background:var(--ink3);border:1px solid var(--wire);border-radius:10px;padding:18px 20px;margin-bottom:16px">
         <div style="font-family:var(--mono);font-size:9px;letter-spacing:2px;color:var(--fog);margin-bottom:14px;text-transform:uppercase">Live Price Editor</div>
         <div class="mde-grid">
           <div class="mde-cell">
             <div class="mde-ticker">SPY</div>
-            <div class="mde-row"><input class="mde-input" id="md-spy-price" placeholder="$679" value="$679"><input class="mde-input mde-chg" id="md-spy-chg" placeholder="â0.40%"></div>
+            <div class="mde-row"><input class="mde-input" id="md-spy-price" placeholder="$679" value="$679"><input class="mde-input mde-chg" id="md-spy-chg" placeholder="−0.40%"></div>
           </div>
           <div class="mde-cell">
             <div class="mde-ticker">QQQ</div>
@@ -1280,11 +1280,11 @@ body::after {
           </div>
           <div class="mde-cell">
             <div class="mde-ticker">Gold XAU</div>
-            <div class="mde-row"><input class="mde-input" id="md-gold-price" placeholder="$4,733" value="$4,733"><input class="mde-input mde-chg" id="md-gold-chg" placeholder="â0.71%"></div>
+            <div class="mde-row"><input class="mde-input" id="md-gold-price" placeholder="$4,733" value="$4,733"><input class="mde-input mde-chg" id="md-gold-chg" placeholder="−0.71%"></div>
           </div>
           <div class="mde-cell">
             <div class="mde-ticker">Bitcoin</div>
-            <div class="mde-row"><input class="mde-input" id="md-btc-price" placeh/lder="$71,600" value="$71,600"><input class="mde-input mde-chg" id="md-btc-chg" placeholder="â1.80%"></div>
+            <div class="mde-row"><input class="mde-input" id="md-btc-price" placeholder="$71,600" value="$71,600"><input class="mde-input mde-chg" id="md-btc-chg" placeholder="−1.80%"></div>
           </div>
           <div class="mde-cell">
             <div class="mde-ticker">DXY</div>
@@ -1293,10 +1293,10 @@ body::after {
         </div>
         <div style="margin-bottom:14px">
           <div style="font-family:var(--mono);font-size:9px;letter-spacing:2px;color:var(--fog);margin-bottom:8px;text-transform:uppercase">Macro Catalyst Banner (breaking news / key context)</div>
-          <input class="field-input" id="md-catalyst" placeholder="U.S. Navy Hormuz blockade live. WTI +8%. CPI 3.3% â highest since May 2024." style="background:var(--ink);font-size:12px;width:100%">
+          <input class="field-input" id="md-catalyst" placeholder="U.S. Navy Hormuz blockade live. WTI +8%. CPI 3.3% — highest since May 2024." style="background:var(--ink);font-size:12px;width:100%">
         </div>
         <div style="margin-bottom:14px">
-          <div style="font-family:var(--mono);font-size:9px;letter-spacing:2px;color:var(--fog);margin-bottom:8px;text-transform:uppercase">Top Setup Overrides (optional â leave blank to use defaults)</div>
+          <div style="font-family:var(--mono);font-size:9px;letter-spacing:2px;color:var(--fog);margin-bottom:8px;text-transform:uppercase">Top Setup Overrides (optional — leave blank to use defaults)</div>
           <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px">
             <div>
               <div style="font-family:var(--mono);font-size:9px;color:var(--fog);margin-bottom:5px">Setup 1 Ticker</div>
@@ -1308,7 +1308,7 @@ body::after {
             </div>
             <div>
               <div style="font-family:var(--mono);font-size:9px;color:var(--fog);margin-bottom:5px">Setup 1 Payoff</div>
-              <input class="field-input" id="md-s1-payoff" placeholder="+35â120%" style="background:var(--ink);font-size:11px">
+              <input class="field-input" id="md-s1-payoff" placeholder="+35–120%" style="background:var(--ink);font-size:11px">
             </div>
           </div>
           <div style="margin-top:6px">
@@ -1317,20 +1317,20 @@ body::after {
           </div>
         </div>
         <div style="display:flex;gap:10px;flex-wrap:wrap">
-          <button class="btn-sm" style="background:rgba(52,211,153,0.1);border-color:rgba(52,211,153,0.25);color:var(--green)" onclick="saveMarketData()">ð¾ Save Market Data</button>
-          <button class="btn-sm" onclick="loadMarketData()">âº Load Saved</button>
+          <button class="btn-sm" style="background:rgba(52,211,153,0.1);border-color:rgba(52,211,153,0.25);color:var(--green)" onclick="saveMarketData()">💾 Save Market Data</button>
+          <button class="btn-sm" onclick="loadMarketData()">↺ Load Saved</button>
         </div>
       </div>
 
-      <div class="admin-section-title">ð§ Daily Summary Subscribers</div>
+      <div class="admin-section-title">📧 Daily Summary Subscribers</div>
       <div class="admin-section-sub">Members subscribed to the 9:00 AM daily market summary email. Use the EmailJS config below to connect the send engine.</div>
 
       <!-- SUPABASE CONFIG -->
       <div style="background:var(--ink3);border:1px solid rgba(96,165,250,0.2);border-radius:8px;padding:18px 20px;margin-bottom:12px">
         <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px">
-          <div style="width:28px;height:28px;background:rgba(96,165,250,0.15);border:1px solid rgba(96,165,250,0.3);border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0">ð</div>
+          <div style="width:28px;height:28px;background:rgba(96,165,250,0.15);border:1px solid rgba(96,165,250,0.3);border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0">🗄</div>
           <div>
-            <div style="font-family:var(--mono);font-size:10px;letter-spacing:2px;color:var(--blue);text-transform:uppercase">Supabase â Shared Subscriber Database</div>
+            <div style="font-family:var(--mono);font-size:10px;letter-spacing:2px;color:var(--blue);text-transform:uppercase">Supabase — Shared Subscriber Database</div>
             <div style="font-size:11px;color:var(--fog);margin-top:2px">Required. Free tier. Stores subscribers in the cloud so all members share the same list.</div>
           </div>
         </div>
@@ -1354,9 +1354,9 @@ body::after {
       <!-- EMAILJS CONFIG -->
       <div style="background:var(--ink3);border:1px solid rgba(200,169,110,0.2);border-radius:8px;padding:18px 20px;margin-bottom:12px">
         <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px">
-          <div style="width:28px;height:28px;background:rgba(200,169,110,0.12);border:1px solid rgba(200,169,110,0.25);border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0">ð§</div>
+          <div style="width:28px;height:28px;background:rgba(200,169,110,0.12);border:1px solid rgba(200,169,110,0.25);border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0">📧</div>
           <div>
-            <div style="font-family:var(--mono);font-size:10px;letter-spacing:2px;color:var(--gold);text-transform:uppercase">EmailJS â Email Delivery Engine</div>
+            <div style="font-family:var(--mono);font-size:10px;letter-spacing:2px;color:var(--gold);text-transform:uppercase">EmailJS — Email Delivery Engine</div>
             <div style="font-size:11px;color:var(--fog);margin-top:2px">Required. Free tier (200 emails/month). Sends the daily HTML summary emails.</div>
           </div>
         </div>
@@ -1377,15 +1377,15 @@ body::after {
         <div style="display:flex;gap:10px;flex-wrap:wrap">
           <button class="btn-sm gold" onclick="saveEmailJSConfig()">Save EmailJS Config</button>
           <button class="btn-sm" onclick="sendTestEmail()">Send Test to Me</button>
-          <button class="btn-sm" style="background:rgba(45,212,191,0.12);border-color:rgba(45,212,191,0.3);color:var(--teal)" onclick="sendDailySummaryNow()">â¡ Send Summary Now</button>
-          <button class="btn-sm" style="background:rgba(96,165,250,0.1);border-color:rgba(96,165,250,0.25);color:var(--blue)" onclick="refreshSubscribers()">â» Refresh List</button>
+          <button class="btn-sm" style="background:rgba(45,212,191,0.12);border-color:rgba(45,212,191,0.3);color:var(--teal)" onclick="sendDailySummaryNow()">⚡ Send Summary Now</button>
+          <button class="btn-sm" style="background:rgba(96,165,250,0.1);border-color:rgba(96,165,250,0.25);color:var(--blue)" onclick="refreshSubscribers()">↻ Refresh List</button>
         </div>
         <div id="ejs-status" style="font-family:var(--mono);font-size:10px;color:var(--fog);margin-top:10px;display:none"></div>
       </div>
 
       <!-- CRON URL BOX -->
       <div style="background:var(--ink3);border:1px solid var(--wire);border-radius:8px;padding:14px 16px;margin-bottom:18px">
-        <div style="font-family:var(--mono);font-size:9px;letter-spacing:2px;color:var(--fog);margin-bottom:8px;text-transform:uppercase">cron-job.org trigger URL â set this to run at 9:00 AM ET daily</div>
+        <div style="font-family:var(--mono);font-size:9px;letter-spacing:2px;color:var(--fog);margin-bottom:8px;text-transform:uppercase">cron-job.org trigger URL — set this to run at 9:00 AM ET daily</div>
         <div id="cron-url-display" style="font-family:var(--mono);font-size:11px;color:var(--gold2);word-break:break-all;background:var(--ink);border:1px solid var(--wire);border-radius:5px;padding:8px 10px">
           Save your config above to generate the cron URL
         </div>
@@ -1407,34 +1407,34 @@ body::after {
       <!-- EMAIL TEMPLATE REFERENCE -->
       <div style="margin-top:18px">
         <div onclick="this.nextElementSibling.style.display=this.nextElementSibling.style.display==='none'?'block':'none'" style="cursor:pointer;background:var(--ink3);border:1px solid var(--wire);border-radius:8px;padding:12px 16px;display:flex;align-items:center;justify-content:space-between">
-          <div style="font-family:var(--mono);font-size:10px;letter-spacing:2px;color:var(--fog);text-transform:uppercase">ð EmailJS Template Variables Reference</div>
-          <div style="font-family:var(--mono);font-size:10px;color:var(--fog)">click to expand â</div>
+          <div style="font-family:var(--mono);font-size:10px;letter-spacing:2px;color:var(--fog);text-transform:uppercase">📋 EmailJS Template Variables Reference</div>
+          <div style="font-family:var(--mono);font-size:10px;color:var(--fog)">click to expand ↓</div>
         </div>
         <div style="display:none;background:var(--ink3);border:1px solid var(--wire);border-top:none;border-radius:0 0 8px 8px;padding:16px">
           <div style="font-size:11px;color:var(--mist);margin-bottom:10px;line-height:1.7">Paste these variable names into your EmailJS template. Each <code style="background:rgba(255,255,255,0.07);padding:1px 5px;border-radius:3px;font-family:var(--mono);font-size:10px">{{variable}}</code> block gets replaced with real data when the email sends.</div>
           <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;font-family:var(--mono);font-size:10px">
             <div style="background:var(--ink);border:1px solid var(--wire);border-radius:6px;padding:10px">
-              <div style="color:var(--gold);margin-bottom:6px">ð HEADER</div>
+              <div style="color:var(--gold);margin-bottom:6px">📊 HEADER</div>
               <div style="color:var(--mist);line-height:2">{{to_email}}<br>{{subject}}<br>{{date}}<br>{{send_time}}</div>
             </div>
             <div style="background:var(--ink);border:1px solid var(--wire);border-radius:6px;padding:10px">
-              <div style="color:var(--gold);margin-bottom:6px">ð MACRO</div>
+              <div style="color:var(--gold);margin-bottom:6px">📈 MACRO</div>
               <div style="color:var(--mist);line-height:2">{{spy_price}} {{spy_chg}}<br>{{qqq_price}} {{qqq_chg}}<br>{{wti_price}} {{wti_chg}}<br>{{gold_price}} {{gold_chg}}<br>{{btc_price}} {{btc_chg}}<br>{{dxy_price}} {{dxy_chg}}</div>
             </div>
             <div style="background:var(--ink);border:1px solid var(--wire);border-radius:6px;padding:10px">
-              <div style="color:var(--gold);margin-bottom:6px">ð¯ SETUPS</div>
+              <div style="color:var(--gold);margin-bottom:6px">🎯 SETUPS</div>
               <div style="color:var(--mist);line-height:2">{{setup1_ticker}}<br>{{setup1_action}}<br>{{setup1_payoff}}<br>{{setup1_trigger}}<br>{{setup2_ticker}} ...<br>{{setup3_ticker}} ...</div>
             </div>
             <div style="background:var(--ink);border:1px solid var(--wire);border-radius:6px;padding:10px">
-              <div style="color:var(--gold);margin-bottom:6px">â¡ ALERTS</div>
+              <div style="color:var(--gold);margin-bottom:6px">⚡ ALERTS</div>
               <div style="color:var(--mist);line-height:2">{{alert1}}<br>{{alert2}}<br>{{alert3}}<br>{{alert4}}</div>
             </div>
             <div style="background:var(--ink);border:1px solid var(--wire);border-radius:6px;padding:10px">
-              <div style="color:var(--gold);margin-bottom:6px">ð¢ GREEKS</div>
+              <div style="color:var(--gold);margin-bottom:6px">🔢 GREEKS</div>
               <div style="color:var(--mist);line-height:2">{{delta_level}}<br>{{gamma_level}}<br>{{theta_level}}<br>{{vega_level}}</div>
             </div>
             <div style="background:var(--ink);border:1px solid var(--wire);border-radius:6px;padding:10px">
-              <div style="color:var(--gold);margin-bottom:6px">ð FOOTER</div>
+              <div style="color:var(--gold);margin-bottom:6px">🔗 FOOTER</div>
               <div style="color:var(--mist);line-height:2">{{platform_url}}<br>{{unsubscribe_note}}</div>
             </div>
           </div>
@@ -1446,9 +1446,9 @@ body::after {
   </div>
 </div>
 
-<!-- âââââââââââââââââââââââââââââââââââââââ
+<!-- ═══════════════════════════════════════
      PAGE 3: DASHBOARD
-âââââââââââââââââââââââââââââââââââââââââââ -->
+═══════════════════════════════════════════ -->
 <div class="page" id="page-dashboard">
   <!-- NAV -->
   <nav class="dash-nav">
@@ -1460,7 +1460,7 @@ body::after {
       <div class="nav-tabs">
         <div class="nav-tab active" data-tab="report" onclick="switchTab('report', this)">Market Report</div>
         <div class="nav-tab" data-tab="alerts" onclick="switchTab('alerts', this)">Live Alerts</div>
-        <div class="nav-tab" data-tab="subscriptions" onclick="switchTab('subscriptions', this)">ð§ Daily Summary</div>
+        <div class="nav-tab" data-tab="subscriptions" onclick="switchTab('subscriptions', this)">📧 Daily Summary</div>
         <div class="nav-tab" data-tab="glossary" onclick="switchTab('glossary', this)">Glossary</div>
       </div>
     </div>
@@ -1476,19 +1476,19 @@ body::after {
 
   <!-- PUSH NOTIFICATION BANNER -->
   <div class="push-bar" id="push-bar">
-    <div class="push-bar-icon" id="push-bar-icon">â²</div>
+    <div class="push-bar-icon" id="push-bar-icon">▲</div>
     <div class="push-bar-body">
       <span class="push-bar-sym" id="push-bar-sym">ORCL</span>
       <span class="push-bar-msg" id="push-bar-msg">Alert message here</span>
       <span class="push-bar-time" id="push-bar-time">9:00 AM ET</span>
     </div>
-    <div class="push-bar-close" onclick="closePushBar()">â</div>
+    <div class="push-bar-close" onclick="closePushBar()">✕</div>
   </div>
 
   <!-- CONTENT -->
   <div class="dash-content">
 
-    <!-- ââ TAB: REPORT ââ -->
+    <!-- ── TAB: REPORT ── -->
     <div class="dash-tab-panel active" id="tab-report">
       <div class="report-wrap">
 
@@ -1498,92 +1498,92 @@ body::after {
             <div>
               <div class="rpt-eyebrow"><span class="live-dot"></span> WJB Trades Intelligence</div>
               <div class="rpt-title">MARKET ALPHA &amp;<br><span>CONTINUITY REPORT</span></div>
-              <div class="rpt-sub">TheStrat Framework Â· Full Category Breakdown Â· 2-Min Alert Protocol</div>
+              <div class="rpt-sub">TheStrat Framework · Full Category Breakdown · 2-Min Alert Protocol</div>
             </div>
             <div class="rpt-badge">
-              <div class="rpt-badge-date">MON APR 13 Â· 2026</div>
-              <div class="rpt-badge-line">13 setups Â· 5 categories</div>
+              <div class="rpt-badge-date">MON APR 13 · 2026</div>
+              <div class="rpt-badge-line">13 setups · 5 categories</div>
               <div class="rpt-badge-alert">HIGH VEGA / GAMMA ENV</div>
             </div>
           </div>
         </div>
 
         <div class="rpt-alert">
-          ð¨ <strong>ACTIVE MACRO CATALYST:</strong> U.S. Navy Hormuz blockade live 10:00 AM ET. Iran talks collapsed. WTI +8% above $104. CPI 3.3% â highest since May 2024. DXY at 98.79 multi-week lows. <strong>Size starter positions only. Manage Vega exposure aggressively.</strong>
+          🚨 <strong>ACTIVE MACRO CATALYST:</strong> U.S. Navy Hormuz blockade live 10:00 AM ET. Iran talks collapsed. WTI +8% above $104. CPI 3.3% — highest since May 2024. DXY at 98.79 multi-week lows. <strong>Size starter positions only. Manage Vega exposure aggressively.</strong>
         </div>
 
         <div class="macro-strip">
-          <div class="mc-cell"><div class="mc-label">SPY</div><div class="mc-price">$679</div><div class="mc-chg chg-dn">â¼ â0.40%</div><div class="mc-meta">52W $508â$698</div></div>
-          <div class="mc-cell"><div class="mc-label">QQQ</div><div class="mc-price">$611</div><div class="mc-chg chg-up">â² +0.14%</div><div class="mc-meta">Bounced $582 key</div></div>
-          <div class="mc-cell"><div class="mc-label">WTI OIL</div><div class="mc-price">$104</div><div class="mc-chg chg-up">â² +8.0%</div><div class="mc-meta">Brent ~$101â103</div></div>
-          <div class="mc-cell"><div class="mc-label">GOLD XAU</div><div class="mc-price">$4,733</div><div class="mc-chg chg-dn">â¼ â0.71%</div><div class="mc-meta">+47% YoY Â· OTE zone</div></div>
-          <div class="mc-cell"><div class="mc-label">BTC</div><div class="mc-price">$71.6K</div><div class="mc-chg chg-dn">â¼ â1.80%</div><div class="mc-meta">Best wk since Oct '25</div></div>
-          <div class="mc-cell"><div class="mc-label">DXY</div><div class="mc-price">98.79</div><div class="mc-chg chg-dn">â¼ Multi-wk low</div><div class="mc-meta">EUR/USD ~1.1520</div></div>
+          <div class="mc-cell"><div class="mc-label">SPY</div><div class="mc-price">$679</div><div class="mc-chg chg-dn">▼ −0.40%</div><div class="mc-meta">52W $508–$698</div></div>
+          <div class="mc-cell"><div class="mc-label">QQQ</div><div class="mc-price">$611</div><div class="mc-chg chg-up">▲ +0.14%</div><div class="mc-meta">Bounced $582 key</div></div>
+          <div class="mc-cell"><div class="mc-label">WTI OIL</div><div class="mc-price">$104</div><div class="mc-chg chg-up">▲ +8.0%</div><div class="mc-meta">Brent ~$101–103</div></div>
+          <div class="mc-cell"><div class="mc-label">GOLD XAU</div><div class="mc-price">$4,733</div><div class="mc-chg chg-dn">▼ −0.71%</div><div class="mc-meta">+47% YoY · OTE zone</div></div>
+          <div class="mc-cell"><div class="mc-label">BTC</div><div class="mc-price">$71.6K</div><div class="mc-chg chg-dn">▼ −1.80%</div><div class="mc-meta">Best wk since Oct '25</div></div>
+          <div class="mc-cell"><div class="mc-label">DXY</div><div class="mc-price">98.79</div><div class="mc-chg chg-dn">▾ Multi-wk low</div><div class="mc-meta">EUR/USD ~1.1520</div></div>
         </div>
 
         <!-- EQUITIES -->
         <div class="cat-section">
-          <div class="cat-header"><span class="cat-emoji">ð</span><span class="cat-label">Equities</span><div class="cat-rule"></div><span class="cat-pill">4 setups</span></div>
+          <div class="cat-header"><span class="cat-emoji">📈</span><span class="cat-label">Equities</span><div class="cat-rule"></div><span class="cat-pill">4 setups</span></div>
           <div class="cards-grid">
             <div class="trade-card feat-gold">
-              <div class="card-head"><div class="card-ticker-wrap"><div class="card-chip chip-gold">RS Leader Today</div><div class="card-ticker">ORCL</div><div class="card-desc">Oracle Corp Â· +9â11% Â· vol 32.9M vs 20.7M avg</div></div><span class="action-badge ab-bull">BUY CALL</span></div>
-              <div class="card-rows"><div class="card-row"><span class="row-key">Strike / Exp</span><span class="row-val">$150C or $155C Â· May 15</span></div><div class="card-row"><span class="row-key">Entry Trigger</span><span class="row-val">TTO pullback to 9 EMA ~$145</span></div><div class="card-row"><span class="row-key">Stop / Flip</span><span class="row-val r">Below $136â138 open price</span></div><div class="card-row"><span class="row-key">Target 1</span><span class="row-val g">$163 stock â ~+40% option</span></div><div class="card-row"><span class="row-key">Target 2</span><span class="row-val g">$175â185 â ~+120% option</span></div><div class="card-row"><span class="row-key">Catalyst</span><span class="row-val b">AI Fusion Apps Â· RPO $553B Â· Cloud +44%</span></div></div>
+              <div class="card-head"><div class="card-ticker-wrap"><div class="card-chip chip-gold">RS Leader Today</div><div class="card-ticker">ORCL</div><div class="card-desc">Oracle Corp · +9–11% · vol 32.9M vs 20.7M avg</div></div><span class="action-badge ab-bull">BUY CALL</span></div>
+              <div class="card-rows"><div class="card-row"><span class="row-key">Strike / Exp</span><span class="row-val">$150C or $155C · May 15</span></div><div class="card-row"><span class="row-key">Entry Trigger</span><span class="row-val">TTO pullback to 9 EMA ~$145</span></div><div class="card-row"><span class="row-key">Stop / Flip</span><span class="row-val r">Below $136–138 open price</span></div><div class="card-row"><span class="row-key">Target 1</span><span class="row-val g">$163 stock → ~+40% option</span></div><div class="card-row"><span class="row-key">Target 2</span><span class="row-val g">$175–185 → ~+120% option</span></div><div class="card-row"><span class="row-key">Catalyst</span><span class="row-val b">AI Fusion Apps · RPO $553B · Cloud +44%</span></div></div>
               <div class="payoff-bar-wrap"><div class="payoff-top"><span class="payoff-lbl">Min Payoff Est.</span><span class="payoff-num pn-g">+40%</span></div><div class="bar-track"><div class="bar-fill bf-g" style="width:40%"></div></div><div class="bar-labels"><span>entry</span><span>+40% T1</span><span>+120% T2</span></div></div>
               <div class="card-footnote">52W high $345 vs current ~$150. RSI 38 = oversold + bouncing. Analyst avg PT $246. +10pt RS over SPY today.</div>
             </div>
             <div class="trade-card feat-gold">
-              <div class="card-head"><div class="card-ticker-wrap"><div class="card-chip chip-gold">Defense AI Â· ER May 11</div><div class="card-ticker">PLTR</div><div class="card-desc">Palantir Â· ~$128â133 Â· 52W: $85â$207</div></div><span class="action-badge ab-bull">BUY CALL</span></div>
-              <div class="card-rows"><div class="card-row"><span class="row-key">Strike / Exp</span><span class="row-val">$130C or $135C Â· May 8</span></div><div class="card-row"><span class="row-key">Entry Trigger</span><span class="row-val">Reclaim + hold VWAP ~$130 on 15m</span></div><div class="card-row"><span class="row-key">Stop / Flip</span><span class="row-val r">$122.68 (today's LOD) â Level 2</span></div><div class="card-row"><span class="row-key">Target 1</span><span class="row-val g">$148 (+15%) â ~+60% option</span></div><div class="card-row"><span class="row-key">Target 2</span><span class="row-val g">$162 (month HOD) â ~+120%</span></div><div class="card-row"><span class="row-key">Vega Note</span><span class="row-val a">ER May 11 = IV expansion tailwind</span></div></div>
+              <div class="card-head"><div class="card-ticker-wrap"><div class="card-chip chip-gold">Defense AI · ER May 11</div><div class="card-ticker">PLTR</div><div class="card-desc">Palantir · ~$128–133 · 52W: $85–$207</div></div><span class="action-badge ab-bull">BUY CALL</span></div>
+              <div class="card-rows"><div class="card-row"><span class="row-key">Strike / Exp</span><span class="row-val">$130C or $135C · May 8</span></div><div class="card-row"><span class="row-key">Entry Trigger</span><span class="row-val">Reclaim + hold VWAP ~$130 on 15m</span></div><div class="card-row"><span class="row-key">Stop / Flip</span><span class="row-val r">$122.68 (today's LOD) — Level 2</span></div><div class="card-row"><span class="row-key">Target 1</span><span class="row-val g">$148 (+15%) → ~+60% option</span></div><div class="card-row"><span class="row-key">Target 2</span><span class="row-val g">$162 (month HOD) → ~+120%</span></div><div class="card-row"><span class="row-key">Vega Note</span><span class="row-val a">ER May 11 = IV expansion tailwind</span></div></div>
               <div class="payoff-bar-wrap"><div class="payoff-top"><span class="payoff-lbl">Min Payoff Est.</span><span class="payoff-num pn-g">+60%</span></div><div class="bar-track"><div class="bar-fill bf-g" style="width:60%"></div></div><div class="bar-labels"><span>entry</span><span>+60% T1</span><span>+120% T2</span></div></div>
               <div class="card-footnote">NATO $1.4T defense build. Cathie Wood bought dip Apr 10. Vol 116M vs 51M avg = institutional confirmation.</div>
             </div>
             <div class="trade-card">
-              <div class="card-head"><div class="card-ticker-wrap"><div class="card-ticker">MRVL</div><div class="card-desc">Marvell Technology Â· ~$128 Â· +20% in 5 days</div></div><span class="action-badge ab-bull">BUY CALL</span></div>
-              <div class="card-rows"><div class="card-row"><span class="row-key">Strike / Exp</span><span class="row-val">$130C Â· May 8</span></div><div class="card-row"><span class="row-key">Entry Trigger</span><span class="row-val">TTO to VWAP / 9 EMA on 15m</span></div><div class="card-row"><span class="row-key">Stop / Flip</span><span class="row-val r">Below $120 (50%er of 5-day run)</span></div><div class="card-row"><span class="row-key">Target 1</span><span class="row-val g">$148 (+15.6%) â ~+55%</span></div><div class="card-row"><span class="row-key">Target 2</span><span class="row-val g">$158 (+23%) â ~+100%</span></div><div class="card-row"><span class="row-key">Sector RS</span><span class="row-val b">Semis cap-equip +24% YTD vs XLK â6%</span></div></div>
+              <div class="card-head"><div class="card-ticker-wrap"><div class="card-ticker">MRVL</div><div class="card-desc">Marvell Technology · ~$128 · +20% in 5 days</div></div><span class="action-badge ab-bull">BUY CALL</span></div>
+              <div class="card-rows"><div class="card-row"><span class="row-key">Strike / Exp</span><span class="row-val">$130C · May 8</span></div><div class="card-row"><span class="row-key">Entry Trigger</span><span class="row-val">TTO to VWAP / 9 EMA on 15m</span></div><div class="card-row"><span class="row-key">Stop / Flip</span><span class="row-val r">Below $120 (50%er of 5-day run)</span></div><div class="card-row"><span class="row-key">Target 1</span><span class="row-val g">$148 (+15.6%) → ~+55%</span></div><div class="card-row"><span class="row-key">Target 2</span><span class="row-val g">$158 (+23%) → ~+100%</span></div><div class="card-row"><span class="row-key">Sector RS</span><span class="row-val b">Semis cap-equip +24% YTD vs XLK −6%</span></div></div>
               <div class="payoff-bar-wrap"><div class="payoff-top"><span class="payoff-lbl">Min Payoff Est.</span><span class="payoff-num pn-g">+55%</span></div><div class="bar-track"><div class="bar-fill bf-g" style="width:55%"></div></div><div class="bar-labels"><span>entry</span><span>+55% T1</span><span>+100% T2</span></div></div>
               <div class="card-footnote">Only IT sub-sector outperforming in 2026. +29.7% in April. Institutional accumulation signal.</div>
             </div>
             <div class="trade-card">
-              <div class="card-head"><div class="card-ticker-wrap"><div class="card-ticker">SPY Puts</div><div class="card-desc">S&amp;P 500 hedge Â· ~$679 Â· Gap-fail reversal</div></div><span class="action-badge ab-bear">BUY PUT</span></div>
-              <div class="card-rows"><div class="card-row"><span class="row-key">Strike / Exp</span><span class="row-val">$678P or $675P Â· Apr 17</span></div><div class="card-row"><span class="row-key">Entry Trigger</span><span class="row-val">Rejection wick off $679â682 gap mid</span></div><div class="card-row"><span class="row-key">Stop / Flip</span><span class="row-val g">$685 hold = thesis invalid, flip calls</span></div><div class="card-row"><span class="row-key">Target 1</span><span class="row-val g">$672 support â ~+35%</span></div><div class="card-row"><span class="row-key">Target 2</span><span class="row-val g">$666 MA cluster â ~+80%</span></div><div class="card-row"><span class="row-key">Edge</span><span class="row-val a">Polymarket 79% odds down close today</span></div></div>
+              <div class="card-head"><div class="card-ticker-wrap"><div class="card-ticker">SPY Puts</div><div class="card-desc">S&amp;P 500 hedge · ~$679 · Gap-fail reversal</div></div><span class="action-badge ab-bear">BUY PUT</span></div>
+              <div class="card-rows"><div class="card-row"><span class="row-key">Strike / Exp</span><span class="row-val">$678P or $675P · Apr 17</span></div><div class="card-row"><span class="row-key">Entry Trigger</span><span class="row-val">Rejection wick off $679–682 gap mid</span></div><div class="card-row"><span class="row-key">Stop / Flip</span><span class="row-val g">$685 hold = thesis invalid, flip calls</span></div><div class="card-row"><span class="row-key">Target 1</span><span class="row-val g">$672 support → ~+35%</span></div><div class="card-row"><span class="row-key">Target 2</span><span class="row-val g">$666 MA cluster → ~+80%</span></div><div class="card-row"><span class="row-key">Edge</span><span class="row-val a">Polymarket 79% odds down close today</span></div></div>
               <div class="payoff-bar-wrap"><div class="payoff-top"><span class="payoff-lbl">Min Payoff Est.</span><span class="payoff-num pn-r">+35%</span></div><div class="bar-track"><div class="bar-fill bf-r" style="width:35%"></div></div><div class="bar-labels"><span>entry</span><span>+35% T1</span><span>+80% T2</span></div></div>
-              <div class="card-footnote">Portfolio hedge vs energy longs. Short expiry keeps Theta manageable. IV elevated â size accordingly.</div>
+              <div class="card-footnote">Portfolio hedge vs energy longs. Short expiry keeps Theta manageable. IV elevated — size accordingly.</div>
             </div>
           </div>
         </div>
 
         <!-- ETFs -->
         <div class="cat-section">
-          <div class="cat-header"><span class="cat-emoji">ð</span><span class="cat-label">ETFs &amp; Index Options</span><div class="cat-rule"></div><span class="cat-pill">2 setups</span></div>
+          <div class="cat-header"><span class="cat-emoji">📊</span><span class="cat-label">ETFs &amp; Index Options</span><div class="cat-rule"></div><span class="cat-pill">2 setups</span></div>
           <div class="cards-grid">
             <div class="trade-card feat-green">
-              <div class="card-head"><div class="card-ticker-wrap"><div class="card-chip chip-green">Highest Conviction Â· FTFC Full Bull</div><div class="card-ticker">XLE / USO</div><div class="card-desc">Energy ETF / Oil Â· WTI $104 Â· PMG Active Â· Sector +18â38% YTD</div></div><span class="action-badge ab-bull">BUY CALL</span></div>
-              <div class="card-rows"><div class="card-row"><span class="row-key">Strike / Exp</span><span class="row-val">USO $85C Â· XLE $92C Â· May 16</span></div><div class="card-row"><span class="row-key">Entry Trigger</span><span class="row-val">Reclaim $104.50 WTI / TTO to 9 EMA</span></div><div class="card-row"><span class="row-key">Stop / Flip</span><span class="row-val r">Below $101 WTI â Level 2 structural stop</span></div><div class="card-row"><span class="row-key">Target 1</span><span class="row-val g">$107 WTI â ~+35%</span></div><div class="card-row"><span class="row-key">Target 2</span><span class="row-val g">$115 WTI (BF upper) â ~+120%</span></div><div class="card-row"><span class="row-key">FTFC Status</span><span class="row-val b">Q / M / W / D all green â full continuity</span></div></div>
+              <div class="card-head"><div class="card-ticker-wrap"><div class="card-chip chip-green">Highest Conviction · FTFC Full Bull</div><div class="card-ticker">XLE / USO</div><div class="card-desc">Energy ETF / Oil · WTI $104 · PMG Active · Sector +18–38% YTD</div></div><span class="action-badge ab-bull">BUY CALL</span></div>
+              <div class="card-rows"><div class="card-row"><span class="row-key">Strike / Exp</span><span class="row-val">USO $85C · XLE $92C · May 16</span></div><div class="card-row"><span class="row-key">Entry Trigger</span><span class="row-val">Reclaim $104.50 WTI / TTO to 9 EMA</span></div><div class="card-row"><span class="row-key">Stop / Flip</span><span class="row-val r">Below $101 WTI — Level 2 structural stop</span></div><div class="card-row"><span class="row-key">Target 1</span><span class="row-val g">$107 WTI → ~+35%</span></div><div class="card-row"><span class="row-key">Target 2</span><span class="row-val g">$115 WTI (BF upper) → ~+120%</span></div><div class="card-row"><span class="row-key">FTFC Status</span><span class="row-val b">Q / M / W / D all green — full continuity</span></div></div>
               <div class="payoff-bar-wrap"><div class="payoff-top"><span class="payoff-lbl">Min Payoff Est.</span><span class="payoff-num pn-g">+35%</span></div><div class="bar-track"><div class="bar-fill bf-g" style="width:35%"></div></div><div class="bar-labels"><span>entry</span><span>+35% T1</span><span>+120% T2</span></div></div>
-              <div class="card-footnote">OPEC output sharply down. Saudi Manifa + E-W pipeline disrupted. Use ITM calls (Delta â¥0.65) to defend against IV crush on ceasefire headline.</div>
+              <div class="card-footnote">OPEC output sharply down. Saudi Manifa + E-W pipeline disrupted. Use ITM calls (Delta ≥0.65) to defend against IV crush on ceasefire headline.</div>
             </div>
             <div class="trade-card">
-              <div class="card-head"><div class="card-ticker-wrap"><div class="card-ticker">QQQ</div><div class="card-desc">Nasdaq 100 Â· ~$611 Â· TTO bounce off $582 key level</div></div><span class="action-badge ab-bull">BUY CALL</span></div>
-              <div class="card-rows"><div class="card-row"><span class="row-key">Strike / Exp</span><span class="row-val">$610C Â· Apr 24 or May 1</span></div><div class="card-row"><span class="row-key">OTE FVG Zone</span><span class="row-val">$607â$611 pullback re-entry</span></div><div class="card-row"><span class="row-key">Stop / Flip</span><span class="row-val r">$602.68 LOD â Delta Bleed below this</span></div><div class="card-row"><span class="row-key">Target 1</span><span class="row-val g">$622 prior WHD â ~+25%</span></div><div class="card-row"><span class="row-key">Target 2</span><span class="row-val g">$637 (52W high test) â ~+70%</span></div><div class="card-row"><span class="row-key">Gamma Flip</span><span class="row-val b">$590 = structural support Â· $610 = pin</span></div></div>
+              <div class="card-head"><div class="card-ticker-wrap"><div class="card-ticker">QQQ</div><div class="card-desc">Nasdaq 100 · ~$611 · TTO bounce off $582 key level</div></div><span class="action-badge ab-bull">BUY CALL</span></div>
+              <div class="card-rows"><div class="card-row"><span class="row-key">Strike / Exp</span><span class="row-val">$610C · Apr 24 or May 1</span></div><div class="card-row"><span class="row-key">OTE FVG Zone</span><span class="row-val">$607–$611 pullback re-entry</span></div><div class="card-row"><span class="row-key">Stop / Flip</span><span class="row-val r">$602.68 LOD — Delta Bleed below this</span></div><div class="card-row"><span class="row-key">Target 1</span><span class="row-val g">$622 prior WHD → ~+25%</span></div><div class="card-row"><span class="row-key">Target 2</span><span class="row-val g">$637 (52W high test) → ~+70%</span></div><div class="card-row"><span class="row-key">Gamma Flip</span><span class="row-val b">$590 = structural support · $610 = pin</span></div></div>
               <div class="payoff-bar-wrap"><div class="payoff-top"><span class="payoff-lbl">Min Payoff Est.</span><span class="payoff-num pn-b">+25%</span></div><div class="bar-track"><div class="bar-fill bf-b" style="width:25%"></div></div><div class="bar-labels"><span>entry</span><span>+25% T1</span><span>+70% T2</span></div></div>
-              <div class="card-footnote">Dealer gamma concentration at $610. FTFC requires weekly candle to flip green â confirm before adding beyond starter.</div>
+              <div class="card-footnote">Dealer gamma concentration at $610. FTFC requires weekly candle to flip green — confirm before adding beyond starter.</div>
             </div>
           </div>
         </div>
 
         <!-- COMMODITIES -->
         <div class="cat-section">
-          <div class="cat-header"><span class="cat-emoji">ðª</span><span class="cat-label">Commodities</span><div class="cat-rule"></div><span class="cat-pill">2 setups</span></div>
+          <div class="cat-header"><span class="cat-emoji">🪙</span><span class="cat-label">Commodities</span><div class="cat-rule"></div><span class="cat-pill">2 setups</span></div>
           <div class="cards-grid">
             <div class="trade-card feat-gold">
-              <div class="card-head"><div class="card-ticker-wrap"><div class="card-chip chip-gold">Safe-Haven + Inflation Hedge</div><div class="card-ticker">GLD / XAU</div><div class="card-desc">Gold Â· spot ~$4,733 Â· 52W: $3,120â$5,595 Â· +47% YoY</div></div><span class="action-badge ab-bull">BUY CALL</span></div>
-              <div class="card-rows"><div class="card-row"><span class="row-key">Strike / Exp</span><span class="row-val">GLD $450C or $455C Â· May 15</span></div><div class="card-row"><span class="row-key">Entry Trigger</span><span class="row-val">Reclaim $4,785 (50%er retest) + hold</span></div><div class="card-row"><span class="row-key">OTE Zone</span><span class="row-val b">$4,731â$4,752 (50% Fib support)</span></div><div class="card-row"><span class="row-key">Stop / Flip</span><span class="row-val r">$4,595 (next Fib floor) â Level 2</span></div><div class="card-row"><span class="row-key">Target 1</span><span class="row-val g">$4,883 (200 SMA) â ~+20%</span></div><div class="card-row"><span class="row-key">Target 2</span><span class="row-val g">$5,131 (BF upper) â ~+80%</span></div></div>
+              <div class="card-head"><div class="card-ticker-wrap"><div class="card-chip chip-gold">Safe-Haven + Inflation Hedge</div><div class="card-ticker">GLD / XAU</div><div class="card-desc">Gold · spot ~$4,733 · 52W: $3,120–$5,595 · +47% YoY</div></div><span class="action-badge ab-bull">BUY CALL</span></div>
+              <div class="card-rows"><div class="card-row"><span class="row-key">Strike / Exp</span><span class="row-val">GLD $450C or $455C · May 15</span></div><div class="card-row"><span class="row-key">Entry Trigger</span><span class="row-val">Reclaim $4,785 (50%er retest) + hold</span></div><div class="card-row"><span class="row-key">OTE Zone</span><span class="row-val b">$4,731–$4,752 (50% Fib support)</span></div><div class="card-row"><span class="row-key">Stop / Flip</span><span class="row-val r">$4,595 (next Fib floor) — Level 2</span></div><div class="card-row"><span class="row-key">Target 1</span><span class="row-val g">$4,883 (200 SMA) → ~+20%</span></div><div class="card-row"><span class="row-key">Target 2</span><span class="row-val g">$5,131 (BF upper) → ~+80%</span></div></div>
               <div class="payoff-bar-wrap"><div class="payoff-top"><span class="payoff-lbl">Min Payoff Est.</span><span class="payoff-num pn-g">+20%</span></div><div class="bar-track"><div class="bar-fill bf-g" style="width:20%"></div></div><div class="bar-labels"><span>entry</span><span>+20% T1</span><span>+80% T2</span></div></div>
-              <div class="card-footnote">CPI 3.3% = hot inflation confirmed. Volume void $4,937â$5,012 = gap-fill rocket above $4,883. CB gold buying accelerating globally.</div>
+              <div class="card-footnote">CPI 3.3% = hot inflation confirmed. Volume void $4,937–$5,012 = gap-fill rocket above $4,883. CB gold buying accelerating globally.</div>
             </div>
             <div class="trade-card">
-              <div class="card-head"><div class="card-ticker-wrap"><div class="card-ticker">WTI / CL</div><div class="card-desc">Crude Oil Futures Â· ~$104 Â· Hormuz PMG Â· UCO calls</div></div><span class="action-badge ab-bull">BUY CALL CFD</span></div>
-              <div class="card-rows"><div class="card-row"><span class="row-key">Contract</span><span class="row-val">May 2026 CL futures / UCO ETF calls</span></div><div class="card-row"><span class="row-key">Entry Trigger</span><span class="row-val">Hold above $103 on 15m 2-up candle</span></div><div class="card-row"><span class="row-key">Stop / Flip</span><span class="row-val r">$101 close = exit ALL energy positions</span></div><div class="card-row"><span class="row-key">Target 1</span><span class="row-val g">$108 (+3.8%) â ~+35%</span></div><div class="card-row"><span class="row-key">Target 2</span><span class="row-val g">$115 (+10%) â ~+100%+</span></div><div class="card-row"><span class="row-key">Tail Risk</span><span class="row-val a">Ceasefire = instant IV crush on all energy</span></div></div>
+              <div class="card-head"><div class="card-ticker-wrap"><div class="card-ticker">WTI / CL</div><div class="card-desc">Crude Oil Futures · ~$104 · Hormuz PMG · UCO calls</div></div><span class="action-badge ab-bull">BUY CALL CFD</span></div>
+              <div class="card-rows"><div class="card-row"><span class="row-key">Contract</span><span class="row-val">May 2026 CL futures / UCO ETF calls</span></div><div class="card-row"><span class="row-key">Entry Trigger</span><span class="row-val">Hold above $103 on 15m 2-up candle</span></div><div class="card-row"><span class="row-key">Stop / Flip</span><span class="row-val r">$101 close = exit ALL energy positions</span></div><div class="card-row"><span class="row-key">Target 1</span><span class="row-val g">$108 (+3.8%) → ~+35%</span></div><div class="card-row"><span class="row-key">Target 2</span><span class="row-val g">$115 (+10%) → ~+100%+</span></div><div class="card-row"><span class="row-key">Tail Risk</span><span class="row-val a">Ceasefire = instant IV crush on all energy</span></div></div>
               <div class="payoff-bar-wrap"><div class="payoff-top"><span class="payoff-lbl">Min Payoff Est.</span><span class="payoff-num pn-g">+35%</span></div><div class="bar-track"><div class="bar-fill bf-g" style="width:35%"></div></div><div class="bar-labels"><span>entry</span><span>+35% T1</span><span>+100% T2</span></div></div>
               <div class="card-footnote">Saudi Manifa + E-W Pipeline both disrupted. OPEC March output plunged. Hormuz effectively closed. Take T1 before news windows.</div>
             </div>
@@ -1592,1351 +1592,896 @@ body::after {
 
         <!-- CRYPTO -->
         <div class="cat-section">
-          <div class="cat-header"><span class="cat-emoji">â¿</span><span class="cat-label">Crypto</span><div class="cat-rule"></div><span class="cat-pill">2 setups</span></div>
+          <div class="cat-header"><span class="cat-emoji">₿</span><span class="cat-label">Crypto</span><div class="cat-rule"></div><span class="cat-pill">2 setups</span></div>
           <div class="cards-grid">
             <div class="trade-card feat-gold">
-              <div class="card-head"><div class="card-ticker-wrap"><div class="card-chip chip-gold">Clarity Act Â· Senate Vote This Week</div><div class="card-ticker">BTC / IBIT</div><div class="card-desc">Bitcoin Â· ~$71,600 Â· Best week since Oct 2025</div></div><span class="action-badge ab-hot">CATALYST PLAY</span></div>
-              <div class="card-rows"><div class="card-row"><span class="row-key">Strike / Exp</span><span class="row-val">IBIT $58C or $60C Â· May 15</span></div><div class="card-row"><span class="row-key">Entry Trigger</span><span class="row-val">BTC reclaims $72,500 on 4H 2-up candle</span></div><div class="card-row"><span class="row-key">OTE / Strat-Hole</span><span class="row-val b">$69,000â$71,000 re-entry zone</span></div><div class="card-row"><span class="row-key">Stop / Flip</span><span class="row-val r">$69,000 â weekly 50%er structural stop</span></div><div class="card-row"><span class="row-key">Target 1</span><span class="row-val g">$75,000 BTC â ~+35% IBIT option</span></div><div class="card-row"><span class="row-key">Target 2</span><span class="row-val g">$80,000 (BF upper) â ~+90%</span></div></div>
-              <div class="payoff-bar-wrap"><div class="payoff-top"><span class="payoff-lbl">Min Payoff (Confirmed Entry)</span><span class="payoff-num pn-b">+35%</span></div><div class="bar-track"><div class="bar-fill bf-b" style="width:35%"></div></div><div class="bar-labels"><span>entry</span><span>+35% T1</span><span>+90% T2</span></div></div>
-              <div class="card-footnote">Circle +9%, Coinbase +2% on Clarity Act optimism. Do NOT enter before $72,500 trigger confirmed. BTC/Gold correlation elevated.</div>
-            </div>
-            <div class="trade-card">
-              <div class="card-head"><div class="card-ticker-wrap"><div class="card-ticker">ETH / ETHA</div><div class="card-desc">Ethereum Â· Correlated to BTC + stablecoin ruling</div></div><span class="action-badge ab-hot">CATALYST PLAY</span></div>
-              <div class="card-rows"><div class="card-row"><span class="row-key">Strike / Exp</span><span class="row-val">ETHA ATM calls Â· May 15</span></div><div class="card-row"><span class="row-key">Entry Trigger</span><span class="row-val">ETH holds weekly 50%er on 4H flip</span></div><div class="card-row"><span class="row-key">Stop / Flip</span><span class="row-val r">Break below weekly open = full exit</span></div><div class="card-row"><span class="row-key">Target 1</span><span class="row-val g">+15â20% ETH â ~+40% option</span></div><div class="card-row"><span class="row-key">Target 2</span><span class="row-val g">BF upper boundary â ~+80%</span></div><div class="card-row"><span class="row-key">Catalyst</span><span class="row-val b">Clarity Act covers USDC/ETH ecosystem</span></div></div>
-              <div class="payoff-bar-wrap"><div class="payoff-top"><span class="payoff-lbl">Min Payoff Est.</span><span class="payoff-num pn-b">+40%</span></div><div class="bar-track"><div class="bar-fill bf-b" style="width:40%"></div></div><div class="bar-labels"><span>entry</span><span>+40% T1</span><span>+80% T2</span></div></div>
-              <div class="card-footnote">Secondary to BTC â confirm BTC trigger first. Stablecoin Clarity Act directly covers USDC/ETH ecosystem.</div>
-            </div>
-          </div>
-        </div>
-
-        <!-- FOREX -->
-        <div class="cat-section">
-          <div class="cat-header"><span class="cat-emoji">ð±</span><span class="cat-label">Forex</span><div class="cat-rule"></div><span class="cat-pill">3 setups</span></div>
-          <div class="cards-grid cols-3">
-            <div class="trade-card feat-gold">
-              <div class="card-head"><div class="card-ticker-wrap"><div class="card-chip chip-gold">USD Weakness Â· DXY 98.79</div><div class="card-ticker">EUR/USD</div><div class="card-desc">Euro Â· ~1.1520 Â· Energy shock drag</div></div><span class="action-badge ab-bull">LONG EUR</span></div>
-              <div class="card-rows"><div class="card-row"><span class="row-key">Entry Zone</span><span class="row-val">Buy dips to $1.1500 / 50%er</span></div><div class="card-row"><span class="row-key">Stop / Flip</span><span class="row-val r">Below $1.1450 â invalidated</span></div><div class="card-row"><span class="row-key">Target 1</span><span class="row-val g">$1.1700 â ~+17% (10x)</span></div><div class="card-row"><span class="row-key">Target 2</span><span class="row-val g">$1.20 Q2 â ~+25%+</span></div><div class="card-row"><span class="row-key">Analyst PT</span><span class="row-val b">RBC: 1.20 end-2026</span></div></div>
-              <div class="payoff-bar-wrap"><div class="payoff-top"><span class="payoff-lbl">Leveraged Payoff (10Ã)</span><span class="payoff-num pn-b">+17%+</span></div><div class="bar-track"><div class="bar-fill bf-b" style="width:17%"></div></div><div class="bar-labels"><span>entry</span><span>+17%</span><span>+25%</span></div></div>
-              <div class="card-footnote">Longs unwound = reduced overhang. ECB resisting tightening. De-escalation â faster return to 1.18â1.20.</div>
-            </div>
-            <div class="trade-card">
-              <div class="card-head"><div class="card-ticker-wrap"><div class="card-ticker">GBP/USD</div><div class="card-desc">Cable Â· ~$1.3450 Â· 2-month highs</div></div><span class="action-badge ab-bull">LONG GBP</span></div>
-              <div class="card-rows"><div class="card-row"><span class="row-key">Entry Zone</span><span class="row-val">Buy $1.3350â$1.3400 TTO zone</span></div><div class="card-row"><span class="row-key">Stop / Flip</span><span class="row-val r">Below $1.3280 â structural stop</span></div><div class="card-row"><span class="row-key">Target 1</span><span class="row-val g">$1.3500 â ~+15%+ (10x)</span></div><div class="card-row"><span class="row-key">Target 2</span><span class="row-val g">$1.3600 Q3 â ~+25%</span></div><div class="card-row"><span class="row-key">BoE Note</span><span class="row-val a">22bp hikes priced â GBP support</span></div></div>
-              <div class="payoff-bar-wrap"><div class="payoff-top"><span class="payoff-lbl">Leveraged Payoff (10Ã)</span><span class="payoff-num pn-b">+15%+</span></div><div class="bar-track"><div class="bar-fill bf-b" style="width:15%"></div></div><div class="bar-labels"><span>entry</span><span>+15%</span><span>+25%</span></div></div>
-              <div class="card-footnote">Cleanest FX setup per analyst consensus. Persistent recovery on multi-day USD weakness leg.</div>
-            </div>
-            <div class="trade-card">
-              <div class="card-head"><div class="card-ticker-wrap"><div class="card-ticker">USD/JPY</div><div class="card-desc">Dollar-Yen Â· ~$158â160 Â· BoJ zone</div></div><span class="action-badge ab-warn">SHORT USD/JPY</span></div>
-              <div class="card-rows"><div class="card-row"><span class="row-key">Entry Zone</span><span class="row-val">Sell rallies to $159â160</span></div><div class="card-row"><span class="row-key">Stop / Flip</span><span class="row-val r">Above $161 â BoJ fails</span></div><div class="card-row"><span class="row-key">Target 1</span><span class="row-val g">$156 â ~+20% leveraged</span></div><div class="card-row"><span class="row-key">Target 2</span><span class="row-val g">$152 Q3/Q4 â ~+50%</span></div><div class="card-row"><span class="row-key">Analyst PT</span><span class="row-val b">MUFG: USD/JPY 146 end-2026</span></div></div>
-              <div class="payoff-bar-wrap"><div class="payoff-top"><span class="payoff-lbl">Leveraged Payoff (10Ã)</span><span class="payoff-num pn-a">+20%+</span></div><div class="bar-track"><div class="bar-fill bf-a" style="width:20%"></div></div><div class="bar-labels"><span>entry</span><span>+20%</span><span>+50%</span></div></div>
-              <div class="card-footnote">160 = historical BoJ intervention threshold. Japan 95% oil-import dependent. MUFG: 146 end-2026.</div>
-            </div>
-          </div>
-        </div>
-
-        <!-- 2-MIN ALERTS SECTION -->
-        <div class="alerts-wrap">
-          <div class="section-hd">â¡ 2-Minute Trend Shift Alert Protocol</div>
-          <div class="section-sd">Triggers activate on &gt;5% move within any 2-minute candle frame. Act on confirmed close only.</div>
-          <div class="alert-grid">
-            <div class="alert-tile at-bull"><div class="alert-tile-sym ats-bull">â² WTI CRUDE â BULL</div><div class="alert-tile-body">Break above <span class="trig-pill tp-g">$105</span>: PMG cascade active. Scale into XLE/USO calls. Stop $103.50. T2: $112â115.</div></div>
-            <div class="alert-tile at-bull"><div class="alert-tile-sym ats-bull">â² ORCL â BULL</div><div class="alert-tile-body">Break above <span class="trig-pill tp-g">$157</span> (+5%): 2-up continuation. Add to May $155C. HOD = trailing stop.</div></div>
-            <div class="alert-tile at-bull"><div class="alert-tile-sym ats-bull">â² PLTR â BULL</div><div class="alert-tile-body">Break above <span class="trig-pill tp-g">$139</span> on vol &gt;20M/2-min: PMG. Enter $135C May 8. Stop = 50%er of trigger candle.</div></div>
-            <div class="alert-tile at-bull"><div class="alert-tile-sym ats-bull">â² BTC â BULL</div><div class="alert-tile-body">Surge above <span class="trig-pill tp-g">$75,000</span>: Clarity Act PMG. Add IBIT calls. Trail stop to $72,500.</div></div>
-            <div class="alert-tile at-bull"><div class="alert-tile-sym ats-bull">â² GOLD â BULL</div><div class="alert-tile-body">XAU breaks above <span class="trig-pill tp-g">$4,883</span> (200 SMA): Volume void active. Gap-fill to $5,012+ likely.</div></div>
-            <div class="alert-tile at-bear"><div class="alert-tile-sym ats-bear">â¼ WTI CRUDE â STOP HIT</div><div class="alert-tile-body">Drop below <span class="trig-pill tp-r">$101</span>: Level 2 stop. Exit ALL energy positions immediately. Ceasefire in play.</div></div>
-            <div class="alert-tile at-bear"><div class="alert-tile-sym ats-bear">â¼ SPY â BEAR</div><div class="alert-tile-body">Drop below <span class="trig-pill tp-r">$672</span>: Delta Bleed confirmed. Add $675P. Target $666 MA cluster.</div></div>
-            <div class="alert-tile at-bear"><div class="alert-tile-sym ats-bear">â¼ QQQ â STRUCTURAL FAIL</div><div class="alert-tile-body">Drop below <span class="trig-pill tp-r">$602</span>: Exit QQQ calls. Flip: $600P targeting $590 gamma flip level.</div></div>
-            <div class="alert-tile at-warn"><div class="alert-tile-sym ats-warn">â  USD/JPY â CAUTION</div><div class="alert-tile-body">Approaches <span class="trig-pill tp-a">$160.00</span>: BoJ intervention window open. Hard stop above $161.</div></div>
-            <div class="alert-tile at-warn"><div class="alert-tile-sym ats-warn">â  CEASEFIRE HEADLINE â FLIP PLAN</div><div class="alert-tile-body">U.S.-Iran ceasefire: IV crush on WTI/XLE/GLD. Exit energy/gold calls. Flip to <span class="trig-pill tp-g">SPY $685C</span>.</div></div>
-          </div>
-        </div>
-
-        <!-- GREEKS -->
-        <div class="greeks-wrap">
-          <div class="section-hd">Option Greeks â Risk Overlay</div>
-          <div class="section-sd">Today's environment requires Greek-aware position management across all setups.</div>
-          <div class="greeks-grid">
-            <div class="greek-tile" data-sym="Î"><div class="gt-sym" style="color:#60a5fa">Î</div><div class="gt-name">Delta</div><div class="gt-badge gtb-mod">MIXED DIRECTIONAL</div><div class="gt-desc">Whipsaw today â Nasdaq +0.7% vs Dow â0.7%. Go directional ONLY on RS leaders. Delta-neutral spreads on broad indices.</div></div>
-            <div class="greek-tile" data-sym="Î"><div class="gt-sym" style="color:#fbbf24">Î</div><div class="gt-name">Gamma</div><div class="gt-badge gtb-high">VERY HIGH</div><div class="gt-desc">PMG risk in energy â cascading stops probable. Short-Gamma dangerous. Prefer long calls. Starter size only near expiry.</div></div>
-            <div class="greek-tile" data-sym="Î"><div class="gt-sym" style="color:#f87171">Î</div><div class="gt-name">Theta</div><div class="gt-badge gtb-high">THETA TRAP RISK</div><div class="gt-desc">Avoid ATM at 50%er equilibrium. Capital erodes while market decides. Use May expiry minimum. Exit stagnating positions.</div></div>
-            <div class="greek-tile" data-sym="V"><div class="gt-sym" style="color:#a78bfa">V</div><div class="gt-name">Vega</div><div class="gt-badge gtb-ext">EXTREME</div><div class="gt-desc">IV elevated across ALL assets. Use ITM options (Delta &gt;0.60). Take T1 profits before any potential IV crush event.</div></div>
-          </div>
-        </div>
-
-        <div class="dash-footer">
-          <div class="df-brand">WJB TRADES</div>
-          <div class="df-disc">â ï¸ Educational purposes only â not financial advice. Options involve substantial risk of loss. FX payoffs assume 10Ã leverage for illustration. Never risk more than 2% of account equity per trade.</div>
-          <div style="font-family:var(--mono);font-size:9px;color:var(--fog)">Apr 13, 2026 Â· v4.0</div>
-        </div>
-
-      </div>
-    </div>
-
-    <!-- ââ TAB: ALERTS ââ -->
-    <div class="dash-tab-panel" id="tab-alerts">
-      <div class="alerts-tab-wrap">
-        <div class="section-hd" style="margin-bottom:4px">Live Trend Shift Alerts</div>
-        <div class="section-sd">Simulated real-time feed â &gt;5% move within 2-minute candle frames</div>
-        <div class="alert-controls">
-          <div class="alert-toggle">
-            <div class="toggle-switch on" id="alert-toggle-sw" onclick="toggleAlertFeed()"></div>
-            <span id="alert-toggle-lbl">Feed active</span>
-          </div>
-          <div class="alert-toggle" style="margin-left:8px">
-            <div class="toggle-switch" id="notif-toggle-sw" onclick="toggleNotifications()"></div>
-            <span id="notif-toggle-lbl" style="font-size:11px">Notifications off</span>
-          </div>
-          <button class="btn-sm" onclick="clearAlertFeed()">Clear Feed</button>
-          <span style="font-family:var(--mono);font-size:10px;color:var(--fog)" id="alert-count-lbl">0 alerts</span>
-        </div>
-        <div class="alerts-live-feed" id="live-alert-feed"></div>
-      </div>
-    </div>
-
-    <!-- ââ TAB: SUBSCRIPTIONS ââ -->
-    <div class="dash-tab-panel" id="tab-subscriptions">
-      <div style="padding:32px 40px;max-width:680px">
-
-        <!-- HERO BANNER -->
-        <div style="background:linear-gradient(135deg,rgba(45,212,191,0.08),rgba(200,169,110,0.06));border:1px solid rgba(45,212,191,0.2);border-radius:16px;padding:28px 32px;margin-bottom:28px;position:relative;overflow:hidden">
-          <div style="position:absolute;top:-40px;right:-40px;width:160px;height:160px;border-radius:50%;background:radial-gradient(circle,rgba(45,212,191,0.08),transparent 70%)"></div>
-          <div style="font-family:var(--display);font-size:32px;letter-spacing:1px;color:var(--white);margin-bottom:6px">Daily Market Summary</div>
-          <div style="font-size:13px;color:var(--mist);max-width:420px;line-height:1.7">Receive the full WJB Trades market report â trade setups, alerts, and Greek risk overlay â delivered to your inbox every morning at <strong style="color:var(--gold2)">9:00 AM ET</strong> before the market opens.</div>
-          <div id="sub-status-badge" style="display:inline-flex;align-items:center;gap:8px;margin-top:16px;background:var(--ink3);border:1px solid var(--wire2);border-radius:20px;padding:6px 14px;font-family:var(--mono);font-size:11px;color:var(--fog)">
-            <span id="sub-status-dot" style="width:6px;height:6px;border-radius:50%;background:var(--fog)"></span>
-            <span id="sub-status-text">Not subscribed</span>
-          </div>
-        </div>
-
-        <!-- SUBSCRIPTION CARD -->
-        <div id="sub-form-card" style="background:var(--card);border:1px solid var(--wire);border-radius:12px;overflow:hidden;margin-bottom:20px">
-          <div style="padding:20px 24px;border-bottom:1px solid var(--wire)">
-            <div style="font-family:var(--display);font-size:20px;letter-spacing:0.5px;color:var(--white);margin-bottom:4px">Subscribe to Daily Summary</div>
-            <div style="font-size:12px;color:var(--fog)">Your email address from your account will be used. Unsubscribe anytime.</div>
-          </div>
-          <div style="padding:20px 24px">
-
-            <!-- What's Included -->
-            <div style="margin-bottom:20px">
-              <div style="font-family:var(--mono);font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--fog);margin-bottom:12px">What's included every morning</div>
-              <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
-                <div style="background:var(--ink3);border:1px solid var(--wire);border-radius:8px;padding:10px 12px;display:flex;align-items:flex-start;gap:10px">
-                  <span style="font-size:16px">ð</span>
-                  <div>
-                    <div style="font-size:12px;font-weight:500;color:var(--snow);margin-bottom:2px">Macro Snapshot</div>
-                    <div style="font-size:10px;color:var(--fog)">SPY, QQQ, WTI, Gold, BTC, DXY levels</div>
-                  </div>
-                </div>
-                <div style="background:var(--ink3);border:1px solid var(--wire);border-radius:8px;padding:10px 12px;display:flex;align-items:flex-start;gap:10px">
-                  <span style="font-size:16px">ð</span>
-                  <div>
-                    <div style="font-size:12px;font-weight:500;color:var(--snow);margin-bottom:2px">Top 3 Setups</div>
-                    <div style="font-size:10px;color:var(--fog)">Highest conviction trades of the day</div>
-                  </div>
-                </div>
-                <div style="background:var(--ink3);border:1px solid var(--wire);border-radius:8px;padding:10px 12px;display:flex;align-items:flex-start;gap:10px">
-                  <span style="font-size:16px">â¡</span>
-                  <div>
-                    <div style="font-size:12px;font-weight:500;color:var(--snow);margin-bottom:2px">Key Alert Levels</div>
-                    <div style="font-size:10px;color:var(--fog)">2-min trigger prices to watch</div>
-                  </div>
-                </div>
-                <div style="background:var(--ink3);border:1px solid var(--wire);border-radius:8px;padding:10px 12px;display:flex;align-items:flex-start;gap:10px">
-                  <span style="font-size:16px">ð¢</span>
-                  <div>
-                    <div style="font-size:12px;font-weight:500;color:var(--snow);margin-bottom:2px">Greeks Risk Level</div>
-                    <div style="font-size:10px;color:var(--fog)">Delta/Gamma/Theta/Vega environment</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Delivery Time -->
-            <div style="background:var(--ink3);border:1px solid rgba(200,169,110,0.15);border-radius:8px;padding:12px 14px;margin-bottom:20px;display:flex;align-items:center;gap:12px">
-              <div style="font-size:22px">ð</div>
-              <div>
-                <div style="font-size:12px;font-weight:500;color:var(--snow)">Delivered at 9:00 AM Eastern Time</div>
-                <div style="font-size:11px;color:var(--fog)">Every trading day (MonâFri), 30 min before market open</div>
-              </div>
-              <div style="margin-left:auto;font-family:var(--mono);font-size:11px;color:var(--gold2);text-align:right">9:00 AM ET<br><span style="color:var(--fog)">MonâFri</span></div>
-            </div>
-
-            <!-- Subscribe Toggle -->
-            <div id="sub-action-area">
-              <button id="subscribe-btn" onclick="handleSubscribeToggle()" style="width:100%;background:linear-gradient(90deg,var(--gold),var(--gold2));color:var(--ink);border:none;border-radius:8px;padding:14px;font-family:var(--display);font-size:20px;letter-spacing:2px;cursor:pointer;transition:opacity 0.2s">
-                SUBSCRIBE â FREE
-              </button>
-              <div style="text-align:center;margin-top:10px;font-size:11px;color:var(--fog)">No cost. Unsubscribe any time from this page.</div>
-            </div>
-
-          </div>
-        </div>
-
-        <!-- SUBSCRIBED STATE (hidden by default) -->
-        <div id="sub-active-card" style="display:none;background:linear-gradient(135deg,rgba(52,211,153,0.07),rgba(52,211,153,0.03));border:1px solid rgba(52,211,153,0.25);border-radius:12px;padding:24px;margin-bottom:20px;text-align:center">
-          <div style="font-size:36px;margin-bottom:10px">â</div>
-          <div style="font-family:var(--display);font-size:24px;letter-spacing:1px;color:var(--green);margin-bottom:6px">You're Subscribed</div>
-          <div style="font-size:13px;color:var(--mist);margin-bottom:16px">Daily summaries will be sent to <strong id="sub-email-display" style="color:var(--snow)"></strong> at 9:00 AM ET, Monday through Friday.</div>
-          <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
-            <button onclick="handleSubscribeToggle()" style="background:var(--red2);border:1px solid rgba(248,113,113,0.3);color:var(--red);border-radius:6px;padding:8px 18px;font-family:var(--mono);font-size:11px;cursor:pointer">Unsubscribe</button>
-            <button onclick="sendSampleEmail()" style="background:var(--gold3);border:1px solid rgba(200,169,110,0.3);color:var(--gold2);border-radius:6px;padding:8px 18px;font-family:var(--mono);font-size:11px;cursor:pointer">Preview Sample Email</button>
-          </div>
-        </div>
-
-        <!-- HOW IT WORKS -->
-        <div style="background:var(--card);border:1px solid var(--wire);border-radius:12px;padding:20px 24px">
-          <div style="font-family:var(--display);font-size:18px;letter-spacing:0.5px;color:var(--white);margin-bottom:14px">How It Works</div>
-          <div style="display:flex;flex-direction:column;gap:12px">
-            <div style="display:flex;gap:14px;align-items:flex-start">
-              <div style="font-family:var(--mono);font-size:11px;color:var(--gold);background:var(--gold3);border:1px solid rgba(200,169,110,0.2);border-radius:50%;width:24px;height:24px;display:flex;align-items:center;justify-content:center;flex-shrink:0">1</div>
-              <div style="font-size:13px;color:var(--mist)">You subscribe on this page â your email is saved to the platform.</div>
-            </div>
-            <div style="display:flex;gap:14px;align-items:flex-start">
-              <div style="font-family:var(--mono);font-size:11px;color:var(--gold);background:var(--gold3);border:1px solid rgba(200,169,110,0.2);border-radius:50%;width:24px;height:24px;display:flex;align-items:center;justify-content:center;flex-shrink:0">2</div>
-              <div style="font-size:13px;color:var(--mist)">The admin configures <strong style="color:var(--snow)">EmailJS</strong> (free service) â no server needed, emails send directly from the browser.</div>
-            </div>
-            <div style="display:flex;gap:14px;align-items:flex-start">
-              <div style="font-family:var(--mono);font-size:11px;color:var(--gold);background:var(--gold3);border:1px solid rgba(200,169,110,0.2);border-radius:50%;width:24px;height:24px;display:flex;align-items:center;justify-content:center;flex-shrink:0">3</div>
-              <div style="font-size:13px;color:var(--mist)"><strong style="color:var(--snow)">cron-job.org</strong> (free) pings the app every day at 9:00 AM ET, which automatically triggers the email send to all subscribers.</div>
-            </div>
-            <div style="display:flex;gap:14px;align-items:flex-start">
-              <div style="font-family:var(--mono);font-size:11px;color:var(--gold);background:var(--gold3);border:1px solid rgba(200,169,110,0.2);border-radius:50%;width:24px;height:24px;display:flex;align-items:center;justify-content:center;flex-shrink:0">4</div>
-              <div style="font-size:13px;color:var(--mist)">Every subscriber receives a rich HTML daily summary email before market open. â</div>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-
-    <!-- ââ TAB: GLOSSARY ââ -->
-    <div class="dash-tab-panel" id="tab-glossary">
-      <div style="padding:32px 40px;max-width:800px">
-        <div class="section-hd" style="margin-bottom:4px">Trading Glossary</div>
-        <div class="section-sd">Core definitions from the WJB Trades framework</div>
-        <div id="glossary-content"></div>
-      </div>
-    </div>
-
-  </div>
-</div>
-
-<!-- âââââââââââââââââââââââââââââââââââââââ
-     JAVASCRIPT
-âââââââââââââââââââââââââââââââââââââââââââ -->
-<script>
-// ââ DATA STORE (localStorage) ââââââââââââââââââââââ
-const STORE_KEY = 'wjb_trades_data';
-
-function getStore() {
-  try {
-    const raw = localStorage.getItem(STORE_KEY);
-    if (raw) {
-      const parsed = JSON.parse(raw);
-      // Ensure members array always exists with defaults
-      if (!parsed.members || parsed.members.length === 0) {
-        return initStore();
-      }
-      return parsed;
-    }
-  } catch(e) {}
-  return initStore();
-}
-
-function saveStore(data) {
-  localStorage.setItem(STORE_KEY, JSON.stringify(data));
-}
-
-function initStore() {
-  // Check if store already has valid members â if so, merge rather than overwrite
-  try {
-    const existing = JSON.parse(localStorage.getItem(STORE_KEY) || 'null');
-    if (existing && existing.members && existing.members.length > 0) {
-      // Store exists but may be missing new fields â merge defaults in
-      if (!existing.subscriptions) existing.subscriptions = [];
-      if (!existing.emailjs) existing.emailjs = { serviceId: '', templateId: '', publicKey: '' };
-      if (!existing.supabase) existing.supabase = { url: '', anonKey: '' };
-      if (!existing.cronSecret) existing.cronSecret = '';
-      if (!existing.marketData) existing.marketData = {};
-      localStorage.setItem(STORE_KEY, JSON.stringify(existing));
-      return existing;
-    }
-  } catch(e) {}
-  const data = {
-    members: [
-      {
-        email: 'admin@wjbtrades.com',
-        code: 'WJB-ADMIN-2026',
-        role: 'admin',
-        status: 'active',
-        joined: 'Apr 13, 2026'
-      },
-      {
-        email: 'trader@wjbtrades.com',
-        code: 'WJB-MEMBER-001',
-        role: 'member',
-        status: 'active',
-        joined: 'Apr 13, 2026'
-      }
-    ],
-    subscriptions: [],
-    emailjs: { serviceId: '', templateId: '', publicKey: '' },
-    supabase: { url: '', anonKey: '' },
-    cronSecret: '',
-    marketData: {},
-    session: null
-  };
-  saveStore(data);
-  return data;
-}
-
-// ââ SESSION âââââââââââââââââââââââââââââââââââââââ
-function getSession() {
-  const s = getStore();
-  return s.session;
-}
-
-function setSession(member) {
-  const s = getStore();
-  s.session = { email: member.email, role: member.role, code: member.code };
-  saveStore(s);
-}
-
-function clearSession() {
-  const s = getStore();
-  s.session = null;
-  saveStore(s);
-}
-
-// ââ AUTH ââââââââââââââââââââââââââââââââââââââââââ
-let loginAttempts = 0;
-
-function hardResetStore() {
-  if (confirm('This will clear all local app data and reload. Proceed?')) {
-    localStorage.removeItem('wjb_trades_data');
-    window.location.reload();
-  }
-}
-
-function attemptLogin() {
-  const email = document.getElementById('login-email').value.trim().toLowerCase();
-  const code  = document.getElementById('login-code').value.trim();
-  const err   = document.getElementById('login-error');
-  const emailInput = document.getElementById('login-email');
-  const codeInput  = document.getElementById('login-code');
-
-  emailInput.classList.remove('error');
-  codeInput.classList.remove('error');
-  err.classList.remove('show');
-
-  if (!email || !code) {
-    if (!email) emailInput.classList.add('error');
-    if (!code)  codeInput.classList.add('error');
-    err.textContent = 'Please enter both your email and invite code.';
-    err.classList.add('show');
-    return;
-  }
-
-  const store = getStore();
-
-  // Debug: if store has no members, re-init
-  if (!store.members || store.members.length === 0) {
-    const fresh = initStore();
-    store.members = fresh.members;
-    saveStore(store);
-  }
-
-  // Case-insensitive, whitespace-trimmed match on both email and code
-  const member = store.members.find(m =>
-    m.email.toLowerCase().trim() === email.toLowerCase().trim() &&
-    m.code.trim().toUpperCase() === code.trim().toUpperCase() &&
-    m.status === 'active'
-  );
-
-  if (!member) {
-    emailInput.classList.add('error');
-    codeInput.classList.add('error');
-    const validEmails = store.members.filter(m => m.status === 'active').map(m => m.email);
-    const emailExists = validEmails.some(e => e.toLowerCase() === email.toLowerCase().trim());
-    if (!emailExists && validEmails.length > 0) {
-      err.textContent = 'Email not found. Use: admin@wjbtrades.com or trader@wjbtrades.com';
-    } else {
-      err.textContent = 'Incorrect invite code. Try: WJB-ADMIN-2026 (admin) or WJB-MEMBER-001 (member)';
-    }
-    err.classList.add('show');
-    loginAttempts++;
-    if (loginAttempts >= 1) {
-      const hint = document.getElementById('login-reset-hint');
-      if (hint) hint.style.display = 'block';
-    }
-    return;
-  }
-
-  loginAttempts = 0;
-  setSession(member);
-  enterApp(member);
-}
-
-function enterApp(member) {
-  // Update UI with user info
-  const initials = member.email.charAt(0).toUpperCase();
-  document.getElementById('user-avatar').textContent = initials;
-  document.getElementById('user-name-display').textContent = member.email.split('@')[0];
-
-  if (member.role === 'admin') {
-    document.getElementById('admin-nav-btn').style.display = 'block';
-  }
-
-  showPage('dashboard');
-  startAlertFeed();
-  renderGlossary();
-  initSubscriptionUI();
-  initPushNotifications();
-  loadMarketData();
-}
-
-function logout() {
-  clearSession();
-  stopAlertFeed();
-  showPage('gate');
-}
-
-// ââ PAGES âââââââââââââââââââââââââââââââââââââââââ
-function showPage(name) {
-  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-  document.getElementById('page-' + name).classList.add('active');
-}
-
-function showAdminLogin() {
-  const email = document.getElementById('login-email');
-  const code  = document.getElementById('login-code');
-  email.value = 'admin@wjbtrades.com';
-  code.placeholder = 'WJB-ADMIN-2026';
-  email.focus();
-  showToast('Admin credentials pre-filled â enter your code to continue');
-}
-
-function showRequestForm() {
-  showToast('Request sent to administrator. You will receive your invite code via email.');
-}
-
-// ââ ADMIN âââââââââââââââââââââââââââââââââââââââââ
-function goToAdmin() {
-  const session = getSession();
-  if (!session || session.role !== 'admin') {
-    showToast('Admin access required.');
-    return;
-  }
-  renderAdminTable();
-  // Populate Supabase fields
-  const store = getStore();
-  const sb = store.supabase || {};
-  const sbUrl = document.getElementById('sb-url');
-  const sbKey = document.getElementById('sb-key');
-  const sbCron = document.getElementById('sb-cron-secret');
-  if (sbUrl) sbUrl.value = sb.url || '';
-  if (sbKey) sbKey.value = sb.anonKey || '';
-  if (sbCron) sbCron.value = store.cronSecret || '';
-  updateCronUrlDisplay();
-  showPage('admin');
-}
-
-function goToDashboard() {
-  showPage('dashboard');
-}
-
-async function renderAdminTable() {
-  // If Supabase is configured, sync fresh subscriber data
-  if (SUPABASE_URL && SUPABASE_KEY) {
-    await syncSubscribersFromSupabase().catch(() => {});
-  }
-  const store = getStore();
-  const members = store.members;
-
-  document.getElementById('stat-members').textContent = members.length;
-  document.getElementById('stat-active').textContent  = members.filter(m => m.status === 'active').length;
-  document.getElementById('stat-pending').textContent = members.filter(m => m.status === 'pending').length;
-  document.getElementById('stat-revoked').textContent = members.filter(m => m.status === 'revoked').length;
-
-  const subs = store.subscriptions || [];
-  document.getElementById('stat-subscribed').textContent = subs.length;
-
-  // Render subscribers table
-  const subsTbody = document.getElementById('subscribers-tbody');
-  if (subsTbody) {
-    subsTbody.innerHTML = subs.length === 0
-      ? '<tr><td colspan="5" style="text-align:center;color:var(--fog);padding:20px">No subscribers yet</td></tr>'
-      : subs.map(s => `
-        <tr>
-          <td style="color:var(--snow)">${s.email}</td>
-          <td>${s.since}</td>
-          <td>${s.lastSent || '<span style="color:var(--fog)">Never</span>'}</td>
-          <td><span class="badge-pill pill-active">${s.frequency || 'Daily 9AM ET'}</span></td>
-          <td><span class="badge-pill pill-active">Active</span></td>
-        </tr>
-      `).join('');
-  }
-
-  // Load EmailJS config fields
-  const ejs = store.emailjs || {};
-  const si = document.getElementById('ejs-service-id');
-  const ti = document.getElementById('ejs-template-id');
-  const pk = document.getElementById('ejs-public-key');
-  if (si) si.value = ejs.serviceId || '';
-  if (ti) ti.value = ejs.templateId || '';
-  if (pk) pk.value = ejs.publicKey || '';
-
-  const tbody = document.getElementById('members-tbody');
-  tbody.innerHTML = members.map((m, i) => `
-    <tr>
-      <td style="color:var(--snow)">${m.email}</td>
-      <td><span style="font-family:var(--mono);font-size:11px;color:var(--gold2)">${m.code}</span></td>
-      <td><span class="badge-pill ${m.role === 'admin' ? 'pill-admin' : 'pill-active'}">${m.role}</span></td>
-      <td><span class="badge-pill ${m.status === 'active' ? 'pill-active' : m.status === 'pending' ? 'pill-pending' : 'pill-revoked'}">${m.status}</span></td>
-      <td>${m.joined}</td>
-      <td style="text-align:center">${subs.some(s => s.email === m.email) ? '<span style="color:var(--teal);font-size:14px">â</span>' : '<span style="color:var(--fog)">â</span>'}</td>
-      <td>
-        ${m.status === 'active'
-          ? `<button class="btn-sm danger" onclick="revokeAccess(${i})">Revoke</button>`
-          : m.status === 'revoked'
-          ? `<button class="btn-sm" onclick="restoreAccess(${i})">Restore</button>`
-          : `<button class="btn-sm gold" onclick="activateAccess(${i})">Activate</button>`
-        }
-      </td>
-    </tr>
-  `).join('');
-}
-
-function generateInvite() {
-  const email = document.getElementById('invite-email').value.trim();
-  const role  = document.getElementById('invite-role').value;
-
-  if (!email) {
-    showToast('Please enter an email address first.');
-    return;
-  }
-
-  const code = 'WJB-' + role.toUpperCase().slice(0,3) + '-' + Math.random().toString(36).substr(2,6).toUpperCase() + '-' + Date.now().toString(36).toUpperCase().slice(-4);
-
-  const store = getStore();
-  const existing = store.members.find(m => m.email.toLowerCase() === email.toLowerCase());
-  if (existing) {
-    showToast('This email already has an invite.');
-    return;
-  }
-
-  store.members.push({
-    email: email,
-    code: code,
-    role: role,
-    status: 'pending',
-    joined: 'Pending'
-  });
-  saveStore(store);
-
-  const out = document.getElementById('gen-output');
-  out.innerHTML = `<span style="color:var(--gold2);font-family:var(--mono)">${code}</span><button class="copy-btn" id="copy-invite-btn" onclick="copyGeneratedCode('${code}')" title="Copy">â</button>`;
-
-  renderAdminTable();
-  showToast('Invite generated for ' + email);
-}
-
-function copyGeneratedCode(code) {
-  copyToClipboard(code);
-  showToast('Invite code copied to clipboard!');
-}
-
-function revokeAccess(index) {
-  const store = getStore();
-  store.members[index].status = 'revoked';
-  saveStore(store);
-  renderAdminTable();
-  showToast('Access revoked.');
-}
-
-function restoreAccess(index) {
-  const store = getStore();
-  store.members[index].status = 'active';
-  saveStore(store);
-  renderAdminTable();
-  showToast('Access restored.');
-}
-
-function activateAccess(index) {
-  const store = getStore();
-  store.members[index].status = 'active';
-  store.members[index].joined = new Date().toLocaleDateString('en-US', {month:'short',day:'numeric',year:'numeric'});
-  saveStore(store);
-  renderAdminTable();
-  showToast('Member activated.');
-}
-
-// ââ TABS ââââââââââââââââââââââââââââââââââââââââââ
-function switchTab(name, el) {
-  document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
-  document.querySelectorAll('.dash-tab-panel').forEach(p => p.classList.remove('active'));
-  el.classList.add('active');
-  document.getElementById('tab-' + name).classList.add('active');
-}
-
-// ââ ALERT FEED ââââââââââââââââââââââââââââââââââââ
-let alertInterval = null;
-let alertsRunning = false;
-let alertCountTotal = 0;
-
-const ALERT_TEMPLATES = [
-  { sym: 'WTI CRUDE', type: 'BULL', msg: 'Break above $105 on 2-min candle: PMG cascade active. Scale into XLE/USO calls. Stop at $103.50.', color: 'green' },
-  { sym: 'ORCL', type: 'BULL', msg: 'Break above $157 (+5% from open): 2-up continuation confirmed. Add to May $155C. HOD becomes trailing stop.', color: 'green' },
-  { sym: 'PLTR', type: 'BULL', msg: 'Break above $139 on vol >20M per 2-min: PMG setup forming. Enter $135C May 8. Stop = 50%er of trigger candle.', color: 'green' },
-  { sym: 'BTC', type: 'BULL', msg: 'Surge above $75,000: Clarity Act PMG likely. Add size to IBIT calls. Trail stop to $72,500.', color: 'green' },
-  { sym: 'GOLD XAU', type: 'BULL', msg: 'Breaks above $4,883 (200 SMA): Volume void activated. Gap-fill run to $5,012+ likely. Scale ITM GLD calls.', color: 'green' },
-  { sym: 'WTI CRUDE', type: 'STOP HIT', msg: 'Drop below $101 on 2-min close: Level 2 structural stop. EXIT ALL energy positions immediately.', color: 'red' },
-  { sym: 'SPY', type: 'BEAR', msg: 'Drop below $672 on 2-min close: Delta Bleed confirmed. Add $675P puts. Target $666 MA cluster.', color: 'red' },
-  { sym: 'QQQ', type: 'STRUCTURAL FAIL', msg: 'Drop below $602: Exit all QQQ calls. Flip plan: Buy $600P targeting $590 gamma flip level.', color: 'red' },
-  { sym: 'USD/JPY', type: 'CAUTION', msg: 'Approaches $160.00: BoJ intervention window open. Short USD/JPY trigger active. Hard stop above $161.', color: 'amber' },
-  { sym: 'MRVL', type: 'BULL', msg: 'Break above $135 on 2-min: Momentum continuation. Add to May $130C. Trail stop to intraday VWAP.', color: 'green' },
-  { sym: 'CEASEFIRE HEADLINE', type: 'FLIP PLAN', msg: 'U.S.-Iran ceasefire headline: Instant IV crush on WTI/XLE/GLD. Exit energy/gold calls. Flip to SPY $685C.', color: 'amber' },
-  { sym: 'EUR/USD', type: 'BULL', msg: 'Tests $1.1500 support: OTE re-entry zone confirmed. Buy dips â TTO setup on 15m chart.', color: 'green' },
-];
-
-let alertIndex = 0;
-
-function startAlertFeed() {
-  if (alertsRunning) return;
-  alertsRunning = true;
-  document.getElementById('alert-toggle-sw').classList.add('on');
-  document.getElementById('alert-toggle-lbl').textContent = 'Feed active';
-  setTimeout(fireAlert, 1200);
-  alertInterval = setInterval(fireAlert, 8000);
-}
-
-function stopAlertFeed() {
-  alertsRunning = false;
-  clearInterval(alertInterval);
-  alertInterval = null;
-}
-
-function toggleAlertFeed() {
-  if (alertsRunning) {
-    stopAlertFeed();
-    document.getElementById('alert-toggle-sw').classList.remove('on');
-    document.getElementById('alert-toggle-lbl').textContent = 'Feed paused';
-  } else {
-    startAlertFeed();
-  }
-}
-
-function clearAlertFeed() {
-  document.getElementById('live-alert-feed').innerHTML = '';
-  alertCountTotal = 0;
-  document.getElementById('alert-count-lbl').textContent = '0 alerts';
-}
-
-function fireAlert() {
-  if (!alertsRunning) return;
-  const t = ALERT_TEMPLATES[alertIndex % ALERT_TEMPLATES.length];
-  alertIndex++;
-  alertCountTotal++;
-
-  const now = new Date();
-  const time = now.getHours().toString().padStart(2,'0') + ':' + now.getMinutes().toString().padStart(2,'0') + ':' + now.getSeconds().toString().padStart(2,'0');
-
-  const dotColor = t.color === 'green' ? 'var(--green)' : t.color === 'red' ? 'var(--red)' : 'var(--amber)';
-  const symColor = t.color === 'green' ? 'var(--green)' : t.color === 'red' ? 'var(--red)' : 'var(--amber)';
-  const borderColor = dotColor;
-
-  const item = document.createElement('div');
-  item.className = 'live-alert-item';
-  item.style.borderLeftColor = borderColor;
-  item.innerHTML = `
-    <div class="lai-dot" style="background:${dotColor}"></div>
-    <div class="lai-body">
-      <div class="lai-sym" style="color:${symColor}">${t.sym} â ${t.type}</div>
-      <div class="lai-msg">${t.msg}</div>
-    </div>
-    <div class="lai-time">${time} ET<br><span style="color:var(--fog)">2-min trigger</span></div>
-  `;
-
-  const feed = document.getElementById('live-alert-feed');
-  feed.insertBefore(item, feed.firstChild);
-
-  if (feed.children.length > 20) feed.removeChild(feed.lastChild);
-
-  document.getElementById('alert-count-lbl').textContent = alertCountTotal + ' alert' + (alertCountTotal !== 1 ? 's' : '');
-
-  // Show in-app push bar + browser notification
-  showPushAlert(t.sym, t.type, t.msg, t.color);
-}
-
-// ââ GLOSSARY ââââââââââââââââââââââââââââââââââââââ
-const GLOSSARY_TERMS = [
-  { term: 'Delta (Î)', def: 'Rate of change of the option price with respect to the underlying asset price. Also used as a proxy for the probability of expiring ITM. Delta Neutrality mitigates directional risk.' },
-  { term: 'Gamma (Î)', def: 'Rate of change in Delta. Largest in ATM options near expiration. High Gamma environments like PMG breakouts require immediate hedging or scaling.' },
-  { term: 'Theta (Î)', def: 'Time decay â the rate at which an option loses value as expiration approaches. Negative for long positions, positive for short. A position stagnating at the 50%er is in a Theta Trap.' },
-  { term: 'Vega (V)', def: 'Sensitivity to a 1% change in Implied Volatility. Critical around earnings. IV Crush occurs when IV contracts sharply after a catalyst, obliterating option premiums.' },
-  { term: 'FTFC', def: 'Full Timeframe Continuity â when Quarterly, Monthly, Weekly, and Daily candles all align in the same direction. Trading in FTFC alignment maximizes probability of reaching targets.' },
-  { term: 'PMG', def: 'Pivot Machine Gun â a series of consecutive directional candles where trailing stops cluster at prior wicks. When the first wick breaks, Cascading Liquidity triggers a self-reinforcing move.' },
-  { term: '50%er', def: 'The midpoint of any candle\'s range (High + Low / 2). A candle closing below the 50%er of the prior bar signals loss of control by the dominant side â used as a high-confidence stop-loss level.' },
-  { term: 'The Flip', def: 'Price moving through its open price to change candle color (e.g., Red to Green). This is the earliest indicator of institutional liquidity shifting toward the macro trend.' },
-  { term: 'TTO', def: 'Triangle Layout â a pullback to key levels (9 EMA, VWAP, or 50%er) within an ongoing FTFC trend. Provides optimal entries to add size as price "flips" back in the macro direction.' },
-  { term: 'Delta Bleed', def: 'When the live midpoint of a developing candle moves against your position in real time. Monitoring this allows exit before the candle closes, preserving capital before structural shift is finalized.' },
-  { term: 'Theta Trap', def: 'Holding an ATM option while price stagnates at a 50%er equilibrium level. Time decay erodes capital while the market is undecided. Exit or resize if this pattern is detected.' },
-  { term: 'Strat-Hole', def: 'A re-entry opportunity after a failed trigger. If price reclaims a failed trigger level with a 2-up candle, this represents a high-confidence long re-entry aligned with the macro trend.' },
-  { term: 'OTE', def: 'Optimal Trade Entry â the 50%â78.6% Fibonacci retracement zone within a Fair Value Gap (FVG). Used to enter or re-enter positions at discounted prices with a defined stop.' },
-  { term: 'BTO / STC', def: 'Buy To Open (entering a long position) / Sell To Close (exiting a long position). The standard order types for managing options contracts.' },
-  { term: 'Scenario 3', def: 'An Outside Bar that breaches both the high and low of the previous range. Because "once a 3, always a 3," a hard stop-loss is mandatory upon the breach â the broadening formation makes Greeks unmanageable.' },
-  { term: 'IV Crush', def: 'A sharp contraction in Implied Volatility after a major catalyst (earnings, news event) that can destroy option premiums even if the directional thesis is correct. Use ITM options (Delta >0.60) to minimize Vega exposure.' },
-  { trm: '2% Rule', def: 'Maximum risk per trade = 2% of total account equity. For a $50,000 account this means $1,000 max risk per trade. Non-negotiable position sizing discipline.' },
-  { term: 'Starter Position', def: 'Entering with 50% of planned position size on the initial trigger. Size is added only when price confirms FTFC alignment on the next higher timeframe, reducing the cost of being wrong.' },
-];
-
-function renderGlossary() {
-  const container = document.getElementById('glossary-content');
-  if (container.innerHTML) return;
-  container.innerHTML = GLOSSARY_TERMS.map(t => `
-    <div style="background:var(--ink2);border:1px solid var(--wire);border-radius:var(--r-md);padding:16px 18px;margin-bottom:10px">
-      <div style="font-family:var(--display);font-size:16px;letter-spacing:0.5px;color:var(--gold2);margin-bottom:6px">${t.term}</div>
-      <div style="font-size:12px;color:var(--mist);line-height:1.7">${t.def}</div>
-    </div>
-  `).join('');
-}
-
-// ââ UTILS ââââââââââââââââââââââââââââââââââââââââââ
-function copyToClipboard(text) {
-  if (navigator.clipboard) {
-    navigator.clipboard.writeText(text);
-  } else {
-    const el = document.createElement('textarea');
-    el.value = text;
-    document.body.appendChild(el);
-    el.select();
-    document.execCommand('copy');
-    document.body.removeChild(el);
-  }
-}
-
-function copyInviteCode() {
-  const codeEl = document.querySelector('#gen-output span');
-  if (codeEl) {
-    copyToClipboard(codeEl.textContent);
-    showToast('Invite code copied!');
-  }
-}
-
-let toastTimeout;
-function showToast(msg) {
-  const existing = document.querySelector('.toast');
-  if (existing) existing.remove();
-  clearTimeout(toastTimeout);
-
-  const t = document.createElement('div');
-  t.className = 'toast';
-  t.textContent = msg;
-  document.body.appendChild(t);
-  toastTimeout = setTimeout(() => t.remove(), 3200);
-}
-
-// ââ ENTER KEY SUPPORT ââââââââââââââââââââââââââââââ
-document.addEventListener('keydown', e => {
-  if (e.key === 'Enter' && document.getElementById('page-gate').classList.contains('active')) {
-    attemptLogin();
-  }
-});
-
-// ââ EMAILJS CONFIG ââââââââââââââââââââââââââââââââ
-function saveSupabaseConfig() {
-  const url    = document.getElementById('sb-url').value.trim().replace(/\/$/, '');
-  const key    = document.getElementById('sb-key').value.trim();
-  const secret = document.getElementById('sb-cron-secret').value.trim();
-  if (!url || !key) { showToast('Enter both Supabase URL and Anon Key.'); return; }
-  const store = getStore();
-  store.supabase = { url, anonKey: key };
-  if (secret) store.cronSecret = secret;
-  saveStore(store);
-  SUPABASE_URL = url;
-  SUPABASE_KEY = key;
-  updateCronUrlDisplay();
-  showToast('Supabase config saved.');
-}
-
-function updateCronUrlDisplay() {
-  const el = document.getElementById('cron-url-display');
-  if (!el) return;
-  const store = getStore();
-  const base = window.location.href.split('?')[0];
-  const secret = store.cronSecret || '';
-  const url = base + '?cron=daily9am' + (secret ? '&key=' + encodeURIComponent(secret) : '');
-  el.textContent = url;
-}
-
-async function refreshSubscribers() {
-  initSupabase();
-  if (!SUPABASE_URL || !SUPABASE_KEY) { showToast('Save Supabase config first.'); return; }
-  setEjsStatus('Syncing subscribers from Supabase...', 'var(--amber)');
-  const subs = await syncSubscribersFromSupabase();
-  if (subs === null) {
-    setEjsStatus('â Could not reach Supabase. Check URL and key.', 'var(--red)');
-    return;
-  }
-  setEjsStatus('â Synced ' + (subs ? subs.length : 0) + ' subscriber(s)', 'var(--green)');
-  renderAdminTable();
-  showToast('Subscriber list refreshed from Supabase.');
-}
-
-function saveEmailJSConfig() {
-  const serviceId = document.getElementById('ejs-service-id').value.trim();
-  const templateId = document.getElementById('ejs-template-id').value.trim();
-  const publicKey = document.getElementById('ejs-public-key').value.trim();
-  if (!serviceId || !templateId || !publicKey) {
-    showToast('Please fill in all three EmailJS fields.');
-    return;
-  }
-  const store = getStore();
-  store.emailjs = { serviceId, templateId, publicKey };
-  saveStore(store);
-  setEjsStatus('â Config saved. EmailJS ready.', 'var(--green)');
-  showToast('EmailJS config saved.');
-  emailjs.init({ publicKey });
-}
-
-function loadEmailJSConfig() {
-  const store = getStore();
-  const ejs = store.emailjs || {};
-  if (ejs.publicKey) {
-    try { emailjs.init({ publicKey: ejs.publicKey }); } catch(e){}
-  }
-  initSupabase();
-}
-
-function setEjsStatus(msg, color) {
-  const el = document.getElementById('ejs-status');
-  if (!el) return;
-  el.textContent = msg;
-  el.style.color = color || 'var(--mist)';
-  el.style.display = 'block';
-}
-
-function sendTestEmail() {
-  const store = getStore();
-  const ejs = store.emailjs || {};
-  if (!ejs.serviceId || !ejs.templateId || !ejs.publicKey) {
-    showToast('Save your EmailJS config first.');
-    return;
-  }
-  const session = getSession();
-  if (!session) return;
-  setEjsStatus('Sending test email...', 'var(--amber)');
-  emailjs.send(ejs.serviceId, ejs.templateId, buildEmailParams(session.email, true))
-    .then(() => {
-      setEjsStatus('â Test email sent to ' + session.email, 'var(--green)');
-      showToast('Test email sent!');
-    })
-    .catch(err => {
-      setEjsStatus('â Error: ' + (err.text || err.message || 'Unknown error'), 'var(--red)');
-      showToast('Email failed. Check your EmailJS config.');
-    });
-}
-
-async function sendDailySummaryNow() {
-  const store = getStore();
-  const ejs = store.emailjs || {};
-  if (!ejs.serviceId || !ejs.templateId || !ejs.publicKey) {
-    showToast('Configure EmailJS in the admin panel first.');
-    return;
-  }
-  initSupabase();
-  setEjsStatus('Fetching subscribers...', 'var(--amber)');
-  // Always pull fresh list from Supabase if configured, else fall back to local
-  const subs = (SUPABASE_URL && SUPABASE_KEY)
-    ? (await syncSubscribersFromSupabase() || store.subscriptions || [])
-    : (store.subscriptions || []);
-
- %if (subs.length === 0) {
-    setEjsStatus('No subscribers found.', 'var(--fog)');
-    showToast('No subscribers to send to yet.');
-    return;
-  }
-  setEjsStatus('Sending to ' + subs.length + ' subscriber(s)...', 'var(--amber)');
-  let sent = 0;
-  const today = new Date().toLocaleDateString('en-US', {month:'short',day:'numeric',year:'numeric'});
-
-  subs.forEach((sub, idx) => {
-    setTimeout(() => {
-      emailjs.send(ejs.serviceId, ejs.templateId, buildEmailParams(sub.email, false))
-        .then(() => {
-          sent++;
-          updateLastSentInSupabase(sub.email, today);
-          const s2 = getStore();
-          const si = (s2.subscriptions||[]).findIndex(x => x.email === sub.email);
-          if (si >= 0) { s2.subscriptions[si].lastSent = today; saveStore(s2); }
-          if (sent === subs.length) {
-            setEjsStatus('â Daily summary sent to all ' + sent + ' subscriber(s) at ' + new Date().toLocaleTimeString(), 'var(--green)');
-            showToast('Daily summary sent to ' + sent + ' subscriber(s)!');
-            renderAdminTable();
-          }
-        })
-      2 .catch(err => {
-          setEjsStatus('â Failed for ' + sub.email + ': ' + (err.text || 'error'), 'var(--red)');
-        });
-    }, idx * 1400);
-  });
-}
-
-function buildEmailParams(recipientEmail, isTest) {
-  const today = new Date();
-  const dateStr = today.toLocaleDateString('en-US', {weekday:'long', month:'long', day:'numeric', year:'numeric'});
-  const timeStr = today.toLocaleTimeString('en-US', {hour:'2-digit', minute:'2-digit', timeZoneName:'short'});
-
-  // Pull latest market data from store (editable by admin)
-  const store = getStore();
-  const md = store.marketData || {};
-
-  // Helper: color for change values
-  const chgColor = chg => (chg && chg.startsWith('+')) ? '#34d399' : (chg && (chg.startsWith('â') || chg.startsWith('-'))) ? '#f87171' : '#7070a0';
-
-  return {
-    to_email: recipientEmail,
-    subject: (isTest ? '[TEST] ' : '') + 'WJB Trades â Daily Market Summary Â· ' + dateStr,
-    date: dateStr,
-    send_time: timeStr,
-    // Macro catalyst
-    macro_catalyst: md.macro_catalyst || 'U.S. Navy Hormuz blockade active. WTI +8% above $104. CPI 3.3% â highest since May 2024.',
-    // Macro snapshot with color hints
-    spy_price:  md.spy_price  || '$679',   spy_chg:  md.spy_chg  || 'â0.40%',  spy_color:  chgColor(md.spy_chg  || 'â'),
-    qqq_price:  md.qqq_price  || '$611',   qqq_chg:  md.qqq_chg  || '+0.14%',  qqq_color:  chgColor(md.qqq_chg  || '+'),
-    wti_price:  md.wti_price  || '$104',   wti_chg:  md.wti_chg  || '+8.0%',   wti_color:  chgColor(md.wti_chg  || '+'),
-    gold_price: md.gold_price || '$4,733', gold_chg: md.gold_chg || 'â0.71%',  gold_color: chgColor(md.gold_chg || 'â'),
-    btc_price:  md.btc_price  || '$71,600',btc_chg:  md.btc_chg  || 'â1.80%',  btc_color:  chgColor(md.btc_chg  || 'â'),
-    dxy_price:  md.dxy_price  || '98.79',  dxy_chg:  md.dxy_chg  || 'Multi-wk low',
-    // Setup 1 (editable)
-    setup1_ticker:   md.setup1_ticker   || 'XLE / USO',
-    setup1_desc:     'Energy ETF / Oil Â· WTI Crude Â· PMG Active Â· Sector +18â38% YTD',
-    setup1_action:   md.setup1_action   || 'BUY CALL',
-    setup1_payoff:   md.setup1_payoff   || '+35â120%',
-    setup1_trigger:  md.setup1_trigger  || 'Reclaim $104.50 WTI / TTO to 9 EMA. FTFC full bull Q/M/W/D.',
-  2 setup1_stop:     'Below $101 WTI â Level 2 structural stop.',
-    setup1_strike:   'USO $85C Â· XLE $92C Â· May 16 expiration',
-    setup1_ftfc:     'Q / M / W / D all green â full continuity',
-    setup1_category: 'ETFs Â· ENERGY',
-    // Setup 2 (fixed defaults)
-    setup2_ticker:   'ORCL',
-    setup2_desc:     'Oracle Corp Â· +9â11% today Â· RS Leader Â· vol 32.9M vs 20.7M avg',
-    setup2_action:   'BUY CALL',
-    setup2_payoff:   '+40â120%',
-    setup2_trigger:  'TTO pullback to 9 EMA ~$145. AI Fusion Apps catalyst. RPO $553B.',
-    setup2_stop:     'Below $136â138 open price.',
-    setup2_category: 'EQUITIES Â· RS LEADER',
-    // Setup 3
-    setup3_ticker:   'PLTR',
-    setup3_desc:     'Palantir Â· ~$128â133 Â· Defense AI Â· ER May 11',
-    setup3_action:   'BUY CALL',
-    setup3_payoff:   '+60â120%',
-    setup3_trigger:  'Reclaim VWAP ~$130 on 15m. Defense AI. ER May 11 = IV expansion tailwind.',
-    setup3_stop:     '$122.68 (today's LOD) â Level 2 stop.',
-    setup3_category: 'EQUITIES Â· DEFENSE AI',
-    // Alert levels with symbols
-    alert1_sym: 'WTI CRUDE â BULL',
-    alert1: 'Break above $105 on 2-min candle: PMG cascade active. Scale into XLE/USO calls. Stop $103.50. T2 target $112â115.',
-    alert2_sym: 'WTI CRUDE â STOP',
-    alert2: 'Drop below $101 on 2-min close: Level 2 structural stop. Exit ALL energy positions immediately. Ceasefire risk.',
-    alert3_sym: 'BTC â BULL',
-    alert3: 'Surge above $75,000: Clarity Act PMG likely. Add size to IBIT calls. Trail stop to $72,500.',
-    alert4_sym: 'USD/JPY â CAUTION',
-    alert4: 'Approaches $160.00: BoJ intervention window open. Hard stop above $161. Short USD/JPY trigger active.',
-    // Greeks
-    delta_level: 'MIXED DIRECTIONAL',
-    gamma_level: 'VERY HIGH',
-    theta_level: 'THETA TRAP',
-    vega_level:  'EXTREME',
-    // Footer
-    platform_url: window.location.href.split('?')[0],
-    unsubscribe_note: 'Unsubscribe: log in â Daily Summary tab â Unsubscribe'
-  };
-}
-
-// ââ SUBSCRIPTION UI ââââââââââââââââââââââââââââââââ
-async function initSubscriptionUI() {
-  const session = getSession();
-  if (!session) return;
-  initSupabase();
-  // Sync from Supabase first so subscription state is accurate
-  if (SUPABASE_URL && SUPABASE_KEY) {
-    await syncSubscribersFromSupabase().catch(() => {});
-  }
-  const store = getStore();
-  const subs = store.subscriptions || [];
-  const isSubscribed = subs.some(s => s.email === session.email);
-  updateSubscriptionUI(isSubscribed, session.email);
-}
-
-function updateSubscriptionUI(isSubscribed, email) {
-  const formCard   = document.getElementById('sub-form-card');
-  const activeCard = document.getElementById('sub-active-card');
-  const dot        = document.getElementById('sub-status-dot');
-  const txt        = document.getElementById('sub-status-text');
-  const emailDisp  = document.getElementById('sub-email-display');
-
-  if (isSubscribed) {
-    if (formCard)   formCard.style.display   = 'none';
-    if (activeCard) activeCard.style.display = 'block';
-    if (dot)  { dot.style.background = 'var(--green)'; dot.style.animation = 'blink 2s infinite'; }
-    if (txt)  txt.textContent = 'â Subscribed â Daily 9:00 AM ET';
-    if (emailDisp) emailDisp.textContent = email;
-  } else {
-    if (formCard)   formCard.style.display   = 'block';
-    if (activeCard) activeCard.style.display = 'none';
-    if (dot)  { dot.style.background = 'var(--fog)'; dot.style.animation = 'none'; }
-    if (txt)  txt.textContent = 'Not subscribed';
-  }
-}
-
-async function handleSubscribeToggle() {
-  const session = getSession();
-  if (!session) return;
-  initSupabase();
-  const store = getStore();
-  if (!store.subscriptions) store.subscriptions = [];
-  const idx = store.subscriptions.findIndex(s => s.email === session.email);
-
-  // Show loading state
-  const btn = document.getElementById('subscribe-btn');
-  if (btn) { btn.textContent = '...'; btn.style.opacity = '0.6'; }
-
-  if (idx === -1) {
-    // Subscribe â save to Supabase and local
-    const today = new Date().toLocaleDateString('en-US', {month:'short',day:'numeric',year:'numeric'});
-    if (SUPABASE_URL && SUPABASE_KEY) {
-      const ok = await addSubscriberToSupabase(session.email);
-      if (!ok) {
-        showToast('Could not save subscription. Check Supabase config.');
-        if (btn) { btn.textContent = 'SUBSCRIBE â FREE'; btn.style.opacity = '1'; }
-        return;
-      }
-    }
-    store.subscriptions.push({
-      email: session.email,
-      since: today,
-      lastSent: null,
-      frequency: 'Daily 9AM ET'
-    });
-    saveStore(store);
-    updateSubscriptionUI(true, session.email);
-    showToast('â Subscribed! Daily summaries arrive at 9:00 AM ET.');
-  } else {
-    // Unsubscribe
-    if (SUPABASE_URL && SUPABASE_KEY) {
-      await removeSubscriberFromSupabase(session.email);
-    }
-    store.subscriptions.splice(idx, 1);
-    saveStore(store);
-    updateSubscriptionUI(false, session.email);
-    showToast('Unsubscribed. You can re-subscribe anytime.');
-  }
-  if (btn) { btn.style.opacity = '1'; }
-}
-
-function sendSampleEmail() {
-  const store = getStore();
-  const ejs = store.emailjs || {};
-  const session = getSession();
-  if (!session) return;
-
-  if (!ejs.serviceId || !ejs.templateId || !ejs.publicKey) {
-    showToast('Admin needs to configure EmailJS before previewing. Ask your admin.');
-    return;
-  }
-  showToast('Sending sample email to ' + session.email + '...');
-  emailjs.send(ejs.serviceId, ejs.templateId, buildEmailParams(session.email, true))
-    .then(() => showToast('Sample email sent! Check your inbox.'))
-    .catch(() => showToast('Failed to send â check with admin.'));
-}
-
-// ââ SUPABASE INTEGRATION âââââââââââââââââââââââââââ
-// Supabase stores subscribers in a shared database so ALL users/browsers
-// see the same list â localStorage is per-browser so can't do shared state.
-// Free tier: 500MB, unlimited rows, works perfectly for this use case.
-
-let SUPABASE_URL = '';
-let SUPABASE_KEY = '';
-
-function initSupabase() {
-  const store = getStore();
-  SUPABASE_URL = (store.supabase && store.supabase.url) || '';
-  SUPABASE_KEY = (store.supabase && store.supabase.anonKey) || '';
-}
-
-async function supabaseQuery(method, path, body) {
-  if (!SUPABASE_URL || !SUPABASE_KEY) return null;
-  try {
-    const res = await fetch(SUPABASE_URL + '/rest/v1/' + path, {
-      method,
-      headers: {
-        'apikey': SUPABASE_KEY,
-        'Authorization': 'Bearer ' + SUPABASE_KEY,
-        'Content-Type': 'application/json',
-        'Prefer': method === 'POST' ? 'return=representation' : 'return=minimal'
-      },
-      body: body ? JSON.stringify(body) : undefined
-    });
-    if (!res.ok) { const t = await res.text(); console.warn('Supabase error:', t); return null; }
-    if (method === 'DELETE' || res.status === 204) return true;
-    return await res.json();
-  } catch(e) { console.warn('Supabase fetch failed:', e); return null; }
-}
-
-// Fetch subscribers from Supabase and merge with local store
-async function syncSubscribersFromSupabase() {
-  if (!SUPABASE_URL || !SUPABASE_KEY) return;
-  const rows = await supabaseQuery('GET', 'wjb_subscribers?select=*&order=created_at.desc', null);
-  if (!Array.isArray(rows)) return;
-  const store = getStore();
-  store.subscriptions = rows.map(r => ({
-    email: r.email,
-    since: r.created_at ? new Date(r.created_at).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'}) : 'â',
-    lastSent: r.last_sent || null,
-    frequency: 'Daily 9AM ET'
-  }));
-  saveStore(store);
-  return store.subscriptions;
-}
-
-async function addSubscriberToSupabase(email) {
-  if (!SUPABASE_URL || !SUPABASE_KEY) return false;
-  const res = await supabaseQuery('POST', 'wjb_subscribers', { email, last_sent: null });
-  return res !== null;
-}
-
-async function removeSubscriberFromSupabase(email) {
-  if (!SUPABASE_URL || !SUPABASE_KEY) return false;
-  const res = await supabaseQuery('DELETE', 'wjb_subscribers?email=eq.' + encodeURIComponent(email), null);
-  return res !== null;
-}
-
-async function updateLastSentInSupabase(email, dateStr) {
-  if (!SUPABASE_URL || !SUPABASE_KEY) return;
-  await supabaseQuery('PATCH', 'wjb_subscribers?email=eq.' + encodeURIComponent(email), { last_sent: dateStr });
-}
-
-// ââ AUTO-SEND TRIGGER (cron-job.org) âââââââââââââ
-// Set cron-job.org to hit: https://yourusername.github.io/wjb-trades/?cron=daily9am&key=YOUR_CRON_SECRET
-// The cron secret prevents random people from triggering sends.
-async function checkCronTrigger() {
-  const params = new URLSearchParams(window.location.search);
-  if (params.get('cron') !== 'daily9am') return;
-
-  const store = getStore();
-  const cronSecret = store.cronSecret || '';
-  if (cronSecret && params.get('key') !== cronSecret) {
-    console.warn('Cron: invalid key');
-    return;
-  }
-
-  initSupabase();
-  loadEmailJSConfig();
-
-  const ejs = store.emailjs || {};
-  if (!ejs.serviceId || !ejs.templateId || !ejs.publicKey) {
-    console.warn('Cron: EmailJS not configured');
-    return;
-  }
-
-  // Pull fresh subscriber list from Supabase
-  const subs = await syncSubscribersFromSupabase() || store.subscriptions || [];
-  if (subs.length === 0) { console.log('Cron: no subscribers'); return; }
-
-  const today = new Date().toLocaleDateString('en-US', {month:'short',day:'numeric',year:'numeric'});
-  console.log('Cron: sending to', subs.length, 'subscribers');
-
-  subs.forEach((sub, idx) => {
-    setTimeout(() => {
-      emailjs.send(ejs.serviceId, ejs.templateId, buildEmailParams(sub.email, false))
-        .then(() => {
-          console.log('â Sent to', sub.email);
-          updateLastSentInSupabase(sub.email, today);
-        })
-        .catch(err => console.warn('â Failed for', sub.email, err));
-    }, idx * 1500);
-  });
-}
-
-// ââ PUSH NOTIFICATION SYSTEM âââââââââââââââââââââ
-let pushBarTimeout = null;
-let pushEnabled = true;
-let notifPermission = 'default';
-
-function initPushNotifications() {
-  if ('Notification' in window) {
-    notifPermission = Notification.permission;
-    if (notifPermission === 'default') {
-      // Ask permission after a short delay so it's not the first thing on load
-      setTimeout(() => {
-        Notification.requestPermission().then(p => { notifPermission = p; updateNotifToggleUI(); });
-      }, 4000);
-    }
-  }
-  updateNotifToggleUI();
-}
-
-function updateNotifToggleUI() {
-  const toggleEl = document.getElementById('notif-toggle-sw');
-  const lblEl    = document.getElementById('notif-toggle-lbl');
-  if (!toggleEl) return;
-  if (notifPermission === 'granted' && pushEnabled) {
-    toggleEl.classList.add('on');
-    if (lblEl) lblEl.textContent = 'Browser notifications on';
-  } else if (notifPermission === 'denied') {
-    toggleEl.classList.remove('on');
-    if (lblEl) lblEl.textContent = 'Blocked â allow in browser settings';
-  } else {
-    toggleEl.classList.remove('on');
-    if (lblEl) lblEl.textContent = 'Notifications off';
-  }
-}
-
-function toggleNotifications() {
-  if (notifPermission === 'denied') {
-    showToast('Notifications are blocked. Go to browser settings to allow them for this site.');
-    return;
-  }
-  if (notifPermission === 'default') {
-    Notification.requestPermission().then(p => {
-      notifPermission = p;
-      if (p === 'granted') { pushEnabled = true; }
-      updateNotifToggleUI();
-    });
-    return;
-  }
-  pushEnabled = !pushEnabled;
-  updateNotifToggleUI();
-  showToast(pushEnabled ? 'Browser notifications enabled.' : 'Notifications muted.');
-}
-
-function showPushAlert(sym, type, msg, color) {
-  // In-app banner
-  const bar  = document.getElementById('push-bar');
-  const icon = document.getElementById('push-bar-icon');
-  const symEl= document.getElementById('push-bar-sym');
-  const msgEl= document.getElementById('push-bar-msg');
-  const timeEl=document.getElementById('push-bar-time');
-  if (!bar) return;
-
-  const now = new Date();
-  const t = now.getHours().toString().padStart(2,'0') + ':' + now.getMinutes().toString().padStart(2,'0') + ' ET';
-
-  // Set color class
-  bar.classList.remove('bear-push','warn-push');
-  if (color === 'red')   bar.classList.add('bear-push');
-  if (color === 'amber') bar.classList.add('warn-push');
-
-  icon.textContent  = color === 'red' ? 'â¼' : color === 'amber' ? 'â ' : 'â²';
-  symEl.textContent = sym + ' â ' + type;
-  msgEl.textContent = msg;
-  timeEl.textContent= t;
-
-  bar.classList.add('show');
-
-  clearTimeout(pushBarTimeout);
-  pushBarTimeout = setTimeout(closePushBar, 8000);
-
-  // Browser push notification (only if page is not focused)
-  if (pushEnabled && notifPermission === 'granted' && document.visibilityState !== 'visible') {
-    try {
-      new Notification('WJB Trades Alert', {
-        body: sym + ' â ' + type + '
-' + msg,
-        icon: 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><rect width="32" height="32" rx="6" fill="%230e0e18"/><text y="22" x="4" font-size="18" fill="%23c8a96e">W</text></svg>',
-        tag: 'wjb-alert'
-      });
-    } catch(e) {}
-  }
-}
-
-function closePushBar() {
-  const bar = document.getElementById('push-bar');
-  if (bar) bar.classList.remove('show');
-  clearTimeout(pushBarTimeout);
-}
-
-// ââ MARKET DATA EDITOR ââââââââââââââââââââââââââââ
-function saveMarketData() {
-  const md = getMarketDataFromForm();
-  const store = getStore();
-  store.marketData = md;
-  saveStore(store);
-  showToast('Market data saved â will be used in next email send.');
-}
-
-function loadMarketData() {
-  const store = getStore();
-  const md = store.marketData || {};
-  const fields = {
-    'md-spy-price':  md.spy_price  || '$679',
-    'md-spy-chg':    md.spy_chg    || 'â0.40%',
-    'md-qqq-price':  md.qqq_price  || '$611',
-    'md-qqq-chg':    md.qqq_chg    || '+0.14%',
-    'md-wti-price':  md.wti_price  || '$104',
-    'md-wti-chg':    md.wti_chg    || '+8.0%',
-    'md-gold-price': md.gold_price || '$4,733',
-    'md-gold-chg':   md.gold_chg   || 'â0.71%',
-    'md-btc-price':  md.btc_price  || '$71,600',
-    'md-btc-chg':    md.btc_chg    || 'â1.80%',
-    'md-dxy-price':  md.dxy_price  || '98.79',
-    'md-dxy-chg':    md.dxy_chg    || 'Multi-wk low',
-    'md-catalyst':   md.macro_catalyst || '',
-    'md-s1-ticker':  md.setup1_ticker  || '',
-    'md-s1-action':  md.setup1_action  || '',
-    'md-s1-payoff':  md.setup1_payoff  || '',
-    'md-s1-trigger': md.setup1_trigger || '',
-  };
-  Object.entries(fields).forEach(([id, val]) => {
-    const el = document.getElementById(id);
-    if (el) el.value = val;
-  });
-  showToast('Market data loaded from saved values.');
-}
-
-function getMarketDataFromForm() {
-  const g = id => { const el = document.getElementById(id); return el ? el.value.trim() : ''; };
-  return {
-    spy_price:  g('md-spy-price')  || '$679',
-    spy_chg:    g('md-spy-chg')    || 'â0.40%',
-    qqq_price:  g('md-qqq-price')  || '$611',
-    qqq_chg:    g('md-qqq-chg')    || '+0.14%',
-    wti_price:  g('md-wti-price')  || '$104',
-    wti_chg:    g('md-wti-chg')    || '+8.0%',
-    gold_price: g('md-gold-price') || '$4,733',
-    gold_chg:   g('md-gold-chg')   || 'â0.71%',
-    btc_price:  g('md-btc-price')  || '$71,600',
-    btc_chg:    g('md-btc-chg')    || 'â1.80%',
-    dxy_price:  g('md-dxy-price')  || '98.79',
-    dxy_chg:    g('md-dxy-chg')    || 'Multi-wk low',
-    macro_catalyst: g('md-catalyst') || 'Market is open. Monitor your key levels.',
-    setup1_ticker:  g('md-s1-ticker')  || 'XLE / USO',
-    setup1_action:  g('md-s1-action')  || 'BUY CALL',
-    setup1_payoff:  g('md-s1-payoff')  || '+35â120%',
-    setup1_trigger: g('md-s1-trigger') || 'Reclaim $104.50 WTI / TTO to 9 EMA. FTFC full bull Q/M/W/D.',
-  };
-}
-
-// ââ BOOT ââââââââââââââââââââââââââââââââââââââââââ
-(function boot() {
-  getStore(); // ensure store is initialized
-  loadEmailJSConfig();
-  initSupabase();
-  checkCronTrigger();
-  const session = getSession();
-  if (session) {
-    const store = getStore();
-    const member = store.members.find(m => m.email === session.email && m.status === 'active');
-    if (member) {
-      enterApp(member);
-      return;
-    }
-    clearSession();
-  }
-  showPage('gate');
-})();
-</script>
-</body>
-</html>
+              <div class="card-head"><div class="card-ticker-wrap"><div class="card-chip chip-gold">Clarity Act · Senate Vote This Week</div><div class="card-ticker">BTC / IBIT</div><div class="card-desc">Bitcoin · ~$71,600 · Best week since Oct 2025</div></div><span class="action-badge ab-hot">CATALYST PLAY</span></div>
+              <div class="card-rows"><div class="card-row"><span class="row-key">Strike / Exp</span><span class="row-val">IBIT $58C or $60C · May 15</span></div><div class="card-row"><span class="row-key">Entry Trigger</span><span class="row-val">BTC reclaims $72,500 on 4H 2-up candle</span></div><div class="card-row"><span class="row-key">OTE / Strat-Hole</span><span class="row-val b">$69,000–$71,000 re-entry zone</span></div><div class="card-row"><span class="row-key">Stop / Flip</span><span class="row-val r">$69,000 ���.�������ȁ���Ս��Ʌ���ѽ�������𽑥���؁�����􉍅ɐ�ɽ܈�������������ɽܵ����Q�ɝ�Ѐ�������������������ɽܵم�������԰����	Q��H����Ԕ�%	%P���ѥ��������𽑥���؁�����􉍅ɐ�ɽ܈�������������ɽܵ����Q�ɝ�Ѐ�������������������ɽܵم��������������	�����Ȥ��H������������𽑥��𽑥��(���������������؁��������彙����ȵ�Ʌ����؁��������彙��ѽ�����������������彙�������5���A�彙���
+����ɵ���������������������������彙���մ���������Ԕ������𽑥���؁�����􉉅ȵ�Ʌ�����؁�����􉉅ȵ�������������屔�ݥ�Ѡ��Ԕ��𽑥��𽑥���؁�����􉉅ȵ�����̈��������������������������Ԕ�P������������������P�������𽑥��𽑥��(���������������؁�����􉍅ɐ����ѹ�є��
+�ɍ����䔰�
+�����͔��Ȕ����
+��ɥ���Ё��ѥ��ʹ����9=P���ѕȁ����ɔ���Ȱ�����ɥ���ȁ�����ɵ����	Q��������ɕ��ѥ������مѕ��𽑥��(������������𽑥��(�������������؁�������Ʌ�����ɐ��(���������������؁�����􉍅ɐ��������؁�����􉍅ɐ�ѥ���ȵ�Ʌ����؁�����􉍅ɐ�ѥ���Ȉ�Q ���Q!𽑥���؁�����􉍅ɐ���͌��ѡ�ɕմ�
+܁
+��ɕ��ѕ��Ѽ�	Q����х���������ձ���𽑥��𽑥�������������􉅍ѥ��������������Ј�
+Q1UMT�A1d������𽑥��(���������������؁�����􉍅ɐ�ɽ�̈��؁�����􉍅ɐ�ɽ܈�������������ɽܵ����M�ɥ�������������������������ɽܵم���Q!�Q4�����̃
+܁5����������𽑥���؁�����􉍅ɐ�ɽ܈�������������ɽܵ��������Qɥ����������������������ɽܵم���Q �����́ݕ��������ȁ���� �����������𽑥���؁�����􉍅ɐ�ɽ܈�������������ɽܵ����Mѽ�������������������������ɽܵم��Ȉ�	ɕ�������܁ݕ���䁽�����ձ�����������𽑥���؁�����􉍅ɐ�ɽ܈�������������ɽܵ����Q�ɝ�Ѐ�������������������ɽܵم�������׊L����Q ��H���������ѥ��������𽑥���؁�����􉍅ɐ�ɽ܈�������������ɽܵ����Q�ɝ�Ѐ�������������������ɽܵم�����	�����ȁ��չ���䃊H������������𽑥���؁�����􉍅ɐ�ɽ܈�������������ɽܵ����
+�х����������������������ɽܵم�����
+��ɥ���Ё��ٕ�́UM�Q �������ѕ�������𽑥��𽑥��(���������������؁��������彙����ȵ�Ʌ����؁��������彙��ѽ�����������������彙�������5���A�彙���и��������������������彙���մ�����������������𽑥���؁�����􉉅ȵ�Ʌ�����؁�����􉉅ȵ�������������屔�ݥ�Ѡ������𽑥��𽑥���؁�����􉉅ȵ�����̈�����������������������������P������������������P�������𽑥��𽑥��(���������������؁�����􉍅ɐ����ѹ�є��M��������Ѽ�	Q��P������ɴ�	Q��ɥ���ȁ����и�Mх��������
+��ɥ���Ё��ɕ�ѱ䁍�ٕ�́UM�Q �������ѕ��𽑥��(������������𽑥��(����������𽑥��(��������𽑥��((�������������=I`����(���������؁�����􉍅е͕�ѥ����(�����������؁�����􉍅е�����Ȉ������������􉍅е��������~J�<�����������������􉍅е��������ɕ��������؁�����􉍅е�ձ���𽑥�������������􉍅е������͕́����������𽑥��(�����������؁�����􉍅ɑ̵�ɥ�����̴̈�(�������������؁�������Ʌ�����\��X]Y�����]��\��H��\�ZXY��]��\��H��\�]X��\�]ܘ\��]��\��H��\�X�\�\Y����T��XZۙ\��0��HN��O�]��]��\��H��\�]X��\���UT��T��]��]��\��H��\�Y\�ȏ�]\��0���K�ML�0��[�\��H�����Y��]���]���[��\��H�X�[ۋX�Y�HX�X�[��ӑ�UT���[���]���]��\��H��\�\���ȏ�]��\��H��\�\��ȏ��[��\��H����Z�^H��[��H�ۙO��[���[��\��H����]�[���^H\��	K�ML�
+L	Y\���[���]��]��\��H��\�\��ȏ��[��\��H����Z�^H������\��[���[��\��H����]�[����[��	K�M
+L8�%[��[Y]Y��[���]��]��\��H��\�\��ȏ��[��\��H����Z�^H��\��]O��[���[��\��H����]�[ȏ�K�M�8�����M�H
+L
+O��[���]��]��\��H��\�\��ȏ��[��\��H����Z�^H��\��]���[���[��\��H����]�[ȏ�K��L�8����̍IJ���[���]��]��\��H��\�\��ȏ��[��\��H����Z�^H��[�[\���[���[��\��H����]�[�����ΈK��[�L�����[���]���]���]��\��H�^[ٙ�X�\�]ܘ\��]��\��H�^[ٙ�]����[��\��H�^[ٙ�[���]�\�Y�Y^[ٙ�
+L0��O��[���[��\��H�^[ٙ�[�[H�X����M�J���[���]��]��\��H��\�]�X�ȏ�]��\��H��\�Y�[��X���[OH��Y�M�H���]���]��]��\��H��\�[X�[ȏ��[��[��O��[���[���M�O��[���[��̍IO��[���]���]���]��\��H��\�Y�����H��ۙ��[���[�H�YX�Yݙ\�[�ˈPЈ�\�\�[��Y�[�[�ˈKY\��[][ۈ8����\�\��]\���K�N8�$�K����]����]���]��\��H��YKX�\����]��\��H��\�ZXY��]��\��H��\�]X��\�]ܘ\��]��\��H��\�]X��\���Д�T��]��]��\��H��\�Y\�ȏ��X�H0���K��
+L0���[[۝Y���]���]���[��\��H�X�[ۋX�Y�HX�X�[��ӑ�Д��[���]���]��\��H��\�\���ȏ�]��\��H��\�\��ȏ��[��\��H����Z�^H��[��H�ۙO��[���[��\��H����]�[���^H	K���L8�$�K����ۙO��[���]��]��\��H��\�\��ȏ��[��\��H����Z�^H������\��[���[��\��H����]�[����[��	K�̎8�%��X�\�[����[���]��]��\��H��\�\��ȏ��[��\��H����Z�^H��\��]O��[���[��\��H����]�[ȏ�K��L8�����MIJ�
+L
+O��[���]��]��\��H��\�\��ȏ��[��\��H����Z�^H��\��]���[���[��\��H����]�[ȏ�K�͌L�8����̍IO��[���]��]��\��H��\�\��ȏ��[��\��H����Z�^H����H��O��[���[��\��H����]�[H�����Z�\��X�Y8�%Д�\ܝ��[���]���]���]��\��H�^[ٙ�X�\�]ܘ\��]��\��H�^[ٙ�]����[��\��H�^[ٙ�[���]�\�Y�Y^[ٙ�
+L0��O��[���[��\��H�^[ٙ�[�[H�X����MIJ���[���]��]��\��H��\�]�X�ȏ�]��\��H��\�Y�[��X���[OH��Y�MIH���]���]��]��\��H��\�[X�[ȏ��[��[��O��[���[���MIO��[���[��̍IO��[���]���]���]��\��H��\�Y�����H���X[�\���]\\�[�[\��ۜ�[��\ˈ\��\�[��X�ݙ\�Hۈ][KY^HT��XZۙ\��Yˏ�]����]���]��\��H��YKX�\����]��\��H��\�ZXY��]��\��H��\�]X��\�]ܘ\��]��\��H��\�]X��\���T�ҔO�]��]��\��H��\�Y\�ȏ��\�VY[�0���MN8�$�M�0���҈�ۙO�]���]���[��\��H�X�[ۋX�Y�HX�]�\�����ԕT�ҔO��[���]���]��\��H��\�\���ȏ�]��\��H��\�\��ȏ��[��\��H����Z�^H��[��H�ۙO��[���[��\��H����]�[���[�[Y\��	MNx�$�M���[���]��]��\��H��\�\��ȏ��[��\��H����Z�^H������\��[���[��\��H����]�[���X�ݙH	M�H8�%�҈�Z[���[���]��]��\��H��\�\��ȏ��[��\��H����Z�^H��\��]O��[���[��\��H����]�[ȏ�MM�8����̌	H]�\�Y�Y��[���]��]��\��H��\�\��ȏ��[��\��H����Z�^H��\��]���[���[��\��H����]�[ȏ�ML�L��M8�����L	O��[���]��]��\��H��\�\��ȏ��[��\��H����Z�^H��[�[\���[���[��\��H����]�[���UQ�ΈT�ҔHM
+�[�L�����[���]���]���]��\��H�^[ٙ�X�\�]ܘ\��]��\��H�^[ٙ�]����[��\��H�^[ٙ�[���]�\�Y�Y^[ٙ�
+L0��O��[���[��\��H�^[ٙ�[�[H�XH��̌	J���[���]��]��\��H��\�]�X�ȏ�]��\��H��\�Y�[��XH��[OH��Y��	H���]���]��]��\��H��\�[X�[ȏ��[��[��O��[���[��̌	O��[���[���L	O��[���]���]���]��\��H��\�Y�����H��M�H\�ܚX�[�҈[�\��[�[ۈ�\����\[�MIH�[Z[\ܝ\[�[��UQ�ΈM
+�[�L�����]����]����]����]����KKH�SRS�ST���P�SӈKO��]��\��H�[\��]ܘ\���]��\��H��X�[ۋZ����H�SZ[�]H�[��Y�[\�������]���]��\��H��X�[ۋ\����Y��\��X�]�]Hۈ	���IH[ݙH�][�[�H�[Z[�]H�[�H��[YK�X�ۈ�ۙ�\�YY���HۛK��]���]��\��H�[\�YܚY���]��\��H�[\�][H]X�[��]��\��H�[\�][K\�[H]�X�[������HԕQH8�%�S�]��]��\��H�[\�][KX��H����XZ�X�ݙH�[��\��H��Y�\[Yȏ�L
+O��[���Q��\��YHX�]�K���[H[��K�T���[ˈ��	LˍL���	LL��$�LMK��]���]���]��\��H�[\�][H]X�[��]��\��H�[\�][K\�[H]�X�[�����Ԑ�8�%�S�]��]��\��H�[\�][KX��H����XZ�X�ݙH�[��\��H��Y�\[Yȏ�MM���[��
+
+�IJN��]\�۝[�X][ۋ�Y�X^H	MMPˈ�H�Z[[������]���]���]��\��H�[\�][H]X�[��]��\��H�[\�][K\�[H]�X�[������8�%�S�]��]��\��H�[\�][KX��H����XZ�X�ݙH�[��\��H��Y�\[Yȏ�L�O��[��ۈ��	��̌K̋[Z[��Qˈ[�\�	L�P�X^H���H
+L	Y\�و�Y��\��[�K��]���]���]��\��H�[\�][H]X�[��]��\��H�[\�][K\�[H]�X�[�������8�%�S�]��]��\��H�[\�][KX��H���\��HX�ݙH�[��\��H��Y�\[Yȏ�
+�K��[����\�]HX�QˈYP�U�[ˈ�Z[���	
+̋
+L��]���]���]��\��H�[\�][H]X�[��]��\��H�[\�][K\�[H]�X�[�������8�%�S�]��]��\��H�[\�][KX��H��UH��XZ��X�ݙH�[��\��H��Y�\[Yȏ�
+���[��
+��PJN���[YH��YX�]�K��\Y�[�	
+KL��Z�[K��]���]���]��\��H�[\�][H]X�X\���]��\��H�[\�][K\�[H]�X�X\������HԕQH8�%��U�]��]��\��H�[\�][KX��H�����[���[��\��H��Y�\[\���LO��[���]�[����^]S[�\��H��][ۜ�[[YYX][K��X\�Y�\�H[�^K��]���]���]��\��H�[\�][H]X�X\���]��\��H�[\�][K\�[H]�X�X\������H8�%�PT��]��]��\��H�[\�][KX��H�����[���[��\��H��Y�\[\���
+�̏��[���[H�YY�ۙ�\�YY�Y	
+��T�\��]	
+���PH�\�\���]���]���]��\��H�[\�][H]X�X\���]��\��H�[\�][K\�[H]�X�X\�����TTH8�%��P�T�S�RS�]��]��\��H�[\�][KX��H�����[���[��\��H��Y�\[\���
+����[���^]TTH�[ˈ�\�	
+�\��][��	
+NL�[[XH�\]�[��]���]���]��\��H�[\�][H]]�\����]��\��H�[\�][K\�[H]�]�\������T�ҔH8�%�UUSӏ�]��]��\��H�[\�][KX��H��\��X�\��[��\��H��Y�\[XH��M����[����҈[�\��[�[ۈ�[����[��\���X�ݙH	M�K��]���]���]��\��H�[\�][H]]�\����]��\��H�[\�][K\�[H]�]�\�������PT�Q�T�HPQS�H8�%�TS��]��]��\��H�[\�][KX��H��K�ˋR\�[��X\�Y�\�N�U�ܝ\�ۈ�K�K���^][�\��K����[ˈ�\��[��\��H��Y�\[Yȏ��H	
+�
+P���[����]���]����]����]����KKHԑQR��KO��]��\��H�ܙYZ��]ܘ\���]��\��H��X�[ۋZ���[ۈܙYZ��8�%�\��ݙ\�^O�]���]��\��H��X�[ۋ\����^I��[��\�ۛY[��\]Z\�\�ܙYZ�X]�\�H��][ۈX[�Y�[Y[�Xܛ���[�]\ˏ�]���]��\��H�ܙYZ��YܚY���]��\��H�ܙYZ�][H�]K\�[OH����]��\��H��\�[H��[OH���܎�͌MY�H����]��]��\��H��[�[YH��[O�]��]��\��H��X�Y�H��[[���RVQT�P�SӐS�]��]��\��H��Y\�ȏ��\�]��^H8�%�\�\H
+���H����8�$���K���\�X�[ۘ[ӓHۈ��XY\�ˈ[K[�]]�[��XY�ۈ���Y[�X�\ˏ�]���]���]��\��H�ܙYZ�][H�]K\�[OH��ȏ�]��\��H��\�[H��[OH���܎�٘���������]��]��\��H��[�[YH���[[XO�]��]��\��H��X�Y�H��ZY����T�HQ��]��]��\��H��Y\�ȏ�Q��\��[�[�\��H8�%�\��Y[������ؘX�K��ܝQ�[[XH[��\��\ˈ�Y�\�ۙ��[ˈ�\�\��^�HۛH�X\�^\�K��]���]���]��\��H�ܙYZ�][H�]K\�[OH����]��\��H��\�[H��[OH���܎�َ
+�M�H����]��]��\��H��[�[YH��]O�]��]��\��H��X�Y�H��ZY���UH�T�T���]��]��\��H��Y\�ȏ�]��YUH]
+L	Y\�\]Z[X��][K��\][\��\��[HX\��]X�Y\ˈ\�HX^H^\�HZ[�[][K�^]�Yۘ][����][ۜˏ�]���]���]��\��H�ܙYZ�][H�]K\�[OH����]��\��H��\�[H��[OH���܎��M���H����]��]��\��H��[�[YH���Y�O�]��]��\��H��X�Y�H��Y^��V�SQO�]��]��\��H��Y\�ȏ�U�[]�]YXܛ���S\��]ˈ\�HUH�[ۜ�
+[H	�����
+K�Z�HH�ٚ]��Y�ܙH[�H�[�X[U�ܝ\�]�[���]���]����]����]����]��\��H�\�Y���\����]��\��H��X��[���Ґ��QT��]���]��\��H��Y\�ȏ���;�#�YX�][ۘ[\���\�ۛH8�%���[�[��X[Y�X�K��[ۜ�[����H�X��[�X[�\��و��ˈ�^[ٙ��\��[YHL0��]�\�Y�H�܈[\��][ۋ��]�\��\��[ܙH[��HوX���[�\]Z]H\��YK��]���]��[OH��۝Y�[Z[N��\�K[[ۛ�Nٛ۝\�^�N�\���܎��\�KY���H��\�L����0�����]����]�����]����]����KKH8� 8� P��ST��8� 8� KO��]��\��H�\�]X�\[�[�YH�X�X[\�ȏ��]��\��H�[\��]X�]ܘ\���]��\��H��X�[ۋZ��[OH�X\��[�X���N���]�H�[��Y�[\���]���]��\��H��X�[ۋ\����[][]Y�X[][YH�YY8�%	���IH[ݙH�][��[Z[�]H�[�H��[Y\��]���]��\��H�[\�X�۝��ȏ��]��\��H�[\�]���H���]��\��H����K\��]�ۈ�YH�[\�]���K\�Ȉۘ�X��H����P[\��YY
+
+H���]����[�YH�[\�]���K[����YYX�]�O��[����]���]��\��H�[\�]���H��[OH�X\��[�[Y�����]��\��H����K\��]��YH���Y�]���K\�Ȉۘ�X��H����S��Y�X�][ۜ�
+H���]����[�YH���Y�]���K[���[OH��۝\�^�N�L\����Y�X�][ۜ�ٙ���[����]����]ۈ�\��H���\�H�ۘ�X��H��X\�[\��YY
+
+H���X\��YY؝]ۏ���[��[OH��۝Y�[Z[N��\�K[[ۛ�Nٛ۝\�^�N�L���܎��\�KY���H�YH�[\�X��[�[���[\����[����]���]��\��H�[\��[]�KY�YY�YH�]�KX[\�Y�YY���]����]����]����KKH8� 8� P���P��ԒTSӔ�8� 8� KO��]��\��H�\�]X�\[�[�YH�X�\�X��ܚ\[ۜȏ��]��[OH�Y[�Ό̜
+�X^]�Y������KKHT���S��T�KO��]��[OH��X��ܛ�[��[�X\�YܘYY[�
+L�YY��ؘJ
+
+K�L�NLK�
+K�ؘJ�M�KLL�
+�JN؛ܙ\��\��Y�ؘJ
+
+K�L�NLK��N؛ܙ\�\�Y]\ΌM��Y[�Ό�̜�X\��[�X���N�����][ێ��[]]�N�ݙ\���ΚY[����]��[OH���][ێ�X���]N���MܚY��M��Y�M��ZY��M�؛ܙ\�\�Y]\΍L	NؘX��ܛ�[���YX[YܘYY[�
+�\��K�ؘJ
+
+K�L�NLK�
+K�[��\�[�
+�	JH���]���]��[OH��۝Y�[Z[N��\�KY\�^JNٛ۝\�^�N�̜�]\�\�X�[�Ό\���܎��\�K]�]JN�X\��[�X���N����Z[HX\��]�[[X\�O�]���]��[OH��۝\�^�N�L����܎��\�K[Z\�
+N�X^]�Y���[�KZZY��K�ȏ��X�Z]�HH�[Ґ��Y\�X\��]�\ܝ8�%�YH�]\�[\��[�ܙYZ��\��ݙ\�^H8�%[]�\�Y�[�\�[���]�\�H[ܛ�[��]��ۙ��[OH���܎��\�KY���H��N�SHU���ۙψ�Y�ܙHHX\��]�[�ˏ�]���]�YH��X�\�]\�X�Y�H��[OH�\�^N�[�[�KY�^�[YۋZ][\Θ�[�\���\��X\��[�]��M�ؘX��ܛ�[���\�KZ[���N؛ܙ\��\��Y�\�K]�\�L�N؛ܙ\�\�Y]\Ό��Y[�΍�Mٛ۝Y�[Z[N��\�K[[ۛ�Nٛ۝\�^�N�L\���܎��\�KY���H����[�YH��X�\�]\�Y���[OH��Y���ZY���؛ܙ\�\�Y]\΍L	NؘX��ܛ�[���\�KY���H����[����[�YH��X�\�]\�]^�����X��ܚX�Y��[����]����]����KKH�P��ԒTSӈ�T�KO��]�YH��X�Y�ܛKX�\���[OH��X��ܛ�[���\�KX�\�
+N؛ܙ\��\��Y�\�K]�\�JN؛ܙ\�\�Y]\ΌL��ݙ\���ΚY[��X\��[�X���N�����]��[OH�Y[�Ό��؛ܙ\�X���N�\��Y�\�K]�\�JH���]��[OH��۝Y�[Z[N��\�KY\�^JNٛ۝\�^�N���]\�\�X�[�Ό�\���܎��\�K]�]JN�X\��[�X���N����X��ܚX�H�Z[H�[[X\�O�]���]��[OH��۝\�^�N�L����܎��\�KY���H��[�\�[XZ[Y�\�����H[�\�X���[��[�H\�Y�[��X��ܚX�H[�][YK��]����]���]��[OH�Y[�Ό������KKH�]	��[��YYKO��]��[OH�X\��[�X���N�����]��[OH��۝Y�[Z[N��\�K[[ۛ�Nٛ۝\�^�N�\�]\�\�X�[�Ό��^]�[�ٛܛN�\\��\�N���܎��\�KY���N�X\��[�X���N�L����]	��[��YY]�\�H[ܛ�[���]���]��[OH�\�^N�ܚY�ܚY][\]KX��[[�ΌY��Y����\����]��[OH��X��ܛ�[���\�KZ[���N؛ܙ\��\��Y�\�K]�\�JN؛ܙ\�\�Y]\Ύ�Y[�ΌLL��\�^N��^�[YۋZ][\Ι�^\�\���\�L����[��[OH��۝\�^�N�M���'����[���]���]��[OH��۝\�^�N�L�ٛ۝]�ZY��L���܎��\�K\ۛ��N�X\��[�X���N����XXܛ�ۘ\���]���]��[OH��۝\�^�N�L���܎��\�KY���H���KTTK�K����H]�[��]����]����]���]��[OH��X��ܛ�[���\�KZ[���N؛ܙ\��\��Y�\�K]�\�JN؛ܙ\�\�Y]\Ύ�Y[�ΌLL��\�^N��^�[YۋZ][\Ι�^\�\���\�L����[��[OH��۝\�^�N�M���'����[���]���]��[OH��۝\�^�N�L�ٛ۝]�ZY��L���܎��\�K\ۛ��N�X\��[�X���N�������]\��]���]��[OH��۝\�^�N�L���܎��\�KY���H��Y�\��۝�X�[ۈ�Y\�وH^O�]����]����]���]��[OH��X��ܛ�[���\�KZ[���N؛ܙ\��\��Y�\�K]�\�JN؛ܙ\�\�Y]\Ύ�Y[�ΌLL��\�^N��^�[YۋZ][\Ι�^\�\���\�L����[��[OH��۝\�^�N�M�����O��[���]���]��[OH��۝\�^�N�L�ٛ۝]�ZY��L���܎��\�K\ۛ��N�X\��[�X���N�����^H[\�]�[��]���]��[OH��۝\�^�N�L���܎��\�KY���H���[Z[��Y��\��X�\���]��]����]����]���]��[OH��X��ܛ�[���\�KZ[���N؛ܙ\��\��Y�\�K]�\�JN؛ܙ\�\�Y]\Ύ�Y[�ΌLL��\�^N��^�[YۋZ][\Ι�^\�\���\�L����[��[OH��۝\�^�N�M���'�(���[���]���]��[OH��۝\�^�N�L�ٛ۝]�ZY��L���܎��\�K\ۛ��N�X\��[�X���N����ܙYZ���\��]�[�]���]��[OH��۝\�^�N�L���܎��\�KY���H��[K��[[XK�]KՙY�H[��\�ۛY[��]����]����]����]����]����KKH[]�\�H[YHKO��]��[OH��X��ܛ�[���\�KZ[���N؛ܙ\��\��Y�ؘJ�M�KLL�MJN؛ܙ\�\�Y]\Ύ�Y[�ΌL�M�X\��[�X���N���\�^N��^�[YۋZ][\Θ�[�\���\�L����]��[OH��۝\�^�N�����'�f�]���]���]��[OH��۝\�^�N�L�ٛ۝]�ZY��L���܎��\�K\ۛ��H��[]�\�Y]N�SHX\�\��[YO�]���]��[OH��۝\�^�N�L\���܎��\�KY���H��]�\�H�Y[��^H
+[۸�$ќ�JK�Z[��Y�ܙHX\��]�[��]����]���]��[OH�X\��[�[Y��]]�ٛ۝Y�[Z[N��\�K[[ۛ�Nٛ۝\�^�N�L\���܎��\�KY���N�^X[Yێ��Y���N�SHU����[��[OH���܎��\�KY���H��[۸�$ќ�O��[���]����]����KKH�X��ܚX�H���HKO��]�YH��X�XX�[ۋX\�XH����]ۈYH��X��ܚX�KX���ۘ�X��H�[�T�X��ܚX�U���J
+H��[OH��Y�L	NؘX��ܛ�[��[�X\�YܘYY[�
+LY��\�KY��
+K�\�KY���JN���܎��\�KZ[��N؛ܙ\���ۙN؛ܙ\�\�Y]\Ύ�Y[�ΌMٛ۝Y�[Z[N��\�KY\�^JNٛ۝\�^�N���]\�\�X�[�Ό���\��܎��[�\���[��][ێ��X�]H��ȏ���P��ԒP�H8�%��QB�؝]ۏ��]��[OH�^X[Yێ��[�\��X\��[�]��Lٛ۝\�^�N�L\���܎��\�KY���H��������[��X��ܚX�H[�H[YH���H\�Y�K��]����]�����]����]����KKH�P��ԒP�Q�UH
+Y[��HY�][
+HKO��]�YH��X�XX�]�KX�\���[OH�\�^N��ۙNؘX��ܛ�[��[�X\�YܘYY[�
+L�YY��ؘJ
+L��LKML��
+�K�ؘJ
+L��LKML���JN؛ܙ\��\��Y�ؘJ
+L��LKML���JN؛ܙ\�\�Y]\ΌL��Y[�Ό��X\��[�X���N���^X[Yێ��[�\����]��[OH��۝\�^�N�͜�X\��[�X���N�L���!O�]���]��[OH��۝Y�[Z[N��\�KY\�^JNٛ۝\�^�N���]\�\�X�[�Ό\���܎��\�KYܙY[�N�X\��[�X���N����[�IܙH�X��ܚX�Y�]���]��[OH��۝\�^�N�L����܎��\�K[Z\�
+N�X\��[�X���N�M���Z[H�[[X\�Y\��[�H�[����ۙ�YH��X�Y[XZ[Y\�^H��[OH���܎��\�K\ۛ��H�����ۙψ]N�SHU[ۙ^H��Y���Y^K��]���]��[OH�\�^N��^��\�Lڝ\�Y�KX�۝[���[�\�ٛ^]ܘ\�ܘ\����]ۈۘ�X��H�[�T�X��ܚX�U���J
+H��[OH��X��ܛ�[���\�K\�Y�N؛ܙ\��\��Y�ؘJ�LL�LL���N���܎��\�K\�Y
+N؛ܙ\�\�Y]\΍��Y[�ΎNٛ۝Y�[Z[N��\�K[[ۛ�Nٛ۝\�^�N�L\��\��܎��[�\���[��X��ܚX�O؝]ۏ���]ۈۘ�X��H��[��[\Q[XZ[
+
+H��[OH��X��ܛ�[���\�KY���N؛ܙ\��\��Y�ؘJ�M�KLL��N���܎��\�KY���N؛ܙ\�\�Y]\΍��Y[�ΎNٛ۝Y�[Z[N��\�K[[ۛ�Nٛ۝\�^�N�L\��\��܎��[�\����]�Y]��[\H[XZ[؝]ۏ���]����]����KKH��U�Ԓ��KO��]��[OH��X��ܛ�[���\�KX�\�
+N؛ܙ\��\��Y�\�K]�\�JN؛ܙ\�\�Y]\ΌL��Y[�Ό�����]��[OH��۝Y�[Z[N��\�KY\�^JNٛ۝\�^�N�N�]\�\�X�[�Ό�\���܎��\�K]�]JN�X\��[�X���N�M����]�ܚ���]���]��[OH�\�^N��^ٛ^Y\�X�[ێ���[[���\�L����]��[OH�\�^N��^��\�M�[YۋZ][\Ι�^\�\����]��[OH��۝Y�[Z[N��\�K[[ۛ�Nٛ۝\�^�N�L\���܎��\�KY��
+NؘX��ܛ�[���\�KY���N؛ܙ\��\��Y�ؘJ�M�KLL��N؛ܙ\�\�Y]\΍L	N��Y���ZY����\�^N��^�[YۋZ][\Θ�[�\�ڝ\�Y�KX�۝[���[�\�ٛ^\��[�Ό��O�]���]��[OH��۝\�^�N�L����܎��\�K[Z\�
+H��[�H�X��ܚX�Hۈ\�Y�H8�%[�\�[XZ[\��]�Y�H]�ܛK��]����]���]��[OH�\�^N��^��\�M�[YۋZ][\Ι�^\�\����]��[OH��۝Y�[Z[N��\�K[[ۛ�Nٛ۝\�^�N�L\���܎��\�KY��
+NؘX��ܛ�[���\�KY���N؛ܙ\��\��Y�ؘJ�M�KLL��N؛ܙ\�\�Y]\΍L	N��Y���ZY����\�^N��^�[YۋZ][\Θ�[�\�ڝ\�Y�KX�۝[���[�\�ٛ^\��[�Ό����]���]��[OH��۝\�^�N�L����܎��\�K[Z\�
+H��HYZ[��ۙ�Y�\�\���ۙ��[OH���܎��\�K\ۛ��H��[XZ[�����ۙψ
+��YH�\��X�JH8�%���\��\��YYY[XZ[��[�\�X�H���HH�����\���]����]���]��[OH�\�^N��^��\�M�[YۋZ][\Ι�^\�\����]��[OH��۝Y�[Z[N��\�K[[ۛ�Nٛ۝\�^�N�L\���܎��\�KY��
+NؘX��ܛ�[���\�KY���N؛ܙ\��\��Y�ؘJ�M�KLL��N؛ܙ\�\�Y]\΍L	N��Y���ZY����\�^N��^�[YۋZ][\Θ�[�\�ڝ\�Y�KX�۝[���[�\�ٛ^\��[�Ό����]���]��[OH��۝\�^�N�L����܎��\�K[Z\�
+H����ۙ��[OH���܎��\�K\ۛ��H��ܛۋZ�؋�ܙ����ۙψ
+��YJH[���H\]�\�H^H]N�SHU�X�]]�X]X�[H�Y��\��H[XZ[�[��[�X��ܚX�\�ˏ�]����]���]��[OH�\�^N��^��\�M�[YۋZ][\Ι�^\�\����]��[OH��۝Y�[Z[N��\�K[[ۛ�Nٛ۝\�^�N�L\���܎��\�KY��
+NؘX��ܛ�[���\�KY���N؛ܙ\��\��Y�ؘJ�M�KLL��N؛ܙ\�\�Y]\΍L	N��Y���ZY����\�^N��^�[YۋZ][\Θ�[�\�ڝ\�Y�KX�۝[���[�\�ٛ^\��[�Ό���]���]��[OH��۝\�^�N�L����܎��\�K[Z\�
+H��]�\�H�X��ܚX�\��X�Z]�\�H�X�SZ[H�[[X\�H[XZ[�Y�ܙHX\��]�[��8�$��]����]����]����]�����]����]����KKH8� 8� P������T�H8� 8� KO��]��\��H�\�]X�\[�[�YH�X�Y����\�H���]��[OH�Y[�Ό̜
+�X^]�Y����]��\��H��X�[ۋZ��[OH�X\��[�X���N����Y[������\�O�]���]��\��H��X�[ۋ\����ܙHY�[�][ۜ����HHҐ��Y\���[Y]�ܚ��]���]�YH�����\�KX�۝[����]����]����]�����]����]����KKH8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d��U�T�ԒT��d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�dKO���ܚ\����8� 8� UH�ԑH
+��[�ܘY�JH8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� ��ۜ��ԑW��VHH	�ژ���Y\��]I���[��[ۈ�]�ܙJ
+H�H�ۜ��]�H��[�ܘY�K��]][J�ԑW��VJNY�
+�]�H�ۜ�\��YH��Ӌ�\��J�]�N��[��\�HY[X�\��\��^H[�^\�^\���]Y�][Y�
+\\��Y�Y[X�\��\��Y�Y[X�\�˛[��OOH
+H�]\��[�]�ܙJ
+NB��]\��\��YB�H�]�
+JH�B��]\��[�]�ܙJ
+NB���[��[ۈ�]�T�ܙJ]JH��[�ܘY�K��]][J�ԑW��VK��Ӌ���[��Y�J]JJNB���[��[ۈ[�]�ܙJ
+H���X��Y��ܙH[�XYH\��[YY[X�\��8�%Y���Y\��H�]\�[�ݙ\�ܚ]B��H�ۜ�^\�[��H��Ӌ�\��J��[�ܘY�K��]][J�ԑW��VJH	۝[	�NY�
+^\�[��	��^\�[�˛Y[X�\��	��^\�[�˛Y[X�\�˛[���
+H���ܙH^\���]X^H�HZ\��[���]��Y[�8�%Y\��HY�][�[��Y�
+Y^\�[�˜�X��ܚ\[ۜ�H^\�[�˜�X��ܚ\[ۜ�H�NY�
+Y^\�[�˙[XZ[��H^\�[�˙[XZ[��H��\��X�RY�	��[\]RY�	��X�X��^N�	��NY�
+Y^\�[�˜�\X�\�JH^\�[�˜�\X�\�HH�\��	��[�ے�^N�	��NY�
+Y^\�[�˘ܛ۔�Xܙ]
+H^\�[�˘ܛ۔�Xܙ]H	��Y�
+Y^\�[�˛X\��]]JH^\�[�˛X\��]]HH�N��[�ܘY�K��]][J�ԑW��VK��Ӌ���[��Y�J^\�[��JN�]\��^\�[��B�H�]�
+JH�B��ۜ�]HHY[X�\�Έ[XZ[�	�YZ[�ژ��Y\˘��I����N�	�Ґ�PQRS�L�������N�	�YZ[����]\Έ	�X�]�I����[�Y�	�\�L����K�[XZ[�	��Y\�ژ��Y\˘��I����N�	�Ґ�SQSP�T�LI����N�	�Y[X�\����]\Έ	�X�]�I����[�Y�	�\�L����B�K��X��ܚ\[ۜΈ�K�[XZ[�Έ��\��X�RY�	��[\]RY�	��X�X��^N�	��K��\X�\�N��\��	��[�ے�^N�	��K�ܛ۔�Xܙ]�	���X\��]]N��K��\��[ێ��[�N�]�T�ܙJ]JN�]\��]NB����8� 8� �T��Sӈ8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� ��[��[ۈ�]�\��[ۊ
+H�ۜ��H�]�ܙJ
+N�]\��˜�\��[ێB���[��[ۈ�]�\��[ۊY[X�\�H�ۜ��H�]�ܙJ
+N˜�\��[ۈH�[XZ[�Y[X�\��[XZ[��N�Y[X�\����K��N�Y[X�\����HN�]�T�ܙJ�NB���[��[ۈ�X\��\��[ۊ
+H�ۜ��H�]�ܙJ
+N˜�\��[ۈH�[�]�T�ܙJ�NB����8� 8� UU8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� �]��[�][\�H��[��[ۈ\��\�]�ܙJ
+HY�
+�ۙ�\�J	�\��[�X\�[��[\]H[��[�Y����YY��JH��[�ܘY�K��[[ݙR][J	�ژ���Y\��]I�N�[��˛��][ۋ��[�Y
+
+NB�B���[��[ۈ][\��[�
+H�ۜ�[XZ[H��[Y[���][[Y[��RY
+	���[�Y[XZ[	�K��[YK��[J
+K����\��\�J
+N�ۜ���HH��[Y[���][[Y[��RY
+	���[�X��I�K��[YK��[J
+N�ۜ�\��H��[Y[���][[Y[��RY
+	���[�Y\��܉�N�ۜ�[XZ[[�]H��[Y[���][[Y[��RY
+	���[�Y[XZ[	�N�ۜ���R[�]H��[Y[���][[Y[��RY
+	���[�X��I�N�[XZ[[�]��\��\���[[ݙJ	�\��܉�N��R[�]��\��\���[[ݙJ	�\��܉�N\����\��\���[[ݙJ	�����N�Y�
+Y[XZ[X��JHY�
+Y[XZ[
+H[XZ[[�]��\��\��Y
+	�\��܉�NY�
+X��JH��R[�]��\��\��Y
+	�\��܉�N\���^�۝[�H	�X\�H[�\���[�\�[XZ[[�[��]H��K��\����\��\��Y
+	�����N�]\��B���ۜ��ܙHH�]�ܙJ
+N���X�YΈY��ܙH\���Y[X�\���KZ[�]�Y�
+\�ܙK�Y[X�\���ܙK�Y[X�\�˛[��OOH
+H�ۜ���\�H[�]�ܙJ
+N�ܙK�Y[X�\��H��\��Y[X�\���]�T�ܙJ�ܙJNB�����\�KZ[��[��]]�K�]\�X�K]�[[YYX]�ۈ��[XZ[[���B��ۜ�Y[X�\�H�ܙK�Y[X�\�˙�[�
+HO��K�[XZ[����\��\�J
+K��[J
+HOOH[XZ[����\��\�J
+K��[J
+H	���K���K��[J
+K��\\��\�J
+HOOH��K��[J
+K��\\��\�J
+H	���K��]\�OOH	�X�]�I
+N�Y�
+[Y[X�\�H[XZ[[�]��\��\��Y
+	�\��܉�N��R[�]��\��\��Y
+	�\��܉�N�ۜ��[Y[XZ[�H�ܙK�Y[X�\�˙�[\�HO�K��]\�OOH	�X�]�I�K�X\
+HO�K�[XZ[
+N�ۜ�[XZ[^\��H�[Y[XZ[˜��YJHO�K����\��\�J
+HOOH[XZ[����\��\�J
+K��[J
+JNY�
+Y[XZ[^\��	���[Y[XZ[˛[���
+H\���^�۝[�H	�[XZ[����[��\�N�YZ[�ژ��Y\˘��H܈�Y\�ژ��Y\˘��I�H[�H\���^�۝[�H	�[��ܜ�X�[��]H��K��N�Ґ�PQRS�L���
+YZ[�H܈Ґ�SQSP�T�LH
+Y[X�\�I�B�\����\��\��Y
+	�����N��[�][\���Y�
+��[�][\��HJH�ۜ�[�H��[Y[���][[Y[��RY
+	���[�\�\�]Z[�	�NY�
+[�
+H[���[K�\�^HH	؛����B��]\��B����[�][\�H�]�\��[ۊY[X�\�N[�\�\
+Y[X�\�NB���[��[ۈ[�\�\
+Y[X�\�H��\]HRH�]\�\�[���ۜ�[�]X[�HY[X�\��[XZ[��\�]
+
+K��\\��\�J
+N��[Y[���][[Y[��RY
+	�\�\�X]�]\��K�^�۝[�H[�]X[���[Y[���][[Y[��RY
+	�\�\�[�[YKY\�^I�K�^�۝[�HY[X�\��[XZ[��]
+	�	�V�N�Y�
+Y[X�\����HOOH	�YZ[��H��[Y[���][[Y[��RY
+	�YZ[�[�]�X���K��[K�\�^HH	؛����B�����Y�J	�\���\�	�N�\�[\��YY
+
+N�[�\�����\�J
+N[�]�X��ܚ\[ەRJ
+N[�]\���Y�X�][ۜ�
+N�YX\��]]J
+NB���[��[ۈ���]
+
+H�X\��\��[ۊ
+N��[\��YY
+
+N���Y�J	��]I�NB����8� 8� Q�T�8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� ��[��[ۈ���Y�J�[YJH��[Y[��]Y\�T�[X�ܐ[
+	˜Y�I�K��ܑXX�
+O���\��\���[[ݙJ	�X�]�I�JN��[Y[���][[Y[��RY
+	�Y�KI�
+��[YJK��\��\��Y
+	�X�]�I�NB���[��[ۈ���YZ[���[�
+H�ۜ�[XZ[H��[Y[���][[Y[��RY
+	���[�Y[XZ[	�N�ۜ���HH��[Y[���][[Y[��RY
+	���[�X��I�N[XZ[��[YHH	�YZ[�ژ��Y\˘��I���K�X�Z�\�H	�Ґ�PQRS�L����[XZ[����\�
+N����\�
+	�YZ[�ܙY[�X[��KY�[Y8�%[�\�[�\���H��۝[�YI�NB���[��[ۈ��ԙ\]Y\��ܛJ
+H����\�
+	ԙ\]Y\��[��YZ[�\��]܋�[�H�[�X�Z]�H[�\�[��]H��H�XH[XZ[��NB����8� 8� QRS�8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� ��[��[ۈ���YZ[�
+H�ۜ��\��[ۈH�]�\��[ۊ
+NY�
+\�\��[ۈ�\��[ۋ���HOOH	�YZ[��H����\�
+	�YZ[�X��\���\]Z\�Y��N�]\��B��[�\�YZ[�X�J
+N���[]H�\X�\�H�Y[�ۜ��ܙHH�]�ܙJ
+N�ۜ�؈H�ܙK��\X�\�H�N�ۜ�ؕ\�H��[Y[���][[Y[��RY
+	�؋]\�	�N�ۜ�ؒ�^HH��[Y[���][[Y[��RY
+	�؋Z�^I�N�ۜ�ؐܛۈH��[Y[���][[Y[��RY
+	�؋Xܛۋ\�Xܙ]	�NY�
+ؕ\�
+Hؕ\���[YHH؋�\�	��Y�
+ؒ�^JHؒ�^K��[YHH؋�[�ے�^H	��Y�
+ؐܛۊHؐܛۋ��[YHH�ܙK�ܛ۔�Xܙ]	��\]Pܛە\�\�^J
+N���Y�J	�YZ[��NB���[��[ۈ���\���\�
+
+H���Y�J	�\���\�	�NB��\�[���[��[ۈ�[�\�YZ[�X�J
+H��Y��\X�\�H\��ۙ�Y�\�Y�[����\��X��ܚX�\�]B�Y�
+�TP�T�W�T�	���TP�T�W��VJH]�Z]�[���X��ܚX�\�ќ��T�\X�\�J
+K��]�
+
+
+HO��JNB��ۜ��ܙHH�]�ܙJ
+N�ۜ�Y[X�\��H�ܙK�Y[X�\�����[Y[���][[Y[��RY
+	��][Y[X�\���K�^�۝[�HY[X�\�˛[����[Y[���][[Y[��RY
+	��]XX�]�I�K�^�۝[�HY[X�\�˙�[\�HO�K��]\�OOH	�X�]�I�K�[����[Y[���][[Y[��RY
+	��]\[�[���K�^�۝[�HY[X�\�˙�[\�HO�K��]\�OOH	�[�[���K�[����[Y[���][[Y[��RY
+	��]\�]���Y	�K�^�۝[�HY[X�\�˙�[\�HO�K��]\�OOH	ܙ]���Y	�K�[����ۜ��X��H�ܙK��X��ܚ\[ۜ��N��[Y[���][[Y[��RY
+	��]\�X��ܚX�Y	�K�^�۝[�H�X�˛[������[�\��X��ܚX�\��X�B��ۜ��X����HH��[Y[���][[Y[��RY
+	��X��ܚX�\��]��I�NY�
+�X����JH�X����K�[��\�SH�X�˛[��OOH��	������[�H�H��[OH�^X[Yێ��[�\����܎��\�KY���N�Y[�Ό������X��ܚX�\��Y]�������X�˛X\
+�O������[OH���܎��\�K\ۛ��H���˙[XZ[O�����˜�[��_O�����˛\��[�	��[��[OH���܎��\�KY���H���]�\���[���O�����[��\��H��Y�K\[[XX�]�H���˙��\]Y[��H	�Z[HPSHU	�O��[�������[��\��H��Y�K\[[XX�]�H��X�]�O��[���������
+K���[�	��NB�����Y[XZ[���ۙ�Y��Y[�ۜ�Z��H�ܙK�[XZ[���N�ۜ��HH��[Y[���][[Y[��RY
+	�Z��\�\��X�KZY	�N�ۜ�HH��[Y[���][[Y[��RY
+	�Z��][\]KZY	�N�ۜ��H��[Y[���][[Y[��RY
+	�Z��\X�X�Z�^I�NY�
+�JH�K��[YHHZ�˜�\��X�RY	��Y�
+JHK��[YHHZ�˝[\]RY	��Y�
+�H˝�[YHHZ�˜X�X��^H	����ۜ���HH��[Y[���][[Y[��RY
+	�Y[X�\��]��I�N��K�[��\�SHY[X�\�˛X\
+
+KJHO������[OH���܎��\�K\ۛ��H���K�[XZ[O�����[��[OH��۝Y�[Z[N��\�K[[ۛ�Nٛ۝\�^�N�L\���܎��\�KY���H���K���_O��[�������[��\��H��Y�K\[	�K���HOOH	�YZ[���	�[XYZ[���	�[XX�]�I�H���K���_O��[�������[��\��H��Y�K\[	�K��]\�OOH	�X�]�I��	�[XX�]�I��K��]\�OOH	�[�[����	�[\[�[����	�[\�]���Y	�H���K��]\�O��[�������K���[�YO����[OH�^X[Yێ��[�\�����X�˜��YJ�O�˙[XZ[OOHK�[XZ[
+H�	��[��[OH���܎��\�K]X[
+Nٛ۝\�^�N�M���$���[����	��[��[OH���܎��\�KY���H���%��[���O�����	�K��]\�OOH	�X�]�I��]ۈ�\��H���\�H[��\��ۘ�X��H��]���PX��\��	�_JH���]���O؝]ۏ���K��]\�OOH	ܙ]���Y	��]ۈ�\��H���\�H�ۘ�X��H��\�ܙPX��\��	�_JH���\�ܙO؝]ۏ����]ۈ�\��H���\�H���ۘ�X��H�X�]�]PX��\��	�_JH��X�]�]O؝]ۏ��B��������
+K���[�	��NB���[��[ۈ�[�\�]R[��]J
+H�ۜ�[XZ[H��[Y[���][[Y[��RY
+	�[��]KY[XZ[	�K��[YK��[J
+N�ۜ���HH��[Y[���][[Y[��RY
+	�[��]K\��I�K��[YN�Y�
+Y[XZ[
+H����\�
+	�X\�H[�\�[�[XZ[Y�\���\����N�]\��B���ۜ���HH	�Ґ�I�
+���K��\\��\�J
+K��X�J�H
+�	�I�
+�X]��[��J
+K����[��͊K��X����
+�K��\\��\�J
+H
+�	�I�
+�]K����
+K����[��͊K��\\��\�J
+K��X�JM
+N��ۜ��ܙHH�]�ܙJ
+N�ۜ�^\�[��H�ܙK�Y[X�\�˙�[�
+HO�K�[XZ[����\��\�J
+HOOH[XZ[����\��\�J
+JNY�
+^\�[��H����\�
+	�\�[XZ[[�XYH\�[�[��]K��N�]\��B���ܙK�Y[X�\�˜\�
+[XZ[�[XZ[���N���K���N���K��]\Έ	�[�[������[�Y�	�[�[��JN�]�T�ܙJ�ܙJN��ۜ��]H��[Y[���][[Y[��RY
+	��[�[�]]	�N�]�[��\�SH�[��[OH���܎��\�KY���Nٛ۝Y�[Z[N��\�K[[ۛ�H�����_O��[���]ۈ�\��H���KX���YH���KZ[��]KX���ۘ�X��H���Q�[�\�]Y��J	����_I�H�]OH���H����؝]ۏ���[�\�YZ[�X�J
+N����\�
+	�[��]H�[�\�]Y�܈	�
+�[XZ[
+NB���[��[ۈ��Q�[�\�]Y��J��JH��U��\��\�
+��JN����\�
+	�[��]H��H��YY��\��\�I�NB���[��[ۈ�]���PX��\��[�^
+H�ۜ��ܙHH�]�ܙJ
+N�ܙK�Y[X�\���[�^K��]\�H	ܙ]���Y	��]�T�ܙJ�ܙJN�[�\�YZ[�X�J
+N����\�
+	�X��\���]���Y��NB���[��[ۈ�\�ܙPX��\��[�^
+H�ۜ��ܙHH�]�ܙJ
+N�ܙK�Y[X�\���[�^K��]\�H	�X�]�I��]�T�ܙJ�ܙJN�[�\�YZ[�X�J
+N����\�
+	�X��\���\�ܙY��NB���[��[ۈX�]�]PX��\��[�^
+H�ۜ��ܙHH�]�ܙJ
+N�ܙK�Y[X�\���[�^K��]\�H	�X�]�I��ܙK�Y[X�\���[�^K���[�YH�]�]J
+K����[Q]T��[��	�[�UT���[۝���ܝ	�^N�۝[Y\�X��YX\��۝[Y\�X��JN�]�T�ܙJ�ܙJN�[�\�YZ[�X�J
+N����\�
+	�Y[X�\�X�]�]Y��NB����8� 8� P��8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� ��[��[ۈ��]�X��[YK[
+H��[Y[��]Y\�T�[X�ܐ[
+	˛�]�]X��K��ܑXX�
+O���\��\���[[ݙJ	�X�]�I�JN��[Y[��]Y\�T�[X�ܐ[
+	˙\�]X�\[�[	�K��ܑXX�
+O���\��\���[[ݙJ	�X�]�I�JN[��\��\��Y
+	�X�]�I�N��[Y[���][[Y[��RY
+	�X�I�
+��[YJK��\��\��Y
+	�X�]�I�NB����8� 8� ST��QQ8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� �][\�[�\��[H�[][\�ԝ[��[��H�[�N][\���[��[H��ۜ�ST��STUT�H��[N�	��HԕQI�\N�	ЕS	�\�Έ	М�XZ�X�ݙH	L
+Hۈ�[Z[��[�N�Q��\��YHX�]�K���[H[��K�T���[ˈ��]	LˍL����܎�	�ܙY[��K���[N�	�Ԑ�	�\N�	ЕS	�\�Έ	М�XZ�X�ݙH	MM�
+
+�IH���H�[�N��]\�۝[�X][ۈ�ۙ�\�YY�Y�X^H	MMPˈ��X��Y\��Z[[��������܎�	�ܙY[��K���[N�	���\N�	ЕS	�\�Έ	М�XZ�X�ݙH	L�Hۈ����H\��[Z[��Q��]\�ܛZ[�ˈ[�\�	L�P�X^H���H
+L	Y\�و�Y��\��[�K����܎�	�ܙY[��K���[N�	Е��\N�	ЕS	�\�Έ	��\��HX�ݙH	
+�K��\�]HX�Q�Z�[K�Y�^�H�P�U�[ˈ�Z[���	
+̋
+L����܎�	�ܙY[��K���[N�	���UI�\N�	ЕS	�\�Έ	М�XZ��X�ݙH	
+�
+��PJN���[YH��YX�]�]Y��\Y�[�[��	
+KL��Z�[K���[HUH��[ˉ���܎�	�ܙY[��K���[N�	��HԕQI�\N�	���U	�\�Έ	����[��	LHۈ�[Z[����N�]�[���X�\�[���VUS[�\��H��][ۜ�[[YYX][K����܎�	ܙY	�K���[N�	��I�\N�	БPT��\�Έ	����[��	
+�̈ۈ�[Z[����N�[H�YY�ۙ�\�YY�Y	
+��T]ˈ\��]	
+���PH�\�\�����܎�	ܙY	�K���[N�	�TTI�\N�	���P�T�S�RS	�\�Έ	����[��	
+���^][TTH�[ˈ�\[���^H	
+�\��][��	
+NL�[[XH�\]�[����܎�	ܙY	�K���[N�	�T�ҔI�\N�	��UUSӉ�\�Έ	�\��X�\�	M����҈[�\��[�[ۈ�[����[���ܝT�ҔH�Y��\�X�]�K�\���X�ݙH	M�K����܎�	�[X�\��K���[N�	�T��	�\N�	ЕS	�\�Έ	М�XZ�X�ݙH	L�Hۈ�[Z[��[�Y[�[H�۝[�X][ۋ�Y�X^H	L�ˈ�Z[���[��Y^H��T����܎�	�ܙY[��K���[N�	��PT�Q�T�HPQS�I�\N�	ѓTS��\�Έ	�K�ˋR\�[��X\�Y�\�HXY[�N�[��[�U�ܝ\�ۈ�K�K���^][�\��K����[ˈ�\��H	
+�
+Pˉ���܎�	�[X�\��K���[N�	�UT��T�	�\N�	ЕS	�\�Έ	�\��	K�ML�\ܝ��H�KY[��H�ۙH�ۙ�\�YY��^H\�8�%��]\ۈM[H�\�����܎�	�ܙY[��K�N�][\�[�^H��[��[ۈ�\�[\��YY
+
+HY�
+[\�ԝ[��[��H�]\��[\�ԝ[��[��H�YN��[Y[���][[Y[��RY
+	�[\�]���K\���K��\��\��Y
+	�ۉ�N��[Y[���][[Y[��RY
+	�[\�]���K[�	�K�^�۝[�H	љYYX�]�I��][Y[�]
+�\�P[\�L�
+N[\�[�\��[H�][�\��[
+�\�P[\�
+NB���[��[ۈ��[\��YY
+
+H[\�ԝ[��[��H�[�N�X\�[�\��[
+[\�[�\��[
+N[\�[�\��[H�[B���[��[ۈ���P[\��YY
+
+HY�
+[\�ԝ[��[��H��[\��YY
+
+N��[Y[���][[Y[��RY
+	�[\�]���K\���K��\��\���[[ݙJ	�ۉ�N��[Y[���][[Y[��RY
+	�[\�]���K[�	�K�^�۝[�H	љYY]\�Y	�H[�H�\�[\��YY
+
+NB�B���[��[ۈ�X\�[\��YY
+
+H��[Y[���][[Y[��RY
+	�]�KX[\�Y�YY	�K�[��\�SH	��[\���[��[H��[Y[���][[Y[��RY
+	�[\�X��[�[�	�K�^�۝[�H	�[\���B���[��[ۈ�\�P[\�
+
+HY�
+X[\�ԝ[��[��H�]\���ۜ�HST��STUT��[\�[�^	HST��STUT˛[��N[\�[�^
+��[\���[��[
+����ۜ����H�]�]J
+N�ۜ�[YHH��˙�]�\��
+K����[��
+K�Y�\�
+�	�	�H
+�	Ή�
+���˙�]Z[�]\�
+K����[��
+K�Y�\�
+�	�	�H
+�	Ή�
+���˙�]�X�ۙ�
+K����[��
+K�Y�\�
+�	�	�N��ۜ����܈H���܈OOH	�ܙY[���	ݘ\�KYܙY[�I�����܈OOH	ܙY	��	ݘ\�K\�Y
+I��	ݘ\�KX[X�\�I��ۜ��[P��܈H���܈OOH	�ܙY[���	ݘ\�KYܙY[�I�����܈OOH	ܙY	��	ݘ\�K\�Y
+I��	ݘ\�KX[X�\�I��ۜ��ܙ\���܈H���܎��ۜ�][HH��[Y[��ܙX]Q[[Y[�
+	�]��N][K��\�Ә[YHH	�]�KX[\�Z][I�][K��[K��ܙ\�Y���܈H�ܙ\���܎][K�[��\�SH�]��\��H�ZKY���[OH��X��ܛ�[������ܟH���]���]��\��H�ZKX��H���]��\��H�ZK\�[H��[OH���܎���[P��ܟH�����[_H8�%	��\_O�]���]��\��H�ZK[\�ȏ���\��O�]����]���]��\��H�ZK][YH���[Y_HU����[��[OH���܎��\�KY���H���[Z[��Y��\���[���]�����ۜ��YYH��[Y[���][[Y[��RY
+	�]�KX[\�Y�YY	�N�YY�[��\��Y�ܙJ][K�YY��\���[
+N�Y�
+�YY��[�[��[����
+H�YY��[[ݙP�[
+�YY�\��[
+N���[Y[���][[Y[��RY
+	�[\�X��[�[�	�K�^�۝[�H[\���[��[
+�	�[\�	�
+�
+[\���[��[OOHH�	����	��N������[�X\\��\�
+������\���Y�X�][ۂ����\�[\�
+��[K�\K�\�����܊NB����8� 8� ����T�H8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� ��ۜ�����T�W�T�T�H�\�N�	�[H
+3�
+I�Y��	Ԙ]Hو�[��HوH�[ۈ�X�H�]�\�X��H[�\�Z[��\��]�X�K�[��\�Y\�H��H�܈H�ؘX�[]Hو^\�[��UK�[H�]]�[]HZ]Y�]\�\�X�[ۘ[�\�ˉ�K��\�N�	��[[XH
+3��I�Y��	Ԙ]Hو�[��H[�[K�\��\�[�UH�[ۜ��X\�^\�][ۋ�Y��[[XH[��\�ۛY[��Z�HQ���XZ��]��\]Z\�H[[YYX]HY�[��܈��[[�ˉ�K��\�N�	�]H
+3�
+I�Y��	�[YHX�^H8�%H�]H]�X�[��[ۈ��\��[YH\�^\�][ۈ\��X�\ˈ�Y�]]�H�܈ۙ���][ۜ���]]�H�܈�ܝ�H��][ۈ�Yۘ][��]H
+L	Y\�\�[�H]H�\��K��\�N�	ՙY�H
+�I�Y��	��[��]]�]H�HIH�[��H[�[\YY��][]K�ܚ]X�[\��[�X\��[��ˈU�ܝ\����\���[�U��۝�X���\�HY�\�H�][\�؛]\�][���[ۈ�[Z][\ˉ�K��\�N�	ѕ���Y��	ѝ[[YY��[YH�۝[�Z]H8�%�[�]X\�\�K[۝K�YZ�K[�Z[H�[�\�[[Yۈ[�H�[YH\�X�[ۋ��Y[��[����[YۛY[�X^[Z^�\��ؘX�[]Hو�XX�[��\��]ˉ�K��\�N�	�Q��Y��	�]��XX�[�H�[�8�%H�\�Y\�و�ۜ�X�]]�H\�X�[ۘ[�[�\��\�H�Z[[������\�\�]�[܈�X��ˈ�[�H�\���X����XZ���\��Y[��\]ZY]H�Y��\��H�[�\�Z[��ܘ�[��[ݙK��K��\�N�	�L	Y\��Y��	�HZY�[�و[�H�[�W	���[��H
+Y�
+�����K�H�[�H���[���[��H
+L	Y\�وH�[܈�\��Yۘ[����و�۝���HH�Z[�[��YH8�%\�Y\�HY�X�ۙ�Y[��H��[���]�[��K��\�N�	�H�\	�Y��	��X�H[ݚ[����Y�]��[��X�H��[��H�[�H��܈
+K�ˋ�Y�ܙY[�K�\�\�HX\�Y\�[�X�]܈و[��]][ۘ[\]ZY]H�Y�[����\�HXXܛ��[���K��\�N�	���Y��	��X[��H^[�]8�%H[�X����^H]�[�
+HSPK��T܈
+L	Y\�H�][�[�ۙ��[������[���ݚY\��[X[[��Y\��Y�^�H\��X�H��\Ȉ�X��[�HXXܛ�\�X�[ۋ��K��\�N�	�[H�YY	�Y��	��[�H]�HZY�[�وH]�[�[���[�H[ݙ\�Y�Z[��[�\���][ۈ[��X[[YK�[ۚ]ܚ[��\�[���^]�Y�ܙHH�[�H���\��\�\��[���\][�Y�ܙH��X�\�[�Y�\��[�[^�Y��K��\�N�	�]H�\	�Y��	��[��[�UH�[ۈ�[H�X�H�Yۘ]\�]H
+L	Y\�\]Z[X��][H]�[�[YHX�^H\��\��\][�[HHX\��]\�[�X�YY�^]܈�\�^�HY�\�]\��\�]X�Y��K��\�N�	���]R�I�Y��	�H�KY[��H�ܝ[�]HY�\�H�Z[Y�Y��\��Y��X�H�X�Z[\�H�Z[Y�Y��\�]�[�]H�]\�[�K\��\�\�[��HY�X�ۙ�Y[��Hۙ��KY[��H[YۙY�]HXXܛ��[���K��\�N�	��I�Y��	��[X[�YH[��H8�%H
+L	x�$����H�X�ۘX��H�]�X�[Y[��ۙH�][�H�Z\��[YH�\
+���K�\�Y�[�\�܈�KY[�\���][ۜ�]\���[�Y�X�\��]HY�[�Y����K��\�N�	Е�����Y��	Н^H��[�
+[�\�[��Hۙ���][ۊH��[����H
+^][��Hۙ���][ۊK�H�[�\�ܙ\�\\��܈X[�Y�[���[ۜ��۝�X�ˉ�K��\�N�	���[�\�[���Y��	�[��]�YH�\�]��XX�\���HY�[���وH�]�[�\��[��K��X�]\�H�ۘ�HH�[�^\�H��H\���[���\�X[�]ܞH\ۈH��XX�8�%H���Y[�[���ܛX][ۈXZ�\�ܙYZ��[�X[�Y�XX�K��K��\�N�	�U�ܝ\�	�Y��	�H�\��۝�X�[ۈ[�[\YY��][]HY�\�HXZ�܈�][\�
+X\��[����]��]�[�
+H]�[�\���H�[ۈ�[Z][\�]�[�Y�H\�X�[ۘ[\�\�\��ܜ�X��\�HUH�[ۜ�
+[H���
+H�Z[�[Z^�H�Y�H^��\�K��K��\�N�	̉H�[I�Y��	�X^[][H�\��\��YHH�Hو�[X���[�\]Z]K��܈H	
+LX���[�\�YX[��	KX^�\��\��YK��ۋ[�Y��XX�H��][ۈ�^�[��\��\[�K��K��\�N�	��\�\���][ۉ�Y��	�[�\�[���]
+L	Hو[��Y��][ۈ�^�HۈH[�]X[�Y��\���^�H\�YYۛH�[��X�H�ۙ�\�\����[YۛY[�ۈH�^Y�\�[YY��[YK�YX�[��H���و�Z[��ܛۙˉ�K�N��[��[ۈ�[�\�����\�J
+H�ۜ��۝Z[�\�H��[Y[���][[Y[��RY
+	�����\�KX�۝[�	�NY�
+�۝Z[�\��[��\�S
+H�]\���۝Z[�\��[��\�SH����T�W�T�T˛X\
+O��]��[OH��X��ܛ�[���\�KZ[�̊N؛ܙ\��\��Y�\�K]�\�JN؛ܙ\�\�Y]\Ν�\�K\�[Y
+N�Y[�ΌM�N�X\��[�X���N�L���]��[OH��۝Y�[Z[N��\�KY\�^JNٛ۝\�^�N�M��]\�\�X�[�Ό�\���܎��\�KY���N�X\��[�X���N������\�_O�]���]��[OH��۝\�^�N�L����܎��\�K[Z\�
+N�[�KZZY��K�ȏ���Y�O�]����]���
+K���[�	��NB����8� 8� US�8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� ��[��[ۈ��U��\��\�
+^
+HY�
+�]�Y�]܋��\��\�
+H�]�Y�]܋��\��\��ܚ]U^
+^
+NH[�H�ۜ�[H��[Y[��ܙX]Q[[Y[�
+	�^\�XI�N[��[YHH^��[Y[����K�\[��[
+[
+N[��[X�
+
+N��[Y[��^X���[X[�
+	���I�N��[Y[����K��[[ݙP�[
+[
+NB�B���[��[ۈ��R[��]P��J
+H�ۜ���Q[H��[Y[��]Y\�T�[X�܊	���[�[�]]�[��NY�
+��Q[
+H��U��\��\�
+��Q[�^�۝[�
+N����\�
+	�[��]H��H��YYI�NB�B��]�\�[Y[�]�[��[ۈ����\�
+\��H�ۜ�^\�[��H��[Y[��]Y\�T�[X�܊	˝�\�	�NY�
+^\�[��H^\�[�˜�[[ݙJ
+N�X\�[Y[�]
+�\�[Y[�]
+N��ۜ�H��[Y[��ܙX]Q[[Y[�
+	�]��N��\�Ә[YHH	��\�	��^�۝[�H\����[Y[����K�\[��[
+
+N�\�[Y[�]H�][Y[�]
+
+
+HO���[[ݙJ
+K̌
+NB����8� 8� S�T��VH�Tԕ8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� ���[Y[��Y]�[�\�[�\�	��^Y�ۉ�HO�Y�
+K��^HOOH	�[�\��	����[Y[���][[Y[��RY
+	�Y�KY�]I�K��\��\���۝Z[��	�X�]�I�JH][\��[�
+NB�JN���8� 8� SPRS���ӑ�Q�8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� ��[��[ۈ�]�T�\X�\�P�ۙ�Y�
+H�ۜ�\�H��[Y[���][[Y[��RY
+	�؋]\�	�K��[YK��[J
+K��\X�J���	��N�ۜ��^HH��[Y[���][[Y[��RY
+	�؋Z�^I�K��[YK��[J
+N�ۜ��Xܙ]H��[Y[���][[Y[��RY
+	�؋Xܛۋ\�Xܙ]	�K��[YK��[J
+NY�
+]\�Z�^JH�����\�
+	�[�\����\X�\�HT�[�[�ۈ�^K��N��]\���B��ۜ��ܙHH�]�ܙJ
+N�ܙK��\X�\�HH�\�[�ے�^N��^HNY�
+�Xܙ]
+H�ܙK�ܛ۔�Xܙ]H�Xܙ]�]�T�ܙJ�ܙJN�TP�T�W�T�H\��TP�T�W��VHH�^N\]Pܛە\�\�^J
+N����\�
+	��\X�\�H�ۙ�Y��]�Y��NB���[��[ۈ\]Pܛە\�\�^J
+H�ۜ�[H��[Y[���][[Y[��RY
+	�ܛۋ]\�Y\�^I�NY�
+Y[
+H�]\���ۜ��ܙHH�]�ܙJ
+N�ۜ��\�HH�[��˛��][ۋ��Y���]
+	���V�N�ۜ��Xܙ]H�ܙK�ܛ۔�Xܙ]	���ۜ�\�H�\�H
+�	��ܛۏYZ[NX[I�
+�
+�Xܙ]�	ɚ�^OI�
+�[���UT�P��\ۙ[�
+�Xܙ]
+H�	��N[�^�۝[�H\�B��\�[���[��[ۈ�Y��\��X��ܚX�\��
+H[�]�\X�\�J
+NY�
+T�TP�T�W�T�T�TP�T�W��VJH�����\�
+	��]�H�\X�\�H�ۙ�Y��\����N��]\���B��]Z���]\�	��[��[���X��ܚX�\�����H�\X�\�K����	ݘ\�KX[X�\�I�N�ۜ��X��H]�Z]�[���X��ܚX�\�ќ��T�\X�\�J
+NY�
+�X��OOH�[
+H�]Z���]\�	��%���[���XX��\X�\�K��X��T�[��^K��	ݘ\�K\�Y
+I�N�]\��B��]Z���]\�	��$��[��Y	�
+�
+�X����X�˛[���
+H
+�	��X��ܚX�\��I�	ݘ\�KYܙY[�I�N�[�\�YZ[�X�J
+N����\�
+	��X��ܚX�\�\��Y��\�Y���H�\X�\�K��NB���[��[ۈ�]�Q[XZ[���ۙ�Y�
+H�ۜ��\��X�RYH��[Y[���][[Y[��RY
+	�Z��\�\��X�KZY	�K��[YK��[J
+N�ۜ�[\]RYH��[Y[���][[Y[��RY
+	�Z��][\]KZY	�K��[YK��[J
+N�ۜ�X�X��^HH��[Y[���][[Y[��RY
+	�Z��\X�X�Z�^I�K��[YK��[J
+NY�
+\�\��X�RY][\]RY\X�X��^JH����\�
+	�X\�H�[[�[�YH[XZ[���Y[ˉ�N�]\��B��ۜ��ܙHH�]�ܙJ
+N�ܙK�[XZ[��H��\��X�RY[\]RYX�X��^HN�]�T�ܙJ�ܙJN�]Z���]\�	��$��ۙ�Y��]�Y�[XZ[���XYK��	ݘ\�KYܙY[�I�N����\�
+	�[XZ[���ۙ�Y��]�Y��N[XZ[�˚[�]
+�X�X��^HJNB���[��[ۈ�Y[XZ[���ۙ�Y�
+H�ۜ��ܙHH�]�ܙJ
+N�ۜ�Z��H�ܙK�[XZ[���NY�
+Z�˜X�X��^JH�H�[XZ[�˚[�]
+�X�X��^N�Z�˜X�X��^HJN�H�]�
+J^�B�B�[�]�\X�\�J
+NB���[��[ۈ�]Z���]\�\����܊H�ۜ�[H��[Y[���][[Y[��RY
+	�Z��\�]\��NY�
+Y[
+H�]\��[�^�۝[�H\��[��[K���܈H��܈	ݘ\�K[Z\�
+I�[��[K�\�^HH	؛����B���[��[ۈ�[�\�[XZ[
+
+H�ۜ��ܙHH�]�ܙJ
+N�ۜ�Z��H�ܙK�[XZ[���NY�
+YZ�˜�\��X�RYYZ�˝[\]RYYZ�˜X�X��^JH����\�
+	��]�H[�\�[XZ[���ۙ�Y��\����N�]\��B��ۜ��\��[ۈH�]�\��[ۊ
+NY�
+\�\��[ۊH�]\���]Z���]\�	��[�[��\�[XZ[����	ݘ\�KX[X�\�I�N[XZ[�˜�[�
+Z�˜�\��X�RYZ�˝[\]RY�Z[[XZ[\�[\��\��[ۋ�[XZ[�YJJB��[�
+
+HO��]Z���]\�	��$�\�[XZ[�[��	�
+��\��[ۋ�[XZ[	ݘ\�KYܙY[�I�N����\�
+	�\�[XZ[�[�I�NJB���]�
+\��O��]Z���]\�	��%�\��܎�	�
+�
+\���^\���Y\��Y�H	�[�ۛ�ۈ\��܉�K	ݘ\�K\�Y
+I�N����\�
+	�[XZ[�Z[Y��X��[�\�[XZ[���ۙ�Yˉ�NJNB��\�[���[��[ۈ�[�Z[T�[[X\�S���
+H�ۜ��ܙHH�]�ܙJ
+N�ۜ�Z��H�ܙK�[XZ[���NY�
+YZ�˜�\��X�RYYZ�˝[\]RYYZ�˜X�X��^JH����\�
+	��ۙ�Y�\�H[XZ[��[�HYZ[�[�[�\����N�]\��B�[�]�\X�\�J
+N�]Z���]\�	љ]�[���X��ܚX�\�ˋ���	ݘ\�KX[X�\�I�N��[�^\�[��\�\����H�\X�\�HY��ۙ�Y�\�Y[�H�[�X�����[��ۜ��X��H
+�TP�T�W�T�	���TP�T�W��VJB��
+]�Z]�[���X��ܚX�\�ќ��T�\X�\�J
+H�ܙK��X��ܚ\[ۜ��JB��
+�ܙK��X��ܚ\[ۜ��JN�Y�
+�X�˛[��OOH
+H�]Z���]\�	ӛ��X��ܚX�\����[���	ݘ\�KY���I�N����\�
+	ӛ��X��ܚX�\����[��Y]��N�]\��B��]Z���]\�	��[�[���	�
+��X�˛[��
+�	��X��ܚX�\��K����	ݘ\�KX[X�\�I�N]�[�H�ۜ��^HH�]�]J
+K����[Q]T��[��	�[�UT���[۝���ܝ	�^N�۝[Y\�X��YX\��۝[Y\�X��JN��X�˙�ܑXX�
+
+�X�Y
+HO��][Y[�]
+
+
+HO�[XZ[�˜�[�
+Z�˜�\��X�RYZ�˝[\]RY�Z[[XZ[\�[\��X��[XZ[�[�JJB��[�
+
+HO��[�
+��\]S\��[�[��\X�\�J�X��[XZ[�^JN�ۜ�̈H�]�ܙJ
+N�ۜ��HH
+̋��X��ܚ\[ۜ��JK��[�[�^
+O��[XZ[OOH�X��[XZ[
+NY�
+�H�H
+H�̋��X��ܚ\[ۜ���WK�\��[�H�^N��]�T�ܙJ̊N�B�Y�
+�[�OOH�X�˛[��
+H�]Z���]\�	��$�Z[H�[[X\�H�[��[	�
+��[�
+�	��X��ܚX�\��H]	�
+��]�]J
+K����[U[YT��[��
+K	ݘ\�KYܙY[�I�N����\�
+	�Z[H�[[X\�H�[��	�
+��[�
+�	��X��ܚX�\��HI�N�[�\�YZ[�X�J
+NB�JB���]�
+\��O��]Z���]\�	��%��Z[Y�܈	�
+��X��[XZ[
+�	Έ	�
+�
+\���^	�\��܉�K	ݘ\�K\�Y
+I�NJNKY
+�M
+NJNB���[��[ۈ�Z[[XZ[\�[\��X�\Y[�[XZ[\�\�
+H�ۜ��^HH�]�]J
+N�ۜ�]T��H�^K����[Q]T��[��	�[�UT����YZ�^N��ۙ��[۝��ۙ��^N�۝[Y\�X��YX\��۝[Y\�X��JN�ۜ�[YT��H�^K����[U[YT��[��	�[�UT����\��̋YY�]	�Z[�]N�̋YY�]	�[YV�ۙS�[YN���ܝ	�JN���[]\�X\��]]H���H�ܙH
+Y]X�H�HYZ[�B��ۜ��ܙHH�]�ܙJ
+N�ۜ�YH�ܙK�X\��]]H�N���[\����܈�܈�[��H�[Y\�ۜ�����܈H��O�
+��	���˜�\���]
+	���JH�	����NI��
+��	��
+�˜�\���]
+	��$��H�˜�\���]
+	�I�JJH�	�َ
+�M�I��	���
+�L	���]\����[XZ[��X�\Y[�[XZ[��X��X��
+\�\��	��T�H	��	��H
+�	�Ґ��Y\�8�%Z[HX\��]�[[X\�H0��	�
+�]T���]N�]T����[��[YN�[YT�����XXܛ��][\��XXܛ���][\��Y�XXܛ���][\�	�K�ˈ�]�Hܛ]^�����YHX�]�K��H
+�	HX�ݙH	L
+��Hˌ�H8�%Y�\��[��HX^H�������XXܛ�ۘ\���]��܈�[��W��X�N�Y��W��X�H	�
+��I��W��ΈY��W���	��$��	I��W���܎�����܊Y��W���	��$��K�\\W��X�N�Y�\\W��X�H	�
+�LI�\\W��ΈY�\\W���	���M	I�\\W���܎�����܊Y�\\W���	���K��W��X�N�Y��W��X�H	�L
+	��W��ΈY��W���	���	I��W���܎�����܊Y��W���	���K�����X�N�Y�����X�H	�
+
+��������ΈY������	��$���II������܎�����܊Y������	��$��K�����X�N�Y�����X�H	�
+�K
+�	�����ΈY������	��$�K�	I������܎�����܊Y������	��$��K�W��X�N�Y�W��X�H	�N��I�W��ΈY�W���	�][K]���������]\H
+Y]X�JB��]\W�X��\��Y��]\W�X��\�	�H�T�����]\W�\�Έ	�[�\��HU���[0���HܝYH0��Q�X�]�H0���X�܈
+�N8�$��	HU	���]\W�X�[ێ�Y��]\W�X�[ۈ	ЕVH�S	���]\W�^[ٙ��Y��]\W�^[ٙ�	���x�$�L�	I���]\W��Y��\��Y��]\W��Y��\�	ԙX�Z[H	L
+�L�H���HSPK�����[�[K�K�������]\W����	Й[��	LH�H8�%]�[���X�\�[������]\W���Z�N�	�T��	
+P�0��H	L��0��X^HM�^\�][ۉ���]\Wٝ�Έ	�H�H���[ܙY[�8�%�[�۝[�Z]I���]\W��]Y�ܞN�	�U��0��S�T��I�����]\�
+�^YY�][�B��]\��X��\��	�Ԑ�	���]\��\�Έ	�ܘX�H�ܜ0��
+�x�$�LIH�^H0����XY\�0����̋�SH�����H]�����]\��X�[ێ�	ЕVH�S	���]\��^[ٙ��	��8�$�L�	I���]\���Y��\��	��[�X���HSPH�M
+K�RH�\�[ۈ\��][\����	
+MLЋ����]\�����	Й[��	L͸�$�L��[��X�K����]\���]Y�ܞN�	�TURUQT�0����PQT������]\�]\��X��\��	�����]\��\�Έ	�[[�\�0���L�8�$�L��0��Y�[��HRH0��T�X^HLI���]\��X�[ێ�	ЕVH�S	���]\��^[ٙ��	�͌8�$�L�	I���]\���Y��\��	ԙX�Z[H��T�L�ۈM[K�Y�[��HRK�T�X^HLHHU�^[��[ۈZ[�[�����]\�����	�L����
+�^I���
+H8�%]�[�������]\���]Y�ܞN�	�TURUQT�0��Q�S��HRI����[\�]�[��]�[X��[\�W��[N�	��HԕQH8�%�S	��[\�N�	М�XZ�X�ݙH	L
+Hۈ�[Z[��[�N�Q��\��YHX�]�K���[H[��K�T���[ˈ��	LˍL��\��]	LL��$�LMK���[\����[N�	��HԕQH8�%��	��[\���	����[��	LHۈ�[Z[����N�]�[���X�\�[���^]S[�\��H��][ۜ�[[YYX][K��X\�Y�\�H�\�ˉ��[\����[N�	Е�8�%�S	��[\�Έ	��\��HX�ݙH	
+�K��\�]HX�Q�Z�[K�Y�^�H�P�U�[ˈ�Z[���	
+̋
+L���[\�
+��[N�	�T�ҔH8�%�UUSӉ��[\�
+�	�\��X�\�	M����҈[�\��[�[ۈ�[����[��\���X�ݙH	M�K��ܝT�ҔH�Y��\�X�]�K�����ܙYZ�[W�]�[�	�RVQT�P�SӐS	���[[XW�]�[�	ՑT�HQ�	��]W�]�[�	�UH�T	���Y�W�]�[�	�V�SQI�������\��]�ܛW�\���[��˛��][ۋ��Y���]
+	���V�K�[��X��ܚX�Wۛ�N�	�[��X��ܚX�N���[�8���Z[H�[[X\�HX�8���[��X��ܚX�INB����8� 8� �P��ԒTSӈRH8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� �\�[���[��[ۈ[�]�X��ܚ\[ەRJ
+H�ۜ��\��[ۈH�]�\��[ۊ
+NY�
+\�\��[ۊH�]\��[�]�\X�\�J
+N���[�����H�\X�\�H�\�����X��ܚ\[ۈ�]H\�X��\�]B�Y�
+�TP�T�W�T�	���TP�T�W��VJH]�Z]�[���X��ܚX�\�ќ��T�\X�\�J
+K��]�
+
+
+HO��JNB��ۜ��ܙHH�]�ܙJ
+N�ۜ��X��H�ܙK��X��ܚ\[ۜ��N�ۜ�\��X��ܚX�YH�X�˜��YJ�O�˙[XZ[OOH�\��[ۋ�[XZ[
+N\]T�X��ܚ\[ەRJ\��X��ܚX�Y�\��[ۋ�[XZ[
+NB���[��[ۈ\]T�X��ܚ\[ەRJ\��X��ܚX�Y[XZ[
+H�ۜ��ܛP�\�H��[Y[���][[Y[��RY
+	��X�Y�ܛKX�\�	�N�ۜ�X�]�P�\�H��[Y[���][[Y[��RY
+	��X�XX�]�KX�\�	�N�ۜ��H��[Y[���][[Y[��RY
+	��X�\�]\�Y�	�N�ۜ�H��[Y[���][[Y[��RY
+	��X�\�]\�]^	�N�ۜ�[XZ[\�H��[Y[���][[Y[��RY
+	��X�Y[XZ[Y\�^I�N�Y�
+\��X��ܚX�Y
+HY�
+�ܛP�\�
+H�ܛP�\���[K�\�^HH	ۛۙI�Y�
+X�]�P�\�
+HX�]�P�\���[K�\�^HH	؛����Y�
+�
+H����[K��X��ܛ�[�H	ݘ\�KYܙY[�I�����[K�[�[X][ۈH	؛[����[��[�]I��B�Y�
+
+H�^�۝[�H	��$��X��ܚX�Y8�%Z[HN�SHU	�Y�
+[XZ[\�
+H[XZ[\��^�۝[�H[XZ[H[�HY�
+�ܛP�\�
+H�ܛP�\���[K�\�^HH	؛����Y�
+X�]�P�\�
+HX�]�P�\���[K�\�^HH	ۛۙI�Y�
+�
+H����[K��X��ܛ�[�H	ݘ\�KY���I�����[K�[�[X][ۈH	ۛۙI��B�Y�
+
+H�^�۝[�H	ӛ��X��ܚX�Y	�B�B��\�[���[��[ۈ[�T�X��ܚX�U���J
+H�ۜ��\��[ۈH�]�\��[ۊ
+NY�
+\�\��[ۊH�]\��[�]�\X�\�J
+N�ۜ��ܙHH�]�ܙJ
+NY�
+\�ܙK��X��ܚ\[ۜ�H�ܙK��X��ܚ\[ۜ�H�N�ۜ�YH�ܙK��X��ܚ\[ۜ˙�[�[�^
+�O�˙[XZ[OOH�\��[ۋ�[XZ[
+N�������Y[���]B��ۜ���H��[Y[���][[Y[��RY
+	��X��ܚX�KX���NY�
+��H����^�۝[�H	ˋ��������[K��X�]HH	�����B��Y�
+YOOHLJH���X��ܚX�H8�%�]�H��\X�\�H[���[��ۜ��^HH�]�]J
+K����[Q]T��[��	�[�UT���[۝���ܝ	�^N�۝[Y\�X��YX\��۝[Y\�X��JNY�
+�TP�T�W�T�	���TP�T�W��VJH�ۜ���H]�Z]Y�X��ܚX�\���\X�\�J�\��[ۋ�[XZ[
+NY�
+[��H����\�
+	���[���]�H�X��ܚ\[ۋ��X���\X�\�H�ۙ�Yˉ�NY�
+��H����^�۝[�H	��P��ԒP�H8�%��QI������[K��X�]HH	�I��B��]\��B�B��ܙK��X��ܚ\[ۜ˜\�
+[XZ[��\��[ۋ�[XZ[��[��N��^K�\��[���[���\]Y[��N�	�Z[HPSHU	JN�]�T�ܙJ�ܙJN\]T�X��ܚ\[ەRJ�YK�\��[ۋ�[XZ[
+N����\�
+	��$��X��ܚX�YHZ[H�[[X\�Y\�\��]�H]N�SHU��NH[�H��[��X��ܚX�B�Y�
+�TP�T�W�T�	���TP�T�W��VJH]�Z]�[[ݙT�X��ܚX�\����T�\X�\�J�\��[ۋ�[XZ[
+NB��ܙK��X��ܚ\[ۜ˜�X�JYJN�]�T�ܙJ�ܙJN\]T�X��ܚ\[ەRJ�[�K�\��[ۋ�[XZ[
+N����\�
+	�[��X��ܚX�Y�[�H�[��K\�X��ܚX�H[�][YK��NB�Y�
+��H�����[K��X�]HH	�I��B�B���[��[ۈ�[��[\Q[XZ[
+
+H�ۜ��ܙHH�]�ܙJ
+N�ۜ�Z��H�ܙK�[XZ[���N�ۜ��\��[ۈH�]�\��[ۊ
+NY�
+\�\��[ۊH�]\���Y�
+YZ�˜�\��X�RYYZ�˝[\]RYYZ�˜X�X��^JH����\�
+	�YZ[��YY���ۙ�Y�\�H[XZ[���Y�ܙH�]�Y]�[�ˈ\��[�\�YZ[���N�]\��B�����\�
+	��[�[���[\H[XZ[�	�
+��\��[ۋ�[XZ[
+�	ˋ���N[XZ[�˜�[�
+Z�˜�\��X�RYZ�˝[\]RY�Z[[XZ[\�[\��\��[ۋ�[XZ[�YJJB��[�
+
+HO�����\�
+	��[\H[XZ[�[�H�X��[�\�[�����JB���]�
+
+
+HO�����\�
+	јZ[Y��[�8�%�X���]YZ[���JNB����8� 8� �TP�T�HS�QԐUSӈ8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� ����\X�\�H�ܙ\��X��ܚX�\��[�H�\�Y]X�\�H��S\�\��؜����\����YHH�[YH\�8�%��[�ܘY�H\�\�X�����\����[����\�Y�]K������YHY\��
+LP�[�[Z]Y�����ܚ��\��X�H�܈\�\�H�\�K���]�TP�T�W�T�H	��]�TP�T�W��VHH	����[��[ۈ[�]�\X�\�J
+H�ۜ��ܙHH�]�ܙJ
+N�TP�T�W�T�H
+�ܙK��\X�\�H	���ܙK��\X�\�K�\�
+H	���TP�T�W��VHH
+�ܙK��\X�\�H	���ܙK��\X�\�K�[�ے�^JH	��B��\�[���[��[ۈ�\X�\�T]Y\�JY]�]��JHY�
+T�TP�T�W�T�T�TP�T�W��VJH�]\���[�H�ۜ��\�H]�Z]�]�
+�TP�T�W�T�
+�	�ܙ\�݌K��
+�]Y]��XY\�Έ	�\Z�^IΈ�TP�T�W��VK�	�]]ܚ^�][ۉΈ	ЙX\�\�	�
+��TP�T�W��VK�	��۝[�U\IΈ	�\X�][ۋڜ�ۉ��	��Y�\�ΈY]�OOH	���	��	ܙ]\��\�\�\�[�][ۉ��	ܙ]\��[Z[�[X[	K���N���H���Ӌ���[��Y�J��JH�[�Y�[�Y�JNY�
+\�\˛��H��ۜ�H]�Z]�\˝^
+
+N��ۜ��K��\��	��\X�\�H\��܎��
+N��]\���[�B�Y�
+Y]�OOH	�SUI��\˜�]\�OOH�
+H�]\���YN�]\��]�Z]�\˚��ۊ
+NH�]�
+JH��ۜ��K��\��	��\X�\�H�]��Z[Y��JN��]\���[�B�B�����]��X��ܚX�\�����H�\X�\�H[�Y\��H�]��[�ܙB�\�[���[��[ۈ�[���X��ܚX�\�ќ��T�\X�\�J
+HY�
+T�TP�T�W�T�T�TP�T�W��VJH�]\���ۜ�����H]�Z]�\X�\�T]Y\�J	��U	�	�ژ���X��ܚX�\����[X�J��ܙ\�XܙX]Y�]�\����[
+NY�
+P\��^K�\�\��^J����JH�]\���ۜ��ܙHH�]�ܙJ
+N�ܙK��X��ܚ\[ۜ�H���˛X\
+�O�
+[XZ[���[XZ[��[��N���ܙX]Y�]��]�]J��ܙX]Y�]
+K����[Q]T��[��	�[�UT���[۝���ܝ	�^N�۝[Y\�X��YX\��۝[Y\�X��JH�	��%	��\��[����\���[��[���\]Y[��N�	�Z[HPSHU	JJN�]�T�ܙJ�ܙJN�]\���ܙK��X��ܚ\[ۜ�B��\�[���[��[ۈY�X��ܚX�\���\X�\�J[XZ[
+HY�
+T�TP�T�W�T�T�TP�T�W��VJH�]\���[�N�ۜ��\�H]�Z]�\X�\�T]Y\�J	���	�	�ژ���X��ܚX�\����[XZ[\���[���[JN�]\���\�OOH�[B��\�[���[��[ۈ�[[ݙT�X��ܚX�\����T�\X�\�J[XZ[
+HY�
+T�TP�T�W�T�T�TP�T�W��VJH�]\���[�N�ۜ��\�H]�Z]�\X�\�T]Y\�J	�SUI�	�ژ���X��ܚX�\���[XZ[Y\K��
+�[���UT�P��\ۙ[�
+[XZ[
+K�[
+N�]\���\�OOH�[B��\�[���[��[ۈ\]S\��[�[��\X�\�J[XZ[]T��HY�
+T�TP�T�W�T�T�TP�T�W��VJH�]\��]�Z]�\X�\�T]Y\�J	�U�	�	�ژ���X��ܚX�\���[XZ[Y\K��
+�[���UT�P��\ۙ[�
+[XZ[
+K�\���[��]T��JNB����8� 8� UU�T�S��Q��T�
+ܛۋZ�؋�ܙ�H8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� ����]ܛۋZ�؋�ܙ��]�΋��[�\�\�\��[YK��]X��[��ژ�]�Y\���ܛۏYZ[NX[I��^OVS�T��ԓӗ��PԑU���Hܛۈ�Xܙ]�]�[���[��H[�H���H�Y��\�[���[�˂�\�[���[��[ۈ�X��ܛە�Y��\�
+H�ۜ�\�[\�H�]�T��X\��\�[\��[��˛��][ۋ��X\��
+NY�
+\�[\˙�]
+	�ܛۉ�HOOH	�Z[NX[I�H�]\����ۜ��ܙHH�]�ܙJ
+N�ۜ�ܛ۔�Xܙ]H�ܙK�ܛ۔�Xܙ]	��Y�
+ܛ۔�Xܙ]	��\�[\˙�]
+	��^I�HOOHܛ۔�Xܙ]
+H�ۜ��K��\��	�ܛێ�[��[Y�^I�N�]\��B��[�]�\X�\�J
+N�Y[XZ[���ۙ�Y�
+N��ۜ�Z��H�ܙK�[XZ[���NY�
+YZ�˜�\��X�RYYZ�˝[\]RYYZ�˜X�X��^JH�ۜ��K��\��	�ܛێ�[XZ[�����ۙ�Y�\�Y	�N�]\��B����[��\��X��ܚX�\�\����H�\X�\�B��ۜ��X��H]�Z]�[���X��ܚX�\�ќ��T�\X�\�J
+H�ܙK��X��ܚ\[ۜ��NY�
+�X�˛[��OOH
+H��ۜ��K���	�ܛێ����X��ܚX�\���N��]\���B���ۜ��^HH�]�]J
+K����[Q]T��[��	�[�UT���[۝���ܝ	�^N�۝[Y\�X��YX\��۝[Y\�X��JN�ۜ��K���	�ܛێ��[�[�����X�˛[��	��X��ܚX�\���N��X�˙�ܑXX�
+
+�X�Y
+HO��][Y[�]
+
+
+HO�[XZ[�˜�[�
+Z�˜�\��X�RYZ�˝[\]RY�Z[[XZ[\�[\��X��[XZ[�[�JJB��[�
+
+HO��ۜ��K���	��$��[����X��[XZ[
+N\]S\��[�[��\X�\�J�X��[XZ[�^JNJB���]�
+\��O��ۜ��K��\��	��%��Z[Y�܉��X��[XZ[\��JNKY
+�ML
+NJNB����8� 8� T���Q�P�USӈ�T�SH8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� �]\��\�[Y[�]H�[]\�[�X�YH�YN]��Y�\�Z\��[ۈH	�Y�][	���[��[ۈ[�]\���Y�X�][ۜ�
+HY�
+	ӛ�Y�X�][ۉ�[��[���H��Y�\�Z\��[ۈH��Y�X�][ۋ�\�Z\��[ێY�
+��Y�\�Z\��[ۈOOH	�Y�][	�H��\��\�Z\��[ۈY�\�H�ܝ[^H��]	����H�\��[��ۈ�Y��][Y[�]
+
+
+HO���Y�X�][ۋ��\]Y\�\�Z\��[ۊ
+K�[�O����Y�\�Z\��[ۈH�\]S��Y����URJ
+N�JNK
+
+NB�B�\]S��Y����URJ
+NB���[��[ۈ\]S��Y����URJ
+H�ۜ����Q[H��[Y[���][[Y[��RY
+	ۛ�Y�]���K\���N�ۜ��[H��[Y[���][[Y[��RY
+	ۛ�Y�]���K[�	�NY�
+]���Q[
+H�]\��Y�
+��Y�\�Z\��[ۈOOH	�ܘ[�Y	�	��\�[�X�Y
+H���Q[��\��\��Y
+	�ۉ�NY�
+�[
+H�[�^�۝[�H	М����\���Y�X�][ۜ�ۉ�H[�HY�
+��Y�\�Z\��[ۈOOH	�[�YY	�H���Q[��\��\���[[ݙJ	�ۉ�NY�
+�[
+H�[�^�۝[�H	Л���Y8�%[��[������\��][����H[�H���Q[��\��\���[[ݙJ	�ۉ�NY�
+�[
+H�[�^�۝[�H	ӛ�Y�X�][ۜ�ٙ��B�B���[��[ۈ���S��Y�X�][ۜ�
+HY�
+��Y�\�Z\��[ۈOOH	�[�YY	�H����\�
+	ӛ�Y�X�][ۜ�\�H����Y���������\��][����[��[H�܈\��]K��N�]\��B�Y�
+��Y�\�Z\��[ۈOOH	�Y�][	�H��Y�X�][ۋ��\]Y\�\�Z\��[ۊ
+K�[�O���Y�\�Z\��[ۈHY�
+OOH	�ܘ[�Y	�H�\�[�X�YH�YN�B�\]S��Y����URJ
+NJN�]\��B�\�[�X�YH\\�[�X�Y\]S��Y����URJ
+N����\�
+\�[�X�Y�	М����\���Y�X�][ۜ�[�X�Y���	ӛ�Y�X�][ۜ�]]Y��NB���[��[ۈ���\�[\�
+�[K\K\����܊H��[�X\�[��\���ۜ��\�H��[Y[���][[Y[��RY
+	�\�X�\��N�ۜ�X�ۈH��[Y[���][[Y[��RY
+	�\�X�\�ZX�ۉ�N�ۜ��[Q[H��[Y[���][[Y[��RY
+	�\�X�\�\�[I�N�ۜ�\��[H��[Y[���][[Y[��RY
+	�\�X�\�[\���N�ۜ�[YQ[Y��[Y[���][[Y[��RY
+	�\�X�\�][YI�NY�
+X�\�H�]\����ۜ����H�]�]J
+N�ۜ�H��˙�]�\��
+K����[��
+K�Y�\�
+�	�	�H
+�	Ή�
+���˙�]Z[�]\�
+K����[��
+K�Y�\�
+�	�	�H
+�	�U	�����]��܈�\��\���\��\���[[ݙJ	ؙX\�\\�	�	��\��\\�	�NY�
+��܈OOH	ܙY	�H�\���\��\��Y
+	ؙX\�\\�	�NY�
+��܈OOH	�[X�\��H�\���\��\��Y
+	��\��\\�	�N�X�ۋ�^�۝[�H��܈OOH	ܙY	��	���	����܈OOH	�[X�\���	���	��	������[Q[�^�۝[�H�[H
+�	�8�%	�
+�\N\��[�^�۝[�H\��[YQ[�^�۝[�H��\���\��\��Y
+	�����N��X\�[Y[�]
+\��\�[Y[�]
+N\��\�[Y[�]H�][Y[�]
+���T\��\�
+N��������\�\���Y�X�][ۈ
+ۛHY�Y�H\������\�Y
+B�Y�
+\�[�X�Y	����Y�\�Z\��[ۈOOH	�ܘ[�Y	�	����[Y[���\�X�[]T�]HOOH	ݚ\�X�I�H�H�]���Y�X�][ۊ	�Ґ��Y\�[\�	���N��[H
+�	�8�%	�
+�\H
+�	�
+�\���X�ێ�	�]N�[XY�K�ݙ��[ݙ�[��H������˝�˛ܙ�̌�ݙȈ�Y]Л�H�̈̈���X��YH�̈�ZY�H�̈��H����[H�L��LLN�Ϗ^OH����H���۝\�^�OH�N��[H�L���NM�H����^��ݙω��YΈ	�ژ�X[\�	JNH�]�
+JH�B�B�B���[��[ۈ���T\��\�
+H�ۜ��\�H��[Y[���][[Y[��RY
+	�\�X�\��NY�
+�\�H�\���\��\���[[ݙJ	�����N�X\�[Y[�]
+\��\�[Y[�]
+NB����8� 8� PT��UUHQUԈ8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� ��[��[ۈ�]�SX\��]]J
+H�ۜ�YH�]X\��]]Q���Q�ܛJ
+N�ۜ��ܙHH�]�ܙJ
+N�ܙK�X\��]]HHY�]�T�ܙJ�ܙJN����\�
+	�X\��]]H�]�Y8�%�[�H\�Y[��^[XZ[�[���NB���[��[ۈ�YX\��]]J
+H�ۜ��ܙHH�]�ܙJ
+N�ۜ�YH�ܙK�X\��]]H�N�ۜ��Y[�H	�Y\�K\�X�IΈY��W��X�H	�
+��I��	�Y\�KX��ΈY��W���	��$��	I��	�Y\\\K\�X�IΈY�\\W��X�H	�
+�LI��	�Y\\\KX��ΈY�\\W���	���M	I��	�Y]�K\�X�IΈY��W��X�H	�L
+	��	�Y]�KX��ΈY��W���	���	I��	�YY��\�X�IΈY�����X�H	�
+
+�����	�YY��X��ΈY������	��$���II��	�YX��\�X�IΈY�����X�H	�
+�K
+�	��	�YX��X��ΈY������	��$�K�	I��	�YYK\�X�IΈY�W��X�H	�N��I��	�YYKX��ΈY�W���	�][K]������	�YX�][\�	ΈY�XXܛ���][\�	���	�Y\�K]X��\�ΈY��]\W�X��\�	���	�Y\�KXX�[ۉΈY��]\W�X�[ۈ	���	�Y\�K\^[ٙ�ΈY��]\W�^[ٙ�	���	�Y\�K]�Y��\�ΈY��]\W��Y��\�	���Nؚ�X��[��Y\��Y[�K��ܑXX�
+
+�Y�[JHO��ۜ�[H��[Y[���][[Y[��RY
+Y
+NY�
+[
+H[��[YHH�[JN����\�
+	�X\��]]H�YY���H�]�Y�[Y\ˉ�NB���[��[ۈ�]X\��]]Q���Q�ܛJ
+H�ۜ��HYO���ۜ�[H��[Y[���][[Y[��RY
+Y
+N��]\��[�[��[YK��[J
+H�	���N�]\���W��X�N��	�Y\�K\�X�I�H	�
+��I���W��Έ�	�Y\�KX���H	��$��	I��\\W��X�N��	�Y\\\K\�X�I�H	�
+�LI��\\W��Έ�	�Y\\\KX���H	���M	I���W��X�N��	�Y]�K\�X�I�H	�L
+	���W��Έ�	�Y]�KX���H	���	I������X�N��	�YY��\�X�I�H	�
+
+���������Έ�	�YY��X���H	��$���II������X�N��	�YX��\�X�I�H	�
+�K
+�	������Έ�	�YX��X���H	��$�K�	I��W��X�N��	�YYK\�X�I�H	�N��I��W��Έ�	�YYX���H	�][K]������XXܛ���][\���	�YX�][\�	�H	�X\��]\��[��[ۚ]܈[�\��^H]�[ˉ���]\W�X��\���	�Y\�K]X��\��H	�H�T�����]\W�X�[ێ��	�Y\�KXX�[ۉ�H	ЕVH�S	���]\W�^[ٙ���	�Y\�K\^[ٙ��H	���x�$�L�	I���]\W��Y��\���	�Y\�K]�Y��\��H	ԙX�Z[H	L
+�L�H���HSPK�����[�[K�K������NB����8� 8� ���8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� 8� ��[��[ۈ���
+
+H�]�ܙJ
+N���[��\�H�ܙH\�[�]X[^�Y��Y[XZ[���ۙ�Y�
+N[�]�\X�\�J
+N�X��ܛە�Y��\�
+N�ۜ��\��[ۈH�]�\��[ۊ
+NY�
+�\��[ۊH�ۜ��ܙHH�]�ܙJ
+N�ۜ�Y[X�\�H�ܙK�Y[X�\�˙�[�
+HO�K�[XZ[OOH�\��[ۋ�[XZ[	��K��]\�OOH	�X�]�I�NY�
+Y[X�\�H[�\�\
+Y[X�\�N�]\��B��X\��\��[ۊ
+NB����Y�J	��]I�NJJ
+N��ܚ\��؛�O���[�
