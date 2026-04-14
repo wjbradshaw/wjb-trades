@@ -1,0 +1,2883 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WJB Trades — Private Access</title>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap" rel="stylesheet">
+<style>
+/* ═══════════════════════════════════════════
+   ROOT & RESET
+═══════════════════════════════════════════ */
+:root {
+  --ink:       #0a0a0e;
+  --ink2:      #111118;
+  --ink3:      #18181f;
+  --ink4:      #222230;
+  --wire:      rgba(255,255,255,0.06);
+  --wire2:     rgba(255,255,255,0.10);
+  --wire3:     rgba(255,255,255,0.16);
+  --fog:       #5a5a7a;
+  --mist:      #9090b0;
+  --snow:      #e8e8f4;
+  --white:     #ffffff;
+  --gold:      #c8a96e;
+  --gold2:     #e8c98e;
+  --gold3:     rgba(200,169,110,0.12);
+  --gold4:     rgba(200,169,110,0.06);
+  --teal:      #2dd4bf;
+  --teal2:     rgba(45,212,191,0.12);
+  --green:     #34d399;
+  --green2:    rgba(52,211,153,0.12);
+  --red:       #f87171;
+  --red2:      rgba(248,113,113,0.12);
+  --amber:     #fbbf24;
+  --amber2:    rgba(251,191,36,0.12);
+  --blue:      #60a5fa;
+  --blue2:     rgba(96,165,250,0.12);
+  --display:   'Bebas Neue', sans-serif;
+  --mono:      'DM Mono', monospace;
+  --body:      'DM Sans', sans-serif;
+  --r-sm:      6px;
+  --r-md:      10px;
+  --r-lg:      16px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--ink);
+  color: var(--snow);
+  font-family: var(--body);
+  font-size: 14px;
+  line-height: 1.6;
+  min-height: 100vh;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ═══════════════════════════════════════════
+   PAGES (views)
+═══════════════════════════════════════════ */
+.page { display: none; min-height: 100vh; }
+.page.active { display: flex; flex-direction: column; }
+
+/* ═══════════════════════════════════════════
+   NOISE TEXTURE OVERLAY
+═══════════════════════════════════════════ */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.4;
+}
+
+/* ═══════════════════════════════════════════
+   GATE / LOGIN PAGE
+═══════════════════════════════════════════ */
+#page-gate {
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.gate-bg {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 60% 50% at 20% 50%, rgba(200,169,110,0.07) 0%, transparent 60%),
+    radial-gradient(ellipse 40% 60% at 80% 20%, rgba(45,212,191,0.05) 0%, transparent 50%),
+    radial-gradient(ellipse 50% 40% at 60% 80%, rgba(96,165,250,0.04) 0%, transparent 50%);
+  animation: bgPulse 8s ease-in-out infinite alternate;
+}
+@keyframes bgPulse {
+  from { opacity: 0.7; }
+  to   { opacity: 1; }
+}
+
+.gate-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(var(--wire) 1px, transparent 1px),
+    linear-gradient(90deg, var(--wire) 1px, transparent 1px);
+  background-size: 60px 60px;
+  mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 20%, transparent 100%);
+}
+
+.gate-box {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  max-width: 420px;
+  padding: 0 24px;
+  animation: gateIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  opacity: 0;
+  transform: translateY(24px);
+}
+@keyframes gateIn {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.gate-logo {
+  text-align: center;
+  margin-bottom: 40px;
+}
+.gate-logo-mark {
+  font-family: var(--display);
+  font-size: 52px;
+  letter-spacing: 4px;
+  color: var(--white);
+  line-height: 1;
+  position: relative;
+  display: inline-block;
+}
+.gate-logo-mark::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+}
+.gate-logo-sub {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--fog);
+  margin-top: 8px;
+}
+
+.gate-card {
+  background: var(--ink2);
+  border: 1px solid var(--wire2);
+  border-radius: var(--r-lg);
+  padding: 36px 32px;
+  position: relative;
+  overflow: hidden;
+}
+.gate-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+}
+
+.gate-heading {
+  font-family: var(--display);
+  font-size: 28px;
+  letter-spacing: 1px;
+  color: var(--white);
+  margin-bottom: 6px;
+}
+.gate-sub {
+  font-size: 12px;
+  color: var(--fog);
+  margin-bottom: 28px;
+  line-height: 1.5;
+}
+
+.field-group { margin-bottom: 18px; }
+.field-label {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--mist);
+  margin-bottom: 8px;
+  display: block;
+}
+.field-input {
+  width: 100%;
+  background: var(--ink3);
+  border: 1px solid var(--wire2);
+  border-radius: var(--r-sm);
+  padding: 12px 16px;
+  font-family: var(--mono);
+  font-size: 14px;
+  color: var(--white);
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  letter-spacing: 2px;
+}
+.field-input::placeholder { color: var(--fog); letter-spacing: 1px; }
+.field-input:focus {
+  border-color: var(--gold);
+  box-shadow: 0 0 0 3px rgba(200,169,110,0.10);
+}
+.field-input.error { border-color: var(--red); box-shadow: 0 0 0 3px var(--red2); }
+
+.btn-primary {
+  width: 100%;
+  background: var(--gold);
+  color: var(--ink);
+  border: none;
+  border-radius: var(--r-sm);
+  padding: 14px 24px;
+  font-family: var(--display);
+  font-size: 18px;
+  letter-spacing: 2px;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.1s, box-shadow 0.2s;
+  position: relative;
+  overflow: hidden;
+}
+.btn-primary:hover {
+  background: var(--gold2);
+  box-shadow: 0 4px 24px rgba(200,169,110,0.25);
+}
+.btn-primary:active { transform: scale(0.98); }
+
+.gate-error {
+  background: var(--red2);
+  border: 1px solid rgba(248,113,113,0.3);
+  border-radius: var(--r-sm);
+  padding: 10px 14px;
+  font-size: 12px;
+  color: var(--red);
+  margin-top: 14px;
+  display: none;
+  animation: shake 0.4s ease;
+}
+.gate-error.show { display: block; }
+@keyframes shake {
+  0%,100%{transform:translateX(0)}
+  20%,60%{transform:translateX(-6px)}
+  40%,80%{transform:translateX(6px)}
+}
+
+.gate-footer {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 11px;
+  color: var(--fog);
+}
+.gate-footer a {
+  color: var(--gold);
+  text-decoration: none;
+  cursor: pointer;
+}
+.gate-footer a:hover { text-decoration: underline; }
+
+/* ═══════════════════════════════════════════
+   ADMIN PAGE
+═══════════════════════════════════════════ */
+#page-admin {
+  flex-direction: column;
+}
+
+.admin-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 32px;
+  border-bottom: 1px solid var(--wire);
+  background: var(--ink2);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.admin-nav-brand {
+  font-family: var(--display);
+  font-size: 22px;
+  letter-spacing: 2px;
+  color: var(--gold);
+}
+.admin-nav-right { display: flex; gap: 10px; align-items: center; }
+
+.btn-sm {
+  background: var(--ink3);
+  border: 1px solid var(--wire2);
+  border-radius: var(--r-sm);
+  padding: 7px 14px;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 1px;
+  color: var(--mist);
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.btn-sm:hover { border-color: var(--wire3); color: var(--snow); }
+.btn-sm.gold {
+  background: var(--gold3);
+  border-color: rgba(200,169,110,0.3);
+  color: var(--gold2);
+}
+.btn-sm.gold:hover { background: rgba(200,169,110,0.2); }
+.btn-sm.danger {
+  background: var(--red2);
+  border-color: rgba(248,113,113,0.3);
+  color: var(--red);
+}
+
+.admin-body {
+  padding: 32px;
+  max-width: 960px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.admin-section { margin-bottom: 40px; }
+.admin-section-title {
+  font-family: var(--display);
+  font-size: 22px;
+  letter-spacing: 1px;
+  color: var(--white);
+  margin-bottom: 6px;
+}
+.admin-section-sub {
+  font-size: 12px;
+  color: var(--fog);
+  margin-bottom: 20px;
+}
+
+.stat-row {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 10px;
+  margin-bottom: 32px;
+}
+.stat-card {
+  background: var(--ink2);
+  border: 1px solid var(--wire);
+  border-radius: var(--r-md);
+  padding: 18px 20px;
+}
+.stat-label {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--fog);
+  margin-bottom: 8px;
+}
+.stat-value {
+  font-family: var(--display);
+  font-size: 32px;
+  color: var(--white);
+  letter-spacing: 1px;
+}
+.stat-value.gold { color: var(--gold); }
+.stat-value.green { color: var(--green); }
+.stat-value.red { color: var(--red); }
+
+.invite-gen-box {
+  background: var(--ink2);
+  border: 1px solid var(--wire);
+  border-radius: var(--r-md);
+  padding: 24px;
+  margin-bottom: 24px;
+  display: flex;
+  gap: 12px;
+  align-items: flex-end;
+  flex-wrap: wrap;
+}
+.invite-gen-field { flex: 1; min-width: 200px; }
+.gen-output {
+  background: var(--ink3);
+  border: 1px solid var(--wire2);
+  border-radius: var(--r-sm);
+  padding: 10px 14px;
+  font-family: var(--mono);
+  font-size: 13px;
+  color: var(--gold2);
+  letter-spacing: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  min-height: 44px;
+  word-break: break-all;
+  flex: 2;
+}
+.gen-output-placeholder { color: var(--fog); font-size: 11px; }
+
+.members-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--ink2);
+  border: 1px solid var(--wire);
+  border-radius: var(--r-md);
+  overflow: hidden;
+}
+.members-table th {
+  text-align: left;
+  padding: 12px 16px;
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--fog);
+  background: var(--ink3);
+  border-bottom: 1px solid var(--wire);
+}
+.members-table td {
+  padding: 12px 16px;
+  font-size: 12px;
+  border-bottom: 1px solid var(--wire);
+  color: var(--mist);
+  vertical-align: middle;
+}
+.members-table tr:last-child td { border-bottom: none; }
+.members-table tr:hover td { background: rgba(255,255,255,0.02); }
+.badge-pill {
+  display: inline-block;
+  padding: 2px 9px;
+  border-radius: 20px;
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+.pill-active { background: var(--green2); color: var(--green); }
+.pill-pending { background: var(--amber2); color: var(--amber); }
+.pill-revoked { background: var(--red2); color: var(--red); }
+.pill-admin { background: var(--gold3); color: var(--gold2); }
+
+/* ═══════════════════════════════════════════
+   MAIN DASHBOARD PAGE
+═══════════════════════════════════════════ */
+#page-dashboard {
+  flex-direction: column;
+  background: var(--ink);
+}
+
+/* TOP NAV */
+.dash-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 32px;
+  height: 56px;
+  border-bottom: 1px solid var(--wire);
+  background: rgba(10,10,14,0.95);
+  backdrop-filter: blur(12px);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  flex-shrink: 0;
+}
+.nav-left { display: flex; align-items: center; gap: 24px; }
+.nav-brand {
+  font-family: var(--display);
+  font-size: 20px;
+  letter-spacing: 3px;
+  color: var(--white);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.nav-brand-dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--gold);
+  animation: blink 2s ease-in-out infinite;
+}
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.3} }
+.nav-tabs { display: flex; gap: 4px; }
+.nav-tab {
+  padding: 5px 14px;
+  border-radius: var(--r-sm);
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 1px;
+  color: var(--fog);
+  cursor: pointer;
+  transition: all 0.15s;
+  border: 1px solid transparent;
+}
+.nav-tab:hover { color: var(--mist); background: var(--ink3); }
+.nav-tab.active {
+  color: var(--gold2);
+  background: var(--gold4);
+  border-color: rgba(200,169,110,0.2);
+}
+.nav-right { display: flex; align-items: center; gap: 12px; }
+.nav-user {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: var(--mist);
+}
+.nav-avatar {
+  width: 28px; height: 28px;
+  border-radius: 50%;
+  background: var(--gold3);
+  border: 1px solid rgba(200,169,110,0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--display);
+  font-size: 13px;
+  color: var(--gold2);
+}
+.nav-btn {
+  background: none;
+  border: 1px solid var(--wire2);
+  border-radius: var(--r-sm);
+  padding: 5px 12px;
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 1px;
+  color: var(--fog);
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.nav-btn:hover { border-color: var(--wire3); color: var(--mist); }
+
+/* DASH CONTENT */
+.dash-content { flex: 1; overflow-y: auto; }
+
+.dash-tab-panel { display: none; }
+.dash-tab-panel.active { display: block; }
+
+/* REPORT TAB */
+.report-wrap { padding: 0; }
+
+/* ─── REPORT HEADER ─── */
+.rpt-header {
+  position: relative;
+  padding: 40px 40px 32px;
+  overflow: hidden;
+  border-bottom: 1px solid var(--wire2);
+  background: linear-gradient(135deg, #0a0a14 0%, #0d0d20 50%, #080810 100%);
+}
+.rpt-header-grid {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 24px;
+  align-items: flex-end;
+  position: relative;
+  z-index: 2;
+}
+.rpt-eyebrow {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.rpt-title {
+  font-family: var(--display);
+  font-size: 44px;
+  letter-spacing: 2px;
+  color: var(--white);
+  line-height: 1;
+}
+.rpt-title span { color: var(--gold); }
+.rpt-sub {
+  margin-top: 10px;
+  font-size: 12px;
+  color: var(--fog);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.live-dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--green);
+  animation: blink 1.4s ease-in-out infinite;
+  flex-shrink: 0;
+}
+.rpt-badge {
+  background: var(--gold4);
+  border: 1px solid rgba(200,169,110,0.2);
+  border-radius: var(--r-sm);
+  padding: 12px 20px;
+  text-align: right;
+}
+.rpt-badge-date {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--gold2);
+  font-weight: 500;
+}
+.rpt-badge-line {
+  font-size: 11px;
+  color: var(--fog);
+  margin-top: 4px;
+}
+.rpt-badge-alert {
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--red);
+  margin-top: 6px;
+  letter-spacing: 0.5px;
+}
+.rpt-header::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(200,169,110,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(200,169,110,0.03) 1px, transparent 1px);
+  background-size: 40px 40px;
+  z-index: 1;
+}
+.rpt-accent {
+  position: absolute;
+  top: -80px; right: -80px;
+  width: 300px; height: 300px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(200,169,110,0.08) 0%, transparent 70%);
+  z-index: 1;
+}
+
+/* ─── ALERT BANNER ─── */
+.rpt-alert {
+  background: linear-gradient(90deg, rgba(248,113,113,0.12) 0%, rgba(248,113,113,0.04) 100%);
+  border-left: 3px solid var(--red);
+  padding: 12px 40px;
+  font-size: 12px;
+  color: #ffb3b3;
+  line-height: 1.6;
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+}
+
+/* ─── MACRO STRIP ─── */
+.macro-strip {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  border-bottom: 1px solid var(--wire);
+}
+.mc-cell {
+  padding: 16px 18px;
+  border-right: 1px solid var(--wire);
+}
+.mc-cell:last-child { border-right: none; }
+.mc-label {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--fog);
+  margin-bottom: 6px;
+}
+.mc-price {
+  font-family: var(--mono);
+  font-size: 17px;
+  font-weight: 500;
+  color: var(--white);
+  margin-bottom: 4px;
+}
+.mc-chg { font-size: 11px; font-weight: 500; }
+.chg-up { color: var(--green); }
+.chg-dn { color: var(--red); }
+.mc-meta { font-size: 9px; color: var(--fog); margin-top: 3px; line-height: 1.4; }
+
+/* ─── CATEGORY SECTIONS ─── */
+.cat-section { border-bottom: 1px solid var(--wire); }
+.cat-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 18px 40px 14px;
+  border-bottom: 1px solid var(--wire);
+  background: linear-gradient(90deg, rgba(255,255,255,0.02) 0%, transparent 100%);
+}
+.cat-emoji { font-size: 18px; }
+.cat-label {
+  font-family: var(--display);
+  font-size: 18px;
+  letter-spacing: 1px;
+  color: var(--white);
+}
+.cat-rule {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, var(--wire2) 0%, transparent 100%);
+}
+.cat-pill {
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--fog);
+  background: var(--ink3);
+  border: 1px solid var(--wire);
+  padding: 2px 10px;
+  border-radius: 20px;
+}
+.cards-grid { padding: 20px 40px; display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+.cards-grid.cols-3 { grid-template-columns: repeat(3, 1fr); }
+
+/* ─── TRADE CARDS ─── */
+.trade-card {
+  background: var(--ink2);
+  border: 1px solid var(--wire);
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  transition: border-color 0.2s, transform 0.15s;
+}
+.trade-card:hover { border-color: var(--wire3); transform: translateY(-1px); }
+.trade-card.feat-gold {
+  border-color: rgba(200,169,110,0.3);
+  background: linear-gradient(180deg, rgba(200,169,110,0.04) 0%, var(--ink2) 40%);
+}
+.trade-card.feat-green {
+  border-color: rgba(52,211,153,0.3);
+  background: linear-gradient(180deg, rgba(52,211,153,0.04) 0%, var(--ink2) 40%);
+}
+.card-head {
+  padding: 14px 16px 10px;
+  border-bottom: 1px solid var(--wire);
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 8px;
+}
+.card-ticker-wrap {}
+.card-chip {
+  font-family: var(--mono);
+  font-size: 8px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 2px 7px;
+  border-radius: 3px;
+  margin-bottom: 5px;
+  display: inline-block;
+}
+.chip-gold { background: var(--gold3); color: var(--gold2); border: 1px solid rgba(200,169,110,0.2); }
+.chip-green { background: var(--green2); color: var(--green); border: 1px solid rgba(52,211,153,0.2); }
+.card-ticker {
+  font-family: var(--display);
+  font-size: 22px;
+  letter-spacing: 0.5px;
+  color: var(--white);
+  line-height: 1;
+}
+.card-desc { font-size: 10px; color: var(--fog); margin-top: 4px; line-height: 1.4; }
+.action-badge {
+  font-family: var(--mono);
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  padding: 4px 10px;
+  border-radius: 4px;
+  white-space: nowrap;
+  flex-shrink: 0;
+  align-self: flex-start;
+}
+.ab-bull { background: var(--green2); color: var(--green); border: 1px solid rgba(52,211,153,0.25); }
+.ab-bear { background: var(--red2); color: var(--red); border: 1px solid rgba(248,113,113,0.25); }
+.ab-hot  { background: var(--blue2); color: var(--blue); border: 1px solid rgba(96,165,250,0.25); }
+.ab-warn { background: var(--amber2); color: var(--amber); border: 1px solid rgba(251,191,36,0.25); }
+
+.card-rows { padding: 10px 16px; }
+.card-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 4px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.03);
+  font-size: 11px;
+  gap: 8px;
+}
+.card-row:last-child { border-bottom: none; }
+.row-key { color: var(--fog); flex-shrink: 0; }
+.row-val { font-weight: 500; text-align: right; color: var(--snow); }
+.row-val.g { color: var(--green); }
+.row-val.r { color: var(--red); }
+.row-val.a { color: var(--amber); }
+.row-val.b { color: var(--blue); }
+.row-val.gold { color: var(--gold2); }
+
+.payoff-bar-wrap {
+  padding: 10px 16px 12px;
+  background: rgba(0,0,0,0.25);
+  border-top: 1px solid var(--wire);
+}
+.payoff-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 7px;
+}
+.payoff-lbl {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--fog);
+}
+.payoff-num {
+  font-family: var(--display);
+  font-size: 20px;
+  letter-spacing: 1px;
+}
+.pn-g { color: var(--green); }
+.pn-b { color: var(--blue); }
+.pn-a { color: var(--amber); }
+.pn-r { color: var(--red); }
+.bar-track {
+  height: 5px;
+  background: rgba(255,255,255,0.05);
+  border-radius: 3px;
+  overflow: hidden;
+  margin-bottom: 5px;
+}
+.bar-fill {
+  height: 100%;
+  border-radius: 3px;
+  animation: barGrow 1.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  transform-origin: left;
+}
+@keyframes barGrow { from { width: 0 !important; } }
+.bf-g { background: linear-gradient(90deg, var(--green), var(--teal)); }
+.bf-b { background: linear-gradient(90deg, var(--blue), #a78bfa); }
+.bf-a { background: linear-gradient(90deg, var(--amber), #f97316); }
+.bf-r { background: linear-gradient(90deg, var(--red), #f43f5e); }
+.bar-labels {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--mono);
+  font-size: 9px;
+  color: var(--fog);
+}
+
+.card-footnote {
+  padding: 7px 16px 10px;
+  background: rgba(0,0,0,0.12);
+  font-size: 10px;
+  color: var(--fog);
+  line-height: 1.55;
+  border-top: 1px solid var(--wire);
+}
+
+/* ─── ALERTS SECTION ─── */
+.alerts-wrap { padding: 24px 40px 28px; border-bottom: 1px solid var(--wire); }
+.section-hd {
+  font-family: var(--display);
+  font-size: 22px;
+  letter-spacing: 1px;
+  color: var(--white);
+  margin-bottom: 4px;
+}
+.section-sd {
+  font-size: 11px;
+  color: var(--fog);
+  margin-bottom: 18px;
+}
+.alert-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+.alert-tile {
+  border-radius: var(--r-md);
+  padding: 12px 14px;
+  border-left: 3px solid;
+}
+.at-bull { background: rgba(52,211,153,0.06); border-color: var(--green); }
+.at-bear { background: rgba(248,113,113,0.06); border-color: var(--red); }
+.at-warn { background: rgba(251,191,36,0.06); border-color: var(--amber); }
+.alert-tile-sym {
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 500;
+  margin-bottom: 4px;
+}
+.ats-bull { color: var(--green); }
+.ats-bear { color: var(--red); }
+.ats-warn { color: var(--amber); }
+.alert-tile-body { font-size: 10px; line-height: 1.55; color: #b0b0cc; }
+.trig-pill {
+  display: inline-block;
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 500;
+  padding: 1px 6px;
+  border-radius: 3px;
+  margin: 0 1px;
+}
+.tp-g { background: rgba(52,211,153,0.15); color: var(--green); }
+.tp-r { background: rgba(248,113,113,0.15); color: var(--red); }
+.tp-a { background: rgba(251,191,36,0.15); color: var(--amber); }
+
+/* ─── GREEKS ─── */
+.greeks-wrap { padding: 24px 40px 28px; border-bottom: 1px solid var(--wire); }
+.greeks-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+.greek-tile {
+  background: var(--ink3);
+  border: 1px solid var(--wire);
+  border-radius: var(--r-md);
+  padding: 16px 14px;
+  position: relative;
+  overflow: hidden;
+}
+.greek-tile::after {
+  content: attr(data-sym);
+  position: absolute;
+  bottom: -12px; right: 4px;
+  font-family: var(--display);
+  font-size: 60px;
+  opacity: 0.04;
+  color: var(--white);
+  line-height: 1;
+  pointer-events: none;
+}
+.gt-sym {
+  font-family: var(--display);
+  font-size: 26px;
+  margin-bottom: 4px;
+  line-height: 1;
+}
+.gt-name {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--fog);
+  margin-bottom: 8px;
+}
+.gt-badge {
+  font-family: var(--mono);
+  font-size: 9px;
+  font-weight: 500;
+  padding: 2px 8px;
+  border-radius: 3px;
+  display: inline-block;
+  margin-bottom: 8px;
+}
+.gtb-mod  { background: var(--blue2); color: var(--blue); }
+.gtb-high { background: var(--amber2); color: var(--amber); }
+.gtb-ext  { background: var(--red2); color: var(--red); }
+.gt-desc { font-size: 10px; color: var(--fog); line-height: 1.55; }
+
+/* ALERTS TAB */
+.alerts-tab-wrap { padding: 32px 40px; }
+.alerts-live-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+.alerts-live-feed {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.live-alert-item {
+  background: var(--ink2);
+  border: 1px solid var(--wire);
+  border-radius: var(--r-md);
+  padding: 14px 18px;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 14px;
+  align-items: center;
+  animation: slideIn 0.3s ease forwards;
+}
+@keyframes slideIn {
+  from { opacity: 0; transform: translateX(-8px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+.lai-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+.lai-body {}
+.lai-sym { font-family: var(--mono); font-size: 11px; font-weight: 500; margin-bottom: 3px; }
+.lai-msg { font-size: 11px; color: var(--mist); line-height: 1.5; }
+.lai-time { font-family: var(--mono); font-size: 10px; color: var(--fog); white-space: nowrap; }
+
+.alert-controls {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+}
+.alert-toggle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: var(--mist);
+}
+.toggle-switch {
+  width: 36px;
+  height: 20px;
+  background: var(--ink3);
+  border: 1px solid var(--wire2);
+  border-radius: 10px;
+  cursor: pointer;
+  position: relative;
+  transition: background 0.2s;
+}
+.toggle-switch.on { background: var(--gold3); border-color: rgba(200,169,110,0.3); }
+.toggle-switch::after {
+  content: '';
+  position: absolute;
+  top: 2px; left: 2px;
+  width: 14px; height: 14px;
+  border-radius: 50%;
+  background: var(--fog);
+  transition: transform 0.2s, background 0.2s;
+}
+.toggle-switch.on::after { transform: translateX(16px); background: var(--gold2); }
+
+/* ─── DASH FOOTER ─── */
+.dash-footer {
+  padding: 16px 40px;
+  background: var(--ink2);
+  border-top: 1px solid var(--wire);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 10px;
+  color: var(--fog);
+  flex-shrink: 0;
+}
+.df-brand { font-family: var(--display); font-size: 14px; color: var(--gold); letter-spacing: 2px; }
+.df-disc { max-width: 500px; line-height: 1.6; }
+
+/* ─── COPY BUTTON ─── */
+.copy-btn {
+  background: none;
+  border: none;
+  color: var(--fog);
+  cursor: pointer;
+  font-size: 14px;
+  padding: 4px;
+  border-radius: 4px;
+  transition: color 0.15s;
+}
+.copy-btn:hover { color: var(--gold2); }
+.copy-btn.copied { color: var(--green); }
+
+/* ─── TOAST ─── */
+.toast {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  background: var(--ink3);
+  border: 1px solid var(--wire2);
+  border-radius: var(--r-md);
+  padding: 12px 18px;
+  font-size: 12px;
+  color: var(--snow);
+  z-index: 9998;
+  animation: toastIn 0.3s ease forwards;
+  max-width: 280px;
+}
+@keyframes toastIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ─── PUSH NOTIFICATION BANNER ─── */
+.push-bar {
+  position: fixed;
+  top: 56px;
+  left: 0; right: 0;
+  background: linear-gradient(90deg, #0a1a10, #0d1f14);
+  border-bottom: 1px solid rgba(52,211,153,0.3);
+  padding: 0;
+  z-index: 200;
+  transform: translateY(-100%);
+  transition: transform 0.35s cubic-bezier(0.34,1.56,0.64,1);
+  display: flex;
+  align-items: stretch;
+  max-height: 56px;
+}
+.push-bar.show { transform: translateY(0); }
+.push-bar-icon { width: 48px; background: rgba(52,211,153,0.12); display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;border-right:1px solid rgba(52,211,153,0.2); }
+.push-bar-body { flex:1; padding: 8px 14px; display:flex;align-items:center;gap:10px; overflow:hidden; }
+.push-bar-sym { font-family:var(--mono); font-size:11px; font-weight:700; color:var(--green); white-space:nowrap; }
+.push-bar-msg { font-size:11px; color:var(--mist); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.push-bar-time { font-family:var(--mono); font-size:9px; color:var(--fog); white-space:nowrap; margin-left:auto; padding-right:4px; }
+.push-bar-close { width:36px; display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--fog);font-size:16px;flex-shrink:0;border-left:1px solid rgba(52,211,153,0.1);transition:color 0.15s; }
+.push-bar-close:hover { color:var(--green); }
+.push-bar.bear-push { background:linear-gradient(90deg,#1a0a0a,#1f0d0d); border-bottom-color:rgba(248,113,113,0.3); }
+.push-bar.bear-push .push-bar-icon { background:rgba(248,113,113,0.1); border-right-color:rgba(248,113,113,0.2); }
+.push-bar.bear-push .push-bar-sym { color:var(--red); }
+.push-bar.warn-push { background:linear-gradient(90deg,#1a1200,#1f1600); border-bottom-color:rgba(251,191,36,0.3); }
+.push-bar.warn-push .push-bar-icon { background:rgba(251,191,36,0.1); border-right-color:rgba(251,191,36,0.2); }
+.push-bar.warn-push .push-bar-sym { color:var(--amber); }
+
+/* ─── MARKET DATA EDITOR ─── */
+.mde-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:8px; margin-bottom:14px; }
+.mde-cell { background:var(--ink3); border:1px solid var(--wire); border-radius:7px; padding:10px 12px; }
+.mde-ticker { font-family:var(--mono); font-size:9px; letter-spacing:2px; text-transform:uppercase; color:var(--fog); margin-bottom:6px; }
+.mde-row { display:flex; gap:6px; }
+.mde-input { flex:1; background:var(--ink); border:1px solid var(--wire2); border-radius:4px; padding:5px 8px; font-family:var(--mono); font-size:11px; color:var(--snow); outline:none; min-width:0; }
+.mde-input:focus { border-color:var(--gold); }
+.mde-chg { width:70px; }
+
+/* ─── SCROLLBAR ─── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--ink); }
+::-webkit-scrollbar-thumb { background: var(--ink4); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--fog); }
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 768px) {
+  .macro-strip { grid-template-columns: repeat(3, 1fr); }
+  .cards-grid, .cards-grid.cols-3 { grid-template-columns: 1fr; }
+  .alert-grid { grid-template-columns: 1fr; }
+  .greeks-grid { grid-template-columns: repeat(2, 1fr); }
+  .rpt-header-grid { grid-template-columns: 1fr; }
+  .rpt-badge { display: none; }
+  .cards-grid, .alerts-wrap, .greeks-wrap { padding-left: 20px; padding-right: 20px; }
+  .cat-header, .rpt-header, .rpt-alert { padding-left: 20px; padding-right: 20px; }
+  .stat-row { grid-template-columns: repeat(2, 1fr); }
+  .invite-gen-box { flex-direction: column; }
+  .nav-tabs { display: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════
+     PAGE 1: GATE (Login)
+═══════════════════════════════════════════ -->
+<div class="page active" id="page-gate">
+  <div class="gate-bg"></div>
+  <div class="gate-grid"></div>
+  <div class="gate-box">
+    <div class="gate-logo">
+      <div class="gate-logo-mark">WJB TRADES</div>
+      <div class="gate-logo-sub">Private Intelligence Platform</div>
+    </div>
+    <div class="gate-card">
+      <div class="gate-heading">RESTRICTED ACCESS</div>
+      <div class="gate-sub">This platform is invite-only. Enter your invite code or credentials to proceed.</div>
+
+      <div id="login-form">
+        <div class="field-group">
+          <label class="field-label">Email Address</label>
+          <input class="field-input" id="login-email" type="email" placeholder="your@email.com" autocomplete="email">
+        </div>
+        <div class="field-group">
+          <label class="field-label">Invite Code / Password</label>
+          <input class="field-input" id="login-code" type="password" placeholder="••••••••••" autocomplete="current-password">
+        </div>
+        <button class="btn-primary" onclick="attemptLogin()">ACCESS PLATFORM</button>
+        <div class="gate-error" id="login-error">Invalid credentials or invite code. Contact the administrator.</div>
+      </div>
+
+      <div class="gate-footer">
+        No access yet? <a onclick="showRequestForm()">Request an invitation</a> &nbsp;·&nbsp;
+        <a onclick="showAdminLogin()">Admin</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════
+     PAGE 2: ADMIN
+═══════════════════════════════════════════ -->
+<div class="page" id="page-admin">
+  <div class="admin-nav">
+    <div class="admin-nav-brand">WJB TRADES — ADMIN</div>
+    <div class="admin-nav-right">
+      <button class="btn-sm" onclick="goToDashboard()">← Dashboard</button>
+      <button class="btn-sm" onclick="logout()">Sign Out</button>
+    </div>
+  </div>
+  <div class="admin-body">
+
+    <div class="stat-row">
+      <div class="stat-card">
+        <div class="stat-label">Total Members</div>
+        <div class="stat-value gold" id="stat-members">0</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Active Codes</div>
+        <div class="stat-value green" id="stat-active">0</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Pending Invites</div>
+        <div class="stat-value" id="stat-pending">0</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Revoked</div>
+        <div class="stat-value red" id="stat-revoked">0</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">📧 Subscribed</div>
+        <div class="stat-value" style="color:var(--teal)" id="stat-subscribed">0</div>
+      </div>
+    </div>
+
+    <div class="admin-section">
+      <div class="admin-section-title">Generate Invite Code</div>
+      <div class="admin-section-sub">Create a new single-use or multi-use invite code and assign it to a user.</div>
+      <div class="invite-gen-box">
+        <div class="invite-gen-field">
+          <label class="field-label">Assign To (Email)</label>
+          <input class="field-input" id="invite-email" type="email" placeholder="invitee@email.com" style="background:var(--ink3)">
+        </div>
+        <div class="invite-gen-field">
+          <label class="field-label">Role</label>
+          <select class="field-input" id="invite-role" style="background:var(--ink3);cursor:pointer">
+            <option value="member">Member</option>
+            <option value="admin">Admin</option>
+          </select>
+        </div>
+        <button class="btn-sm gold" onclick="generateInvite()" style="padding:12px 20px;height:44px;align-self:flex-end">GENERATE</button>
+        <div class="gen-output" id="gen-output">
+          <span class="gen-output-placeholder">Generated code will appear here</span>
+          <button class="copy-btn" id="copy-invite-btn" onclick="copyInviteCode()" style="display:none" title="Copy code">⎘</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="admin-section">
+      <div class="admin-section-title">Members & Invites</div>
+      <div class="admin-section-sub">Manage platform access. Click revoke to immediately disable access.</div>
+      <table class="members-table" id="members-table">
+        <thead>
+          <tr>
+            <th>Email</th>
+            <th>Invite Code</th>
+            <th>Role</th>
+            <th>Status</th>
+            <th>Joined</th>
+            <th>📧 Sub</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody id="members-tbody"></tbody>
+      </table>
+    </div>
+
+    <div class="admin-section">
+      <div class="admin-section-title">📊 Market Data — Today's Summary</div>
+      <div class="admin-section-sub">Edit prices and changes before sending the daily 9 AM email. These values populate the email template variables automatically.</div>
+
+      <div style="background:var(--ink3);border:1px solid var(--wire);border-radius:10px;padding:18px 20px;margin-bottom:18px">
+        <div style="font-family:var(--mono);font-size:9px;letter-spacing:2px;color:var(--fog);margin-bottom:14px;text-transform:uppercase">Live Price Editor</div>
+        <div class="mde-grid">
+          <div class="mde-cell">
+            <div class="mde-ticker">SPY</div>
+            <div class="mde-row"><input class="mde-input" id="md-spy-price" placeholder="$679" value="$679"><input class="mde-input mde-chg" id="md-spy-chg" placeholder="−0.40%"></div>
+          </div>
+          <div class="mde-cell">
+            <div class="mde-ticker">QQQ</div>
+            <div class="mde-row"><input class="mde-input" id="md-qqq-price" placeholder="$611" value="$611"><input class="mde-input mde-chg" id="md-qqq-chg" placeholder="+0.14%"></div>
+          </div>
+          <div class="mde-cell">
+            <div class="mde-ticker">WTI Oil</div>
+            <div class="mde-row"><input class="mde-input" id="md-wti-price" placeholder="$104" value="$104"><input class="mde-input mde-chg" id="md-wti-chg" placeholder="+8.0%"></div>
+          </div>
+          <div class="mde-cell">
+            <div class="mde-ticker">Gold XAU</div>
+            <div class="mde-row"><input class="mde-input" id="md-gold-price" placeholder="$4,733" value="$4,733"><input class="mde-input mde-chg" id="md-gold-chg" placeholder="−0.71%"></div>
+          </div>
+          <div class="mde-cell">
+            <div class="mde-ticker">Bitcoin</div>
+            <div class="mde-row"><input class="mde-input" id="md-btc-price" placeholder="$71,600" value="$71,600"><input class="mde-input mde-chg" id="md-btc-chg" placeholder="−1.80%"></div>
+          </div>
+          <div class="mde-cell">
+            <div class="mde-ticker">DXY</div>
+            <div class="mde-row"><input class="mde-input" id="md-dxy-price" placeholder="98.79" value="98.79"><input class="mde-input mde-chg" id="md-dxy-chg" placeholder="Multi-wk low"></div>
+          </div>
+        </div>
+        <div style="margin-bottom:14px">
+          <div style="font-family:var(--mono);font-size:9px;letter-spacing:2px;color:var(--fog);margin-bottom:8px;text-transform:uppercase">Macro Catalyst Banner (breaking news / key context)</div>
+          <input class="field-input" id="md-catalyst" placeholder="U.S. Navy Hormuz blockade live. WTI +8%. CPI 3.3% — highest since May 2024." style="background:var(--ink);font-size:12px;width:100%">
+        </div>
+        <div style="margin-bottom:14px">
+          <div style="font-family:var(--mono);font-size:9px;letter-spacing:2px;color:var(--fog);margin-bottom:8px;text-transform:uppercase">Top Setup Overrides (optional — leave blank to use defaults)</div>
+          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px">
+            <div>
+              <div style="font-family:var(--mono);font-size:9px;color:var(--fog);margin-bottom:5px">Setup 1 Ticker</div>
+              <input class="field-input" id="md-s1-ticker" placeholder="XLE / USO" style="background:var(--ink);font-size:11px">
+            </div>
+            <div>
+              <div style="font-family:var(--mono);font-size:9px;color:var(--fog);margin-bottom:5px">Setup 1 Action</div>
+              <input class="field-input" id="md-s1-action" placeholder="BUY CALL" style="background:var(--ink);font-size:11px">
+            </div>
+            <div>
+              <div style="font-family:var(--mono);font-size:9px;color:var(--fog);margin-bottom:5px">Setup 1 Payoff</div>
+              <input class="field-input" id="md-s1-payoff" placeholder="+35–120%" style="background:var(--ink);font-size:11px">
+            </div>
+          </div>
+          <div style="margin-top:6px">
+            <div style="font-family:var(--mono);font-size:9px;color:var(--fog);margin-bottom:5px">Setup 1 Trigger</div>
+            <input class="field-input" id="md-s1-trigger" placeholder="Reclaim $104.50 WTI / TTO to 9 EMA. FTFC full bull Q/M/W/D." style="background:var(--ink);font-size:11px;width:100%">
+          </div>
+        </div>
+        <div style="display:flex;gap:10px;flex-wrap:wrap">
+          <button class="btn-sm" style="background:rgba(52,211,153,0.1);border-color:rgba(52,211,153,0.25);color:var(--green)" onclick="saveMarketData()">💾 Save Market Data</button>
+          <button class="btn-sm" onclick="loadMarketData()">↺ Load Saved</button>
+        </div>
+      </div>
+
+      <div class="admin-section-title">📧 Daily Summary Subscribers</div>
+      <div class="admin-section-sub">Members subscribed to the 9:00 AM daily market summary email. Use the EmailJS config below to connect the send engine.</div>
+
+      <!-- SUPABASE CONFIG -->
+      <div style="background:var(--ink3);border:1px solid rgba(96,165,250,0.2);border-radius:8px;padding:18px 20px;margin-bottom:12px">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px">
+          <div style="width:28px;height:28px;background:rgba(96,165,250,0.15);border:1px solid rgba(96,165,250,0.3);border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0">🗄</div>
+          <div>
+            <div style="font-family:var(--mono);font-size:10px;letter-spacing:2px;color:var(--blue);text-transform:uppercase">Supabase — Shared Subscriber Database</div>
+            <div style="font-size:11px;color:var(--fog);margin-top:2px">Required. Free tier. Stores subscribers in the cloud so all members share the same list.</div>
+          </div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px">
+          <div>
+            <label class="field-label">Project URL</label>
+            <input class="field-input" id="sb-url" placeholder="https://xxxx.supabase.co" style="background:var(--ink);font-size:12px">
+          </div>
+          <div>
+            <label class="field-label">Anon / Public Key</label>
+            <input class="field-input" id="sb-key" placeholder="eyJhbGciOiJIUzI1NiIs..." style="background:var(--ink);font-size:12px">
+          </div>
+        </div>
+        <div style="margin-bottom:12px">
+          <label class="field-label">Cron Secret (optional, prevents unauthorized triggers)</label>
+          <input class="field-input" id="sb-cron-secret" placeholder="e.g. mysecret123" style="background:var(--ink);font-size:12px">
+        </div>
+        <button class="btn-sm" style="background:rgba(96,165,250,0.12);border-color:rgba(96,165,250,0.3);color:var(--blue)" onclick="saveSupabaseConfig()">Save Supabase Config</button>
+      </div>
+
+      <!-- EMAILJS CONFIG -->
+      <div style="background:var(--ink3);border:1px solid rgba(200,169,110,0.2);border-radius:8px;padding:18px 20px;margin-bottom:12px">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px">
+          <div style="width:28px;height:28px;background:rgba(200,169,110,0.12);border:1px solid rgba(200,169,110,0.25);border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0">📧</div>
+          <div>
+            <div style="font-family:var(--mono);font-size:10px;letter-spacing:2px;color:var(--gold);text-transform:uppercase">EmailJS — Email Delivery Engine</div>
+            <div style="font-size:11px;color:var(--fog);margin-top:2px">Required. Free tier (200 emails/month). Sends the daily HTML summary emails.</div>
+          </div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px">
+          <div>
+            <label class="field-label">Service ID</label>
+            <input class="field-input" id="ejs-service-id" placeholder="service_xxxxxxx" style="background:var(--ink);font-size:12px">
+          </div>
+          <div>
+            <label class="field-label">Template ID</label>
+            <input class="field-input" id="ejs-template-id" placeholder="template_xxxxxxx" style="background:var(--ink);font-size:12px">
+          </div>
+        </div>
+        <div style="margin-bottom:12px">
+          <label class="field-label">Public Key</label>
+          <input class="field-input" id="ejs-public-key" placeholder="Your EmailJS public key" style="background:var(--ink);font-size:12px">
+        </div>
+        <div style="display:flex;gap:10px;flex-wrap:wrap">
+          <button class="btn-sm gold" onclick="saveEmailJSConfig()">Save EmailJS Config</button>
+          <button class="btn-sm" onclick="sendTestEmail()">Send Test to Me</button>
+          <button class="btn-sm" style="background:rgba(45,212,191,0.12);border-color:rgba(45,212,191,0.3);color:var(--teal)" onclick="sendDailySummaryNow()">⚡ Send Summary Now</button>
+          <button class="btn-sm" style="background:rgba(96,165,250,0.1);border-color:rgba(96,165,250,0.25);color:var(--blue)" onclick="refreshSubscribers()">↻ Refresh List</button>
+        </div>
+        <div id="ejs-status" style="font-family:var(--mono);font-size:10px;color:var(--fog);margin-top:10px;display:none"></div>
+      </div>
+
+      <!-- CRON URL BOX -->
+      <div style="background:var(--ink3);border:1px solid var(--wire);border-radius:8px;padding:14px 16px;margin-bottom:18px">
+        <div style="font-family:var(--mono);font-size:9px;letter-spacing:2px;color:var(--fog);margin-bottom:8px;text-transform:uppercase">cron-job.org trigger URL — set this to run at 9:00 AM ET daily</div>
+        <div id="cron-url-display" style="font-family:var(--mono);font-size:11px;color:var(--gold2);word-break:break-all;background:var(--ink);border:1px solid var(--wire);border-radius:5px;padding:8px 10px">
+          Save your config above to generate the cron URL
+        </div>
+      </div>
+
+      <table class="members-table">
+        <thead>
+          <tr>
+            <th>Email</th>
+            <th>Subscribed Since</th>
+            <th>Last Email Sent</th>
+            <th>Frequency</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody id="subscribers-tbody"></tbody>
+      </table>
+
+      <!-- EMAIL TEMPLATE REFERENCE -->
+      <div style="margin-top:18px">
+        <div onclick="this.nextElementSibling.style.display=this.nextElementSibling.style.display==='none'?'block':'none'" style="cursor:pointer;background:var(--ink3);border:1px solid var(--wire);border-radius:8px;padding:12px 16px;display:flex;align-items:center;justify-content:space-between">
+          <div style="font-family:var(--mono);font-size:10px;letter-spacing:2px;color:var(--fog);text-transform:uppercase">📋 EmailJS Template Variables Reference</div>
+          <div style="font-family:var(--mono);font-size:10px;color:var(--fog)">click to expand ↓</div>
+        </div>
+        <div style="display:none;background:var(--ink3);border:1px solid var(--wire);border-top:none;border-radius:0 0 8px 8px;padding:16px">
+          <div style="font-size:11px;color:var(--mist);margin-bottom:10px;line-height:1.7">Paste these variable names into your EmailJS template. Each <code style="background:rgba(255,255,255,0.07);padding:1px 5px;border-radius:3px;font-family:var(--mono);font-size:10px">{{variable}}</code> block gets replaced with real data when the email sends.</div>
+          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;font-family:var(--mono);font-size:10px">
+            <div style="background:var(--ink);border:1px solid var(--wire);border-radius:6px;padding:10px">
+              <div style="color:var(--gold);margin-bottom:6px">📊 HEADER</div>
+              <div style="color:var(--mist);line-height:2">{{to_email}}<br>{{subject}}<br>{{date}}<br>{{send_time}}</div>
+            </div>
+            <div style="background:var(--ink);border:1px solid var(--wire);border-radius:6px;padding:10px">
+              <div style="color:var(--gold);margin-bottom:6px">📈 MACRO</div>
+              <div style="color:var(--mist);line-height:2">{{spy_price}} {{spy_chg}}<br>{{qqq_price}} {{qqq_chg}}<br>{{wti_price}} {{wti_chg}}<br>{{gold_price}} {{gold_chg}}<br>{{btc_price}} {{btc_chg}}<br>{{dxy_price}} {{dxy_chg}}</div>
+            </div>
+            <div style="background:var(--ink);border:1px solid var(--wire);border-radius:6px;padding:10px">
+              <div style="color:var(--gold);margin-bottom:6px">🎯 SETUPS</div>
+              <div style="color:var(--mist);line-height:2">{{setup1_ticker}}<br>{{setup1_action}}<br>{{setup1_payoff}}<br>{{setup1_trigger}}<br>{{setup2_ticker}} ...<br>{{setup3_ticker}} ...</div>
+            </div>
+            <div style="background:var(--ink);border:1px solid var(--wire);border-radius:6px;padding:10px">
+              <div style="color:var(--gold);margin-bottom:6px">⚡ ALERTS</div>
+              <div style="color:var(--mist);line-height:2">{{alert1}}<br>{{alert2}}<br>{{alert3}}<br>{{alert4}}</div>
+            </div>
+            <div style="background:var(--ink);border:1px solid var(--wire);border-radius:6px;padding:10px">
+              <div style="color:var(--gold);margin-bottom:6px">🔢 GREEKS</div>
+              <div style="color:var(--mist);line-height:2">{{delta_level}}<br>{{gamma_level}}<br>{{theta_level}}<br>{{vega_level}}</div>
+            </div>
+            <div style="background:var(--ink);border:1px solid var(--wire);border-radius:6px;padding:10px">
+              <div style="color:var(--gold);margin-bottom:6px">🔗 FOOTER</div>
+              <div style="color:var(--mist);line-height:2">{{platform_url}}<br>{{unsubscribe_note}}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════
+     PAGE 3: DASHBOARD
+═══════════════════════════════════════════ -->
+<div class="page" id="page-dashboard">
+  <!-- NAV -->
+  <nav class="dash-nav">
+    <div class="nav-left">
+      <div class="nav-brand">
+        <div class="nav-brand-dot"></div>
+        WJB TRADES
+      </div>
+      <div class="nav-tabs">
+        <div class="nav-tab active" data-tab="report" onclick="switchTab('report', this)">Market Report</div>
+        <div class="nav-tab" data-tab="alerts" onclick="switchTab('alerts', this)">Live Alerts</div>
+        <div class="nav-tab" data-tab="subscriptions" onclick="switchTab('subscriptions', this)">📧 Daily Summary</div>
+        <div class="nav-tab" data-tab="glossary" onclick="switchTab('glossary', this)">Glossary</div>
+      </div>
+    </div>
+    <div class="nav-right">
+      <div class="nav-user">
+        <div class="nav-avatar" id="user-avatar">W</div>
+        <span id="user-name-display">Member</span>
+      </div>
+      <button class="nav-btn" id="admin-nav-btn" onclick="goToAdmin()" style="display:none">Admin Panel</button>
+      <button class="nav-btn" onclick="logout()">Sign Out</button>
+    </div>
+  </nav>
+
+  <!-- PUSH NOTIFICATION BANNER -->
+  <div class="push-bar" id="push-bar">
+    <div class="push-bar-icon" id="push-bar-icon">▲</div>
+    <div class="push-bar-body">
+      <span class="push-bar-sym" id="push-bar-sym">ORCL</span>
+      <span class="push-bar-msg" id="push-bar-msg">Alert message here</span>
+      <span class="push-bar-time" id="push-bar-time">9:00 AM ET</span>
+    </div>
+    <div class="push-bar-close" onclick="closePushBar()">✕</div>
+  </div>
+
+  <!-- CONTENT -->
+  <div class="dash-content">
+
+    <!-- ── TAB: REPORT ── -->
+    <div class="dash-tab-panel active" id="tab-report">
+      <div class="report-wrap">
+
+        <div class="rpt-header">
+          <div class="rpt-accent"></div>
+          <div class="rpt-header-grid">
+            <div>
+              <div class="rpt-eyebrow"><span class="live-dot"></span> WJB Trades Intelligence</div>
+              <div class="rpt-title">MARKET ALPHA &amp;<br><span>CONTINUITY REPORT</span></div>
+              <div class="rpt-sub">TheStrat Framework · Full Category Breakdown · 2-Min Alert Protocol</div>
+            </div>
+            <div class="rpt-badge">
+              <div class="rpt-badge-date">MON APR 13 · 2026</div>
+              <div class="rpt-badge-line">13 setups · 5 categories</div>
+              <div class="rpt-badge-alert">HIGH VEGA / GAMMA ENV</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="rpt-alert">
+          🚨 <strong>ACTIVE MACRO CATALYST:</strong> U.S. Navy Hormuz blockade live 10:00 AM ET. Iran talks collapsed. WTI +8% above $104. CPI 3.3% — highest since May 2024. DXY at 98.79 multi-week lows. <strong>Size starter positions only. Manage Vega exposure aggressively.</strong>
+        </div>
+
+        <div class="macro-strip">
+          <div class="mc-cell"><div class="mc-label">SPY</div><div class="mc-price">$679</div><div class="mc-chg chg-dn">▼ −0.40%</div><div class="mc-meta">52W $508–$698</div></div>
+          <div class="mc-cell"><div class="mc-label">QQQ</div><div class="mc-price">$611</div><div class="mc-chg chg-up">▲ +0.14%</div><div class="mc-meta">Bounced $582 key</div></div>
+          <div class="mc-cell"><div class="mc-label">WTI OIL</div><div class="mc-price">$104</div><div class="mc-chg chg-up">▲ +8.0%</div><div class="mc-meta">Brent ~$101–103</div></div>
+          <div class="mc-cell"><div class="mc-label">GOLD XAU</div><div class="mc-price">$4,733</div><div class="mc-chg chg-dn">▼ −0.71%</div><div class="mc-meta">+47% YoY · OTE zone</div></div>
+          <div class="mc-cell"><div class="mc-label">BTC</div><div class="mc-price">$71.6K</div><div class="mc-chg chg-dn">▼ −1.80%</div><div class="mc-meta">Best wk since Oct '25</div></div>
+          <div class="mc-cell"><div class="mc-label">DXY</div><div class="mc-price">98.79</div><div class="mc-chg chg-dn">▼ Multi-wk low</div><div class="mc-meta">EUR/USD ~1.1520</div></div>
+        </div>
+
+        <!-- EQUITIES -->
+        <div class="cat-section">
+          <div class="cat-header"><span class="cat-emoji">📈</span><span class="cat-label">Equities</span><div class="cat-rule"></div><span class="cat-pill">4 setups</span></div>
+          <div class="cards-grid">
+            <div class="trade-card feat-gold">
+              <div class="card-head"><div class="card-ticker-wrap"><div class="card-chip chip-gold">RS Leader Today</div><div class="card-ticker">ORCL</div><div class="card-desc">Oracle Corp · +9–11% · vol 32.9M vs 20.7M avg</div></div><span class="action-badge ab-bull">BUY CALL</span></div>
+              <div class="card-rows"><div class="card-row"><span class="row-key">Strike / Exp</span><span class="row-val">$150C or $155C · May 15</span></div><div class="card-row"><span class="row-key">Entry Trigger</span><span class="row-val">TTO pullback to 9 EMA ~$145</span></div><div class="card-row"><span class="row-key">Stop / Flip</span><span class="row-val r">Below $136–138 open price</span></div><div class="card-row"><span class="row-key">Target 1</span><span class="row-val g">$163 stock → ~+40% option</span></div><div class="card-row"><span class="row-key">Target 2</span><span class="row-val g">$175–185 → ~+120% option</span></div><div class="card-row"><span class="row-key">Catalyst</span><span class="row-val b">AI Fusion Apps · RPO $553B · Cloud +44%</span></div></div>
+              <div class="payoff-bar-wrap"><div class="payoff-top"><span class="payoff-lbl">Min Payoff Est.</span><span class="payoff-num pn-g">+40%</span></div><div class="bar-track"><div class="bar-fill bf-g" style="width:40%"></div></div><div class="bar-labels"><span>entry</span><span>+40% T1</span><span>+120% T2</span></div></div>
+              <div class="card-footnote">52W high $345 vs current ~$150. RSI 38 = oversold + bouncing. Analyst avg PT $246. +10pt RS over SPY today.</div>
+            </div>
+            <div class="trade-card feat-gold">
+              <div class="card-head"><div class="card-ticker-wrap"><div class="card-chip chip-gold">Defense AI · ER May 11</div><div class="card-ticker">PLTR</div><div class="card-desc">Palantir · ~$128–133 · 52W: $85–$207</div></div><span class="action-badge ab-bull">BUY CALL</span></div>
+              <div class="card-rows"><div class="card-row"><span class="row-key">Strike / Exp</span><span class="row-val">$130C or $135C · May 8</span></div><div class="card-row"><span class="row-key">Entry Trigger</span><span class="row-val">Reclaim + hold VWAP ~$130 on 15m</span></div><div class="card-row"><span class="row-key">Stop / Flip</span><span class="row-val r">$122.68 (today's LOD) — Level 2</span></div><div class="card-row"><span class="row-key">Target 1</span><span class="row-val g">$148 (+15%) → ~+60% option</span></div><div class="card-row"><span class="row-key">Target 2</span><span class="row-val g">$162 (month HOD) → ~+120%</span></div><div class="card-row"><span class="row-key">Vega Note</span><span class="row-val a">ER May 11 = IV expansion tailwind</span></div></div>
+              <div class="payoff-bar-wrap"><div class="payoff-top"><span class="payoff-lbl">Min Payoff Est.</span><span class="payoff-num pn-g">+60%</span></div><div class="bar-track"><div class="bar-fill bf-g" style="width:60%"></div></div><div class="bar-labels"><span>entry</span><span>+60% T1</span><span>+120% T2</span></div></div>
+              <div class="card-footnote">NATO $1.4T defense build. Cathie Wood bought dip Apr 10. Vol 116M vs 51M avg = institutional confirmation.</div>
+            </div>
+            <div class="trade-card">
+              <div class="card-head"><div class="card-ticker-wrap"><div class="card-ticker">MRVL</div><div class="card-desc">Marvell Technology · ~$128 · +20% in 5 days</div></div><span class="action-badge ab-bull">BUY CALL</span></div>
+              <div class="card-rows"><div class="card-row"><span class="row-key">Strike / Exp</span><span class="row-val">$130C · May 8</span></div><div class="card-row"><span class="row-key">Entry Trigger</span><span class="row-val">TTO to VWAP / 9 EMA on 15m</span></div><div class="card-row"><span class="row-key">Stop / Flip</span><span class="row-val r">Below $120 (50%er of 5-day run)</span></div><div class="card-row"><span class="row-key">Target 1</span><span class="row-val g">$148 (+15.6%) → ~+55%</span></div><div class="card-row"><span class="row-key">Target 2</span><span class="row-val g">$158 (+23%) → ~+100%</span></div><div class="card-row"><span class="row-key">Sector RS</span><span class="row-val b">Semis cap-equip +24% YTD vs XLK −6%</span></div></div>
+              <div class="payoff-bar-wrap"><div class="payoff-top"><span class="payoff-lbl">Min Payoff Est.</span><span class="payoff-num pn-g">+55%</span></div><div class="bar-track"><div class="bar-fill bf-g" style="width:55%"></div></div><div class="bar-labels"><span>entry</span><span>+55% T1</span><span>+100% T2</span></div></div>
+              <div class="card-footnote">Only IT sub-sector outperforming in 2026. +29.7% in April. Institutional accumulation signal.</div>
+            </div>
+            <div class="trade-card">
+              <div class="card-head"><div class="card-ticker-wrap"><div class="card-ticker">SPY Puts</div><div class="card-desc">S&amp;P 500 hedge · ~$679 · Gap-fail reversal</div></div><span class="action-badge ab-bear">BUY PUT</span></div>
+              <div class="card-rows"><div class="card-row"><span class="row-key">Strike / Exp</span><span class="row-val">$678P or $675P · Apr 17</span></div><div class="card-row"><span class="row-key">Entry Trigger</span><span class="row-val">Rejection wick off $679–682 gap mid</span></div><div class="card-row"><span class="row-key">Stop / Flip</span><span class="row-val g">$685 hold = thesis invalid, flip calls</span></div><div class="card-row"><span class="row-key">Target 1</span><span class="row-val g">$672 support → ~+35%</span></div><div class="card-row"><span class="row-key">Target 2</span><span class="row-val g">$666 MA cluster → ~+80%</span></div><div class="card-row"><span class="row-key">Edge</span><span class="row-val a">Polymarket 79% odds down close today</span></div></div>
+              <div class="payoff-bar-wrap"><div class="payoff-top"><span class="payoff-lbl">Min Payoff Est.</span><span class="payoff-num pn-r">+35%</span></div><div class="bar-track"><div class="bar-fill bf-r" style="width:35%"></div></div><div class="bar-labels"><span>entry</span><span>+35% T1</span><span>+80% T2</span></div></div>
+              <div class="card-footnote">Portfolio hedge vs energy longs. Short expiry keeps Theta manageable. IV elevated — size accordingly.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ETFs -->
+        <div class="cat-section">
+          <div class="cat-header"><span class="cat-emoji">📊</span><span class="cat-label">ETFs &amp; Index Options</span><div class="cat-rule"></div><span class="cat-pill">2 setups</span></div>
+          <div class="cards-grid">
+            <div class="trade-card feat-green">
+              <div class="card-head"><div class="card-ticker-wrap"><div class="card-chip chip-green">Highest Conviction · FTFC Full Bull</div><div class="card-ticker">XLE / USO</div><div class="card-desc">Energy ETF / Oil · WTI $104 · PMG Active · Sector +18–38% YTD</div></div><span class="action-badge ab-bull">BUY CALL</span></div>
+              <div class="card-rows"><div class="card-row"><span class="row-key">Strike / Exp</span><span class="row-val">USO $85C · XLE $92C · May 16</span></div><div class="card-row"><span class="row-key">Entry Trigger</span><span class="row-val">Reclaim $104.50 WTI / TTO to 9 EMA</span></div><div class="card-row"><span class="row-key">Stop / Flip</span><span class="row-val r">Below $101 WTI — Level 2 structural stop</span></div><div class="card-row"><span class="row-key">Target 1</span><span class="row-val g">$107 WTI → ~+35%</span></div><div class="card-row"><span class="row-key">Target 2</span><span class="row-val g">$115 WTI (BF upper) → ~+120%</span></div><div class="card-row"><span class="row-key">FTFC Status</span><span class="row-val b">Q / M / W / D all green — full continuity</span></div></div>
+              <div class="payoff-bar-wrap"><div class="payoff-top"><span class="payoff-lbl">Min Payoff Est.</span><span class="payoff-num pn-g">+35%</span></div><div class="bar-track"><div class="bar-fill bf-g" style="width:35%"></div></div><div class="bar-labels"><span>entry</span><span>+35% T1</span><span>+120% T2</span></div></div>
+              <div class="card-footnote">OPEC output sharply down. Saudi Manifa + E-W pipeline disrupted. Use ITM calls (Delta ≥0.65) to defend against IV crush on ceasefire headline.</div>
+            </div>
+            <div class="trade-card">
+              <div class="card-head"><div class="card-ticker-wrap"><div class="card-ticker">QQQ</div><div class="card-desc">Nasdaq 100 · ~$611 · TTO bounce off $582 key level</div></div><span class="action-badge ab-bull">BUY CALL</span></div>
+              <div class="card-rows"><div class="card-row"><span class="row-key">Strike / Exp</span><span class="row-val">$610C · Apr 24 or May 1</span></div><div class="card-row"><span class="row-key">OTE FVG Zone</span><span class="row-val">$607–$611 pullback re-entry</span></div><div class="card-row"><span class="row-key">Stop / Flip</span><span class="row-val r">$602.68 LOD — Delta Bleed below this</span></div><div class="card-row"><span class="row-key">Target 1</span><span class="row-val g">$622 prior WHD → ~+25%</span></div><div class="card-row"><span class="row-key">Target 2</span><span class="row-val g">$637 (52W high test) → ~+70%</span></div><div class="card-row"><span class="row-key">Gamma Flip</span><span class="row-val b">$590 = structural support · $610 = pin</span></div></div>
+              <div class="payoff-bar-wrap"><div class="payoff-top"><span class="payoff-lbl">Min Payoff Est.</span><span class="payoff-num pn-b">+25%</span></div><div class="bar-track"><div class="bar-fill bf-b" style="width:25%"></div></div><div class="bar-labels"><span>entry</span><span>+25% T1</span><span>+70% T2</span></div></div>
+              <div class="card-footnote">Dealer gamma concentration at $610. FTFC requires weekly candle to flip green — confirm before adding beyond starter.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- COMMODITIES -->
+        <div class="cat-section">
+          <div class="cat-header"><span class="cat-emoji">🪙</span><span class="cat-label">Commodities</span><div class="cat-rule"></div><span class="cat-pill">2 setups</span></div>
+          <div class="cards-grid">
+            <div class="trade-card feat-gold">
+              <div class="card-head"><div class="card-ticker-wrap"><div class="card-chip chip-gold">Safe-Haven + Inflation Hedge</div><div class="card-ticker">GLD / XAU</div><div class="card-desc">Gold · spot ~$4,733 · 52W: $3,120–$5,595 · +47% YoY</div></div><span class="action-badge ab-bull">BUY CALL</span></div>
+              <div class="card-rows"><div class="card-row"><span class="row-key">Strike / Exp</span><span class="row-val">GLD $450C or $455C · May 15</span></div><div class="card-row"><span class="row-key">Entry Trigger</span><span class="row-val">Reclaim $4,785 (50%er retest) + hold</span></div><div class="card-row"><span class="row-key">OTE Zone</span><span class="row-val b">$4,731–$4,752 (50% Fib support)</span></div><div class="card-row"><span class="row-key">Stop / Flip</span><span class="row-val r">$4,595 (next Fib floor) — Level 2</span></div><div class="card-row"><span class="row-key">Target 1</span><span class="row-val g">$4,883 (200 SMA) → ~+20%</span></div><div class="card-row"><span class="row-key">Target 2</span><span class="row-val g">$5,131 (BF upper) → ~+80%</span></div></div>
+              <div class="payoff-bar-wrap"><div class="payoff-top"><span class="payoff-lbl">Min Payoff Est.</span><span class="payoff-num pn-g">+20%</span></div><div class="bar-track"><div class="bar-fill bf-g" style="width:20%"></div></div><div class="bar-labels"><span>entry</span><span>+20% T1</span><span>+80% T2</span></div></div>
+              <div class="card-footnote">CPI 3.3% = hot inflation confirmed. Volume void $4,937–$5,012 = gap-fill rocket above $4,883. CB gold buying accelerating globally.</div>
+            </div>
+            <div class="trade-card">
+              <div class="card-head"><div class="card-ticker-wrap"><div class="card-ticker">WTI / CL</div><div class="card-desc">Crude Oil Futures · ~$104 · Hormuz PMG · UCO calls</div></div><span class="action-badge ab-bull">BUY CALL CFD</span></div>
+              <div class="card-rows"><div class="card-row"><span class="row-key">Contract</span><span class="row-val">May 2026 CL futures / UCO ETF calls</span></div><div class="card-row"><span class="row-key">Entry Trigger</span><span class="row-val">Hold above $103 on 15m 2-up candle</span></div><div class="card-row"><span class="row-key">Stop / Flip</span><span class="row-val r">$101 close = exit ALL energy positions</span></div><div class="card-row"><span class="row-key">Target 1</span><span class="row-val g">$108 (+3.8%) → ~+35%</span></div><div class="card-row"><span class="row-key">Target 2</span><span class="row-val g">$115 (+10%) → ~+100%+</span></div><div class="card-row"><span class="row-key">Tail Risk</span><span class="row-val a">Ceasefire = instant IV crush on all energy</span></div></div>
+              <div class="payoff-bar-wrap"><div class="payoff-top"><span class="payoff-lbl">Min Payoff Est.</span><span class="payoff-num pn-g">+35%</span></div><div class="bar-track"><div class="bar-fill bf-g" style="width:35%"></div></div><div class="bar-labels"><span>entry</span><span>+35% T1</span><span>+100% T2</span></div></div>
+              <div class="card-footnote">Saudi Manifa + E-W Pipeline both disrupted. OPEC March output plunged. Hormuz effectively closed. Take T1 before news windows.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- CRYPTO -->
+        <div class="cat-section">
+          <div class="cat-header"><span class="cat-emoji">₿</span><span class="cat-label">Crypto</span><div class="cat-rule"></div><span class="cat-pill">2 setups</span></div>
+          <div class="cards-grid">
+            <div class="trade-card feat-gold">
+              <div class="card-head"><div class="card-ticker-wrap"><div class="card-chip chip-gold">Clarity Act · Senate Vote This Week</div><div class="card-ticker">BTC / IBIT</div><div class="card-desc">Bitcoin · ~$71,600 · Best week since Oct 2025</div></div><span class="action-badge ab-hot">CATALYST PLAY</span></div>
+              <div class="card-rows"><div class="card-row"><span class="row-key">Strike / Exp</span><span class="row-val">IBIT $58C or $60C · May 15</span></div><div class="card-row"><span class="row-key">Entry Trigger</span><span class="row-val">BTC reclaims $72,500 on 4H 2-up candle</span></div><div class="card-row"><span class="row-key">OTE / Strat-Hole</span><span class="row-val b">$69,000–$71,000 re-entry zone</span></div><div class="card-row"><span class="row-key">Stop / Flip</span><span class="row-val r">$69,000 — weekly 50%er structural stop</span></div><div class="card-row"><span class="row-key">Target 1</span><span class="row-val g">$75,000 BTC → ~+35% IBIT option</span></div><div class="card-row"><span class="row-key">Target 2</span><span class="row-val g">$80,000 (BF upper) → ~+90%</span></div></div>
+              <div class="payoff-bar-wrap"><div class="payoff-top"><span class="payoff-lbl">Min Payoff (Confirmed Entry)</span><span class="payoff-num pn-b">+35%</span></div><div class="bar-track"><div class="bar-fill bf-b" style="width:35%"></div></div><div class="bar-labels"><span>entry</span><span>+35% T1</span><span>+90% T2</span></div></div>
+              <div class="card-footnote">Circle +9%, Coinbase +2% on Clarity Act optimism. Do NOT enter before $72,500 trigger confirmed. BTC/Gold correlation elevated.</div>
+            </div>
+            <div class="trade-card">
+              <div class="card-head"><div class="card-ticker-wrap"><div class="card-ticker">ETH / ETHA</div><div class="card-desc">Ethereum · Correlated to BTC + stablecoin ruling</div></div><span class="action-badge ab-hot">CATALYST PLAY</span></div>
+              <div class="card-rows"><div class="card-row"><span class="row-key">Strike / Exp</span><span class="row-val">ETHA ATM calls · May 15</span></div><div class="card-row"><span class="row-key">Entry Trigger</span><span class="row-val">ETH holds weekly 50%er on 4H flip</span></div><div class="card-row"><span class="row-key">Stop / Flip</span><span class="row-val r">Break below weekly open = full exit</span></div><div class="card-row"><span class="row-key">Target 1</span><span class="row-val g">+15–20% ETH → ~+40% option</span></div><div class="card-row"><span class="row-key">Target 2</span><span class="row-val g">BF upper boundary → ~+80%</span></div><div class="card-row"><span class="row-key">Catalyst</span><span class="row-val b">Clarity Act covers USDC/ETH ecosystem</span></div></div>
+              <div class="payoff-bar-wrap"><div class="payoff-top"><span class="payoff-lbl">Min Payoff Est.</span><span class="payoff-num pn-b">+40%</span></div><div class="bar-track"><div class="bar-fill bf-b" style="width:40%"></div></div><div class="bar-labels"><span>entry</span><span>+40% T1</span><span>+80% T2</span></div></div>
+              <div class="card-footnote">Secondary to BTC — confirm BTC trigger first. Stablecoin Clarity Act directly covers USDC/ETH ecosystem.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- FOREX -->
+        <div class="cat-section">
+          <div class="cat-header"><span class="cat-emoji">💱</span><span class="cat-label">Forex</span><div class="cat-rule"></div><span class="cat-pill">3 setups</span></div>
+          <div class="cards-grid cols-3">
+            <div class="trade-card feat-gold">
+              <div class="card-head"><div class="card-ticker-wrap"><div class="card-chip chip-gold">USD Weakness · DXY 98.79</div><div class="card-ticker">EUR/USD</div><div class="card-desc">Euro · ~1.1520 · Energy shock drag</div></div><span class="action-badge ab-bull">LONG EUR</span></div>
+              <div class="card-rows"><div class="card-row"><span class="row-key">Entry Zone</span><span class="row-val">Buy dips to $1.1500 / 50%er</span></div><div class="card-row"><span class="row-key">Stop / Flip</span><span class="row-val r">Below $1.1450 — invalidated</span></div><div class="card-row"><span class="row-key">Target 1</span><span class="row-val g">$1.1700 → ~+17% (10x)</span></div><div class="card-row"><span class="row-key">Target 2</span><span class="row-val g">$1.20 Q2 → ~+25%+</span></div><div class="card-row"><span class="row-key">Analyst PT</span><span class="row-val b">RBC: 1.20 end-2026</span></div></div>
+              <div class="payoff-bar-wrap"><div class="payoff-top"><span class="payoff-lbl">Leveraged Payoff (10×)</span><span class="payoff-num pn-b">+17%+</span></div><div class="bar-track"><div class="bar-fill bf-b" style="width:17%"></div></div><div class="bar-labels"><span>entry</span><span>+17%</span><span>+25%</span></div></div>
+              <div class="card-footnote">Longs unwound = reduced overhang. ECB resisting tightening. De-escalation → faster return to 1.18–1.20.</div>
+            </div>
+            <div class="trade-card">
+              <div class="card-head"><div class="card-ticker-wrap"><div class="card-ticker">GBP/USD</div><div class="card-desc">Cable · ~$1.3450 · 2-month highs</div></div><span class="action-badge ab-bull">LONG GBP</span></div>
+              <div class="card-rows"><div class="card-row"><span class="row-key">Entry Zone</span><span class="row-val">Buy $1.3350–$1.3400 TTO zone</span></div><div class="card-row"><span class="row-key">Stop / Flip</span><span class="row-val r">Below $1.3280 — structural stop</span></div><div class="card-row"><span class="row-key">Target 1</span><span class="row-val g">$1.3500 → ~+15%+ (10x)</span></div><div class="card-row"><span class="row-key">Target 2</span><span class="row-val g">$1.3600 Q3 → ~+25%</span></div><div class="card-row"><span class="row-key">BoE Note</span><span class="row-val a">22bp hikes priced — GBP support</span></div></div>
+              <div class="payoff-bar-wrap"><div class="payoff-top"><span class="payoff-lbl">Leveraged Payoff (10×)</span><span class="payoff-num pn-b">+15%+</span></div><div class="bar-track"><div class="bar-fill bf-b" style="width:15%"></div></div><div class="bar-labels"><span>entry</span><span>+15%</span><span>+25%</span></div></div>
+              <div class="card-footnote">Cleanest FX setup per analyst consensus. Persistent recovery on multi-day USD weakness leg.</div>
+            </div>
+            <div class="trade-card">
+              <div class="card-head"><div class="card-ticker-wrap"><div class="card-ticker">USD/JPY</div><div class="card-desc">Dollar-Yen · ~$158–160 · BoJ zone</div></div><span class="action-badge ab-warn">SHORT USD/JPY</span></div>
+              <div class="card-rows"><div class="card-row"><span class="row-key">Entry Zone</span><span class="row-val">Sell rallies to $159–160</span></div><div class="card-row"><span class="row-key">Stop / Flip</span><span class="row-val r">Above $161 — BoJ fails</span></div><div class="card-row"><span class="row-key">Target 1</span><span class="row-val g">$156 → ~+20% leveraged</span></div><div class="card-row"><span class="row-key">Target 2</span><span class="row-val g">$152 Q3/Q4 → ~+50%</span></div><div class="card-row"><span class="row-key">Analyst PT</span><span class="row-val b">MUFG: USD/JPY 146 end-2026</span></div></div>
+              <div class="payoff-bar-wrap"><div class="payoff-top"><span class="payoff-lbl">Leveraged Payoff (10×)</span><span class="payoff-num pn-a">+20%+</span></div><div class="bar-track"><div class="bar-fill bf-a" style="width:20%"></div></div><div class="bar-labels"><span>entry</span><span>+20%</span><span>+50%</span></div></div>
+              <div class="card-footnote">160 = historical BoJ intervention threshold. Japan 95% oil-import dependent. MUFG: 146 end-2026.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2-MIN ALERTS SECTION -->
+        <div class="alerts-wrap">
+          <div class="section-hd">⚡ 2-Minute Trend Shift Alert Protocol</div>
+          <div class="section-sd">Triggers activate on &gt;5% move within any 2-minute candle frame. Act on confirmed close only.</div>
+          <div class="alert-grid">
+            <div class="alert-tile at-bull"><div class="alert-tile-sym ats-bull">▲ WTI CRUDE — BULL</div><div class="alert-tile-body">Break above <span class="trig-pill tp-g">$105</span>: PMG cascade active. Scale into XLE/USO calls. Stop $103.50. T2: $112–115.</div></div>
+            <div class="alert-tile at-bull"><div class="alert-tile-sym ats-bull">▲ ORCL — BULL</div><div class="alert-tile-body">Break above <span class="trig-pill tp-g">$157</span> (+5%): 2-up continuation. Add to May $155C. HOD = trailing stop.</div></div>
+            <div class="alert-tile at-bull"><div class="alert-tile-sym ats-bull">▲ PLTR — BULL</div><div class="alert-tile-body">Break above <span class="trig-pill tp-g">$139</span> on vol &gt;20M/2-min: PMG. Enter $135C May 8. Stop = 50%er of trigger candle.</div></div>
+            <div class="alert-tile at-bull"><div class="alert-tile-sym ats-bull">▲ BTC — BULL</div><div class="alert-tile-body">Surge above <span class="trig-pill tp-g">$75,000</span>: Clarity Act PMG. Add IBIT calls. Trail stop to $72,500.</div></div>
+            <div class="alert-tile at-bull"><div class="alert-tile-sym ats-bull">▲ GOLD — BULL</div><div class="alert-tile-body">XAU breaks above <span class="trig-pill tp-g">$4,883</span> (200 SMA): Volume void active. Gap-fill to $5,012+ likely.</div></div>
+            <div class="alert-tile at-bear"><div class="alert-tile-sym ats-bear">▼ WTI CRUDE — STOP HIT</div><div class="alert-tile-body">Drop below <span class="trig-pill tp-r">$101</span>: Level 2 stop. Exit ALL energy positions immediately. Ceasefire in play.</div></div>
+            <div class="alert-tile at-bear"><div class="alert-tile-sym ats-bear">▼ SPY — BEAR</div><div class="alert-tile-body">Drop below <span class="trig-pill tp-r">$672</span>: Delta Bleed confirmed. Add $675P. Target $666 MA cluster.</div></div>
+            <div class="alert-tile at-bear"><div class="alert-tile-sym ats-bear">▼ QQQ — STRUCTURAL FAIL</div><div class="alert-tile-body">Drop below <span class="trig-pill tp-r">$602</span>: Exit QQQ calls. Flip: $600P targeting $590 gamma flip level.</div></div>
+            <div class="alert-tile at-warn"><div class="alert-tile-sym ats-warn">⚠ USD/JPY — CAUTION</div><div class="alert-tile-body">Approaches <span class="trig-pill tp-a">$160.00</span>: BoJ intervention window open. Hard stop above $161.</div></div>
+            <div class="alert-tile at-warn"><div class="alert-tile-sym ats-warn">⚠ CEASEFIRE HEADLINE — FLIP PLAN</div><div class="alert-tile-body">U.S.-Iran ceasefire: IV crush on WTI/XLE/GLD. Exit energy/gold calls. Flip to <span class="trig-pill tp-g">SPY $685C</span>.</div></div>
+          </div>
+        </div>
+
+        <!-- GREEKS -->
+        <div class="greeks-wrap">
+          <div class="section-hd">Option Greeks — Risk Overlay</div>
+          <div class="section-sd">Today's environment requires Greek-aware position management across all setups.</div>
+          <div class="greeks-grid">
+            <div class="greek-tile" data-sym="Δ"><div class="gt-sym" style="color:#60a5fa">Δ</div><div class="gt-name">Delta</div><div class="gt-badge gtb-mod">MIXED DIRECTIONAL</div><div class="gt-desc">Whipsaw today — Nasdaq +0.7% vs Dow −0.7%. Go directional ONLY on RS leaders. Delta-neutral spreads on broad indices.</div></div>
+            <div class="greek-tile" data-sym="Γ"><div class="gt-sym" style="color:#fbbf24">Γ</div><div class="gt-name">Gamma</div><div class="gt-badge gtb-high">VERY HIGH</div><div class="gt-desc">PMG risk in energy — cascading stops probable. Short-Gamma dangerous. Prefer long calls. Starter size only near expiry.</div></div>
+            <div class="greek-tile" data-sym="Θ"><div class="gt-sym" style="color:#f87171">Θ</div><div class="gt-name">Theta</div><div class="gt-badge gtb-high">THETA TRAP RISK</div><div class="gt-desc">Avoid ATM at 50%er equilibrium. Capital erodes while market decides. Use May expiry minimum. Exit stagnating positions.</div></div>
+            <div class="greek-tile" data-sym="V"><div class="gt-sym" style="color:#a78bfa">V</div><div class="gt-name">Vega</div><div class="gt-badge gtb-ext">EXTREME</div><div class="gt-desc">IV elevated across ALL assets. Use ITM options (Delta &gt;0.60). Take T1 profits before any potential IV crush event.</div></div>
+          </div>
+        </div>
+
+        <div class="dash-footer">
+          <div class="df-brand">WJB TRADES</div>
+          <div class="df-disc">⚠️ Educational purposes only — not financial advice. Options involve substantial risk of loss. FX payoffs assume 10× leverage for illustration. Never risk more than 2% of account equity per trade.</div>
+          <div style="font-family:var(--mono);font-size:9px;color:var(--fog)">Apr 13, 2026 · v4.0</div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ── TAB: ALERTS ── -->
+    <div class="dash-tab-panel" id="tab-alerts">
+      <div class="alerts-tab-wrap">
+        <div class="section-hd" style="margin-bottom:4px">Live Trend Shift Alerts</div>
+        <div class="section-sd">Simulated real-time feed — &gt;5% move within 2-minute candle frames</div>
+        <div class="alert-controls">
+          <div class="alert-toggle">
+            <div class="toggle-switch on" id="alert-toggle-sw" onclick="toggleAlertFeed()"></div>
+            <span id="alert-toggle-lbl">Feed active</span>
+          </div>
+          <div class="alert-toggle" style="margin-left:8px">
+            <div class="toggle-switch" id="notif-toggle-sw" onclick="toggleNotifications()"></div>
+            <span id="notif-toggle-lbl" style="font-size:11px">Notifications off</span>
+          </div>
+          <button class="btn-sm" onclick="clearAlertFeed()">Clear Feed</button>
+          <span style="font-family:var(--mono);font-size:10px;color:var(--fog)" id="alert-count-lbl">0 alerts</span>
+        </div>
+        <div class="alerts-live-feed" id="live-alert-feed"></div>
+      </div>
+    </div>
+
+    <!-- ── TAB: SUBSCRIPTIONS ── -->
+    <div class="dash-tab-panel" id="tab-subscriptions">
+      <div style="padding:32px 40px;max-width:680px">
+
+        <!-- HERO BANNER -->
+        <div style="background:linear-gradient(135deg,rgba(45,212,191,0.08),rgba(200,169,110,0.06));border:1px solid rgba(45,212,191,0.2);border-radius:16px;padding:28px 32px;margin-bottom:28px;position:relative;overflow:hidden">
+          <div style="position:absolute;top:-40px;right:-40px;width:160px;height:160px;border-radius:50%;background:radial-gradient(circle,rgba(45,212,191,0.08),transparent 70%)"></div>
+          <div style="font-family:var(--display);font-size:32px;letter-spacing:1px;color:var(--white);margin-bottom:6px">Daily Market Summary</div>
+          <div style="font-size:13px;color:var(--mist);max-width:420px;line-height:1.7">Receive the full WJB Trades market report — trade setups, alerts, and Greek risk overlay — delivered to your inbox every morning at <strong style="color:var(--gold2)">9:00 AM ET</strong> before the market opens.</div>
+          <div id="sub-status-badge" style="display:inline-flex;align-items:center;gap:8px;margin-top:16px;background:var(--ink3);border:1px solid var(--wire2);border-radius:20px;padding:6px 14px;font-family:var(--mono);font-size:11px;color:var(--fog)">
+            <span id="sub-status-dot" style="width:6px;height:6px;border-radius:50%;background:var(--fog)"></span>
+            <span id="sub-status-text">Not subscribed</span>
+          </div>
+        </div>
+
+        <!-- SUBSCRIPTION CARD -->
+        <div id="sub-form-card" style="background:var(--card);border:1px solid var(--wire);border-radius:12px;overflow:hidden;margin-bottom:20px">
+          <div style="padding:20px 24px;border-bottom:1px solid var(--wire)">
+            <div style="font-family:var(--display);font-size:20px;letter-spacing:0.5px;color:var(--white);margin-bottom:4px">Subscribe to Daily Summary</div>
+            <div style="font-size:12px;color:var(--fog)">Your email address from your account will be used. Unsubscribe anytime.</div>
+          </div>
+          <div style="padding:20px 24px">
+
+            <!-- What's Included -->
+            <div style="margin-bottom:20px">
+              <div style="font-family:var(--mono);font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--fog);margin-bottom:12px">What's included every morning</div>
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+                <div style="background:var(--ink3);border:1px solid var(--wire);border-radius:8px;padding:10px 12px;display:flex;align-items:flex-start;gap:10px">
+                  <span style="font-size:16px">📊</span>
+                  <div>
+                    <div style="font-size:12px;font-weight:500;color:var(--snow);margin-bottom:2px">Macro Snapshot</div>
+                    <div style="font-size:10px;color:var(--fog)">SPY, QQQ, WTI, Gold, BTC, DXY levels</div>
+                  </div>
+                </div>
+                <div style="background:var(--ink3);border:1px solid var(--wire);border-radius:8px;padding:10px 12px;display:flex;align-items:flex-start;gap:10px">
+                  <span style="font-size:16px">📈</span>
+                  <div>
+                    <div style="font-size:12px;font-weight:500;color:var(--snow);margin-bottom:2px">Top 3 Setups</div>
+                    <div style="font-size:10px;color:var(--fog)">Highest conviction trades of the day</div>
+                  </div>
+                </div>
+                <div style="background:var(--ink3);border:1px solid var(--wire);border-radius:8px;padding:10px 12px;display:flex;align-items:flex-start;gap:10px">
+                  <span style="font-size:16px">⚡</span>
+                  <div>
+                    <div style="font-size:12px;font-weight:500;color:var(--snow);margin-bottom:2px">Key Alert Levels</div>
+                    <div style="font-size:10px;color:var(--fog)">2-min trigger prices to watch</div>
+                  </div>
+                </div>
+                <div style="background:var(--ink3);border:1px solid var(--wire);border-radius:8px;padding:10px 12px;display:flex;align-items:flex-start;gap:10px">
+                  <span style="font-size:16px">🔢</span>
+                  <div>
+                    <div style="font-size:12px;font-weight:500;color:var(--snow);margin-bottom:2px">Greeks Risk Level</div>
+                    <div style="font-size:10px;color:var(--fog)">Delta/Gamma/Theta/Vega environment</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Delivery Time -->
+            <div style="background:var(--ink3);border:1px solid rgba(200,169,110,0.15);border-radius:8px;padding:12px 14px;margin-bottom:20px;display:flex;align-items:center;gap:12px">
+              <div style="font-size:22px">🕘</div>
+              <div>
+                <div style="font-size:12px;font-weight:500;color:var(--snow)">Delivered at 9:00 AM Eastern Time</div>
+                <div style="font-size:11px;color:var(--fog)">Every trading day (Mon–Fri), 30 min before market open</div>
+              </div>
+              <div style="margin-left:auto;font-family:var(--mono);font-size:11px;color:var(--gold2);text-align:right">9:00 AM ET<br><span style="color:var(--fog)">Mon–Fri</span></div>
+            </div>
+
+            <!-- Subscribe Toggle -->
+            <div id="sub-action-area">
+              <button id="subscribe-btn" onclick="handleSubscribeToggle()" style="width:100%;background:linear-gradient(90deg,var(--gold),var(--gold2));color:var(--ink);border:none;border-radius:8px;padding:14px;font-family:var(--display);font-size:20px;letter-spacing:2px;cursor:pointer;transition:opacity 0.2s">
+                SUBSCRIBE — FREE
+              </button>
+              <div style="text-align:center;margin-top:10px;font-size:11px;color:var(--fog)">No cost. Unsubscribe any time from this page.</div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- SUBSCRIBED STATE (hidden by default) -->
+        <div id="sub-active-card" style="display:none;background:linear-gradient(135deg,rgba(52,211,153,0.07),rgba(52,211,153,0.03));border:1px solid rgba(52,211,153,0.25);border-radius:12px;padding:24px;margin-bottom:20px;text-align:center">
+          <div style="font-size:36px;margin-bottom:10px">✅</div>
+          <div style="font-family:var(--display);font-size:24px;letter-spacing:1px;color:var(--green);margin-bottom:6px">You're Subscribed</div>
+          <div style="font-size:13px;color:var(--mist);margin-bottom:16px">Daily summaries will be sent to <strong id="sub-email-display" style="color:var(--snow)"></strong> at 9:00 AM ET, Monday through Friday.</div>
+          <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
+            <button onclick="handleSubscribeToggle()" style="background:var(--red2);border:1px solid rgba(248,113,113,0.3);color:var(--red);border-radius:6px;padding:8px 18px;font-family:var(--mono);font-size:11px;cursor:pointer">Unsubscribe</button>
+            <button onclick="sendSampleEmail()" style="background:var(--gold3);border:1px solid rgba(200,169,110,0.3);color:var(--gold2);border-radius:6px;padding:8px 18px;font-family:var(--mono);font-size:11px;cursor:pointer">Preview Sample Email</button>
+          </div>
+        </div>
+
+        <!-- HOW IT WORKS -->
+        <div style="background:var(--card);border:1px solid var(--wire);border-radius:12px;padding:20px 24px">
+          <div style="font-family:var(--display);font-size:18px;letter-spacing:0.5px;color:var(--white);margin-bottom:14px">How It Works</div>
+          <div style="display:flex;flex-direction:column;gap:12px">
+            <div style="display:flex;gap:14px;align-items:flex-start">
+              <div style="font-family:var(--mono);font-size:11px;color:var(--gold);background:var(--gold3);border:1px solid rgba(200,169,110,0.2);border-radius:50%;width:24px;height:24px;display:flex;align-items:center;justify-content:center;flex-shrink:0">1</div>
+              <div style="font-size:13px;color:var(--mist)">You subscribe on this page — your email is saved to the platform.</div>
+            </div>
+            <div style="display:flex;gap:14px;align-items:flex-start">
+              <div style="font-family:var(--mono);font-size:11px;color:var(--gold);background:var(--gold3);border:1px solid rgba(200,169,110,0.2);border-radius:50%;width:24px;height:24px;display:flex;align-items:center;justify-content:center;flex-shrink:0">2</div>
+              <div style="font-size:13px;color:var(--mist)">The admin configures <strong style="color:var(--snow)">EmailJS</strong> (free service) — no server needed, emails send directly from the browser.</div>
+            </div>
+            <div style="display:flex;gap:14px;align-items:flex-start">
+              <div style="font-family:var(--mono);font-size:11px;color:var(--gold);background:var(--gold3);border:1px solid rgba(200,169,110,0.2);border-radius:50%;width:24px;height:24px;display:flex;align-items:center;justify-content:center;flex-shrink:0">3</div>
+              <div style="font-size:13px;color:var(--mist)"><strong style="color:var(--snow)">cron-job.org</strong> (free) pings the app every day at 9:00 AM ET, which automatically triggers the email send to all subscribers.</div>
+            </div>
+            <div style="display:flex;gap:14px;align-items:flex-start">
+              <div style="font-family:var(--mono);font-size:11px;color:var(--gold);background:var(--gold3);border:1px solid rgba(200,169,110,0.2);border-radius:50%;width:24px;height:24px;display:flex;align-items:center;justify-content:center;flex-shrink:0">4</div>
+              <div style="font-size:13px;color:var(--mist)">Every subscriber receives a rich HTML daily summary email before market open. ✓</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ── TAB: GLOSSARY ── -->
+    <div class="dash-tab-panel" id="tab-glossary">
+      <div style="padding:32px 40px;max-width:800px">
+        <div class="section-hd" style="margin-bottom:4px">Trading Glossary</div>
+        <div class="section-sd">Core definitions from the WJB Trades framework</div>
+        <div id="glossary-content"></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════
+     JAVASCRIPT
+═══════════════════════════════════════════ -->
+<script>
+// ── DATA STORE (localStorage) ──────────────────────
+const STORE_KEY = 'wjb_trades_data';
+
+function getStore() {
+  try {
+    const raw = localStorage.getItem(STORE_KEY);
+    if (raw) return JSON.parse(raw);
+  } catch(e){}
+  return initStore();
+}
+
+function saveStore(data) {
+  localStorage.setItem(STORE_KEY, JSON.stringify(data));
+}
+
+function initStore() {
+  const data = {
+    members: [
+      {
+        email: 'admin@wjbtrades.com',
+        code: 'WJB-ADMIN-2026',
+        role: 'admin',
+        status: 'active',
+        joined: 'Apr 13, 2026'
+      },
+      {
+        email: 'trader@wjbtrades.com',
+        code: 'WJB-MEMBER-001',
+        role: 'member',
+        status: 'active',
+        joined: 'Apr 13, 2026'
+      }
+    ],
+    subscriptions: [],
+    emailjs: { serviceId: '', templateId: '', publicKey: '' },
+    supabase: { url: '', anonKey: '' },
+    cronSecret: '',
+    marketData: {},
+    session: null
+  };
+  saveStore(data);
+  return data;
+}
+
+// ── SESSION ───────────────────────────────────────
+function getSession() {
+  const s = getStore();
+  return s.session;
+}
+
+function setSession(member) {
+  const s = getStore();
+  s.session = { email: member.email, role: member.role, code: member.code };
+  saveStore(s);
+}
+
+function clearSession() {
+  const s = getStore();
+  s.session = null;
+  saveStore(s);
+}
+
+// ── AUTH ──────────────────────────────────────────
+function attemptLogin() {
+  const email = document.getElementById('login-email').value.trim().toLowerCase();
+  const code  = document.getElementById('login-code').value.trim();
+  const err   = document.getElementById('login-error');
+  const emailInput = document.getElementById('login-email');
+  const codeInput  = document.getElementById('login-code');
+
+  emailInput.classList.remove('error');
+  codeInput.classList.remove('error');
+  err.classList.remove('show');
+
+  if (!email || !code) {
+    if (!email) emailInput.classList.add('error');
+    if (!code)  codeInput.classList.add('error');
+    err.textContent = 'Please enter both your email and invite code.';
+    err.classList.add('show');
+    return;
+  }
+
+  const store = getStore();
+  const member = store.members.find(m =>
+    m.email.toLowerCase() === email &&
+    m.code === code &&
+    m.status === 'active'
+  );
+
+  if (!member) {
+    emailInput.classList.add('error');
+    codeInput.classList.add('error');
+    err.textContent = 'Invalid credentials or invite code. Contact the administrator.';
+    err.classList.add('show');
+    return;
+  }
+
+  setSession(member);
+  enterApp(member);
+}
+
+function enterApp(member) {
+  // Update UI with user info
+  const initials = member.email.charAt(0).toUpperCase();
+  document.getElementById('user-avatar').textContent = initials;
+  document.getElementById('user-name-display').textContent = member.email.split('@')[0];
+
+  if (member.role === 'admin') {
+    document.getElementById('admin-nav-btn').style.display = 'block';
+  }
+
+  showPage('dashboard');
+  startAlertFeed();
+  renderGlossary();
+  initSubscriptionUI();
+  initPushNotifications();
+  loadMarketData();
+}
+
+function logout() {
+  clearSession();
+  stopAlertFeed();
+  showPage('gate');
+}
+
+// ── PAGES ─────────────────────────────────────────
+function showPage(name) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById('page-' + name).classList.add('active');
+}
+
+function showAdminLogin() {
+  const email = document.getElementById('login-email');
+  const code  = document.getElementById('login-code');
+  email.value = 'admin@wjbtrades.com';
+  code.placeholder = 'WJB-ADMIN-2026';
+  email.focus();
+  showToast('Admin credentials pre-filled — enter your code to continue');
+}
+
+function showRequestForm() {
+  showToast('Request sent to administrator. You will receive your invite code via email.');
+}
+
+// ── ADMIN ─────────────────────────────────────────
+function goToAdmin() {
+  const session = getSession();
+  if (!session || session.role !== 'admin') {
+    showToast('Admin access required.');
+    return;
+  }
+  renderAdminTable();
+  // Populate Supabase fields
+  const store = getStore();
+  const sb = store.supabase || {};
+  const sbUrl = document.getElementById('sb-url');
+  const sbKey = document.getElementById('sb-key');
+  const sbCron = document.getElementById('sb-cron-secret');
+  if (sbUrl) sbUrl.value = sb.url || '';
+  if (sbKey) sbKey.value = sb.anonKey || '';
+  if (sbCron) sbCron.value = store.cronSecret || '';
+  updateCronUrlDisplay();
+  showPage('admin');
+}
+
+function goToDashboard() {
+  showPage('dashboard');
+}
+
+async function renderAdminTable() {
+  // If Supabase is configured, sync fresh subscriber data
+  if (SUPABASE_URL && SUPABASE_KEY) {
+    await syncSubscribersFromSupabase().catch(() => {});
+  }
+  const store = getStore();
+  const members = store.members;
+
+  document.getElementById('stat-members').textContent = members.length;
+  document.getElementById('stat-active').textContent  = members.filter(m => m.status === 'active').length;
+  document.getElementById('stat-pending').textContent = members.filter(m => m.status === 'pending').length;
+  document.getElementById('stat-revoked').textContent = members.filter(m => m.status === 'revoked').length;
+
+  const subs = store.subscriptions || [];
+  document.getElementById('stat-subscribed').textContent = subs.length;
+
+  // Render subscribers table
+  const subsTbody = document.getElementById('subscribers-tbody');
+  if (subsTbody) {
+    subsTbody.innerHTML = subs.length === 0
+      ? '<tr><td colspan="5" style="text-align:center;color:var(--fog);padding:20px">No subscribers yet</td></tr>'
+      : subs.map(s => `
+        <tr>
+          <td style="color:var(--snow)">${s.email}</td>
+          <td>${s.since}</td>
+          <td>${s.lastSent || '<span style="color:var(--fog)">Never</span>'}</td>
+          <td><span class="badge-pill pill-active">${s.frequency || 'Daily 9AM ET'}</span></td>
+          <td><span class="badge-pill pill-active">Active</span></td>
+        </tr>
+      `).join('');
+  }
+
+  // Load EmailJS config fields
+  const ejs = store.emailjs || {};
+  const si = document.getElementById('ejs-service-id');
+  const ti = document.getElementById('ejs-template-id');
+  const pk = document.getElementById('ejs-public-key');
+  if (si) si.value = ejs.serviceId || '';
+  if (ti) ti.value = ejs.templateId || '';
+  if (pk) pk.value = ejs.publicKey || '';
+
+  const tbody = document.getElementById('members-tbody');
+  tbody.innerHTML = members.map((m, i) => `
+    <tr>
+      <td style="color:var(--snow)">${m.email}</td>
+      <td><span style="font-family:var(--mono);font-size:11px;color:var(--gold2)">${m.code}</span></td>
+      <td><span class="badge-pill ${m.role === 'admin' ? 'pill-admin' : 'pill-active'}">${m.role}</span></td>
+      <td><span class="badge-pill ${m.status === 'active' ? 'pill-active' : m.status === 'pending' ? 'pill-pending' : 'pill-revoked'}">${m.status}</span></td>
+      <td>${m.joined}</td>
+      <td style="text-align:center">${subs.some(s => s.email === m.email) ? '<span style="color:var(--teal);font-size:14px">✓</span>' : '<span style="color:var(--fog)">—</span>'}</td>
+      <td>
+        ${m.status === 'active'
+          ? `<button class="btn-sm danger" onclick="revokeAccess(${i})">Revoke</button>`
+          : m.status === 'revoked'
+          ? `<button class="btn-sm" onclick="restoreAccess(${i})">Restore</button>`
+          : `<button class="btn-sm gold" onclick="activateAccess(${i})">Activate</button>`
+        }
+      </td>
+    </tr>
+  `).join('');
+}
+
+function generateInvite() {
+  const email = document.getElementById('invite-email').value.trim();
+  const role  = document.getElementById('invite-role').value;
+
+  if (!email) {
+    showToast('Please enter an email address first.');
+    return;
+  }
+
+  const code = 'WJB-' + role.toUpperCase().slice(0,3) + '-' + Math.random().toString(36).substr(2,6).toUpperCase() + '-' + Date.now().toString(36).toUpperCase().slice(-4);
+
+  const store = getStore();
+  const existing = store.members.find(m => m.email.toLowerCase() === email.toLowerCase());
+  if (existing) {
+    showToast('This email already has an invite.');
+    return;
+  }
+
+  store.members.push({
+    email: email,
+    code: code,
+    role: role,
+    status: 'pending',
+    joined: 'Pending'
+  });
+  saveStore(store);
+
+  const out = document.getElementById('gen-output');
+  out.innerHTML = `<span style="color:var(--gold2);font-family:var(--mono)">${code}</span><button class="copy-btn" id="copy-invite-btn" onclick="copyGeneratedCode('${code}')" title="Copy">⎘</button>`;
+
+  renderAdminTable();
+  showToast('Invite generated for ' + email);
+}
+
+function copyGeneratedCode(code) {
+  copyToClipboard(code);
+  showToast('Invite code copied to clipboard!');
+}
+
+function revokeAccess(index) {
+  const store = getStore();
+  store.members[index].status = 'revoked';
+  saveStore(store);
+  renderAdminTable();
+  showToast('Access revoked.');
+}
+
+function restoreAccess(index) {
+  const store = getStore();
+  store.members[index].status = 'active';
+  saveStore(store);
+  renderAdminTable();
+  showToast('Access restored.');
+}
+
+function activateAccess(index) {
+  const store = getStore();
+  store.members[index].status = 'active';
+  store.members[index].joined = new Date().toLocaleDateString('en-US', {month:'short',day:'numeric',year:'numeric'});
+  saveStore(store);
+  renderAdminTable();
+  showToast('Member activated.');
+}
+
+// ── TABS ──────────────────────────────────────────
+function switchTab(name, el) {
+  document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.dash-tab-panel').forEach(p => p.classList.remove('active'));
+  el.classList.add('active');
+  document.getElementById('tab-' + name).classList.add('active');
+}
+
+// ── ALERT FEED ────────────────────────────────────
+let alertInterval = null;
+let alertsRunning = false;
+let alertCountTotal = 0;
+
+const ALERT_TEMPLATES = [
+  { sym: 'WTI CRUDE', type: 'BULL', msg: 'Break above $105 on 2-min candle: PMG cascade active. Scale into XLE/USO calls. Stop at $103.50.', color: 'green' },
+  { sym: 'ORCL', type: 'BULL', msg: 'Break above $157 (+5% from open): 2-up continuation confirmed. Add to May $155C. HOD becomes trailing stop.', color: 'green' },
+  { sym: 'PLTR', type: 'BULL', msg: 'Break above $139 on vol >20M per 2-min: PMG setup forming. Enter $135C May 8. Stop = 50%er of trigger candle.', color: 'green' },
+  { sym: 'BTC', type: 'BULL', msg: 'Surge above $75,000: Clarity Act PMG likely. Add size to IBIT calls. Trail stop to $72,500.', color: 'green' },
+  { sym: 'GOLD XAU', type: 'BULL', msg: 'Breaks above $4,883 (200 SMA): Volume void activated. Gap-fill run to $5,012+ likely. Scale ITM GLD calls.', color: 'green' },
+  { sym: 'WTI CRUDE', type: 'STOP HIT', msg: 'Drop below $101 on 2-min close: Level 2 structural stop. EXIT ALL energy positions immediately.', color: 'red' },
+  { sym: 'SPY', type: 'BEAR', msg: 'Drop below $672 on 2-min close: Delta Bleed confirmed. Add $675P puts. Target $666 MA cluster.', color: 'red' },
+  { sym: 'QQQ', type: 'STRUCTURAL FAIL', msg: 'Drop below $602: Exit all QQQ calls. Flip plan: Buy $600P targeting $590 gamma flip level.', color: 'red' },
+  { sym: 'USD/JPY', type: 'CAUTION', msg: 'Approaches $160.00: BoJ intervention window open. Short USD/JPY trigger active. Hard stop above $161.', color: 'amber' },
+  { sym: 'MRVL', type: 'BULL', msg: 'Break above $135 on 2-min: Momentum continuation. Add to May $130C. Trail stop to intraday VWAP.', color: 'green' },
+  { sym: 'CEASEFIRE HEADLINE', type: 'FLIP PLAN', msg: 'U.S.-Iran ceasefire headline: Instant IV crush on WTI/XLE/GLD. Exit energy/gold calls. Flip to SPY $685C.', color: 'amber' },
+  { sym: 'EUR/USD', type: 'BULL', msg: 'Tests $1.1500 support: OTE re-entry zone confirmed. Buy dips — TTO setup on 15m chart.', color: 'green' },
+];
+
+let alertIndex = 0;
+
+function startAlertFeed() {
+  if (alertsRunning) return;
+  alertsRunning = true;
+  document.getElementById('alert-toggle-sw').classList.add('on');
+  document.getElementById('alert-toggle-lbl').textContent = 'Feed active';
+  setTimeout(fireAlert, 1200);
+  alertInterval = setInterval(fireAlert, 8000);
+}
+
+function stopAlertFeed() {
+  alertsRunning = false;
+  clearInterval(alertInterval);
+  alertInterval = null;
+}
+
+function toggleAlertFeed() {
+  if (alertsRunning) {
+    stopAlertFeed();
+    document.getElementById('alert-toggle-sw').classList.remove('on');
+    document.getElementById('alert-toggle-lbl').textContent = 'Feed paused';
+  } else {
+    startAlertFeed();
+  }
+}
+
+function clearAlertFeed() {
+  document.getElementById('live-alert-feed').innerHTML = '';
+  alertCountTotal = 0;
+  document.getElementById('alert-count-lbl').textContent = '0 alerts';
+}
+
+function fireAlert() {
+  if (!alertsRunning) return;
+  const t = ALERT_TEMPLATES[alertIndex % ALERT_TEMPLATES.length];
+  alertIndex++;
+  alertCountTotal++;
+
+  const now = new Date();
+  const time = now.getHours().toString().padStart(2,'0') + ':' + now.getMinutes().toString().padStart(2,'0') + ':' + now.getSeconds().toString().padStart(2,'0');
+
+  const dotColor = t.color === 'green' ? 'var(--green)' : t.color === 'red' ? 'var(--red)' : 'var(--amber)';
+  const symColor = t.color === 'green' ? 'var(--green)' : t.color === 'red' ? 'var(--red)' : 'var(--amber)';
+  const borderColor = dotColor;
+
+  const item = document.createElement('div');
+  item.className = 'live-alert-item';
+  item.style.borderLeftColor = borderColor;
+  item.innerHTML = `
+    <div class="lai-dot" style="background:${dotColor}"></div>
+    <div class="lai-body">
+      <div class="lai-sym" style="color:${symColor}">${t.sym} — ${t.type}</div>
+      <div class="lai-msg">${t.msg}</div>
+    </div>
+    <div class="lai-time">${time} ET<br><span style="color:var(--fog)">2-min trigger</span></div>
+  `;
+
+  const feed = document.getElementById('live-alert-feed');
+  feed.insertBefore(item, feed.firstChild);
+
+  if (feed.children.length > 20) feed.removeChild(feed.lastChild);
+
+  document.getElementById('alert-count-lbl').textContent = alertCountTotal + ' alert' + (alertCountTotal !== 1 ? 's' : '');
+
+  // Show in-app push bar + browser notification
+  showPushAlert(t.sym, t.type, t.msg, t.color);
+}
+
+// ── GLOSSARY ──────────────────────────────────────
+const GLOSSARY_TERMS = [
+  { term: 'Delta (Δ)', def: 'Rate of change of the option price with respect to the underlying asset price. Also used as a proxy for the probability of expiring ITM. Delta Neutrality mitigates directional risk.' },
+  { term: 'Gamma (Γ)', def: 'Rate of change in Delta. Largest in ATM options near expiration. High Gamma environments like PMG breakouts require immediate hedging or scaling.' },
+  { term: 'Theta (Θ)', def: 'Time decay — the rate at which an option loses value as expiration approaches. Negative for long positions, positive for short. A position stagnating at the 50%er is in a Theta Trap.' },
+  { term: 'Vega (V)', def: 'Sensitivity to a 1% change in Implied Volatility. Critical around earnings. IV Crush occurs when IV contracts sharply after a catalyst, obliterating option premiums.' },
+  { term: 'FTFC', def: 'Full Timeframe Continuity — when Quarterly, Monthly, Weekly, and Daily candles all align in the same direction. Trading in FTFC alignment maximizes probability of reaching targets.' },
+  { term: 'PMG', def: 'Pivot Machine Gun — a series of consecutive directional candles where trailing stops cluster at prior wicks. When the first wick breaks, Cascading Liquidity triggers a self-reinforcing move.' },
+  { term: '50%er', def: 'The midpoint of any candle\'s range (High + Low / 2). A candle closing below the 50%er of the prior bar signals loss of control by the dominant side — used as a high-confidence stop-loss level.' },
+  { term: 'The Flip', def: 'Price moving through its open price to change candle color (e.g., Red to Green). This is the earliest indicator of institutional liquidity shifting toward the macro trend.' },
+  { term: 'TTO', def: 'Triangle Layout — a pullback to key levels (9 EMA, VWAP, or 50%er) within an ongoing FTFC trend. Provides optimal entries to add size as price "flips" back in the macro direction.' },
+  { term: 'Delta Bleed', def: 'When the live midpoint of a developing candle moves against your position in real time. Monitoring this allows exit before the candle closes, preserving capital before structural shift is finalized.' },
+  { term: 'Theta Trap', def: 'Holding an ATM option while price stagnates at a 50%er equilibrium level. Time decay erodes capital while the market is undecided. Exit or resize if this pattern is detected.' },
+  { term: 'Strat-Hole', def: 'A re-entry opportunity after a failed trigger. If price reclaims a failed trigger level with a 2-up candle, this represents a high-confidence long re-entry aligned with the macro trend.' },
+  { term: 'OTE', def: 'Optimal Trade Entry — the 50%–78.6% Fibonacci retracement zone within a Fair Value Gap (FVG). Used to enter or re-enter positions at discounted prices with a defined stop.' },
+  { term: 'BTO / STC', def: 'Buy To Open (entering a long position) / Sell To Close (exiting a long position). The standard order types for managing options contracts.' },
+  { term: 'Scenario 3', def: 'An Outside Bar that breaches both the high and low of the previous range. Because "once a 3, always a 3," a hard stop-loss is mandatory upon the breach — the broadening formation makes Greeks unmanageable.' },
+  { term: 'IV Crush', def: 'A sharp contraction in Implied Volatility after a major catalyst (earnings, news event) that can destroy option premiums even if the directional thesis is correct. Use ITM options (Delta >0.60) to minimize Vega exposure.' },
+  { term: '2% Rule', def: 'Maximum risk per trade = 2% of total account equity. For a $50,000 account this means $1,000 max risk per trade. Non-negotiable position sizing discipline.' },
+  { term: 'Starter Position', def: 'Entering with 50% of planned position size on the initial trigger. Size is added only when price confirms FTFC alignment on the next higher timeframe, reducing the cost of being wrong.' },
+];
+
+function renderGlossary() {
+  const container = document.getElementById('glossary-content');
+  if (container.innerHTML) return;
+  container.innerHTML = GLOSSARY_TERMS.map(t => `
+    <div style="background:var(--ink2);border:1px solid var(--wire);border-radius:var(--r-md);padding:16px 18px;margin-bottom:10px">
+      <div style="font-family:var(--display);font-size:16px;letter-spacing:0.5px;color:var(--gold2);margin-bottom:6px">${t.term}</div>
+      <div style="font-size:12px;color:var(--mist);line-height:1.7">${t.def}</div>
+    </div>
+  `).join('');
+}
+
+// ── UTILS ──────────────────────────────────────────
+function copyToClipboard(text) {
+  if (navigator.clipboard) {
+    navigator.clipboard.writeText(text);
+  } else {
+    const el = document.createElement('textarea');
+    el.value = text;
+    document.body.appendChild(el);
+    el.select();
+    document.execCommand('copy');
+    document.body.removeChild(el);
+  }
+}
+
+function copyInviteCode() {
+  const codeEl = document.querySelector('#gen-output span');
+  if (codeEl) {
+    copyToClipboard(codeEl.textContent);
+    showToast('Invite code copied!');
+  }
+}
+
+let toastTimeout;
+function showToast(msg) {
+  const existing = document.querySelector('.toast');
+  if (existing) existing.remove();
+  clearTimeout(toastTimeout);
+
+  const t = document.createElement('div');
+  t.className = 'toast';
+  t.textContent = msg;
+  document.body.appendChild(t);
+  toastTimeout = setTimeout(() => t.remove(), 3200);
+}
+
+// ── ENTER KEY SUPPORT ──────────────────────────────
+document.addEventListener('keydown', e => {
+  if (e.key === 'Enter' && document.getElementById('page-gate').classList.contains('active')) {
+    attemptLogin();
+  }
+});
+
+// ── EMAILJS CONFIG ────────────────────────────────
+function saveSupabaseConfig() {
+  const url    = document.getElementById('sb-url').value.trim().replace(/\/$/, '');
+  const key    = document.getElementById('sb-key').value.trim();
+  const secret = document.getElementById('sb-cron-secret').value.trim();
+  if (!url || !key) { showToast('Enter both Supabase URL and Anon Key.'); return; }
+  const store = getStore();
+  store.supabase = { url, anonKey: key };
+  if (secret) store.cronSecret = secret;
+  saveStore(store);
+  SUPABASE_URL = url;
+  SUPABASE_KEY = key;
+  updateCronUrlDisplay();
+  showToast('Supabase config saved.');
+}
+
+function updateCronUrlDisplay() {
+  const el = document.getElementById('cron-url-display');
+  if (!el) return;
+  const store = getStore();
+  const base = window.location.href.split('?')[0];
+  const secret = store.cronSecret || '';
+  const url = base + '?cron=daily9am' + (secret ? '&key=' + encodeURIComponent(secret) : '');
+  el.textContent = url;
+}
+
+async function refreshSubscribers() {
+  initSupabase();
+  if (!SUPABASE_URL || !SUPABASE_KEY) { showToast('Save Supabase config first.'); return; }
+  setEjsStatus('Syncing subscribers from Supabase...', 'var(--amber)');
+  const subs = await syncSubscribersFromSupabase();
+  if (subs === null) {
+    setEjsStatus('✗ Could not reach Supabase. Check URL and key.', 'var(--red)');
+    return;
+  }
+  setEjsStatus('✓ Synced ' + (subs ? subs.length : 0) + ' subscriber(s)', 'var(--green)');
+  renderAdminTable();
+  showToast('Subscriber list refreshed from Supabase.');
+}
+
+function saveEmailJSConfig() {
+  const serviceId = document.getElementById('ejs-service-id').value.trim();
+  const templateId = document.getElementById('ejs-template-id').value.trim();
+  const publicKey = document.getElementById('ejs-public-key').value.trim();
+  if (!serviceId || !templateId || !publicKey) {
+    showToast('Please fill in all three EmailJS fields.');
+    return;
+  }
+  const store = getStore();
+  store.emailjs = { serviceId, templateId, publicKey };
+  saveStore(store);
+  setEjsStatus('✓ Config saved. EmailJS ready.', 'var(--green)');
+  showToast('EmailJS config saved.');
+  emailjs.init({ publicKey });
+}
+
+function loadEmailJSConfig() {
+  const store = getStore();
+  const ejs = store.emailjs || {};
+  if (ejs.publicKey) {
+    try { emailjs.init({ publicKey: ejs.publicKey }); } catch(e){}
+  }
+  initSupabase();
+}
+
+function setEjsStatus(msg, color) {
+  const el = document.getElementById('ejs-status');
+  if (!el) return;
+  el.textContent = msg;
+  el.style.color = color || 'var(--mist)';
+  el.style.display = 'block';
+}
+
+function sendTestEmail() {
+  const store = getStore();
+  const ejs = store.emailjs || {};
+  if (!ejs.serviceId || !ejs.templateId || !ejs.publicKey) {
+    showToast('Save your EmailJS config first.');
+    return;
+  }
+  const session = getSession();
+  if (!session) return;
+  setEjsStatus('Sending test email...', 'var(--amber)');
+  emailjs.send(ejs.serviceId, ejs.templateId, buildEmailParams(session.email, true))
+    .then(() => {
+      setEjsStatus('✓ Test email sent to ' + session.email, 'var(--green)');
+      showToast('Test email sent!');
+    })
+    .catch(err => {
+      setEjsStatus('✗ Error: ' + (err.text || err.message || 'Unknown error'), 'var(--red)');
+      showToast('Email failed. Check your EmailJS config.');
+    });
+}
+
+async function sendDailySummaryNow() {
+  const store = getStore();
+  const ejs = store.emailjs || {};
+  if (!ejs.serviceId || !ejs.templateId || !ejs.publicKey) {
+    showToast('Configure EmailJS in the admin panel first.');
+    return;
+  }
+  initSupabase();
+  setEjsStatus('Fetching subscribers...', 'var(--amber)');
+  // Always pull fresh list from Supabase if configured, else fall back to local
+  const subs = (SUPABASE_URL && SUPABASE_KEY)
+    ? (await syncSubscribersFromSupabase() || store.subscriptions || [])
+    : (store.subscriptions || []);
+
+  if (subs.length === 0) {
+    setEjsStatus('No subscribers found.', 'var(--fog)');
+    showToast('No subscribers to send to yet.');
+    return;
+  }
+  setEjsStatus('Sending to ' + subs.length + ' subscriber(s)...', 'var(--amber)');
+  let sent = 0;
+  const today = new Date().toLocaleDateString('en-US', {month:'short',day:'numeric',year:'numeric'});
+
+  subs.forEach((sub, idx) => {
+    setTimeout(() => {
+      emailjs.send(ejs.serviceId, ejs.templateId, buildEmailParams(sub.email, false))
+        .then(() => {
+          sent++;
+          updateLastSentInSupabase(sub.email, today);
+          const s2 = getStore();
+          const si = (s2.subscriptions||[]).findIndex(x => x.email === sub.email);
+          if (si >= 0) { s2.subscriptions[si].lastSent = today; saveStore(s2); }
+          if (sent === subs.length) {
+            setEjsStatus('✓ Daily summary sent to all ' + sent + ' subscriber(s) at ' + new Date().toLocaleTimeString(), 'var(--green)');
+            showToast('Daily summary sent to ' + sent + ' subscriber(s)!');
+            renderAdminTable();
+          }
+        })
+        .catch(err => {
+          setEjsStatus('✗ Failed for ' + sub.email + ': ' + (err.text || 'error'), 'var(--red)');
+        });
+    }, idx * 1400);
+  });
+}
+
+function buildEmailParams(recipientEmail, isTest) {
+  const today = new Date();
+  const dateStr = today.toLocaleDateString('en-US', {weekday:'long', month:'long', day:'numeric', year:'numeric'});
+  const timeStr = today.toLocaleTimeString('en-US', {hour:'2-digit', minute:'2-digit', timeZoneName:'short'});
+
+  // Pull latest market data from store (editable by admin)
+  const store = getStore();
+  const md = store.marketData || {};
+
+  // Helper: color for change values
+  const chgColor = chg => (chg && chg.startsWith('+')) ? '#34d399' : (chg && (chg.startsWith('−') || chg.startsWith('-'))) ? '#f87171' : '#7070a0';
+
+  return {
+    to_email: recipientEmail,
+    subject: (isTest ? '[TEST] ' : '') + 'WJB Trades — Daily Market Summary · ' + dateStr,
+    date: dateStr,
+    send_time: timeStr,
+    // Macro catalyst
+    macro_catalyst: md.macro_catalyst || 'U.S. Navy Hormuz blockade active. WTI +8% above $104. CPI 3.3% — highest since May 2024.',
+    // Macro snapshot with color hints
+    spy_price:  md.spy_price  || '$679',   spy_chg:  md.spy_chg  || '−0.40%',  spy_color:  chgColor(md.spy_chg  || '−'),
+    qqq_price:  md.qqq_price  || '$611',   qqq_chg:  md.qqq_chg  || '+0.14%',  qqq_color:  chgColor(md.qqq_chg  || '+'),
+    wti_price:  md.wti_price  || '$104',   wti_chg:  md.wti_chg  || '+8.0%',   wti_color:  chgColor(md.wti_chg  || '+'),
+    gold_price: md.gold_price || '$4,733', gold_chg: md.gold_chg || '−0.71%',  gold_color: chgColor(md.gold_chg || '−'),
+    btc_price:  md.btc_price  || '$71,600',btc_chg:  md.btc_chg  || '−1.80%',  btc_color:  chgColor(md.btc_chg  || '−'),
+    dxy_price:  md.dxy_price  || '98.79',  dxy_chg:  md.dxy_chg  || 'Multi-wk low',
+    // Setup 1 (editable)
+    setup1_ticker:   md.setup1_ticker   || 'XLE / USO',
+    setup1_desc:     'Energy ETF / Oil · WTI Crude · PMG Active · Sector +18–38% YTD',
+    setup1_action:   md.setup1_action   || 'BUY CALL',
+    setup1_payoff:   md.setup1_payoff   || '+35–120%',
+    setup1_trigger:  md.setup1_trigger  || 'Reclaim $104.50 WTI / TTO to 9 EMA. FTFC full bull Q/M/W/D.',
+    setup1_stop:     'Below $101 WTI — Level 2 structural stop.',
+    setup1_strike:   'USO $85C · XLE $92C · May 16 expiration',
+    setup1_ftfc:     'Q / M / W / D all green — full continuity',
+    setup1_category: 'ETFs · ENERGY',
+    // Setup 2 (fixed defaults)
+    setup2_ticker:   'ORCL',
+    setup2_desc:     'Oracle Corp · +9–11% today · RS Leader · vol 32.9M vs 20.7M avg',
+    setup2_action:   'BUY CALL',
+    setup2_payoff:   '+40–120%',
+    setup2_trigger:  'TTO pullback to 9 EMA ~$145. AI Fusion Apps catalyst. RPO $553B.',
+    setup2_stop:     'Below $136–138 open price.',
+    setup2_category: 'EQUITIES · RS LEADER',
+    // Setup 3
+    setup3_ticker:   'PLTR',
+    setup3_desc:     'Palantir · ~$128–133 · Defense AI · ER May 11',
+    setup3_action:   'BUY CALL',
+    setup3_payoff:   '+60–120%',
+    setup3_trigger:  'Reclaim VWAP ~$130 on 15m. Defense AI. ER May 11 = IV expansion tailwind.',
+    setup3_stop:     '$122.68 (today's LOD) — Level 2 stop.',
+    setup3_category: 'EQUITIES · DEFENSE AI',
+    // Alert levels with symbols
+    alert1_sym: 'WTI CRUDE — BULL',
+    alert1: 'Break above $105 on 2-min candle: PMG cascade active. Scale into XLE/USO calls. Stop $103.50. T2 target $112–115.',
+    alert2_sym: 'WTI CRUDE — STOP',
+    alert2: 'Drop below $101 on 2-min close: Level 2 structural stop. Exit ALL energy positions immediately. Ceasefire risk.',
+    alert3_sym: 'BTC — BULL',
+    alert3: 'Surge above $75,000: Clarity Act PMG likely. Add size to IBIT calls. Trail stop to $72,500.',
+    alert4_sym: 'USD/JPY — CAUTION',
+    alert4: 'Approaches $160.00: BoJ intervention window open. Hard stop above $161. Short USD/JPY trigger active.',
+    // Greeks
+    delta_level: 'MIXED DIRECTIONAL',
+    gamma_level: 'VERY HIGH',
+    theta_level: 'THETA TRAP',
+    vega_level:  'EXTREME',
+    // Footer
+    platform_url: window.location.href.split('?')[0],
+    unsubscribe_note: 'Unsubscribe: log in → Daily Summary tab → Unsubscribe'
+  };
+}
+
+// ── SUBSCRIPTION UI ────────────────────────────────
+async function initSubscriptionUI() {
+  const session = getSession();
+  if (!session) return;
+  initSupabase();
+  // Sync from Supabase first so subscription state is accurate
+  if (SUPABASE_URL && SUPABASE_KEY) {
+    await syncSubscribersFromSupabase().catch(() => {});
+  }
+  const store = getStore();
+  const subs = store.subscriptions || [];
+  const isSubscribed = subs.some(s => s.email === session.email);
+  updateSubscriptionUI(isSubscribed, session.email);
+}
+
+function updateSubscriptionUI(isSubscribed, email) {
+  const formCard   = document.getElementById('sub-form-card');
+  const activeCard = document.getElementById('sub-active-card');
+  const dot        = document.getElementById('sub-status-dot');
+  const txt        = document.getElementById('sub-status-text');
+  const emailDisp  = document.getElementById('sub-email-display');
+
+  if (isSubscribed) {
+    if (formCard)   formCard.style.display   = 'none';
+    if (activeCard) activeCard.style.display = 'block';
+    if (dot)  { dot.style.background = 'var(--green)'; dot.style.animation = 'blink 2s infinite'; }
+    if (txt)  txt.textContent = '✓ Subscribed — Daily 9:00 AM ET';
+    if (emailDisp) emailDisp.textContent = email;
+  } else {
+    if (formCard)   formCard.style.display   = 'block';
+    if (activeCard) activeCard.style.display = 'none';
+    if (dot)  { dot.style.background = 'var(--fog)'; dot.style.animation = 'none'; }
+    if (txt)  txt.textContent = 'Not subscribed';
+  }
+}
+
+async function handleSubscribeToggle() {
+  const session = getSession();
+  if (!session) return;
+  initSupabase();
+  const store = getStore();
+  if (!store.subscriptions) store.subscriptions = [];
+  const idx = store.subscriptions.findIndex(s => s.email === session.email);
+
+  // Show loading state
+  const btn = document.getElementById('subscribe-btn');
+  if (btn) { btn.textContent = '...'; btn.style.opacity = '0.6'; }
+
+  if (idx === -1) {
+    // Subscribe — save to Supabase and local
+    const today = new Date().toLocaleDateString('en-US', {month:'short',day:'numeric',year:'numeric'});
+    if (SUPABASE_URL && SUPABASE_KEY) {
+      const ok = await addSubscriberToSupabase(session.email);
+      if (!ok) {
+        showToast('Could not save subscription. Check Supabase config.');
+        if (btn) { btn.textContent = 'SUBSCRIBE — FREE'; btn.style.opacity = '1'; }
+        return;
+      }
+    }
+    store.subscriptions.push({
+      email: session.email,
+      since: today,
+      lastSent: null,
+      frequency: 'Daily 9AM ET'
+    });
+    saveStore(store);
+    updateSubscriptionUI(true, session.email);
+    showToast('✓ Subscribed! Daily summaries arrive at 9:00 AM ET.');
+  } else {
+    // Unsubscribe
+    if (SUPABASE_URL && SUPABASE_KEY) {
+      await removeSubscriberFromSupabase(session.email);
+    }
+    store.subscriptions.splice(idx, 1);
+    saveStore(store);
+    updateSubscriptionUI(false, session.email);
+    showToast('Unsubscribed. You can re-subscribe anytime.');
+  }
+  if (btn) { btn.style.opacity = '1'; }
+}
+
+function sendSampleEmail() {
+  const store = getStore();
+  const ejs = store.emailjs || {};
+  const session = getSession();
+  if (!session) return;
+
+  if (!ejs.serviceId || !ejs.templateId || !ejs.publicKey) {
+    showToast('Admin needs to configure EmailJS before previewing. Ask your admin.');
+    return;
+  }
+  showToast('Sending sample email to ' + session.email + '...');
+  emailjs.send(ejs.serviceId, ejs.templateId, buildEmailParams(session.email, true))
+    .then(() => showToast('Sample email sent! Check your inbox.'))
+    .catch(() => showToast('Failed to send — check with admin.'));
+}
+
+// ── SUPABASE INTEGRATION ───────────────────────────
+// Supabase stores subscribers in a shared database so ALL users/browsers
+// see the same list — localStorage is per-browser so can't do shared state.
+// Free tier: 500MB, unlimited rows, works perfectly for this use case.
+
+let SUPABASE_URL = '';
+let SUPABASE_KEY = '';
+
+function initSupabase() {
+  const store = getStore();
+  SUPABASE_URL = (store.supabase && store.supabase.url) || '';
+  SUPABASE_KEY = (store.supabase && store.supabase.anonKey) || '';
+}
+
+async function supabaseQuery(method, path, body) {
+  if (!SUPABASE_URL || !SUPABASE_KEY) return null;
+  try {
+    const res = await fetch(SUPABASE_URL + '/rest/v1/' + path, {
+      method,
+      headers: {
+        'apikey': SUPABASE_KEY,
+        'Authorization': 'Bearer ' + SUPABASE_KEY,
+        'Content-Type': 'application/json',
+        'Prefer': method === 'POST' ? 'return=representation' : 'return=minimal'
+      },
+      body: body ? JSON.stringify(body) : undefined
+    });
+    if (!res.ok) { const t = await res.text(); console.warn('Supabase error:', t); return null; }
+    if (method === 'DELETE' || res.status === 204) return true;
+    return await res.json();
+  } catch(e) { console.warn('Supabase fetch failed:', e); return null; }
+}
+
+// Fetch subscribers from Supabase and merge with local store
+async function syncSubscribersFromSupabase() {
+  if (!SUPABASE_URL || !SUPABASE_KEY) return;
+  const rows = await supabaseQuery('GET', 'wjb_subscribers?select=*&order=created_at.desc', null);
+  if (!Array.isArray(rows)) return;
+  const store = getStore();
+  store.subscriptions = rows.map(r => ({
+    email: r.email,
+    since: r.created_at ? new Date(r.created_at).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'}) : '—',
+    lastSent: r.last_sent || null,
+    frequency: 'Daily 9AM ET'
+  }));
+  saveStore(store);
+  return store.subscriptions;
+}
+
+async function addSubscriberToSupabase(email) {
+  if (!SUPABASE_URL || !SUPABASE_KEY) return false;
+  const res = await supabaseQuery('POST', 'wjb_subscribers', { email, last_sent: null });
+  return res !== null;
+}
+
+async function removeSubscriberFromSupabase(email) {
+  if (!SUPABASE_URL || !SUPABASE_KEY) return false;
+  const res = await supabaseQuery('DELETE', 'wjb_subscribers?email=eq.' + encodeURIComponent(email), null);
+  return res !== null;
+}
+
+async function updateLastSentInSupabase(email, dateStr) {
+  if (!SUPABASE_URL || !SUPABASE_KEY) return;
+  await supabaseQuery('PATCH', 'wjb_subscribers?email=eq.' + encodeURIComponent(email), { last_sent: dateStr });
+}
+
+// ── AUTO-SEND TRIGGER (cron-job.org) ─────────────
+// Set cron-job.org to hit: https://yourusername.github.io/wjb-trades/?cron=daily9am&key=YOUR_CRON_SECRET
+// The cron secret prevents random people from triggering sends.
+async function checkCronTrigger() {
+  const params = new URLSearchParams(window.location.search);
+  if (params.get('cron') !== 'daily9am') return;
+
+  const store = getStore();
+  const cronSecret = store.cronSecret || '';
+  if (cronSecret && params.get('key') !== cronSecret) {
+    console.warn('Cron: invalid key');
+    return;
+  }
+
+  initSupabase();
+  loadEmailJSConfig();
+
+  const ejs = store.emailjs || {};
+  if (!ejs.serviceId || !ejs.templateId || !ejs.publicKey) {
+    console.warn('Cron: EmailJS not configured');
+    return;
+  }
+
+  // Pull fresh subscriber list from Supabase
+  const subs = await syncSubscribersFromSupabase() || store.subscriptions || [];
+  if (subs.length === 0) { console.log('Cron: no subscribers'); return; }
+
+  const today = new Date().toLocaleDateString('en-US', {month:'short',day:'numeric',year:'numeric'});
+  console.log('Cron: sending to', subs.length, 'subscribers');
+
+  subs.forEach((sub, idx) => {
+    setTimeout(() => {
+      emailjs.send(ejs.serviceId, ejs.templateId, buildEmailParams(sub.email, false))
+        .then(() => {
+          console.log('✓ Sent to', sub.email);
+          updateLastSentInSupabase(sub.email, today);
+        })
+        .catch(err => console.warn('✗ Failed for', sub.email, err));
+    }, idx * 1500);
+  });
+}
+
+// ── PUSH NOTIFICATION SYSTEM ─────────────────────
+let pushBarTimeout = null;
+let pushEnabled = true;
+let notifPermission = 'default';
+
+function initPushNotifications() {
+  if ('Notification' in window) {
+    notifPermission = Notification.permission;
+    if (notifPermission === 'default') {
+      // Ask permission after a short delay so it's not the first thing on load
+      setTimeout(() => {
+        Notification.requestPermission().then(p => { notifPermission = p; updateNotifToggleUI(); });
+      }, 4000);
+    }
+  }
+  updateNotifToggleUI();
+}
+
+function updateNotifToggleUI() {
+  const toggleEl = document.getElementById('notif-toggle-sw');
+  const lblEl    = document.getElementById('notif-toggle-lbl');
+  if (!toggleEl) return;
+  if (notifPermission === 'granted' && pushEnabled) {
+    toggleEl.classList.add('on');
+    if (lblEl) lblEl.textContent = 'Browser notifications on';
+  } else if (notifPermission === 'denied') {
+    toggleEl.classList.remove('on');
+    if (lblEl) lblEl.textContent = 'Blocked — allow in browser settings';
+  } else {
+    toggleEl.classList.remove('on');
+    if (lblEl) lblEl.textContent = 'Notifications off';
+  }
+}
+
+function toggleNotifications() {
+  if (notifPermission === 'denied') {
+    showToast('Notifications are blocked. Go to browser settings to allow them for this site.');
+    return;
+  }
+  if (notifPermission === 'default') {
+    Notification.requestPermission().then(p => {
+      notifPermission = p;
+      if (p === 'granted') { pushEnabled = true; }
+      updateNotifToggleUI();
+    });
+    return;
+  }
+  pushEnabled = !pushEnabled;
+  updateNotifToggleUI();
+  showToast(pushEnabled ? 'Browser notifications enabled.' : 'Notifications muted.');
+}
+
+function showPushAlert(sym, type, msg, color) {
+  // In-app banner
+  const bar  = document.getElementById('push-bar');
+  const icon = document.getElementById('push-bar-icon');
+  const symEl= document.getElementById('push-bar-sym');
+  const msgEl= document.getElementById('push-bar-msg');
+  const timeEl=document.getElementById('push-bar-time');
+  if (!bar) return;
+
+  const now = new Date();
+  const t = now.getHours().toString().padStart(2,'0') + ':' + now.getMinutes().toString().padStart(2,'0') + ' ET';
+
+  // Set color class
+  bar.classList.remove('bear-push','warn-push');
+  if (color === 'red')   bar.classList.add('bear-push');
+  if (color === 'amber') bar.classList.add('warn-push');
+
+  icon.textContent  = color === 'red' ? '▼' : color === 'amber' ? '⚠' : '▲';
+  symEl.textContent = sym + ' — ' + type;
+  msgEl.textContent = msg;
+  timeEl.textContent= t;
+
+  bar.classList.add('show');
+
+  clearTimeout(pushBarTimeout);
+  pushBarTimeout = setTimeout(closePushBar, 8000);
+
+  // Browser push notification (only if page is not focused)
+  if (pushEnabled && notifPermission === 'granted' && document.visibilityState !== 'visible') {
+    try {
+      new Notification('WJB Trades Alert', {
+        body: sym + ' — ' + type + '
+' + msg,
+        icon: 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><rect width="32" height="32" rx="6" fill="%230e0e18"/><text y="22" x="4" font-size="18" fill="%23c8a96e">W</text></svg>',
+        tag: 'wjb-alert'
+      });
+    } catch(e) {}
+  }
+}
+
+function closePushBar() {
+  const bar = document.getElementById('push-bar');
+  if (bar) bar.classList.remove('show');
+  clearTimeout(pushBarTimeout);
+}
+
+// ── MARKET DATA EDITOR ────────────────────────────
+function saveMarketData() {
+  const md = getMarketDataFromForm();
+  const store = getStore();
+  store.marketData = md;
+  saveStore(store);
+  showToast('Market data saved — will be used in next email send.');
+}
+
+function loadMarketData() {
+  const store = getStore();
+  const md = store.marketData || {};
+  const fields = {
+    'md-spy-price':  md.spy_price  || '$679',
+    'md-spy-chg':    md.spy_chg    || '−0.40%',
+    'md-qqq-price':  md.qqq_price  || '$611',
+    'md-qqq-chg':    md.qqq_chg    || '+0.14%',
+    'md-wti-price':  md.wti_price  || '$104',
+    'md-wti-chg':    md.wti_chg    || '+8.0%',
+    'md-gold-price': md.gold_price || '$4,733',
+    'md-gold-chg':   md.gold_chg   || '−0.71%',
+    'md-btc-price':  md.btc_price  || '$71,600',
+    'md-btc-chg':    md.btc_chg    || '−1.80%',
+    'md-dxy-price':  md.dxy_price  || '98.79',
+    'md-dxy-chg':    md.dxy_chg    || 'Multi-wk low',
+    'md-catalyst':   md.macro_catalyst || '',
+    'md-s1-ticker':  md.setup1_ticker  || '',
+    'md-s1-action':  md.setup1_action  || '',
+    'md-s1-payoff':  md.setup1_payoff  || '',
+    'md-s1-trigger': md.setup1_trigger || '',
+  };
+  Object.entries(fields).forEach(([id, val]) => {
+    const el = document.getElementById(id);
+    if (el) el.value = val;
+  });
+  showToast('Market data loaded from saved values.');
+}
+
+function getMarketDataFromForm() {
+  const g = id => { const el = document.getElementById(id); return el ? el.value.trim() : ''; };
+  return {
+    spy_price:  g('md-spy-price')  || '$679',
+    spy_chg:    g('md-spy-chg')    || '−0.40%',
+    qqq_price:  g('md-qqq-price')  || '$611',
+    qqq_chg:    g('md-qqq-chg')    || '+0.14%',
+    wti_price:  g('md-wti-price')  || '$104',
+    wti_chg:    g('md-wti-chg')    || '+8.0%',
+    gold_price: g('md-gold-price') || '$4,733',
+    gold_chg:   g('md-gold-chg')   || '−0.71%',
+    btc_price:  g('md-btc-price')  || '$71,600',
+    btc_chg:    g('md-btc-chg')    || '−1.80%',
+    dxy_price:  g('md-dxy-price')  || '98.79',
+    dxy_chg:    g('md-dxy-chg')    || 'Multi-wk low',
+    macro_catalyst: g('md-catalyst') || 'Market is open. Monitor your key levels.',
+    setup1_ticker:  g('md-s1-ticker')  || 'XLE / USO',
+    setup1_action:  g('md-s1-action')  || 'BUY CALL',
+    setup1_payoff:  g('md-s1-payoff')  || '+35–120%',
+    setup1_trigger: g('md-s1-trigger') || 'Reclaim $104.50 WTI / TTO to 9 EMA. FTFC full bull Q/M/W/D.',
+  };
+}
+
+// ── BOOT ──────────────────────────────────────────
+(function boot() {
+  getStore(); // ensure store is initialized
+  loadEmailJSConfig();
+  initSupabase();
+  checkCronTrigger();
+  const session = getSession();
+  if (session) {
+    const store = getStore();
+    const member = store.members.find(m => m.email === session.email && m.status === 'active');
+    if (member) {
+      enterApp(member);
+      return;
+    }
+    clearSession();
+  }
+  showPage('gate');
+})();
+</script>
+</body>
+</html>
